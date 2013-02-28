@@ -1,0 +1,3 @@
+[submodule "root/ci"]
+	path = root/ci
+	url = ssh://git/home/git/UCSFMobileCodeIgniter.git

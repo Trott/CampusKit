@@ -1,0 +1,25 @@
+{
+  "name": "HandheldU",
+  "version": "0.1.0",
+  "description": "Handheld web site",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Trott/mwf.git"
+  },
+  "author": "Rich Trott",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-concat": "~0.1.3"
+  }
+}
