@@ -15,10 +15,10 @@ Capybara.register_driver :iphone do |app|
     Capybara::Selenium::Driver.new(app, :browser => :iphone)
 end
 
-if ENV['BROWSER'] == 'firefox' then
-    page = Capybara::Session.new(:selenium)
-else
+if ENV['BROWSER'] == 'iPhoneSimulator' then
     page = Capybara::Session.new(:iphone)
+else
+    page = Capybara::Session.new(:selenium)
 end
 
 World do
