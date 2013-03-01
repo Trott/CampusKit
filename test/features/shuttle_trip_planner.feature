@@ -35,3 +35,16 @@ Scenario: Show Multiple Shutles
   And I route the trip
   Then I should see "Red"
   And I should see "Yellow"
+
+Scenario: Optimal Route From Mission Bay To 55 Laguna and Back
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "starting_from" "From Mission Bay (4th St.)"
+  And I select a route "ending_at" "To 55 Laguna"
+  And I route the trip
+  Then I should see "Red"
+  And I should not see "Grey"
+  And I reverse the trip
+  Then I should see "Red"
+  And I should not see "Grey"
