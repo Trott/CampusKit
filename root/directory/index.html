@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>UCSF Mobile</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
+    <noscript><style>.jsonly{display:none}</style></noscript>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <script>
+            window.onload = function () {
+                var deferred = document.createElement('script');
+                deferred.src = '/assets/js/ucsf.js';
+                document.body.appendChild(deferred);
+            }
+    </script>
+    <style>
+      .IN-widget { width: 100%;}
+    </style>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+</head>
+<body>
+    <header class="header" id="header"><a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a></header>
+
+    <script src="http://platform.linkedin.com/in.js">
+    api_key: adsq33dzb82c
+    scope: r_network
+    authorize: true
+    </script>
+
+    <script>
+    function search() {
+      if (!IN.ENV.auth.oauth_token) {
+        alert("Sign in with LinkedIn first to search.");
+        return;
+    }
+
+    IN.API.PeopleSearch()
+    .fields("id", "formatted-name", "location:(name)", "summary", "specialties", "picture-url", "public-profile-url")
+    .params({
+      "keywords": document.getElementById('searchform').keywords.value
+  })
+    .result(function(result, metadata) {
+      render(result, metadata);
+  })
+    .error(function(e) {
+        alert(e.message);
+    });
+}
+
+function render(result) {
+    var resultCount = result.numResults;
+    var searchHTML = "<ol>";
+    for (i in result.people.values) {
+        if (result.people.values[i].id === "private") {
+            resultCount = resultCount -1;
+            continue;
+        }
+        console.dir(result.people.values[i]);
+        searchHTML = searchHTML + '<li><a href="' + result.people.values[i].publicProfileUrl + '">';
+        searchHTML = searchHTML + result.people.values[i].formattedName;
+        searchHTML = searchHTML + "</a></li>";
+    }
+    searchHTML = searchHTML + "</ol>";
+    searchHTML = "<h1>Search Results (" + resultCount + ")</h1>" + searchHTML;
+
+    document.getElementById("searchresults").innerHTML = searchHTML;
+}
+</script>
+<div class="content">
+<h1>People Search</h1>
+<p>If you have not done so already, you will need to sign in with LinkedIn and authorize this app prior to doing a search.
+</p>
+<div>
+<script type="in/Login">
+<form id=searchform action="javascript:search()">
+<input autofocus placeholder="Name" name=keywords id=keywords>
+<input type=submit>
+</form>
+</script>
+</div>
+</div>
+<div class="menu" id="searchresults"></div>
+</body>
+</html>
