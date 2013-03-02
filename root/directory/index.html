@@ -13,9 +13,16 @@
                 document.body.appendChild(deferred);
             }
     </script>
-    <style>
-      .IN-widget { width: 100%;}
-    </style>
+    <!-- Facebook paste -->
+<script>
+  function handleStatusChange(response) {
+        document.body.className = response.authResponse ? "connected" : "not_connected";    
+    }
+</script>
+ <!-- END Facebook paste -->
+<style>
+  .menu ol>:last-child img { border-bottom-left-radius: 0.5em;}
+</style>
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
@@ -24,64 +31,83 @@
 <body>
     <header class="header" id="header"><a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a></header>
 
-    <script src="http://platform.linkedin.com/in.js">
-    api_key: adsq33dzb82c
-    scope: r_network
-    authorize: true
-    </script>
+    <!-- START Facebook paste -->
+
+    <div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '320467564723114', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : false  // parse XFBML
+    });
+
+    FB.Event.subscribe('auth.statusChange', handleStatusChange);
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+
+<!-- END Facebook paste -->
 
     <script>
     function search() {
-      if (!IN.ENV.auth.oauth_token) {
-        alert("Sign in with LinkedIn first to search.");
+      if (document.body.className !== "connected") {
+        FB.login(function(response) {       if (document.body.className !== "connected") {
+alert('Sign in with Facebook first to search'); return; } else {search() }}, {scope:'email'}); 
+       return;
+        }
+    FB.api('/search?q=' + 
+        encodeURIComponent(document.getElementById('searchform').keywords.value) + 
+        '&type=user', 
+        { limit: 10, fields: ['name', 'link', 'picture'] },
+        function (response) { render(response); });
+    }
+
+function render(response) {
+    if (response.error) {
+        alert(response.error.message);
         return;
     }
-
-    IN.API.PeopleSearch()
-    .fields("id", "formatted-name", "location:(name)", "summary", "specialties", "picture-url", "public-profile-url")
-    .params({
-      "keywords": document.getElementById('searchform').keywords.value
-  })
-    .result(function(result, metadata) {
-      render(result, metadata);
-  })
-    .error(function(e) {
-        alert(e.message);
-    });
-}
-
-function render(result) {
-    var resultCount = result.numResults;
+    result = response.data;
     var searchHTML = "<ol>";
-    for (i in result.people.values) {
-        if (result.people.values[i].id === "private") {
-            resultCount = resultCount -1;
-            continue;
-        }
-        console.dir(result.people.values[i]);
-        searchHTML = searchHTML + '<li><a href="' + result.people.values[i].publicProfileUrl + '">';
-        searchHTML = searchHTML + result.people.values[i].formattedName;
-        searchHTML = searchHTML + "</a></li>";
+    for (i=0; i<result.length; i++) {
+        searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="' + result[i].link + '">';
+        searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
+        searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">' + result[i].name + '</span>';
+        searchHTML = searchHTML + '</a></li>';
     }
     searchHTML = searchHTML + "</ol>";
-    searchHTML = "<h1>Search Results (" + resultCount + ")</h1>" + searchHTML;
+    searchHTML = "<h1>Search Results (" + result.length + ")</h1>" + searchHTML;
 
     document.getElementById("searchresults").innerHTML = searchHTML;
 }
 </script>
+
 <div class="content">
 <h1>People Search</h1>
-<p>If you have not done so already, you will need to sign in with LinkedIn and authorize this app prior to doing a search.
+<p>For this demo, we're using Facebook to search for people. If you have not done so already, you will need to sign in with Facebook and authorize this app to search.
 </p>
 <div>
-<script type="in/Login">
 <form id=searchform action="javascript:search()">
 <input autofocus placeholder="Name" name=keywords id=keywords>
 <input type=submit>
 </form>
-</script>
 </div>
 </div>
 <div class="menu" id="searchresults"></div>
+<footer id="footer">
+    <p>&copy; 2013 Regents of the University of California<br>
+        <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
+    </p>
+</footer>
 </body>
 </html>
