@@ -13,16 +13,13 @@
                 document.body.appendChild(deferred);
             }
     </script>
-    <!-- Facebook paste -->
-<script>
-  function handleStatusChange(response) {
-        document.body.className = response.authResponse ? "connected" : "not_connected";    
-    }
-</script>
- <!-- END Facebook paste -->
+
+<!-- TODO: move this to a stylesheet -->
 <style>
   .menu ol>:last-child img { border-bottom-left-radius: 0.5em;}
 </style>
+<!-- END TODO -->
+
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
@@ -34,70 +31,16 @@
     <!-- START Facebook paste -->
 
     <div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '320467564723114', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : false  // parse XFBML
-    });
 
-    FB.Event.subscribe('auth.statusChange', handleStatusChange);
-  };
-
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));
-</script>
 
 <!-- END Facebook paste -->
-
-    <script>
-    function search() {
-      if (document.body.className !== "connected") {
-        FB.login(function(response) {       if (document.body.className !== "connected") {
-alert('Sign in with Facebook first to search'); return; } else {search() }}, {scope:'email'}); 
-       return;
-        }
-    FB.api('/search?q=' + 
-        encodeURIComponent(document.getElementById('searchform').keywords.value) + 
-        '&type=user', 
-        { limit: 10, fields: ['name', 'link', 'picture'] },
-        function (response) { render(response); });
-    }
-
-function render(response) {
-    if (response.error) {
-        alert(response.error.message);
-        return;
-    }
-    result = response.data;
-    var searchHTML = "<ol>";
-    for (i=0; i<result.length; i++) {
-        searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="' + result[i].link + '">';
-        searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
-        searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">' + result[i].name + '</span>';
-        searchHTML = searchHTML + '</a></li>';
-    }
-    searchHTML = searchHTML + "</ol>";
-    searchHTML = "<h1>Search Results (" + result.length + ")</h1>" + searchHTML;
-
-    document.getElementById("searchresults").innerHTML = searchHTML;
-}
-</script>
 
 <div class="content">
 <h1>People Search</h1>
 <p>For this demo, we're using Facebook to search for people. If you have not done so already, you will need to sign in with Facebook and authorize this app to search.
 </p>
 <div>
-<form id=searchform action="javascript:search()">
+<form id=searchform action="javascript:ucsf.directory.search()">
 <input autofocus placeholder="Name" name=keywords id=keywords>
 <input type=submit>
 </form>

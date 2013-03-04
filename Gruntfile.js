@@ -17,6 +17,7 @@ module.exports = function(grunt) {
               'root/assets/js/external/LightningTouch.js',
               'root/assets/js/ucsf/mainPage.src.js',
               'root/assets/js/ucsf/shuttle.src.js',
+              'root/assets/js/ucsf/directory.src.js',
               'root/assets/js/ucsf/news.src.js',
               'root/assets/js/ucsf/maps.src.js'],
         dest: 'dist/ucsf.partial.js'
@@ -39,7 +40,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        predef: ['Modernizr','Hogan','google','_newsq', 'yepnope'],
+        predef: ['Modernizr','Hogan','google','_newsq', 'yepnope','FB'], //TODO: rm FB
         boss: true,
         eqnull: true,
         browser: true
