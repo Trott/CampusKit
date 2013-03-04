@@ -49,7 +49,8 @@ ucsf.directory = {
             return;
         }
         var result = response.data;
-        //TODO: this should be a template with a default and the option to pass in one to override
+        //TODO: this should be a template with a default and the option to pass in one to override.
+        //TODO: Although this is probably good for API sample code.
         var searchHTML = "<ol>";
         for (var i=0; i<result.length; i++) {
             searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="' + result[i].link + '">';
