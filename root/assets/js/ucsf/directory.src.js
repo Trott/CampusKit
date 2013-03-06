@@ -1,7 +1,7 @@
 var ucsf = ucsf || {};
 
 Modernizr.load({
-    load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.People.js?apikey=abcdefg'
+    load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg'
 });
 
 ucsf.directory = {
@@ -9,7 +9,7 @@ ucsf.directory = {
         var progressHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
         document.getElementById("searchresults").innerHTML = progressHTML;
         var that = this;
-        UCSF.People.search(
+        UCSF.Person.search(
             {
                 keywords: document.getElementById('searchform').keywords.value,
                 limit: 10,
