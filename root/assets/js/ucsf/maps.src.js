@@ -52,11 +52,8 @@ ucsf.maps =  {
         locationCode,
         mapLocation;
 
-        window.console.log("Match: " + match[1]);
         locationCode = match !== null ? match[1] : 'All Campuses';
-        window.console.log("Location Code: " + locationCode);
         for (var i = 0; i < ucsf.maps.locationList.length; i++) {
-            window.console.log(ucsf.maps.locationList[i].name);
             if (ucsf.maps.locationList[i].name === locationCode) {
                 mapLocation = ucsf.maps.locationList[i];
                 break;
@@ -79,7 +76,7 @@ ucsf.maps =  {
                 return "/maps/img/tiles/"+zoom+"/"+coord.x+"/"+coord.y+".png";
             }
         });
-        var map = new google.maps.Map(document.getElementById("map_canvas"), 
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
             {center:new google.maps.LatLng(mapLocation.lat,mapLocation.lon),
                 mapTypeId:google.maps.MapTypeId.ROADMAP,
                 zoom:mapLocation.zoom,
@@ -110,7 +107,7 @@ ucsf.maps =  {
     }
 };
 
-
+// Can't use yepnope()/Modernizr.load() because Google Maps uses document.write().
 if (document.getElementById('map_canvas')) {
     var script = document.createElement("script");
     script.type = "text/javascript";

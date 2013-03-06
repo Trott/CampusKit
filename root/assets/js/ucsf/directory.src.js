@@ -1,46 +1,18 @@
 var ucsf = ucsf || {};
 
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '320467564723114', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : false  // parse XFBML
-  });
-
-    FB.Event.subscribe('auth.statusChange', ucsf.directory.handleStatusChange);
-};
-
-  // Load the SDK Asynchronously
-  (function(d){
-   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement('script'); js.id = id; js.async = true;
-   js.src = "//connect.facebook.net/en_US/all.js";
-   ref.parentNode.insertBefore(js, ref);
-}(document));
+Modernizr.load({
+    load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.People.js?apikey=abcdefg'
+});
 
 ucsf.directory = {
-    handleStatusChange: function (response) {
-        document.body.className = response.authResponse ? "connected" : "not_connected";
-    },
     search: function () {
         var that = this;
-        if (document.body.className !== "connected") {
-            FB.login(function(response) {
-                if (document.body.className !== "connected") {
-                    window.alert('Sign in with Facebook first to search');
-                    return;
-                } else {
-                    that.search();
-                }
-            }, {scope:'email'});
-            return;
-        }
-        FB.api('/search?q=' +
-            encodeURIComponent(document.getElementById('searchform').keywords.value) +
-            '&type=user',
-            { limit: 10, fields: ['name', 'link', 'picture'] },
+        UCSF.People.search(
+            {
+                keywords: document.getElementById('searchform').keywords.value,
+                limit: 10,
+                fields: ['name', 'link', 'picture']
+            },
             function (response) { that.render(response); });
     },
     render: function (response) {

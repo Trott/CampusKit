@@ -87,7 +87,7 @@ ucsf.news = (function () {
         if (! navigator.onLine) {
             container.innerHTML = template.render(me.loadFromStorage(storageId));
         } else {
-            yepnope([{load:'http://www.google.com/jsapi', callback: function() {
+            Modernizr.load([{load:'http://www.google.com/jsapi', callback: function() {
                 google.load("feeds", "1",
                     {
                         nocss:true, callback:function () {
