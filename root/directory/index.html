@@ -28,18 +28,13 @@
 <body>
     <header class="header" id="header"><a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a></header>
 
-<div class="content">
-<h1>People Search</h1>
-<p>For this demo, we're using Facebook to search for people. If you have not done so already, you will need to sign in with Facebook and authorize this app to search.
-</p>
-<div>
 <form id=searchform action="javascript:ucsf.directory.search()">
+<h1>People Search</h1>
 <input autofocus placeholder="Name" name=keywords id=keywords>
 <input type=submit>
 </form>
-</div>
-</div>
-<div class="menu" id="searchresults"></div>
+
+<div id="searchresults"></div>
 <footer id="footer">
     <p>&copy; 2013 Regents of the University of California<br>
         <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
