@@ -7,7 +7,6 @@ module.exports = function(grunt) {
     concat: {
       full: {
         src: ['root/assets/js/core/modernizr.js',
-              'root/assets/js/core/zepto.min.js',
               'root/assets/js/core/template-2.0.0.min.js',
               'dist/ucsf.partial.min.js'],
         dest: 'root/assets/js/ucsf.js'
@@ -40,7 +39,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        predef: ['UCSF','Modernizr','Hogan','google','_newsq', '$'],
+        predef: ['UCSF','Modernizr','Hogan','google','_newsq'],
         boss: true,
         eqnull: true,
         browser: true
