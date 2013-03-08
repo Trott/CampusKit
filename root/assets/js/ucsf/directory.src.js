@@ -1,9 +1,7 @@
 var ucsf = ucsf || {};
 
 //TODO: apikey
-//TODO: 20 results => tell user results limited to 20
 //TODO: empty query should return the form, not 20 results
-//TODO: 0 results looks crappy. Make better.
 
 Modernizr.load({
     load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg'
@@ -33,19 +31,25 @@ ucsf.directory = {
         var result = response.result || [];
         //TODO: this and the progress meter should be a template with a default and the option to pass in one to override.
         //TODO: Although this is probably good for API sample code.
-        var searchHTML = '<div class="menu"><h1>Search Results (' + result.length + ')</h1>';
-        if (result.length === 20) {
+        var resultCount = result.length>20 ? 20 : result.length;
+        var searchHTML = '<div class="menu"><h1>Search Results (' + resultCount + ')</h1>';
+        if (resultCount === 20) {
             searchHTML = searchHTML + '<p class="info">Results limited to 20.</p>';
         }
-        searchHTML = searchHTML + '<ol>';
-        for (var i=0; i<result.length; i++) {
-            searchHTML = searchHTML + '<li><a href="#">';
-            searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
-            searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
-            searchHTML = searchHTML + '</span>';
-            searchHTML = searchHTML + '</a></li>';
+        if (result.length === 0) {
+            searchHTML = searchHTML + '<p class="info">No results found.</p>';
+        } else {
+            searchHTML = searchHTML + '<ol>';
+            for (var i=0; i<resultCount; i++) {
+                searchHTML = searchHTML + '<li><a href="#">';
+                searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
+                searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
+                searchHTML = searchHTML + '</span>';
+                searchHTML = searchHTML + '</a></li>';
+            }
+            searchHTML = searchHTML + "</ol>";
         }
-        searchHTML = searchHTML + "</ol></div>";
+        searchHTML = searchHTML + "</div>";
 
         document.getElementById("searchresults").innerHTML = searchHTML;
     }
