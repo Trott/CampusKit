@@ -28,7 +28,7 @@ Scenario: Remember Reversed Trip
   Then I should see the route "starting_from" "From 654 Minnesota"
   And I should see the route "ending_at" "To Mt. Zion"
 
-Scenario: Show Multiple Shutles
+Scenario: Show Multiple Shuttles
   Given I visit the Shuttle Trip Planner page
   And I select a route "starting_from" "From 16th St. BART"
   And I select a route "ending_at" "To MCB"

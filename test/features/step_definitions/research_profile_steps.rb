@@ -1,5 +1,5 @@
-Given /I am on a Research Profile page/ do
-  visit "/research/?fno=Richard.Schneider%40ucsf.edu"
+Given /I am on a Research Profile page for "(.*)"$/ do |id|
+  visit "/research/?fno=" + id + "%40ucsf.edu"
 end
 
 Then /I should see the Research Profile page/ do

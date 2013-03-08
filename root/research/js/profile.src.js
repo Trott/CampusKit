@@ -46,7 +46,7 @@ ucsf.ctsiProfile = {
                     }
                 }
 
-                if (myProfile.hasOwnProperty("Narrative")) {
+                if (myProfile.hasOwnProperty("Narrative") && (typeof myProfile.Narrative === "string")) {
                     items = document.createElement("ol");
                     menu.appendChild(items);
                     item = document.createElement("li");
