@@ -1,3 +1,5 @@
+//TODO: detailed info when you click the name
+
 var ucsf = ucsf || {};
 
 Modernizr.load({
@@ -47,7 +49,12 @@ ucsf.directory = {
             for (var i=0; i<resultCount; i++) {
                 searchHTML = searchHTML + '<li><a href="#">';
                 searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
-                searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
+                // Failing to capitalize the Chancellor's name correctly is embarrassing. Sad hack to fix it.
+                searchHTML = searchHTML + result[i].displayName[0].replace('Desmond-hellman','Desmond-Hellman');
+                window.console.dir(result[i].department);
+                if (result[i].hasOwnProperty('department') && typeof result[i].department[0] === "string") {
+                    searchHTML = searchHTML + ' &ndash; ' + result[i].department[0];
+                }
                 searchHTML = searchHTML + '</span>';
                 searchHTML = searchHTML + '</a></li>';
             }
