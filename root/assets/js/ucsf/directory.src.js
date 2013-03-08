@@ -1,5 +1,9 @@
 var ucsf = ucsf || {};
 
+//TODO: apikey
+//TODO: disable search button and renable it once results show up
+//TODO: 20 results => tell user results limited to 20
+
 Modernizr.load({
     load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg'
 });
@@ -11,9 +15,9 @@ ucsf.directory = {
         var that = this;
         UCSF.Person.search(
             {
-                keywords: document.getElementById('searchform').keywords.value,
-                limit: 10,
-                fields: ['name', 'link', 'picture']
+                first_name: document.getElementById('searchform').first_name.value,
+                last_name: document.getElementById('searchform').last_name.value,
+                department: document.getElementById('searchform').department.value
             },
             function (response) { that.render(response); });
     },
@@ -22,14 +26,14 @@ ucsf.directory = {
             window.alert(response.error.message);
             return;
         }
-        var result = response.data;
+        var result = response.result || [];
         //TODO: this and the progress meter should be a template with a default and the option to pass in one to override.
         //TODO: Although this is probably good for API sample code.
         var searchHTML = '<div class="menu"><h1>Search Results (' + result.length + ')</h1><ol>';
         for (var i=0; i<result.length; i++) {
-            searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="' + result[i].link + '">';
-            searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
-            searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">' + result[i].name + '</span>';
+            searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="#">';
+//            searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
+            searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">' + result[i].displayName + '</span>';
             searchHTML = searchHTML + '</a></li>';
         }
         searchHTML = searchHTML + "</ol></div>";
