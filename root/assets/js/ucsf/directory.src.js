@@ -47,15 +47,15 @@ ucsf.directory = {
         } else {
             searchHTML = searchHTML + '<ol>';
             for (var i=0; i<resultCount; i++) {
-                searchHTML = searchHTML + '<li><a href="#">';
-                searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
-                // Failing to capitalize the Chancellor's name correctly is embarrassing. Sad hack to fix it.
-                searchHTML = searchHTML + result[i].displayName[0].replace('Desmond-hellman','Desmond-Hellman');
-                window.console.dir(result[i].department);
+                searchHTML = searchHTML + '<li><a href="#" onclick="ucsf.directory.showHideDetails(this)">';
+                searchHTML = searchHTML + '<span style="">';
+                searchHTML = searchHTML + result[i].displayName;
                 if (result[i].hasOwnProperty('department') && typeof result[i].department[0] === "string") {
                     searchHTML = searchHTML + ' &ndash; ' + result[i].department[0];
                 }
                 searchHTML = searchHTML + '</span>';
+                searchHTML = searchHTML + '<span style="display:none">';
+                searchHTML = searchHTML + result[i].telephoneNumber[0];
                 searchHTML = searchHTML + '</a></li>';
             }
             searchHTML = searchHTML + "</ol>";
@@ -63,5 +63,9 @@ ucsf.directory = {
         searchHTML = searchHTML + "</div>";
 
         document.getElementById("searchresults").innerHTML = searchHTML;
+    },
+    showHideDetails: function(that) {
+        var style = that.lastChild.getAttribute('style') === "display:block" ? "display:none" : "display:block";
+        that.lastChild.setAttribute("style", style);
     }
 };
