@@ -1,7 +1,6 @@
 var ucsf = ucsf || {};
 
 //TODO: apikey
-//TODO: disable search button and renable it once results show up
 //TODO: 20 results => tell user results limited to 20
 
 Modernizr.load({
@@ -10,18 +9,21 @@ Modernizr.load({
 
 ucsf.directory = {
     search: function () {
+        document.getElementById("ucsf_directory_search_submit").disabled = true;
         var progressHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
         document.getElementById("searchresults").innerHTML = progressHTML;
         var that = this;
         UCSF.Person.search(
             {
-                first_name: document.getElementById('searchform').first_name.value,
-                last_name: document.getElementById('searchform').last_name.value,
-                dep_name: document.getElementById('searchform').department.value
+                first_name: document.getElementById('ucsf_directory_search_form').first_name.value,
+                last_name: document.getElementById('ucsf_directory_search_form').last_name.value,
+                dep_name: document.getElementById('ucsf_directory_search_form').department.value
             },
-            function (response) { that.render(response); });
+            function (response) { that.render(response); }
+        );
     },
     render: function (response) {
+        document.getElementById("ucsf_directory_search_submit").disabled = false;
         if (response.error) {
             window.alert(response.error.message);
             return;
@@ -32,7 +34,6 @@ ucsf.directory = {
         var searchHTML = '<div class="menu"><h1>Search Results (' + result.length + ')</h1><ol>';
         for (var i=0; i<result.length; i++) {
             searchHTML = searchHTML + '<li><a href="#">';
-//            searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
             searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
             searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
             searchHTML = searchHTML + '</span>';
