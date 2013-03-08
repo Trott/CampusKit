@@ -17,7 +17,7 @@ ucsf.directory = {
             {
                 first_name: document.getElementById('searchform').first_name.value,
                 last_name: document.getElementById('searchform').last_name.value,
-                department: document.getElementById('searchform').department.value
+                dep_name: document.getElementById('searchform').department.value
             },
             function (response) { that.render(response); });
     },
@@ -33,7 +33,9 @@ ucsf.directory = {
         for (var i=0; i<result.length; i++) {
             searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="#">';
 //            searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
-            searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">' + result[i].displayName + '</span>';
+            searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
+            searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
+            searchHTML = searchHTML + '</span>';
             searchHTML = searchHTML + '</a></li>';
         }
         searchHTML = searchHTML + "</ol></div>";
