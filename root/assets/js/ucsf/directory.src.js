@@ -1,7 +1,6 @@
 var ucsf = ucsf || {};
 
 //TODO: apikey
-//TODO: empty query should return the form, not 20 results
 
 Modernizr.load({
     load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg'
@@ -10,14 +9,22 @@ Modernizr.load({
 ucsf.directory = {
     search: function () {
         document.getElementById("ucsf_directory_search_submit").disabled = true;
+        var that = this,
+            fn = document.getElementById('ucsf_directory_search_form').first_name.value,
+            ln = document.getElementById('ucsf_directory_search_form').last_name.value,
+            dep = document.getElementById('ucsf_directory_search_form').department.value;
+        if (!fn && !ln && !dep) {
+            // Nothing submitted in form, render empty result.
+            that.render({});
+            return;
+        }
         var progressHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
         document.getElementById("searchresults").innerHTML = progressHTML;
-        var that = this;
         UCSF.Person.search(
             {
-                first_name: document.getElementById('ucsf_directory_search_form').first_name.value,
-                last_name: document.getElementById('ucsf_directory_search_form').last_name.value,
-                dep_name: document.getElementById('ucsf_directory_search_form').department.value
+                first_name: fn,
+                last_name: ln,
+                dep_name: dep
             },
             function (response) { that.render(response); }
         );
