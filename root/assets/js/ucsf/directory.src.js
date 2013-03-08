@@ -31,7 +31,7 @@ ucsf.directory = {
         //TODO: Although this is probably good for API sample code.
         var searchHTML = '<div class="menu"><h1>Search Results (' + result.length + ')</h1><ol>';
         for (var i=0; i<result.length; i++) {
-            searchHTML = searchHTML + '<li><a style="padding:0em;overflow:auto;" href="#">';
+            searchHTML = searchHTML + '<li><a href="#">';
 //            searchHTML = searchHTML + '<img style="float:left;" src="' + result[i].picture.data.url + '" alt="">';
             searchHTML = searchHTML + '<span style="display:inline-block;padding:1em">';
             searchHTML = searchHTML + result[i].displayName + ' &ndash; ' + result[i].department;
