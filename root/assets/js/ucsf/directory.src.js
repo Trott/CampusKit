@@ -1,7 +1,5 @@
 var ucsf = ucsf || {};
 
-//TODO: apikey
-
 Modernizr.load({
     load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg'
 });
@@ -37,7 +35,6 @@ ucsf.directory = {
         }
         var result = response.result || [];
         //TODO: this and the progress meter should be a template with a default and the option to pass in one to override.
-        //TODO: Although this is probably good for API sample code.
         var resultCount = result.length>20 ? 20 : result.length;
         var searchHTML = '<div class="menu"><h1>Search Results (' + resultCount + ')</h1>';
         if (resultCount === 20) {
