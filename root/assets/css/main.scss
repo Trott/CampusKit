@@ -222,6 +222,7 @@ footer a:hover {
 .menu {
     font-size: 1.1em;
     font-weight: bold;
+    background: #fff;
 }
 
 .menu > h1,
@@ -245,6 +246,9 @@ footer a:hover {
 
 .menu p {
     color: #000;
+    border-bottom: 1px solid #ddd;
+    padding: .5em;
+    font-weight: normal;
 }
 
 .menu ol {
@@ -704,10 +708,6 @@ a {
 	height: auto;
 }
 
-.menu li {
-    background:#fff;
-}
-
 #main_menu li {
     background:inherit;
 }
@@ -1092,6 +1092,11 @@ footer a,footer a:visited {
 
     text-decoration:none;
     border-bottom:1px solid #fff;
+}
+
+.info {
+    font-style: italic;
+    text-align: center;
 }
 
 /********************************************************
