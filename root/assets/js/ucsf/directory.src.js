@@ -1,9 +1,6 @@
 var _dirq = _dirq || [];
 //TODO: detailed info when you click the name
 
-//TODO: In theory, UCSF.Person can get called before it is loaded. Emulate _gaq.push
-// to create queue, then process queue in Modernizr.load callback.
-
 ucsf.directory = (function () {
     "use strict";
     var me = {};
