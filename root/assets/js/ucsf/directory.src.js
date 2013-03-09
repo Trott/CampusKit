@@ -35,37 +35,34 @@ ucsf.directory = {
             window.alert(response.error.message);
             return;
         }
-        var result = response.result || [];
+        var result = response.data || [];
         //TODO: this and the progress meter should be a template with a default and the option to pass in one to override.
         var resultCount = result.length>20 ? 20 : result.length;
         var searchHTML = '<div class="menu"><h1>Search Results (' + resultCount + ')</h1>';
         if (resultCount === 20) {
             searchHTML = searchHTML + '<p class="info">Results limited to 20.</p>';
         }
-        if (result.length === 0) {
+        if (resultCount === 0) {
             searchHTML = searchHTML + '<p class="info">No results found.</p>';
         } else {
             searchHTML = searchHTML + '<ol>';
             for (var i=0; i<resultCount; i++) {
-                searchHTML = searchHTML + '<li><a href="#" onclick="ucsf.directory.showHideDetails(this)">';
+                // Skip if we don't have a name or id, which should never happen.
+                if (! (result[i].hasOwnProperty('id') && result[i].hasOwnProperty('name'))) {
+                    continue;
+                }
+                searchHTML = searchHTML + '<li><a href="/directory/detail/?' + encodeURIComponent(result[i].id) + '">';
                 searchHTML = searchHTML + '<span style="">';
-                searchHTML = searchHTML + result[i].displayName;
-                if (result[i].hasOwnProperty('department') && typeof result[i].department[0] === "string") {
-                    searchHTML = searchHTML + ' &ndash; ' + result[i].department[0];
+                searchHTML = searchHTML + result[i].name;
+                if (result[i].hasOwnProperty('department')) {
+                    searchHTML = searchHTML + ' &ndash; ' + result[i].department;
                 }
                 searchHTML = searchHTML + '</span>';
-                searchHTML = searchHTML + '<span style="display:none">';
-                searchHTML = searchHTML + result[i].telephoneNumber[0];
-                searchHTML = searchHTML + '</a></li>';
             }
             searchHTML = searchHTML + "</ol>";
         }
         searchHTML = searchHTML + "</div>";
 
         document.getElementById("searchresults").innerHTML = searchHTML;
-    },
-    showHideDetails: function(that) {
-        var style = that.lastChild.getAttribute('style') === "display:block" ? "display:none" : "display:block";
-        that.lastChild.setAttribute("style", style);
     }
 };
