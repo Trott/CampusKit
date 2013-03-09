@@ -23,16 +23,20 @@
     <header class="header" id="header"><a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a></header>
 
     <noscript><div class="content center" ><p>JavaScript is required to load this content.</p></div></noscript>
-    <div id="il/directory/detail" class="jsonly" >
+    <div id="ucsf_directory_detail" class="jsonly" >
         <section class="center"><progress>Loading...</progress></section>
     </div>
 
-    <script>console.log(window.onload);</script>
 
 <footer id="footer">
     <p>&copy; 2013 Regents of the University of California<br>
         <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
     </p>
 </footer>
+<script>
+    var _dirq = _dirq || [];
+    _dirq.push([{id: window.location.search.substr(1)},
+            function (response) { ucsf.directory.renderDetail(response); }]);
+</script>
 </body>
 </html>

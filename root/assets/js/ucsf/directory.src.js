@@ -33,7 +33,8 @@ ucsf.directory = (function () {
             return;
         }
         var result = response.data || [];
-        //TODO: this and the progress meter should be a template with a default and the option to pass in one to override.
+        //TODO: this and all the other rendered stuff (including the progress meter) 
+        // should be templates with defaults and the option to pass in one to override.
         var resultCount = result.length>20 ? 20 : result.length;
         var searchHTML = '<div class="menu"><h1>Search Results (' + resultCount + ')</h1>';
         if (resultCount === 20) {
@@ -61,6 +62,14 @@ ucsf.directory = (function () {
         searchHTML = searchHTML + "</div>";
 
         document.getElementById("searchresults").innerHTML = searchHTML;
+    };
+
+    me.renderDetail = function (response) {
+        var template = new Hogan.Template(
+            function(c,p,i){var _=this;_.b(i=i||"");if(!_.s(_.f("data",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p class=\"info\">No details available.</p></div>");}if(_.s(_.f("data",c,p,1),c,p,0,95,1077,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.d(".",c,p,1),c,p,0,101,1071,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h1>");_.b(_.v(_.f("name",c,p,0)));if(_.s(_.f("degrees",c,p,1),c,p,0,152,159,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(", ");_.b(_.v(_.d(".",c,p,0)));});c.pop();}_.b("</h1><ol>");if(_.s(_.f("phones",c,p,1),c,p,0,191,575,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.f("main",c,p,1),c,p,0,200,252,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("alternate",c,p,1),c,p,0,275,332,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Alt. Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("privatePractice",c,p,1),c,p,0,366,422,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Private Practice: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("mobile",c,p,1),c,p,0,453,499,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Mobile: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("pager",c,p,1),c,p,0,520,565,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Pager: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}});c.pop();}if(_.s(_.f("email",c,p,1),c,p,0,596,644,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"mailto:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Email: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol></div><div class=\"content\"><ul class=\"ucsf-directory\">");if(_.s(_.f("department",c,p,1),c,p,0,728,786,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Department:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("title",c,p,1),c,p,0,811,864,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Title:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("campusBox",c,p,1),c,p,0,888,946,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Campus Box:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("address",c,p,1),c,p,0,972,1048,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Postal Address:</span><br><pre>");_.b(_.v(_.d(".",c,p,0)));_.b("</pre></li>");});c.pop();}_.b("</ul></div>");});c.pop();}});c.pop();}return _.fl();}
+        );
+        var detailElement = document.getElementById('ucsf_directory_detail');
+        detailElement.innerHTML = template.render(response);
     };
 
     return me;
