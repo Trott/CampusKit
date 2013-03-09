@@ -12,7 +12,8 @@ module.exports = function(grunt) {
         dest: 'root/assets/js/ucsf.js'
       },
       partial: {
-        src: ['root/assets/js/utility/analytics.src.js',
+        src: ['root/assets/js/ucsf/ucsf.src.js',
+              'root/assets/js/utility/analytics.src.js',
               'root/assets/js/external/LightningTouch.js',
               'root/assets/js/ucsf/mainPage.src.js',
               'root/assets/js/ucsf/shuttle.src.js',
@@ -39,7 +40,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        predef: ['UCSF','Modernizr','Hogan','google','_newsq'],
+        predef: ['UCSF','Modernizr','Hogan','google'],
         boss: true,
         eqnull: true,
         browser: true
@@ -72,6 +73,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  
+
   grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
 };

@@ -5,8 +5,6 @@
  * @version 20120208
  */
 
-var ucsf = ucsf || {};
-
 // Google Analytics API requires this to be a global
 var _gaq = _gaq || [];
 
@@ -23,7 +21,7 @@ ucsf.analytics = (function(){
     me.trackPageview = function(url) {
         url = url || window.location.pathname + window.location.search + window.location.hash;
         _gaq.push(["_trackPageview",url]);
-    
+
         for (var i = 0; i < pathKeys.length; i++) {
             if (url.substring(0,pathKeys[i].s.length) === pathKeys[i].s) {
                 _gaq.push(["t"+i+"._trackPageview",url]);
@@ -34,11 +32,11 @@ ucsf.analytics = (function(){
     me.init = function(ua) {
         ua = ua || navigator.userAgent;
         _gaq.push(["_setAccount", key]);
-    
+
         for (var i = 0; i < pathKeys.length; i++) {
             _gaq.push(["t"+i+"._setAccount",pathKeys[i].a]);
         }
-    
+
         if (/ mwf\-native\-[a-z]*\/[\d\.]*$/i.test(ua)) {
             // Special tracking for native client.
             // @todo: Make this configurable (on|off, at least) and customizable
