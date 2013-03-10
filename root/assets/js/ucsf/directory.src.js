@@ -1,5 +1,4 @@
 var _dirq = _dirq || [];
-//TODO: detailed info when you click the name
 
 ucsf.directory = (function () {
     "use strict";

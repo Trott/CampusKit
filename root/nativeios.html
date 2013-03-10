@@ -119,13 +119,15 @@
     <header>
         <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/directory">Directory</a></span>
     </header>
-    <form method="get" action="/directory/query">
-        <h2>Directory</h2>
-        <label for="first_name">First Name</label><input id="first_name" type="text" name="first_name">
-        <label for="last_name">Last Name</label><input id="last_name" type="text" name="last_name">
-        <label for="department">Department</label><input id="department" type="text" name="department">
-        <input value="Search" type="submit">
+    <form id="ucsf_directory_search_form" action="javascript:ucsf.directory.search()">
+        <h1>Person Search</h1>
+        <input placeholder="First Name" name="first_name" id="first_name">
+        <input autofocus placeholder="Last Name" name="last_name" id="last_name">
+        <input placeholder="Department" name="department" id="department">
+        <input type="submit" id="ucsf_directory_search_submit" value="Search">
     </form>
+    <div id="searchresults">
+    </div>
 </div>
 <div id="il/news" style="display:none">
     <header>

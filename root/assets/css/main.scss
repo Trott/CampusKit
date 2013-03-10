@@ -226,7 +226,6 @@ footer a:hover {
 .menu {
     font-size: 1.1em;
     font-weight: bold;
-    background: #fff;
 }
 
 .menu > h1,
@@ -816,6 +815,9 @@ body.front .menu {
 .content ol li{
     margin: 0 0 0 26px;
 }
+
+.menu {background: #fff}
+.menu.front {background:0}
 
 .menu.front li{display:inline-block;height:108px;width:25%;list-style:none;padding:0;border:0;margin:0}
 .menu.front li a{padding: 1em 0 0 0;background:0;color:#fff;font-size:75%;font-weight:normal;text-align:center}
