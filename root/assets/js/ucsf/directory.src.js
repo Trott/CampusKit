@@ -65,10 +65,44 @@ ucsf.directory = (function () {
 
     me.renderDetail = function (response) {
         var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");if(!_.s(_.f("data",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p class=\"info\">No details available.</p></div>");}if(_.s(_.f("data",c,p,1),c,p,0,95,1077,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.d(".",c,p,1),c,p,0,101,1071,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h1>");_.b(_.v(_.f("name",c,p,0)));if(_.s(_.f("degrees",c,p,1),c,p,0,152,159,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(", ");_.b(_.v(_.d(".",c,p,0)));});c.pop();}_.b("</h1><ol>");if(_.s(_.f("phones",c,p,1),c,p,0,191,575,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.f("main",c,p,1),c,p,0,200,252,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("alternate",c,p,1),c,p,0,275,332,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Alt. Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("privatePractice",c,p,1),c,p,0,366,422,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Private Practice: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("mobile",c,p,1),c,p,0,453,499,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Mobile: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("pager",c,p,1),c,p,0,520,565,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Pager: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}});c.pop();}if(_.s(_.f("email",c,p,1),c,p,0,596,644,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"mailto:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Email: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol></div><div class=\"content\"><ul class=\"ucsf-directory\">");if(_.s(_.f("department",c,p,1),c,p,0,728,786,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Department:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("title",c,p,1),c,p,0,811,864,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Title:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("campusBox",c,p,1),c,p,0,888,946,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Campus Box:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("address",c,p,1),c,p,0,972,1048,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Postal Address:</span><br><pre>");_.b(_.v(_.d(".",c,p,0)));_.b("</pre></li>");});c.pop();}_.b("</ul></div>");});c.pop();}});c.pop();}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");if(!_.s(_.f("data",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p class=\"info\">No details available.</p></div>");}if(_.s(_.f("data",c,p,1),c,p,0,95,1146,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.d(".",c,p,1),c,p,0,101,1140,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\" id=\"ucsf_directory_detail_menu\"><h1>");_.b(_.v(_.f("name",c,p,0)));if(_.s(_.f("degrees",c,p,1),c,p,0,184,191,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(", ");_.b(_.v(_.d(".",c,p,0)));});c.pop();}_.b("</h1><ol id=\"ucsf_directory_detail_menu_list\">");if(_.s(_.f("phones",c,p,1),c,p,0,260,644,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.f("main",c,p,1),c,p,0,269,321,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("alternate",c,p,1),c,p,0,344,401,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Alt. Campus Phone: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("privatePractice",c,p,1),c,p,0,435,491,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Private Practice: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("mobile",c,p,1),c,p,0,522,568,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Mobile: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}if(_.s(_.f("pager",c,p,1),c,p,0,589,634,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Pager: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}});c.pop();}if(_.s(_.f("email",c,p,1),c,p,0,665,713,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"mailto:");_.b(_.v(_.d(".",c,p,0)));_.b("\">Email: ");_.b(_.v(_.d(".",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol></div><div class=\"content\"><ul class=\"ucsf-directory\">");if(_.s(_.f("department",c,p,1),c,p,0,797,855,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Department:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("title",c,p,1),c,p,0,880,933,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Title:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("campusBox",c,p,1),c,p,0,957,1015,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Campus Box:</span> ");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");});c.pop();}if(_.s(_.f("address",c,p,1),c,p,0,1041,1117,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><span class=\"smallprint\">Postal Address:</span><br><pre>");_.b(_.v(_.d(".",c,p,0)));_.b("</pre></li>");});c.pop();}_.b("</ul></div>");});c.pop();}});c.pop();}return _.fl();}
         );
         var detailElement = document.getElementById('ucsf_directory_detail');
         detailElement.innerHTML = template.render(response);
+        if (response.hasOwnProperty("data") && response.data[0].hasOwnProperty('id')) {
+            me.id = response.data[0].id;
+            var script = document.createElement('script');
+            script.setAttribute("src","http://profiles.ucsf.edu/CustomAPI/v1/JSONProfile.aspx?FNO=" + me.id + "&callback=ucsf.directory.addPhotoAndProfileUrl");
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
+    };
+
+    me.addPhotoAndProfileUrl = function (data) {
+        if (data.hasOwnProperty("Profiles")) {
+            if ((data.Profiles instanceof Array) && (data.Profiles.length > 0)) {
+                var myProfile = data.Profiles[0];
+                if (myProfile.hasOwnProperty("PhotoURL")) {
+                    var profilePhoto = document.createElement("img");
+                    profilePhoto.setAttribute("src","http://src.sencha.io/80/80/"+myProfile.PhotoURL);
+                    profilePhoto.setAttribute("alt","");
+                    profilePhoto.setAttribute("style","border-top-right-radius:0;float:left");
+                    var dirMenu = document.getElementById('ucsf_directory_detail_menu');
+                    var dirHeader = dirMenu.firstChild;
+                    dirHeader.setAttribute("style","height:52px;padding-top:20px;border-radius:.5em .5em 0 0;");
+                    dirMenu.insertBefore(profilePhoto,dirHeader);
+                }
+
+                window.console.dir(data);
+                if (myProfile.hasOwnProperty("ProfilesURL")) {
+                    var profileLink = document.createElement("a");
+                    profileLink.setAttribute("href","/research/?fno=" + me.id);
+                    profileLink.innerHTML = 'Research &amp; Publications';
+                    var currentItem = document.createElement("li");
+                    currentItem.appendChild(profileLink);
+                    document.getElementById("ucsf_directory_detail_menu_list").appendChild(currentItem);
+                }
+            }
+        }
     };
 
     return me;
