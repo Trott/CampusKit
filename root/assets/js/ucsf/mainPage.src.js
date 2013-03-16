@@ -8,4 +8,6 @@ ucsf.callAnalytics = function (event) {
     }
 };
 
-window.addEventListener('hashchange', ucsf.callAnalytics, false);
+if ('addEventListener' in window) {
+	window.addEventListener('hashchange', ucsf.callAnalytics, false);
+}

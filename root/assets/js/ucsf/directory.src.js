@@ -92,7 +92,6 @@ ucsf.directory = (function () {
                     dirMenu.insertBefore(profilePhoto,dirHeader);
                 }
 
-                window.console.dir(data);
                 if (myProfile.hasOwnProperty("ProfilesURL")) {
                     var profileLink = document.createElement("a");
                     profileLink.setAttribute("href","/research/?fno=" + me.id);

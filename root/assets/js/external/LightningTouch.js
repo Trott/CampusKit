@@ -22,6 +22,12 @@
 
 (function () {
     "use strict";
+
+    // If IE7, let's just get out of here.
+    if (! ('addEventListener' in document)) {
+        return;
+    }
+
     var link = [],
         states = [],
         indexToUrl = [],

@@ -56,6 +56,9 @@ module.exports = function(grunt) {
       afterconcat: ['dist/ucsf.partial.js']
     },
     uglify: {
+      options: {
+        compress: {sequences:false}
+      },
       ucsf: {
         files: {
           'dist/ucsf.partial.min.js': ['dist/ucsf.partial.js']
