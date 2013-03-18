@@ -108,7 +108,7 @@ ucsf.directory = (function () {
 }());
 
 Modernizr.load({
-    load: 'http://apis.ucsf.edu.trott.jit.su/static/UCSF.Person.js?apikey=abcdefg',
+    load: 'http://apis.ucsf.edu/static/UCSF.Person.js?apikey=abcdefg',
     callback: function () {
         var oldq = typeof _dirq === "undefined" ? [] : _dirq;
         _dirq = {
