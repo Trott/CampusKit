@@ -108,11 +108,12 @@ ucsf.directory = (function () {
 }());
 
 Modernizr.load({
-    load: 'http://apis.ucsf.edu/static/UCSF.Person.js?apikey=abcdefg',
+    load: 'http://apis.ucsf.edu/static/UCSF.Person.js',
     callback: function () {
         var oldq = typeof _dirq === "undefined" ? [] : _dirq;
         _dirq = {
             push: function (param) {
+                param[0].apikey = 'c631ef46e918c82cf81ef4869f0029d4';
                 return UCSF.Person.search.apply(ucsf.directory, param);
             }
         };
