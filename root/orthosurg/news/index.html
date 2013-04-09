@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>UCSF Mobile | Orthopaedic Surgery</title>
-		<link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
-		<script>
-	            window.onload = function () {
-	                var deferred = document.createElement('script');
-	                deferred.src = '/assets/js/ucsf.js';
-	                document.body.appendChild(deferred);
-	            };
-	    </script>
-		<noscript><style>.jsonly{display:none}</style></noscript>
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-	</head>
-	<body>
-		<header>
-			<a href="http://m.ucsf.edu/"><img src="http://m.ucsf.edu/assets/img/ucsf-logo.png" alt="UCSF"></a><span><a href="/orthosurg/">Orthopaedic Surgery</a></span>
-		</header>
-		<noscript><div class="content center" ><p>JavaScript is required to load this content.</p></div></noscript>
-		<div id="il/news" class="jsonly" >
-			<section id="ortho-news" class="center"><progress>Loading...</progress></section>
-		</div>
-		<script>
-			var _newsq = _newsq || [];
-			function loadSection() { 
-				_newsq.push(["ortho-news","feed_ortho_news","http://orthosurg.ucsf.edu/feed/", 
-					{
-						numEntries:10, 
-						template: function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("feed",c,p,1),c,p,0,9,223,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");if(_.s(_.f("entries",c,p,1),c,p,0,70,200,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("  <li>    <a href=\"");_.b(_.v(_.f("link",c,p,0)));_.b("\"><span class=\"external\">");_.b(_.v(_.f("title",c,p,0)));_.b("</span>    <div class=\"smallprint light\">");_.b(_.v(_.f("contentSnippet",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");});c.pop();}if(!_.s(_.f("feed",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p>Content could not be loaded.</p></div>");};return _.fl();;}
-					}]);
-			}
-			loadSection();
-			window.onhashchange=loadSection;
-		</script>
-		<footer id="footer"><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>UCSF Mobile | Orthopaedic Surgery</title>
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
+        <script src="/assets/js/ucsf.js"></script>
+        <script>
+                window.onload = function () {
+                    var newsDeferred = document.createElement('script');
+                    newsDeferred.src = 'http://orthosurg.ucsf.edu/mobile/news.cfm';
+                    document.body.appendChild(newsDeferred);
+                };
+        </script>
+        <noscript><style>.jsonly{display:none}</style></noscript>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    </head>
+    <body>
+        <header>
+            <a href="http://m.ucsf.edu/"><img src="http://m.ucsf.edu/assets/img/ucsf-logo.png" alt="UCSF"></a><span><a href="/orthosurg/">Orthopaedic Surgery</a></span>
+        </header>
+        <noscript><div class="content center" ><p>JavaScript is required to load this content.</p></div></noscript>
+        <div id="il/news" class="jsonly" >
+            <section id="ortho-news" class="center"><progress>Loading...</progress></section>
+        </div>
+
+        <script>
+            function render(newsData) {
+                var template;
+
+                template = new Hogan.Template(
+                    function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("title",c,p,1),c,p,0,10,59,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");});c.pop();}if(_.s(_.f("post",c,p,1),c,p,0,78,213,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("  <li>    <a href=\"");_.b(_.v(_.f("POST_LINK",c,p,0)));_.b("\"><span class=\"external\">");_.b(_.v(_.f("POST_TITLE",c,p,0)));_.b("</span>    <div class=\"smallprint light\">");_.b(_.v(_.f("POST_DATE",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");if(!_.s(_.f("post",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p>Content could not be loaded.</p></div>");};return _.fl();;}
+                    );
+                
+                document.getElementById("ortho-news").innerHTML = template.render(newsData);
+            }
+        </script>
+
+        <footer id="footer"><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
+    </body>
 </html>
