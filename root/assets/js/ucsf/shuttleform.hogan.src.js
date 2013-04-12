@@ -8,19 +8,19 @@ var template = '<form action="javascript:ucsf.shuttle.plan()">';
     template += '{{#stops}}';
     template += '<option value="{{#id}}{{id}}{{/id}}">From {{stopName}}</option>';
     template += '{{/stops}}';
+    template += '</select>';
     template += '{{^stops}}';
     template += '<p>Content could not be loaded.</p>';
     template += '{{/stops}}';
-    template += '</select>';
     template += '<button type="button" id="reverse_trip" class="reverse_trip">&uarr;&darr;</button>';
     template += '<select name="end" id="ucsf_shuttle_ending_at">';
     template += '{{#stops}}';
     template += '<option value="{{#id}}{{id}}{{/id}}">To {{stopName}}</option>';
     template += '{{/stops}}';
+    template += '</select>';
     template += '{{^stops}}';
     template += '<p>Content could not be loaded.</p>';
     template += '{{/stops}}';
-    template += '</select>';
     //TODO: Figure out the best time selector based on the format required by OTP, and implement it here.
     // Current code:
 /*    

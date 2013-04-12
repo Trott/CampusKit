@@ -20,6 +20,15 @@ ucsf.shuttle = (function () {
     me.renderForm = function (response) {
         var form = document.getElementById('ucsf_shuttle_trip_form');
 
+        if (!response.hasOwnProperty('stops') && Modernizr.localstorage && localStorage.shuttle_stops) {
+            try {
+                response.stops = JSON.parse(localStorage.shuttle_stops);
+            } catch(e) {
+                // localStorage JSON string is corrupt. delete it.
+                localStorage.removeItem('shuttle_stops');
+            }
+        }
+
         // Sort alphabetically by stopName
         if (response.hasOwnProperty('stops')) {
             response.stops.sort(function compare(a,b) {
@@ -34,13 +43,12 @@ ucsf.shuttle = (function () {
         }
 
         var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,469,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,467,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
         );
         form.innerHTML = template.render(response);
         var start = document.getElementById('ucsf_shuttle_starting_from'),
             end = document.getElementById('ucsf_shuttle_ending_at');
 
-        //TODO: if we can't get list of stops from network, use localstorage?
         //TODO: Should store value, not index, in localStorage for saved start/stop points, but need to then provide
         //       that value to querySelector() in a way that rules out the possibility of code injection. For now,
         //       just doing the index for security.
@@ -74,6 +82,10 @@ ucsf.shuttle = (function () {
                     end.selectedIndex = temp;
                 }
             };
+        }
+
+        if (Modernizr.localstorage && response.hasOwnProperty('stops')) {
+            localStorage.shuttle_stops = JSON.stringify(response.stops);
         }
     };
 
