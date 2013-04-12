@@ -15,7 +15,7 @@ var template = '<form action="javascript:ucsf.shuttle.plan()">';
     template += '<button type="button" id="reverse_trip" class="reverse_trip">&uarr;&darr;</button>';
     template += '<select name="end" id="ucsf_shuttle_ending_at">';
     template += '{{#stops}}';
-    template += '<option value="{{#id}}{{id}}{{/id}}">From {{stopName}}</option>';
+    template += '<option value="{{#id}}{{id}}{{/id}}">To {{stopName}}</option>';
     template += '{{/stops}}';
     template += '{{^stops}}';
     template += '<p>Content could not be loaded.</p>';

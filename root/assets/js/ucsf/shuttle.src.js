@@ -18,9 +18,7 @@ ucsf.shuttle = (function () {
     };
 
     me.renderForm = function (response) {
-        var form = document.getElementById('ucsf_shuttle_trip_form'),
-            start = document.getElementById('ucsf_shuttle_starting_from'),
-            end = document.getElementById('ucsf_shuttle_ending_at');
+        var form = document.getElementById('ucsf_shuttle_trip_form');
 
         // Sort alphabetically by stopName
         if (response.hasOwnProperty('stops')) {
@@ -36,28 +34,41 @@ ucsf.shuttle = (function () {
         }
 
         var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,469,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,469,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
         );
         form.innerHTML = template.render(response);
-        //TODO: Get JSON, render Hogan template
-        //TODO: if we can't get stops from network, use localstorage?
+        var start = document.getElementById('ucsf_shuttle_starting_from'),
+            end = document.getElementById('ucsf_shuttle_ending_at');
 
-        if (Modernizr.localstorage) {
+        //TODO: if we can't get list of stops from network, use localstorage?
+        //TODO: Should store value, not index, in localStorage for saved start/stop points, but need to then provide
+        //       that value to querySelector() in a way that rules out the possibility of code injection. For now,
+        //       just doing the index for security.
+
+        if (Modernizr.localstorage && start && end) {
             if (localStorage.shuttle_start) {
                 start.selectedIndex = parseInt(localStorage.shuttle_start, 10);
+            } else {
+                var from = start.querySelector('option[value="Parnassus"]');
+                if (from) {
+                    start.selectedIndex = from.index;
+                }
             }
             if (localStorage.shuttle_end) {
                 end.selectedIndex = parseInt(localStorage.shuttle_end, 10);
+            } else {
+                var to = end.querySelector('option[value="MB"]');
+                if (to) {
+                    end.selectedIndex = to.index;
+                }
             }
         }
 
         var reverseButton = document.getElementById('reverse_trip');
-        if (reverseButton !== null) {
+        if (reverseButton) {
             reverseButton.onclick = function () {
-                var start = document.getElementById('ucsf_shuttle_starting_from'),
-                    end = document.getElementById('ucsf_shuttle_ending_at'),
-                    temp;
-                if (start !== null && end !== null) {
+                var temp;
+                if (start && end) {
                     temp = start.selectedIndex;
                     start.selectedIndex = end.selectedIndex;
                     end.selectedIndex = temp;
