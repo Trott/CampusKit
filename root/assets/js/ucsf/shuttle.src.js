@@ -41,7 +41,6 @@ ucsf.shuttle = (function () {
         form.innerHTML = template.render(response);
         //TODO: Get JSON, render Hogan template
         //TODO: if we can't get stops from network, use localstorage?
-        //TODO: sort the results!
 
         if (Modernizr.localstorage) {
             if (localStorage.shuttle_start) {
@@ -55,7 +54,9 @@ ucsf.shuttle = (function () {
         var reverseButton = document.getElementById('reverse_trip');
         if (reverseButton !== null) {
             reverseButton.onclick = function () {
-                var temp;
+                var start = document.getElementById('ucsf_shuttle_starting_from'),
+                    end = document.getElementById('ucsf_shuttle_ending_at'),
+                    temp;
                 if (start !== null && end !== null) {
                     temp = start.selectedIndex;
                     start.selectedIndex = end.selectedIndex;
