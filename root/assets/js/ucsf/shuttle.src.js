@@ -21,6 +21,20 @@ ucsf.shuttle = (function () {
         var form = document.getElementById('ucsf_shuttle_trip_form'),
             start = document.getElementById('ucsf_shuttle_starting_from'),
             end = document.getElementById('ucsf_shuttle_ending_at');
+
+        // Sort alphabetically by stopName
+        if (response.hasOwnProperty('stops')) {
+            response.stops.sort(function compare(a,b) {
+                if (a.stopName < b.stopName) {
+                    return -1;
+                }
+                if (a.stopName > b.stopName) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+
         var template = new Hogan.Template(
             function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,469,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("</select><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
         );
