@@ -1,7 +1,6 @@
 var _dirq = _dirq || [];
 
 ucsf.directory = (function () {
-    "use strict";
     var me = {};
 
     me.search = function () {
