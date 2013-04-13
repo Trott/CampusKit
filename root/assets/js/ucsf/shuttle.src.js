@@ -1,6 +1,17 @@
 ucsf.shuttle = (function () {
 	var me = {};
 
+    function formatTime(timestamp) {
+        var date = new Date(timestamp);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        return hours + ':' + minutes + ' ' + ampm;
+    }
+
     me.save = function () {
         if(Modernizr.localstorage) {
             localStorage.shuttle_start = document.getElementById("ucsf_shuttle_starting_from").selectedIndex;
@@ -43,7 +54,7 @@ ucsf.shuttle = (function () {
         }
 
         var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,193,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,158,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,406,467,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,428,434,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,130,207,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,152,172,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,420,495,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,442,462,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
         );
         form.innerHTML = template.render(response);
         var start = document.getElementById('ucsf_shuttle_starting_from'),
@@ -89,8 +100,37 @@ ucsf.shuttle = (function () {
         }
     };
 
+    me.renderTrip = function (response) {
+        //TODO: display trip results;
+        if ('plan' in response && 'itineraries' in response.plan) {
+            var itineraries = response.plan.itineraries;
+            for (var i=0; i<itineraries.length; i++) {
+                window.console.log("Trip: " + i);
+                // Duration is in milliseconds
+                window.console.log("Duration: " + Math.round(itineraries[i].duration / (60 * 1000)) + " minutes");
+                window.console.log("Start time: " + formatTime(itineraries[i].startTime));
+                window.console.log("End time: " + formatTime(itineraries[i].endTime));
+                // window.console.log("Transfers: " + itineraries[i].transfers);
+                // window.console.log("Transit time: " + Math.round(itineraries[i].transitTime / 60) + " minutes");
+                // window.console.log("Waiting time: " + Math.round(itineraries[i].waitingTime / 60) + " minutes");
+                // window.console.log("Walking distance: " + itineraries[i].walkingDistance);
+                // window.console.log("Walking time: " + itineraries[i].walkingTime);
+                window.console.dir(itineraries[i].legs);
+            }
+        }
+    };
+
     me.plan = function () {
-        //TODO: plan a trip
+        //TODO: send time/date to UCSF.Shuttle.plan()
+        //TODO: send arriveBy to UCSF.Shuttle.plan()
+        UCSF.Shuttle.plan(
+            {
+                apikey:'c631ef46e918c82cf81ef4869f0029d4',
+                fromPlace:document.getElementById('ucsf_shuttle_starting_from').value,
+                toPlace:document.getElementById('ucsf_shuttle_ending_at').value
+            },
+            ucsf.shuttle.renderTrip
+        );
         me.save();
     };
 
