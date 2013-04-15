@@ -101,23 +101,39 @@ ucsf.shuttle = (function () {
     };
 
     me.renderTrip = function (response) {
-        //TODO: display trip results;
+        //TODO: display trip results
+        var outputHTML = '<h2>Suggested Routes</h2><ol>';
         if ('plan' in response && 'itineraries' in response.plan) {
             var itineraries = response.plan.itineraries;
             for (var i=0; i<itineraries.length; i++) {
-                window.console.log("Trip: " + i);
+                outputHTML += '<li>';
                 // Duration is in milliseconds
-                window.console.log("Duration: " + Math.round(itineraries[i].duration / (60 * 1000)) + " minutes");
-                window.console.log("Start time: " + formatTime(itineraries[i].startTime));
-                window.console.log("End time: " + formatTime(itineraries[i].endTime));
-                // window.console.log("Transfers: " + itineraries[i].transfers);
-                // window.console.log("Transit time: " + Math.round(itineraries[i].transitTime / 60) + " minutes");
-                // window.console.log("Waiting time: " + Math.round(itineraries[i].waitingTime / 60) + " minutes");
-                // window.console.log("Walking distance: " + itineraries[i].walkingDistance);
-                // window.console.log("Walking time: " + itineraries[i].walkingTime);
-                window.console.dir(itineraries[i].legs);
+                outputHTML += formatTime(itineraries[i].startTime) + " - " + formatTime(itineraries[i].endTime) + " (" + Math.round(itineraries[i].duration / (60 * 1000)) + " mins)";
+                var legs = [];
+                if (itineraries[i].hasOwnProperty('legs') && itineraries[i].legs instanceof Array) {
+                    legs = itineraries[i].legs;
+                }
+                outputHTML += "<ol>";
+                for (var j=0; j<legs.length; j++) {
+                    if (legs[j].mode === "BUS") {
+                        outputHTML += "<li><ul>";
+                        outputHTML += "<li>From: " + legs[j].from.name + "</li>";
+                        outputHTML += "<li>To: " + legs[j].to.name + "</li>";
+                        outputHTML += "<li>" + legs[j].route + " Shuttle</li>";
+                        outputHTML += "<li>Depart: " + formatTime(legs[j].startTime) + "</li>";
+                        outputHTML += "<li>Arrive: " + formatTime(legs[j].endTime) + "</li>";
+                        outputHTML += "</ul></li>";
+                    }
+                    if (legs[j].mode === "WALK") {
+                        outputHTML += "<li>Walk to " + legs[j].to.name + "</li>";
+                    }
+                }
+                outputHTML += "</ol>";
+                outputHTML += "</li>";
             }
         }
+        outputHTML += "</ol>";
+        document.getElementById('ucsf_shuttle_itineraries').innerHTML=outputHTML;
     };
 
     me.plan = function () {
