@@ -102,24 +102,26 @@ ucsf.shuttle = (function () {
 
     me.renderTrip = function (response) {
         //TODO: display trip results
-        var outputHTML = '<h2>Suggested Routes</h2><ol>';
+        var outputHTML = '<h2>Suggested Routes</h2>';
         if ('plan' in response && 'itineraries' in response.plan) {
             var itineraries = response.plan.itineraries;
             for (var i=0; i<itineraries.length; i++) {
-                outputHTML += '<li>';
+                outputHTML += '<div><h3>Option ' + (i+1) + '</h3>';
                 // Duration is in milliseconds
+                outputHTML += '<h4>';
                 outputHTML += formatTime(itineraries[i].startTime) + " - " + formatTime(itineraries[i].endTime) + " (" + Math.round(itineraries[i].duration / (60 * 1000)) + " mins)";
+                outputHTML += '</h4>';
                 var legs = [];
                 if (itineraries[i].hasOwnProperty('legs') && itineraries[i].legs instanceof Array) {
                     legs = itineraries[i].legs;
                 }
-                outputHTML += "<ol>";
+                outputHTML += '<ol>';
                 for (var j=0; j<legs.length; j++) {
                     if (legs[j].mode === "BUS") {
                         outputHTML += "<li><ul>";
                         outputHTML += "<li>From: " + legs[j].from.name + "</li>";
                         outputHTML += "<li>To: " + legs[j].to.name + "</li>";
-                        outputHTML += "<li>" + legs[j].route + " Shuttle</li>";
+                        outputHTML += "<li>Shuttle: " + legs[j].route + " <div class=\"shuttle-color " + legs[j].routeId + "\"></div></li>";
                         outputHTML += "<li>Depart: " + formatTime(legs[j].startTime) + "</li>";
                         outputHTML += "<li>Arrive: " + formatTime(legs[j].endTime) + "</li>";
                         outputHTML += "</ul></li>";
@@ -128,11 +130,9 @@ ucsf.shuttle = (function () {
                         outputHTML += "<li>Walk to " + legs[j].to.name + "</li>";
                     }
                 }
-                outputHTML += "</ol>";
-                outputHTML += "</li>";
+                outputHTML += "</ol></div>";
             }
         }
-        outputHTML += "</ol>";
         document.getElementById('ucsf_shuttle_itineraries').innerHTML=outputHTML;
     };
 
