@@ -94,35 +94,40 @@ ucsf.shuttle = (function () {
     me.renderTrip = function (response) {
          var plan = response.plan || {};
 
-         //TODO: Do not show an itinerary if it is a trip longer than 2 hours
          //TODO: Do not show an itinerary more than 2 hours from the target time
 
         // For each itinerary: add index; format startTime, endTime, and duration
         if (plan.hasOwnProperty('itineraries')) {
+            var index = 0;
             for (var i=0; i<plan.itineraries.length; i++) {
-                plan.itineraries[i].index = i+1;
-                plan.itineraries[i].startTimeFormatted = formatTime(plan.itineraries[i].startTime);
-                plan.itineraries[i].endTimeFormatted = formatTime(plan.itineraries[i].endTime);
-                plan.itineraries[i].durationFormatted = Math.round(plan.itineraries[i].duration / (60 * 1000));
-                if (plan.itineraries[i].hasOwnProperty('legs')) {
-                    var massagedLeg;
-                    for (var j=0; j<plan.itineraries[i].legs.length; j++) {
-                        // For each leg: format startTime, endTime
-                        massagedLeg = {};
-                        massagedLeg.toName = plan.itineraries[i].legs[j].to.name;
+                // Only use itineraries that are less than 2 hours (e.g., not overnight)
+                if (plan.itineraries[i].duration < 2 * 60 * 60 * 1000) {
+                    plan.itineraries[i].index = index + 1;
+                    plan.itineraries[i].startTimeFormatted = formatTime(plan.itineraries[i].startTime);
+                    plan.itineraries[i].endTimeFormatted = formatTime(plan.itineraries[i].endTime);
+                    plan.itineraries[i].durationFormatted = Math.round(plan.itineraries[i].duration / (60 * 1000));
+                    if (plan.itineraries[i].hasOwnProperty('legs')) {
+                        var massagedLeg;
+                        for (var j=0; j<plan.itineraries[i].legs.length; j++) {
+                            // For each leg: format startTime, endTime
+                            massagedLeg = {};
+                            massagedLeg.toName = plan.itineraries[i].legs[j].to.name;
 
-                        if (plan.itineraries[i].legs[j].mode === "BUS") {
-                            massagedLeg.fromName = plan.itineraries[i].legs[j].from.name;
-                            massagedLeg.route = plan.itineraries[i].legs[j].route;
-                            massagedLeg.routeId = plan.itineraries[i].legs[j].routeId;
-                            massagedLeg.startTime = formatTime(plan.itineraries[i].legs[j].startTime);
-                            massagedLeg.endTime = formatTime(plan.itineraries[i].legs[j].endTime);
-                            plan.itineraries[i].legs[j].bus = massagedLeg;
-                        }
-                        if (plan.itineraries[i].legs[j].mode === "WALK") {
-                            plan.itineraries[i].legs[j].walk = massagedLeg;
+                            if (plan.itineraries[i].legs[j].mode === "BUS") {
+                                massagedLeg.fromName = plan.itineraries[i].legs[j].from.name;
+                                massagedLeg.route = plan.itineraries[i].legs[j].route;
+                                massagedLeg.routeId = plan.itineraries[i].legs[j].routeId;
+                                massagedLeg.startTime = formatTime(plan.itineraries[i].legs[j].startTime);
+                                massagedLeg.endTime = formatTime(plan.itineraries[i].legs[j].endTime);
+                                plan.itineraries[i].legs[j].bus = massagedLeg;
+                            }
+                            if (plan.itineraries[i].legs[j].mode === "WALK") {
+                                plan.itineraries[i].legs[j].walk = massagedLeg;
+                            }
                         }
                     }
+                } else {
+                    plan.itineraries.splice(i,1);
                 }
             }
         }
