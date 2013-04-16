@@ -19,15 +19,6 @@ ucsf.shuttle = (function () {
         }
     };
 
-    //TODO: Is this still needed after we eliminate the PHP stuff?
-    me.swap = function () {
-        if(Modernizr.localstorage){
-            var temp = localStorage.shuttle_start;
-            localStorage.shuttle_start = localStorage.shuttle_end;
-            localStorage.shuttle_end = temp;
-        }
-    };
-
     me.renderForm = function (response) {
         var form = document.getElementById('ucsf_shuttle_trip_form');
 
@@ -101,39 +92,45 @@ ucsf.shuttle = (function () {
     };
 
     me.renderTrip = function (response) {
-        //TODO: display trip results
-        var outputHTML = '<h2>Suggested Routes</h2>';
-        if ('plan' in response && 'itineraries' in response.plan) {
-            var itineraries = response.plan.itineraries;
-            for (var i=0; i<itineraries.length; i++) {
-                outputHTML += '<div><h3>Option ' + (i+1) + '</h3>';
-                // Duration is in milliseconds
-                outputHTML += '<h4>';
-                outputHTML += formatTime(itineraries[i].startTime) + " - " + formatTime(itineraries[i].endTime) + " (" + Math.round(itineraries[i].duration / (60 * 1000)) + " mins)";
-                outputHTML += '</h4>';
-                var legs = [];
-                if (itineraries[i].hasOwnProperty('legs') && itineraries[i].legs instanceof Array) {
-                    legs = itineraries[i].legs;
-                }
-                outputHTML += '<ol>';
-                for (var j=0; j<legs.length; j++) {
-                    if (legs[j].mode === "BUS") {
-                        outputHTML += "<li><ul>";
-                        outputHTML += "<li>From: " + legs[j].from.name + "</li>";
-                        outputHTML += "<li>To: " + legs[j].to.name + "</li>";
-                        outputHTML += "<li>Shuttle: " + legs[j].route + " <div class=\"shuttle-color " + legs[j].routeId + "\"></div></li>";
-                        outputHTML += "<li>Depart: " + formatTime(legs[j].startTime) + "</li>";
-                        outputHTML += "<li>Arrive: " + formatTime(legs[j].endTime) + "</li>";
-                        outputHTML += "</ul></li>";
+         var plan = response.plan || {};
+
+         //TODO: Do not show an itinerary if it is a trip longer than 2 hours
+         //TODO: Do not show an itinerary more than 2 hours from the target time
+
+        // For each itinerary: add index; format startTime, endTime, and duration
+        if (plan.hasOwnProperty('itineraries')) {
+            for (var i=0; i<plan.itineraries.length; i++) {
+                plan.itineraries[i].index = i+1;
+                plan.itineraries[i].startTimeFormatted = formatTime(plan.itineraries[i].startTime);
+                plan.itineraries[i].endTimeFormatted = formatTime(plan.itineraries[i].endTime);
+                plan.itineraries[i].durationFormatted = Math.round(plan.itineraries[i].duration / (60 * 1000));
+                if (plan.itineraries[i].hasOwnProperty('legs')) {
+                    var massagedLeg;
+                    for (var j=0; j<plan.itineraries[i].legs.length; j++) {
+                        // For each leg: format startTime, endTime
+                        massagedLeg = {};
+                        massagedLeg.toName = plan.itineraries[i].legs[j].to.name;
+
+                        if (plan.itineraries[i].legs[j].mode === "BUS") {
+                            massagedLeg.fromName = plan.itineraries[i].legs[j].from.name;
+                            massagedLeg.route = plan.itineraries[i].legs[j].route;
+                            massagedLeg.routeId = plan.itineraries[i].legs[j].routeId;
+                            massagedLeg.startTime = formatTime(plan.itineraries[i].legs[j].startTime);
+                            massagedLeg.endTime = formatTime(plan.itineraries[i].legs[j].endTime);
+                            plan.itineraries[i].legs[j].bus = massagedLeg;
+                        }
+                        if (plan.itineraries[i].legs[j].mode === "WALK") {
+                            plan.itineraries[i].legs[j].walk = massagedLeg;
+                        }
                     }
-                    if (legs[j].mode === "WALK") {
-                        outputHTML += "<li>Walk to " + legs[j].to.name + "</li>";
-                    }
                 }
-                outputHTML += "</ol></div>";
             }
         }
-        document.getElementById('ucsf_shuttle_itineraries').innerHTML=outputHTML;
+
+        var template = new Hogan.Template(
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Suggested Routes</h2>");if(_.s(_.f("itineraries",c,p,1),c,p,0,41,532,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div><h3>Option ");_.b(_.v(_.f("index",c,p,0)));_.b("</h3><h4>");_.b(_.v(_.f("startTimeFormatted",c,p,0)));_.b(" - ");_.b(_.v(_.f("endTimeFormatted",c,p,0)));_.b(" (");_.b(_.v(_.f("durationFormatted",c,p,0)));_.b(" mins)</h4><ol>");if(_.s(_.f("legs",c,p,1),c,p,0,167,512,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.f("bus",c,p,1),c,p,0,175,459,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><ul><li><strong>From:</strong> ");_.b(_.v(_.f("fromName",c,p,0)));_.b("</li><li><strong>To:</strong> ");_.b(_.v(_.f("toName",c,p,0)));_.b("</li><li><strong>Shuttle:</strong> ");_.b(_.v(_.f("route",c,p,0)));_.b(" <div class=\"shuttle-color ");_.b(_.v(_.f("routeId",c,p,0)));_.b("\"></div></li><li><strong>Depart:</strong> ");_.b(_.v(_.f("startTime",c,p,0)));_.b("</li><li><strong>Arrive:</strong> ");_.b(_.v(_.f("endTime",c,p,0)));_.b("</li></ul></li>");});c.pop();}if(_.s(_.f("walk",c,p,1),c,p,0,476,503,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>Walk to ");_.b(_.v(_.f("toName",c,p,0)));_.b("</li>");});c.pop();}});c.pop();}_.b("</ol></div>");});c.pop();}if(!_.s(_.f("itineraries",c,p,1),c,p,1,0,0,"")){_.b("<p>No options found.</p>");}return _.fl();}
+        );
+        document.getElementById('ucsf_shuttle_itineraries').innerHTML=template.render(plan);
     };
 
     me.plan = function () {
