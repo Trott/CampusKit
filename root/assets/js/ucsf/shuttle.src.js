@@ -98,11 +98,12 @@ ucsf.shuttle = (function () {
 
         // For each itinerary: add index; format startTime, endTime, and duration
         if (plan.hasOwnProperty('itineraries')) {
-            var index = 0;
+            var index = 1;
             for (var i=0; i<plan.itineraries.length; i++) {
                 // Only use itineraries that are less than 2 hours (e.g., not overnight)
                 if (plan.itineraries[i].duration < 2 * 60 * 60 * 1000) {
-                    plan.itineraries[i].index = index + 1;
+                    plan.itineraries[i].index = index;
+                    index++;
                     plan.itineraries[i].startTimeFormatted = formatTime(plan.itineraries[i].startTime);
                     plan.itineraries[i].endTimeFormatted = formatTime(plan.itineraries[i].endTime);
                     plan.itineraries[i].durationFormatted = Math.round(plan.itineraries[i].duration / (60 * 1000));
