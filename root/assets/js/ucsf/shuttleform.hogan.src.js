@@ -21,22 +21,82 @@ var template = '<form action="javascript:ucsf.shuttle.plan()">';
     template += '{{^stops}}';
     template += '<p>Content could not be loaded.</p>';
     template += '{{/stops}}';
-    //TODO: Figure out the best time selector based on the format required by OTP, and implement it here.
-    // Current code:
-/*    
-    <select id="time" name="time">
-        <option value="0">Leave Now</option>
-        <option value="60">Depart in 1 hour</option>
-        <option value="120">Depart in 2 hours</option>
-        <option value="180">Depart in 3 hours</option>
-        <option value="240">Depart in 4 hours</option>
-        <option value="300">Depart in 5 hours</option>
-        <option value="360">Depart in 6 hours</option>
-        <option value="420">Depart in 7 hours</option>
-        <option value="480">Depart in 8 hours</option>
-    </select>
-*/
-
+    template += '<fieldset disabled name="datetime">';
+    template += '<legend>';
+    template += '<select class="compact" name="when" onchange="form.datetime.disabled = value==\'now\'">';
+    template += '<option value="now">Leave now</option>';
+    template += '<option value="depart">Depart at</option>';
+    template += '<option value="arrive">Arrive by</option>';
+    template += '</select>';
+    template += '</legend>';
+    template += '<select class="compact" name="date">';
+    template += '<option value="today">Today</option>';
+    template += '<option value="tomorrow">Tomorrow</option>';
+    template += '</select>';
+    template += '<select class="compact" name="time">';
+    template += '<option value="6:00am">6:00am</option>';
+    template += '<option value="6:15am">6:15am</option>';
+    template += '<option value="6:30am">6:30am</option>';
+    template += '<option value="6:45am">6:45am</option>';
+    template += '<option value="7:00am">7:00am</option>';
+    template += '<option value="7:15am">7:15am</option>';
+    template += '<option value="7:30am">7:30am</option>';
+    template += '<option value="7:45am">7:45am</option>';
+    template += '<option value="8:00am">8:00am</option>';
+    template += '<option value="8:15am">8:15am</option>';
+    template += '<option value="8:30am">8:30am</option>';
+    template += '<option value="8:45am">8:45am</option>';
+    template += '<option value="9:00am">9:00am</option>';
+    template += '<option value="9:15am">9:15am</option>';
+    template += '<option value="9:30am">9:30am</option>';
+    template += '<option value="9:45am">9:45am</option>';
+    template += '<option value="10:00am">10:00am</option>';
+    template += '<option value="10:15am">10:15am</option>';
+    template += '<option value="10:30am">10:30am</option>';
+    template += '<option value="10:45am">10:45am</option>';
+    template += '<option value="11:00am">11:00am</option>';
+    template += '<option value="11:15am">11:15am</option>';
+    template += '<option value="11:30am">11:30am</option>';
+    template += '<option value="11:45am">11:45am</option>';
+    template += '<option value="12:00pm">12:00pm</option>';
+    template += '<option value="12:15pm">12:15pm</option>';
+    template += '<option value="12:30pm">12:30pm</option>';
+    template += '<option value="12:45pm">12:45pm</option>';
+    template += '<option value="1:00pm">1:00pm</option>';
+    template += '<option value="1:15pm">1:15pm</option>';
+    template += '<option value="1:30pm">1:30pm</option>';
+    template += '<option value="1:45pm">1:45pm</option>';
+    template += '<option value="2:00pm">2:00pm</option>';
+    template += '<option value="2:15pm">2:15pm</option>';
+    template += '<option value="2:30pm">2:30pm</option>';
+    template += '<option value="2:45pm">2:45pm</option>';
+    template += '<option value="3:00pm">3:00pm</option>';
+    template += '<option value="3:15pm">3:15pm</option>';
+    template += '<option value="3:30pm">3:30pm</option>';
+    template += '<option value="3:45pm">3:45pm</option>';
+    template += '<option value="4:00pm">4:00pm</option>';
+    template += '<option value="4:15pm">4:15pm</option>';
+    template += '<option value="4:30pm">4:30pm</option>';
+    template += '<option value="4:45pm">4:45pm</option>';
+    template += '<option value="5:00pm">5:00pm</option>';
+    template += '<option value="5:15pm">5:15pm</option>';
+    template += '<option value="5:30pm">5:30pm</option>';
+    template += '<option value="5:45pm">5:45pm</option>';
+    template += '<option value="6:00pm">6:00pm</option>';
+    template += '<option value="6:15pm">6:15pm</option>';
+    template += '<option value="6:30pm">6:30pm</option>';
+    template += '<option value="6:45pm">6:45pm</option>';
+    template += '<option value="7:00pm">7:00pm</option>';
+    template += '<option value="7:15pm">7:15pm</option>';
+    template += '<option value="7:30pm">7:30pm</option>';
+    template += '<option value="7:45pm">7:45pm</option>';
+    template += '<option value="8:00pm">8:00pm</option>';
+    template += '<option value="8:15pm">8:15pm</option>';
+    template += '<option value="8:30pm">8:30pm</option>';
+    template += '<option value="8:45pm">8:45pm</option>';
+    template += '<option value="9:00pm">9:00pm</option>';
+    template += '</select>';
+    template += '</fieldset>';
     template += '<input type="submit" name="route" value="Route Trip"  />';
     template += '</form>';
 

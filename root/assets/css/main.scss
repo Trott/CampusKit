@@ -13,7 +13,6 @@ dd,
 div,
 dl,
 dt,
-fieldset,
 form,
 ol,
 p,
@@ -369,6 +368,11 @@ form > h4 {
 
 form > fieldset {
     border: 0;
+    padding-left: 4px;
+}
+
+form > fieldset > select {
+    margin-left: 4px;
 }
 
 form > a.button,
@@ -384,7 +388,8 @@ form > textarea {
  * Forms Basic Elements
  */
 form > label,
-form > select {
+form > select,
+form > fieldset {
     margin-top: 1em;
 }
 
@@ -502,13 +507,19 @@ form h1,
 form h2,
 form p,
 form a.button,
-form fieldset,
 form input,
 form label,
 form select,
 form textarea {
     display: block;
     width: 100%;
+}
+
+/* form input that shouldn't take up the full width */
+.compact {
+    width: auto;
+    display: inline-block;
+    padding-right: 1.5em; /* padding for little downward triangle clicky indicator thing */
 }
 
 .option input {
@@ -528,7 +539,6 @@ form .last {
 }
 
 form > div,
-form > fieldset,
 form > p {
     border-bottom: 1px solid #ddd;
     padding: 10px;
@@ -563,14 +573,9 @@ span.required:after {
 }
 
 .content > div > form > div,
-.content > div > form > fieldset,
 .content > div > form > p {
     border-bottom: none;
     padding: 0;
-}
-
-.content > div > form > fieldset{
-    padding-bottom: .5em;
 }
 
 .content > div > form{
