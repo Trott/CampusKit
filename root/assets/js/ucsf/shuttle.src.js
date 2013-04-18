@@ -149,20 +149,21 @@ ucsf.shuttle = (function () {
     };
 
     me.plan = function () {
-        var form = document.getElementById('ucsf_shuttle_trip_form');
-        var options = {
-            apikey:'c631ef46e918c82cf81ef4869f0029d4',
-            fromPlace:form.begin.value,
-            toPlace:form.end.value
-        };
-
-        //TODO: send time/date to UCSF.Shuttle.plan()
-        //TODO: send arriveBy to UCSF.Shuttle.plan()
+        var form = document.getElementById('ucsf_shuttle_trip_form'),
+            options = {
+                apikey:'c631ef46e918c82cf81ef4869f0029d4',
+                fromPlace:form.begin.value,
+                toPlace:form.end.value
+            };
 
         if (form.when.value !== "now") {
+            var date = new Date();
             options.arriveBy = form.when.value==="arrive";
             options.time = form.time.value;
-            options.date = form.date.value;
+            if (form.date.value === "tomorrow") {
+                date.setDate(date.getDate() + 1);
+            }
+            options.date = (date.getMonth()+1) + '/' + (date.getDate()) + '/' + date.getFullYear();
         }
         UCSF.Shuttle.plan(options, ucsf.shuttle.renderTrip);
         me.save();
