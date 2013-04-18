@@ -14,8 +14,8 @@ ucsf.directory = (function () {
             that.renderSearchResults({});
             return;
         }
-        var progressHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
-        document.getElementById("searchresults").innerHTML = progressHTML;
+        var resultsElement = document.getElementById("searchresults");
+        resultsElement.innerHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
         _dirq.push([{
                 first_name: fn,
                 last_name: ln,
@@ -59,7 +59,10 @@ ucsf.directory = (function () {
         }
         searchHTML = searchHTML + "</div>";
 
-        document.getElementById("searchresults").innerHTML = searchHTML;
+        var resultsElement = document.getElementById("searchresults");
+        resultsElement.innerHTML = searchHTML;
+        resultsElement.scrollIntoView();
+
     };
 
     me.renderDetail = function (response) {

@@ -163,7 +163,10 @@ ucsf.shuttle = (function () {
         var template = new Hogan.Template(
             function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Suggested Routes</h2>");if(_.s(_.f("itineraries",c,p,1),c,p,0,41,568,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div><h3>Option ");_.b(_.v(_.f("index",c,p,0)));_.b("</h3><h4>");_.b(_.v(_.f("startTimeFormatted",c,p,0)));_.b(" - ");_.b(_.v(_.f("endTimeFormatted",c,p,0)));_.b(" (");_.b(_.v(_.f("durationFormatted",c,p,0)));_.b(" mins)</h4><ol>");if(_.s(_.f("legs",c,p,1),c,p,0,167,548,"{{ }}")){_.rs(c,p,function(c,p,_){if(_.s(_.f("bus",c,p,1),c,p,0,175,459,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><ul><li><strong>From:</strong> ");_.b(_.v(_.f("fromName",c,p,0)));_.b("</li><li><strong>To:</strong> ");_.b(_.v(_.f("toName",c,p,0)));_.b("</li><li><strong>Shuttle:</strong> ");_.b(_.v(_.f("route",c,p,0)));_.b(" <div class=\"shuttle-color ");_.b(_.v(_.f("routeId",c,p,0)));_.b("\"></div></li><li><strong>Depart:</strong> ");_.b(_.v(_.f("startTime",c,p,0)));_.b("</li><li><strong>Arrive:</strong> ");_.b(_.v(_.f("endTime",c,p,0)));_.b("</li></ul></li>");});c.pop();}if(_.s(_.f("walk",c,p,1),c,p,0,476,539,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><ul><li><strong>Go to:</strong> ");_.b(_.v(_.f("toName",c,p,0)));_.b("</li></ul></li>");});c.pop();}});c.pop();}_.b("</ol></div>");});c.pop();}if(!_.s(_.f("itineraries",c,p,1),c,p,1,0,0,"")){_.b("<p>No options found.</p>");}return _.fl();}
         );
-        document.getElementById('ucsf_shuttle_itineraries').innerHTML=template.render(plan);
+        var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
+        resultsElement.innerHTML=template.render(plan);
+        resultsElement.scrollIntoView();
+
     };
 
     me.plan = function () {
@@ -183,6 +186,8 @@ ucsf.shuttle = (function () {
             }
             options.date = (date.getMonth()+1) + '/' + (date.getDate()) + '/' + date.getFullYear();
         }
+        var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
+        resultsElement.innerHTML='<div><section class="center"><progress>Loading...</progress></section></div>';
         UCSF.Shuttle.plan(options, ucsf.shuttle.renderTrip);
         me.save();
     };
@@ -201,6 +206,7 @@ Modernizr.load({
     }
 });
 
-//TODO: scroll-to results when they are done (directory too)
 //TODO: back button (directory too)
+//TODO: fix up SPA directory form before rolling this out
+//TODO: schedules
 
