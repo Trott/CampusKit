@@ -103,14 +103,27 @@ ucsf.shuttle = (function () {
 
          //TODO: Ugh, can't route if a destination is a station. But if you substitute 
          //     a lat/long, you can end up with pointless walking instructions at end.
-         //TODO: Do not show an itinerary more than 2 hours from the target time
 
         // For each itinerary: add index; format startTime, endTime, and duration
         if (plan.hasOwnProperty('itineraries')) {
-            var index = 1;
-            for (var i=0; i<plan.itineraries.length; i++) {
+            // Used to check that the plan is within four hours of the target time.
+            var datestamp = plan.date ? plan.date : Date.now();
+            // Used to check that the plan is within four hours of the target time.
+            var fourHours = 4 * 60 * 60 * 1000;
+
+
+            var index=1;
+            var itinerariesCount = plan.itineraries.length;
+            var removalQueue = [];
+            // Decrement with while rather than increment with for so that splice() doesn't mess up the loop
+            for (var i=0; i<itinerariesCount; i++) {
                 // Only use itineraries that are less than 2 hours (e.g., not overnight)
-                if (plan.itineraries[i].duration < 2 * 60 * 60 * 1000) {
+                // This check should probably be happening on the server side.
+                // Then check that the time is within four hours of what was chosen
+                // so the user doesn't get a trip for the next day.
+                if ((plan.itineraries[i].duration < 2 * 60 * 60 * 1000) &&
+                    (plan.itineraries[i].endTime >= datestamp - fourHours) &&
+                    (plan.itineraries[i].endTime <= datestamp + fourHours)) {
                     plan.itineraries[i].index = index;
                     index++;
                     plan.itineraries[i].startTimeFormatted = formatTime(plan.itineraries[i].startTime);
@@ -137,8 +150,13 @@ ucsf.shuttle = (function () {
                         }
                     }
                 } else {
-                    plan.itineraries.splice(i,1);
+                    removalQueue.push(i);
                 }
+            }
+            // Start from end so splice() doesn't mess up
+            i = removalQueue.length;
+            while (i--) {
+                plan.itineraries.splice(removalQueue[i],1);
             }
         }
 
