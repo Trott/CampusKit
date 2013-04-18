@@ -15,36 +15,11 @@ ucsf.shuttle = (function () {
         return hours + ':' + minutes + ampm;
     }
 
-    me.save = function () {
-        if(Modernizr.localstorage) {
-            localStorage.shuttle_start = document.getElementById("ucsf_shuttle_starting_from").selectedIndex;
-            localStorage.shuttle_end = document.getElementById("ucsf_shuttle_ending_at").selectedIndex;
-        }
-    };
-
-    me.renderForm = function (response) {
+    function renderForm(response) {
         var formContainer = document.getElementById('ucsf_shuttle_trip_form_container');
 
-        if (!response.hasOwnProperty('stops') && Modernizr.localstorage && localStorage.shuttle_stops) {
-            try {
-                response.stops = JSON.parse(localStorage.shuttle_stops);
-            } catch(e) {
-                // localStorage JSON string is corrupt. delete it.
-                localStorage.removeItem('shuttle_stops');
-            }
-        }
-
-        // Sort alphabetically by stopName
-        if (response.hasOwnProperty('stops')) {
-            response.stops.sort(function compare(a,b) {
-                if (a.stopName < b.stopName) {
-                    return -1;
-                }
-                if (a.stopName > b.stopName) {
-                    return 1;
-                }
-                return 0;
-            });
+        if (! formContainer) {
+            return;
         }
 
         var template = new Hogan.Template(
@@ -92,7 +67,56 @@ ucsf.shuttle = (function () {
                 }
             };
         }
+    }
 
+    function renderListLocation(response) {
+        var listLocation = document.getElementById('ucsf_shuttle_list_location');
+
+        if (!listLocation) {
+            return;
+        }
+
+        var template = new Hogan.Template(
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles By Location</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,43,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/list/color/?id=");if(_.s(_.f("id",c,p,1),c,p,0,87,93,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+        );
+
+        listLocation.innerHTML = template.render(response);
+    }
+
+    me.save = function () {
+        if(Modernizr.localstorage) {
+            localStorage.shuttle_start = document.getElementById("ucsf_shuttle_starting_from").selectedIndex;
+            localStorage.shuttle_end = document.getElementById("ucsf_shuttle_ending_at").selectedIndex;
+        }
+    };
+
+    me.renderStopData = function (response) {
+        if (!response.hasOwnProperty('stops') && Modernizr.localstorage && localStorage.shuttle_stops) {
+            try {
+                response.stops = JSON.parse(localStorage.shuttle_stops);
+            } catch(e) {
+                // localStorage JSON string is corrupt. delete it.
+                localStorage.removeItem('shuttle_stops');
+            }
+        }
+
+        // Sort alphabetically by stopName
+        if (response.hasOwnProperty('stops')) {
+            response.stops.sort(function compare(a,b) {
+                if (a.stopName < b.stopName) {
+                    return -1;
+                }
+                if (a.stopName > b.stopName) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+
+        renderForm(response);
+        renderListLocation(response);
+
+        // Save stops in localStorage so we can render menu/form w/o network
         if (Modernizr.localstorage && response.hasOwnProperty('stops')) {
             localStorage.shuttle_stops = JSON.stringify(response.stops);
         }
@@ -198,13 +222,16 @@ ucsf.shuttle = (function () {
 Modernizr.load({
     load: 'http://apis.ucsf.edu/static/UCSF.Shuttle.js',
     callback: function () {
-        var formContainer = document.getElementById('ucsf_shuttle_trip_form_container');
-        if (formContainer) {
-            UCSF.Shuttle.stops({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderForm);
+        var formContainer = document.getElementById('ucsf_shuttle_trip_form_container'),
+            listLocation = document.getElementById('ucsf_shuttle_list_location');
+        if (formContainer || listLocation) {
+            UCSF.Shuttle.stops({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderStopData);
         }
 
     }
 });
 
 //TODO: schedules
+//TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
+//TODO: form should default to Parnassus and Mission Bay if nothing else is set
 
