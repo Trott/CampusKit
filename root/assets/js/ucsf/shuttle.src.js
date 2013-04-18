@@ -206,7 +206,5 @@ Modernizr.load({
     }
 });
 
-//TODO: back button (directory too)
-//TODO: fix up SPA directory form before rolling this out
 //TODO: schedules
 
