@@ -96,11 +96,13 @@ ucsf.shuttle = (function () {
         }
     }
 
+    // Compares on stopName if it's there, otherwise routeShortName.
     function compare(a,b) {
-        if (a.stopName < b.stopName) {
+        var compareOn = a.stopName ? 'stopName' : 'routeShortName';
+        if (a[compareOn] < b[compareOn]) {
             return -1;
         }
-        if (a.stopName > b.stopName) {
+        if (a[compareOn] > b[compareOn]) {
             return 1;
         }
         return 0;
@@ -134,6 +136,7 @@ ucsf.shuttle = (function () {
     me.renderRouteData = function (response) {
         response.routes = response.routes || dataFromLocalStorage('shuttle_routes');
 
+        // Sort alphabetically by routeName
         if (response.routes) {
             response.routes.sort(compare);
         }
@@ -141,7 +144,7 @@ ucsf.shuttle = (function () {
         renderList(
             'color',
             response,
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("foofoofoo",c,p,1),c,p,0,27,44,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("barbarbar",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,78,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule/?id=");if(_.s(_.f("id",c,p,1),c,p,0,120,126,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,168,174,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("foofoofoo",c,p,1),c,p,0,27,44,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("barbarbar",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,78,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule/");if(_.s(_.f("id",c,p,1),c,p,0,120,126,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,168,174,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
         );
 
         dataToLocalStorage('shuttle_routes', response.routes);
@@ -152,6 +155,8 @@ ucsf.shuttle = (function () {
 
          //TODO: Ugh, can't route if a destination is a station. But if you substitute 
          //     a lat/long, you can end up with pointless walking instructions at end.
+         //TODO: once that's fixed, make sure results match arrival times at http://campuslifeservices.ucsf.edu/upload/transportation/files/Shuttles_Schedule_ParnassusMIssionBay_2012_0830.pdf
+         //    otherwise, WTF?
 
         // For each itinerary: add index; format startTime, endTime, and duration
         if (plan.hasOwnProperty('itineraries')) {
