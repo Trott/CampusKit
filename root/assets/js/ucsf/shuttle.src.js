@@ -69,18 +69,12 @@ ucsf.shuttle = (function () {
         }
     }
 
-    function renderListLocation(response) {
-        var listLocation = document.getElementById('ucsf_shuttle_list_location');
-
-        if (!listLocation) {
+    function renderList(listName, response, templateFunction) {
+        var list = document.getElementById('ucsf_shuttle_list_'+listName);
+        if (!list) {
             return;
         }
-
-        var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles By Location</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,43,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/list/color/?id=");if(_.s(_.f("id",c,p,1),c,p,0,87,93,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
-        );
-
-        listLocation.innerHTML = template.render(response);
+        list.innerHTML = new Hogan.Template(templateFunction).render(response);
     }
 
     function dataFromLocalStorage(key) {
@@ -128,7 +122,11 @@ ucsf.shuttle = (function () {
         }
 
         renderForm(response);
-        renderListLocation(response);
+        renderList(
+            'location',
+            response,
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles By Location</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,43,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/list/color/?id=");if(_.s(_.f("id",c,p,1),c,p,0,87,93,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+        );
 
         dataToLocalStorage('shuttle_stops', response.stops);
     };
@@ -140,8 +138,11 @@ ucsf.shuttle = (function () {
             response.routes.sort(compare);
         }
 
-        //TODO:
-        //renderListColor(response);
+        renderList(
+            'color',
+            response,
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("foofoofoo",c,p,1),c,p,0,27,44,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("barbarbar",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,78,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule/?id=");if(_.s(_.f("id",c,p,1),c,p,0,120,126,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,168,174,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+        );
 
         dataToLocalStorage('shuttle_routes', response.routes);
     };
@@ -247,12 +248,11 @@ Modernizr.load({
     load: 'http://apis.ucsf.edu/static/UCSF.Shuttle.js',
     callback: function () {
         UCSF.Shuttle.stops({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderStopData);
-        //TODO:
-        //UCSF.Shuttle.routes({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderRouteData);
+        UCSF.Shuttle.routes({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderRouteData);
     }
 });
-
 //TODO: schedules
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: form should default to Parnassus and Mission Bay if nothing else is set
+//TODO: when clicking through from a location, it should list just the routes that go to that location
 
