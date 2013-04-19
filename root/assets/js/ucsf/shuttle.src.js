@@ -41,7 +41,7 @@ ucsf.shuttle = (function () {
             if (localStorage.shuttle_start) {
                 start.selectedIndex = parseInt(localStorage.shuttle_start, 10);
             } else {
-                var from = start.querySelector('option[value="Parnassus"]');
+                var from = start.querySelector('option[value="ucsf_Parnassus"]');
                 if (from) {
                     start.selectedIndex = from.index;
                 }
@@ -49,7 +49,7 @@ ucsf.shuttle = (function () {
             if (localStorage.shuttle_end) {
                 end.selectedIndex = parseInt(localStorage.shuttle_end, 10);
             } else {
-                var to = end.querySelector('option[value="MB"]');
+                var to = end.querySelector('option[value="ucsf_MB"]');
                 if (to) {
                     end.selectedIndex = to.index;
                 }
@@ -253,6 +253,5 @@ Modernizr.load({
 });
 //TODO: schedules
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
-//TODO: form should default to Parnassus and Mission Bay if nothing else is set
 //TODO: when clicking through from a location, it should list just the routes that go to that location
 
