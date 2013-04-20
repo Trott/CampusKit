@@ -29,12 +29,6 @@ var template = '<form id="ucsf_shuttle_trip_form" action="javascript:ucsf.shuttl
     template += '<option value="arrive">Arrive by</option>';
     template += '</select>';
     template += '</legend>';
-    template += '<select class="compact" name="date">';
-    template += '<option value="0">Today</option>';
-    template += '<option value="1">Tomorrow</option>';
-    template += '<option value="2">In 2 days</option>';
-    template += '<option value="3">In 3 days</option>';
-    template += '</select>';
     template += '<select class="compact" name="time">';
     template += '<option value="6:00am">6:00am</option>';
     template += '<option value="6:15am">6:15am</option>';
@@ -97,6 +91,12 @@ var template = '<form id="ucsf_shuttle_trip_form" action="javascript:ucsf.shuttl
     template += '<option value="8:30pm">8:30pm</option>';
     template += '<option value="8:45pm">8:45pm</option>';
     template += '<option value="9:00pm">9:00pm</option>';
+    template += '</select>';
+    template += '<select class="compact" name="date">';
+    template += '<option value="0">Today</option>';
+    template += '<option value="1">Tomorrow</option>';
+    template += '<option value="2">In 2 days</option>';
+    template += '<option value="3">In 3 days</option>';
     template += '</select>';
     template += '</fieldset>';
     template += '<input type="submit" name="route" value="Route Trip"  />';
