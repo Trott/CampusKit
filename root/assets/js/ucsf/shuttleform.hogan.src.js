@@ -30,8 +30,10 @@ var template = '<form id="ucsf_shuttle_trip_form" action="javascript:ucsf.shuttl
     template += '</select>';
     template += '</legend>';
     template += '<select class="compact" name="date">';
-    template += '<option value="today">Today</option>';
-    template += '<option value="tomorrow">Tomorrow</option>';
+    template += '<option value="0">Today</option>';
+    template += '<option value="1">Tomorrow</option>';
+    template += '<option value="2">In 2 days</option>';
+    template += '<option value="3">In 3 days</option>';
     template += '</select>';
     template += '<select class="compact" name="time">';
     template += '<option value="6:00am">6:00am</option>';
