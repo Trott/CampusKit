@@ -153,9 +153,7 @@ ucsf.shuttle = (function () {
     me.renderTrip = function (response) {
          var plan = response.plan || {};
 
-         //TODO: Ugh, can't route if a destination is a parent station. But if you substitute 
-         //     a lat/lon, you can end up with pointless walking instructions at end.
-         //TODO: once that's fixed, make sure results match departure/arrival times at http://campuslifeservices.ucsf.edu/upload/transportation/files/Shuttles_Schedule_ParnassusMIssionBay_2012_0830.pdf
+         //TODO: make sure results match departure/arrival times at http://campuslifeservices.ucsf.edu/upload/transportation/files/Shuttles_Schedule_ParnassusMIssionBay_2012_0830.pdf
          //    otherwise, WTF?
 
         // For each itinerary: add index; format startTime, endTime, and duration
@@ -265,3 +263,4 @@ Modernizr.load({
 //TODO: no walking from Aldea to Parnassus or 654 Minnesota to Mission Bay
 //TODO: make directory lookups and shuttle trips bookmarkable
 //TODO: WTF with the Pink schedule "depart by" Parn -> Kezar never showing anything? OTP bug?
+//TODO: Do something about crazy options (e.g., SFGH to Buchanan)
