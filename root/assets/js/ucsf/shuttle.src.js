@@ -261,11 +261,7 @@ Modernizr.load({
 //TODO: schedules
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: when clicking through from a location, it should list just the routes that go to that location
-<<<<<<< Updated upstream
 //TODO: test Black and Tan get used to go to Parnassus from Mt. Zion and Laurel Heights
 //TODO: no walking from Aldea to Parnassus or 654 Minnesota to Mission Bay
 //TODO: make directory lookups and shuttle trips bookmarkable
-=======
-//TODO: make directory lookups and shuttle trips bookmarkable
 //TODO: WTF with the Pink schedule "depart by" Parn -> Kezar never showing anything? OTP bug?
->>>>>>> Stashed changes
