@@ -6,7 +6,7 @@ var template = '<h2>Shuttles {{#foofoofoo}}for {{barbarbar}}{{/foofoofoo}}</h2>'
     template += '<ol>';
     template += '{{#routes}}';
     template += '<li>';
-    template += '<a href="/shuttle/schedule/{{#id}}{{id}}{{/id}}"><div class="shuttle-color {{#id}}{{id}}{{/id}}"></div> {{routeShortName}}</a>';
+    template += '<a href="/shuttle/schedule?id={{#id}}{{id}}{{/id}}"><div class="shuttle-color {{#id}}{{id}}{{/id}}"></div> {{routeShortName}}</a>';
     template += '</li>';
     template += '{{/routes}}';
     template += '</ol>';
