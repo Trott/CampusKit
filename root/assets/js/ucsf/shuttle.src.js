@@ -261,7 +261,7 @@ Modernizr.load({
         var apikey='c631ef46e918c82cf81ef4869f0029d4';
         UCSF.Shuttle.stops({apikey:apikey}, ucsf.shuttle.renderStops);
         if (window.location.pathname === "/shuttle/list/") {
-            UCSF.Shuttle.routes({apikey:apikey, stopId:window.location.search.substr(1)}, ucsf.shuttle.renderRoutes);
+            UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
         }
         if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
             UCSF.Shuttle.routeData({apikey:apikey}, ucsf.shuttle.renderSchedule);
