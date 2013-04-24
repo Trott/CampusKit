@@ -5,7 +5,7 @@ var hogan = require("hogan.js");
 var template = '<h2>Shuttles By Location</h2>';
     template += '<ol>';
     template += '{{#stops}}';
-    template += '<li><a href="/shuttle/list/color/?id={{#id}}{{id}}{{/id}}">{{stopName}}</a></li>';
+    template += '<li><a href="/shuttle/list/?{{#id}}{{id}}{{/id}}">{{stopName}}</a></li>';
     template += '{{/stops}}';
     template += '</ol>';
     template += '{{^stops}}';

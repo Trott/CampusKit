@@ -115,7 +115,7 @@ ucsf.shuttle = (function () {
         }
     };
 
-    me.renderStopData = function (response) {
+    me.renderStops = function (response) {
         response.stops = response.stops || dataFromLocalStorage('shuttle_stops');
 
         // Sort alphabetically by stopName
@@ -127,13 +127,13 @@ ucsf.shuttle = (function () {
         renderList(
             'location',
             response,
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles By Location</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,43,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/list/color/?id=");if(_.s(_.f("id",c,p,1),c,p,0,87,93,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles By Location</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,43,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/list/?");if(_.s(_.f("id",c,p,1),c,p,0,87,93,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
         );
 
         dataToLocalStorage('shuttle_stops', response.stops);
     };
 
-    me.renderRouteData = function (response) {
+    me.renderRoutes = function (response) {
         response.routes = response.routes || dataFromLocalStorage('shuttle_routes');
 
         // Sort alphabetically by routeName
@@ -148,6 +148,15 @@ ucsf.shuttle = (function () {
         );
 
         dataToLocalStorage('shuttle_routes', response.routes);
+    };
+
+    me.renderSchedule = function (response) {
+        window.console.dir(response);
+        // renderList(
+        //     'schedule',
+        //     response,
+        //     foofoofoo
+        // );
     };
 
     me.renderTrip = function (response) {
@@ -249,13 +258,22 @@ ucsf.shuttle = (function () {
 Modernizr.load({
     load: 'http://apis.ucsf.edu/static/UCSF.Shuttle.js',
     callback: function () {
-        UCSF.Shuttle.stops({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderStopData);
-        UCSF.Shuttle.routes({apikey:'c631ef46e918c82cf81ef4869f0029d4'}, ucsf.shuttle.renderRouteData);
+        var apikey='c631ef46e918c82cf81ef4869f0029d4';
+        UCSF.Shuttle.stops({apikey:apikey}, ucsf.shuttle.renderStops);
+        if (window.location.pathname === "/shuttle/list/") {
+            UCSF.Shuttle.routes({apikey:apikey, stopId:window.location.search.substr(1)}, ucsf.shuttle.renderRoutes);
+        }
+        if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
+            UCSF.Shuttle.routeData({apikey:apikey}, ucsf.shuttle.renderSchedule);
+        }
     }
 });
+//TODO: Shuttles by Location doesn't yet work for parent stations
 //TODO: schedules:
 //  retrieving all stops for a route: http://localhost:8080/opentripplanner-api-webapp/ws/transit/routeData?agency=ucsf&id=lime&references=true&extended=true
 //  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: when clicking through from a location, it should list just the routes that go to that location
+//TODO: If showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
+//TODO: if we load UCSF.Shuttle.js from appcache, but are offline, it shouldn't throw an alert box
