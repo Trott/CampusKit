@@ -2,7 +2,7 @@
 var hogan = require("hogan.js");
 
 // construct template string
-var template = '<h2>Shuttles {{#foofoofoo}}for {{barbarbar}}{{/foofoofoo}}</h2>';
+var template = '<h2>Shuttles {{#stop}}for {{stopName}}{{/stop}}</h2>';
     template += '<ol>';
     template += '{{#routes}}';
     template += '<li>';

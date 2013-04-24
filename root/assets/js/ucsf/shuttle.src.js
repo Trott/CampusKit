@@ -144,7 +144,7 @@ ucsf.shuttle = (function () {
         renderList(
             'color',
             response,
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("foofoofoo",c,p,1),c,p,0,27,44,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("barbarbar",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,78,217,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule?id=");if(_.s(_.f("id",c,p,1),c,p,0,120,126,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,168,174,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("stop",c,p,1),c,p,0,22,38,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("stopName",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,67,205,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule?id=");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,156,162,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
         );
 
         dataToLocalStorage('shuttle_routes', response.routes);
@@ -268,7 +268,6 @@ Modernizr.load({
         }
     }
 });
-//TODO: Shuttles by Location doesn't yet work for parent stations
 //TODO: schedules:
 //  retrieving all stops for a route: http://localhost:8080/opentripplanner-api-webapp/ws/transit/routeData?agency=ucsf&id=lime&references=true&extended=true
 //  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
