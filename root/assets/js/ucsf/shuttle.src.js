@@ -268,7 +268,6 @@ Modernizr.load({
         }
     }
 });
-//TODO: bug: Leave now not working...urf
 //TODO: schedules:
 //  retrieving all stops for a route: http://localhost:8080/opentripplanner-api-webapp/ws/transit/routeData?agency=ucsf&id=lime&references=true&extended=true
 //  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
