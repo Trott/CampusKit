@@ -264,14 +264,16 @@ Modernizr.load({
             UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
         }
         if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
-            UCSF.Shuttle.routeData({apikey:apikey}, ucsf.shuttle.renderSchedule);
+            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderSchedule);
         }
     }
 });
 //TODO: schedules:
 //  retrieving all stops for a route: http://localhost:8080/opentripplanner-api-webapp/ws/transit/routeData?agency=ucsf&id=lime&references=true&extended=true
 //  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
+//  for the various trips that make up a route (e.g., greenA, greenB, etc.) you should be able to use http://www.opentripplanner.org/apidoc/resource_TransitIndex.html#path__transit_stopTimesForTrip.html but I haven't been able to get that to work, harumph
+//  Oh hey, this looks promising: https://code.google.com/p/timetablepublisher/
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
-//TODO: If showing routes for today, don't show routes in the past. (arriveBy===true)
+//TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
 //TODO: if we load UCSF.Shuttle.js from appcache, but are offline, it shouldn't throw an alert box
