@@ -35,7 +35,7 @@
 </footer>
 <script>
     var _dirq = _dirq || [];
-    _dirq.push([{id: window.location.search.substr(1)},
+    _dirq.push([{id: decodeURIComponent(window.location.search.substr(1))},
             function (response) { ucsf.directory.renderDetail(response); }]);
 </script>
 </body>

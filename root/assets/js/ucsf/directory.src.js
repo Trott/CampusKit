@@ -71,7 +71,7 @@ ucsf.directory = (function () {
         );
         var detailElement = document.getElementById('ucsf_directory_detail');
         detailElement.innerHTML = template.render(response);
-        if (response.hasOwnProperty("data") && response.data[0].hasOwnProperty('id')) {
+        if (response.data && response.data[0] && response.data[0].id) {
             me.id = response.data[0].id;
             var script = document.createElement('script');
             script.setAttribute("src","http://profiles.ucsf.edu/CustomAPI/v1/JSONProfile.aspx?FNO=" + me.id + "&callback=ucsf.directory.addPhotoAndProfileUrl");
