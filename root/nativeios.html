@@ -58,12 +58,12 @@
         <h2>Shuttle</h2>
         <ol>
             <li><a href="/shuttle/planner">Trip Planner</a></li>
-            <li><a data-target-id="il/shuttle/list/color" href="/shuttle/list/color">Shuttles By Color</a></li>
+            <li><a data-target-id="il/shuttle/list/" href="/shuttle/list/">Shuttles By Route</a></li>
             <li><a data-target-id="il/shuttle/list/location" href="/shuttle/list/location">Shuttles By Location</a></li>
         </ol>
     </div>
 </div>
-<div id="il/shuttle/list/color" style="display:none">
+<div id="il/shuttle/list/" style="display:none">
     <header>
         <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/shuttle">Shuttle</a></span>
     </header>
@@ -119,15 +119,18 @@
     <header>
         <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/directory">Directory</a></span>
     </header>
+    <div id="searchresults"></div>
+
     <form id="ucsf_directory_search_form" action="javascript:ucsf.directory.search()">
-        <h1>Person Search</h1>
-        <input placeholder="First Name" name="first_name" id="first_name">
-        <input autofocus placeholder="Last Name" name="last_name" id="last_name">
-        <input placeholder="Department" name="department" id="department">
-        <input type="submit" id="ucsf_directory_search_submit" value="Search">
+    <h1>Person Search</h1>
+    <label>First Name</label>
+    <input name="first_name" id="first_name">
+    <label>Last Name</label>
+    <input autofocus name="last_name" id="last_name">
+    <label>Department</label>
+    <input name="department" id="department">
+    <input type="submit" id="ucsf_directory_search_submit" value="Search">
     </form>
-    <div id="searchresults">
-    </div>
 </div>
 <div id="il/news" style="display:none">
     <header>

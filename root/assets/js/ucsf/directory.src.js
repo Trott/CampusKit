@@ -1,7 +1,6 @@
 var _dirq = _dirq || [];
 
 ucsf.directory = (function () {
-    "use strict";
     var me = {};
 
     me.search = function () {
@@ -15,8 +14,8 @@ ucsf.directory = (function () {
             that.renderSearchResults({});
             return;
         }
-        var progressHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
-        document.getElementById("searchresults").innerHTML = progressHTML;
+        var resultsElement = document.getElementById("searchresults");
+        resultsElement.innerHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
         _dirq.push([{
                 first_name: fn,
                 last_name: ln,
@@ -60,7 +59,10 @@ ucsf.directory = (function () {
         }
         searchHTML = searchHTML + "</div>";
 
-        document.getElementById("searchresults").innerHTML = searchHTML;
+        var resultsElement = document.getElementById("searchresults");
+        resultsElement.innerHTML = searchHTML;
+        resultsElement.scrollIntoView();
+
     };
 
     me.renderDetail = function (response) {
@@ -69,7 +71,7 @@ ucsf.directory = (function () {
         );
         var detailElement = document.getElementById('ucsf_directory_detail');
         detailElement.innerHTML = template.render(response);
-        if (response.hasOwnProperty("data") && response.data[0].hasOwnProperty('id')) {
+        if (response.data && response.data[0] && response.data[0].id) {
             me.id = response.data[0].id;
             var script = document.createElement('script');
             script.setAttribute("src","http://profiles.ucsf.edu/CustomAPI/v1/JSONProfile.aspx?FNO=" + me.id + "&callback=ucsf.directory.addPhotoAndProfileUrl");
