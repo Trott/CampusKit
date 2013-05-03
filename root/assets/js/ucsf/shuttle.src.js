@@ -151,12 +151,13 @@ ucsf.shuttle = (function () {
     };
 
     me.renderSchedule = function (response) {
-        window.console.dir(response);
-        // renderList(
-        //     'schedule',
-        //     response,
-        //     foofoofoo
-        // );
+        var resultsElement = document.getElementById('ucsf_shuttle_schedule');
+        if (resultsElement) {
+            var template = new Hogan.Template (
+                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>");if(_.s(_.f("route",c,p,1),c,p,0,14,33,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" ");});c.pop();}_.b("Shuttle Schedule</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,78,115,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            );
+            resultsElement.innerHTML = template.render(response);
+        }
     };
 
     me.renderTrip = function (response) {
@@ -227,7 +228,6 @@ ucsf.shuttle = (function () {
         var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
         resultsElement.innerHTML=template.render(plan);
         resultsElement.scrollIntoView();
-
     };
 
     me.plan = function () {
@@ -269,7 +269,6 @@ Modernizr.load({
     }
 });
 //TODO: schedules:
-//  retrieving all stops for a route: http://localhost:8080/opentripplanner-api-webapp/ws/transit/routeData?agency=ucsf&id=lime&references=true&extended=true
 //  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
 //  for the various trips that make up a route (e.g., greenA, greenB, etc.) you should be able to use http://www.opentripplanner.org/apidoc/resource_TransitIndex.html#path__transit_stopTimesForTrip.html but I haven't been able to get that to work, harumph
 //  Oh hey, this looks promising: https://code.google.com/p/timetablepublisher/
