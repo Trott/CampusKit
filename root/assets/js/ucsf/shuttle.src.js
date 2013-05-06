@@ -268,10 +268,7 @@ Modernizr.load({
         }
     }
 });
-//TODO: schedules:
-//  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
-//  for the various trips that make up a route (e.g., greenA, greenB, etc.) you should be able to use http://www.opentripplanner.org/apidoc/resource_TransitIndex.html#path__transit_stopTimesForTrip.html but I haven't been able to get that to work, harumph
-//  Oh hey, this looks promising: https://code.google.com/p/timetablepublisher/
+//TODO: schedules
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
