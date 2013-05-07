@@ -154,26 +154,25 @@ ucsf.shuttle = (function () {
         var resultsElement = document.getElementById('ucsf_shuttle_schedule');
         if (resultsElement) {
             var template = new Hogan.Template(
-                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,582,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\" onclick=\"ucsf.shuttle.renderSchedule.target=this;ucsf.shuttle.renderSchedule.startTime=new Date().setHours(0,0,0,0);UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,303,319,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b("routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule);return false\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,617,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\" data-stopId=\"");if(_.s(_.f("id",c,p,1),c,p,0,179,185,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\" onclick=\"ucsf.shuttle.renderSchedule.target=this;ucsf.shuttle.renderSchedule.startTime=new Date().setHours(0,0,0,0);UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,338,354,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b("routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule);return false\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
             );
             resultsElement.innerHTML = template.render(response);
         }
     };
 
     me.renderSchedule = function(response) {
-        var myDate = new Date(me.renderSchedule.startTime || Date.now());
-        response.formattedDate = myDate.toDateString();
+        response.date = me.renderSchedule.startTime || Date.now();
+        response.formattedDate = new Date(response.date).toDateString();
 
         if (response.times && response.times instanceof Array && response.times.length > 0) {
             for (var i=0, l=response.times.length; i<l; i++) {
                 response.times[i].formattedTime = formatTime(response.times[i].time * 1000);
             }
         }
-        window.console.dir(response);
         var target = ucsf.shuttle.renderSchedule.target;
         if (target && target.innerHTML) {
             var template = new Hogan.Template(
-                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h3>");_.b(_.v(_.f("formattedDate",c,p,0)));_.b("</h3><ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,70,96,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No times found for selected date.</li>");}_.b("</ol>");return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h3>");_.b(_.v(_.f("formattedDate",c,p,0)));_.b("</h3><ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,70,96,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No times found for selected date.</li>");}_.b("</ol><div><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("-86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Previous Day</button><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("+86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Next Day</button></div>");return _.fl();}
             );
             var resultsHTML = template.render(response);
             if (target.nextSibling) {
