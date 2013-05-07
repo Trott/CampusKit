@@ -2,12 +2,12 @@
 var hogan = require("hogan.js");
 
 // construct template string
-var template = '<p>{{#times}}';
-    template += '{{formattedTime}}<br>';
+var template = '<ol class="shuttle-times-listing">{{#times}}';
+    template += '<li>{{formattedTime}}</li>';
     template += '{{/times}}';
     template += '{{^times}}';
-    template += 'No shuttle times found for selected date.';
-    template += '{{/times}}</p>';
+    template += '<li>No shuttle times found for selected date.</li>';
+    template += '{{/times}}</ol>';
 
 // compile template
 var output = hogan.compile(template, {asString: true});

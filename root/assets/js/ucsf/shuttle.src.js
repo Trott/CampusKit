@@ -171,7 +171,7 @@ ucsf.shuttle = (function () {
         var target = ucsf.shuttle.renderSchedule.target;
         if (target && target.innerHTML) {
             var template = new Hogan.Template(
-                function(c,p,i){var _=this;_.b(i=i||"");_.b("<p>");if(_.s(_.f("times",c,p,1),c,p,0,13,34,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("formattedTime",c,p,0)));_.b("<br>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("No shuttle times found for selected date.");}_.b("</p>");return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");_.b("<ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,44,70,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No shuttle times found for selected date.</li>");}_.b("</ol>");return _.fl();}
             );
             resultsElement.innerHTML = template.render(response);
             target.parentNode.insertBefore(resultsElement, target.nextSibling);
