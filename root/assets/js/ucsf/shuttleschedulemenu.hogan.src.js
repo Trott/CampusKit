@@ -7,7 +7,7 @@ var template = '{{#route}}';
 	template += '<ol id="ucsf-schedule-container" data-routeId="{{#id}}{{id}}{{/id}}">';
     template += '{{/route}}';
     template += '{{#stops}}';
-    template += '<li><a href="javascript:UCSF.Shuttle.times({ {{#id}}stopId:\'{{id}}\',{{/id}} routeId:document.getElementById(\'ucsf-schedule-container\').getAttribute(\'data-routeId\'), startTime:Date.now(), endTime:new Date().setHours(23,59,59,999) }, ucsf.shuttle.renderSchedule)">{{stopName}}</a></li>';
+    template += '<li><a href="#" onclick="UCSF.Shuttle.times({ {{#id}}stopId:\'{{id}}\',{{/id}} routeId:document.getElementById(\'ucsf-schedule-container\').getAttribute(\'data-routeId\'), startTime:Date.now(), endTime:new Date().setHours(23,59,59,999) }, ucsf.shuttle.renderSchedule); return false">{{stopName}}</a></li>';
     template += '{{/stops}}';
     template += '</ol>';
     template += '{{^stops}}';
