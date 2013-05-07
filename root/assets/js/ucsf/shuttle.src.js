@@ -166,15 +166,20 @@ ucsf.shuttle = (function () {
                 response.times[i].formattedTime = formatTime(response.times[i].time * 1000);
             }
         }
-        var resultsElement = document.createElement('div');
-        resultsElement.setAttribute('class','content');
         var target = ucsf.shuttle.renderSchedule.target;
         if (target && target.innerHTML) {
             var template = new Hogan.Template(
                 function(c,p,i){var _=this;_.b(i=i||"");_.b("<ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,44,70,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No shuttle times found for selected date.</li>");}_.b("</ol>");return _.fl();}
             );
-            resultsElement.innerHTML = template.render(response);
-            target.parentNode.insertBefore(resultsElement, target.nextSibling);
+            var resultsHTML = template.render(response);
+            if (target.nextSibling) {
+                target.nextSibling.innerHTML = resultsHTML;
+            } else {
+                var resultsElement = document.createElement('div');
+                resultsElement.setAttribute('class','content');
+                resultsElement.innerHTML = resultsHTML;
+                target.parentNode.insertBefore(resultsElement);
+            }
         }
     };
 
@@ -286,7 +291,7 @@ Modernizr.load({
         }
     }
 });
-//TODO: schedules
+//TODO: schedules: next day and previous day, rather than keep appending times
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
