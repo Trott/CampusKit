@@ -161,6 +161,11 @@ ucsf.shuttle = (function () {
     };
 
     me.renderSchedule = function(response) {
+        if (response.times && response.times instanceof Array) {
+            for (var i=0, l=response.times.length; i<l; i++) {
+                response.times[i].formattedTime = formatTime(response.times[i].time);
+            }
+        }
         window.console.log(response);
         var resultsElement = document.getElementById('ucsf_shuttle_schedule');
         if (resultsElement) {
