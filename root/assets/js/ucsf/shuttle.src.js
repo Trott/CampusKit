@@ -154,18 +154,22 @@ ucsf.shuttle = (function () {
         var resultsElement = document.getElementById('ucsf_shuttle_schedule');
         if (resultsElement) {
             var template = new Hogan.Template(
-                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,493,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\" onclick=\"ucsf.shuttle.renderSchedule.target=this;UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,236,252,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b("routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:new Date().setHours(0,0,0,0),endTime:new Date().setHours(23,59,59,999)},ucsf.shuttle.renderSchedule);return false\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,582,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\" onclick=\"ucsf.shuttle.renderSchedule.target=this;ucsf.shuttle.renderSchedule.startTime=new Date().setHours(0,0,0,0);UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,303,319,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b("routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule);return false\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
             );
             resultsElement.innerHTML = template.render(response);
         }
     };
 
     me.renderSchedule = function(response) {
-        if (response.times && response.times instanceof Array) {
+        var myDate = new Date(me.renderSchedule.startTime || Date.now());
+        response.formattedDate = myDate.toDateString();
+
+        if (response.times && response.times instanceof Array && response.times.length > 0) {
             for (var i=0, l=response.times.length; i<l; i++) {
                 response.times[i].formattedTime = formatTime(response.times[i].time * 1000);
             }
         }
+        window.console.dir(response);
         var target = ucsf.shuttle.renderSchedule.target;
         if (target && target.innerHTML) {
             var template = new Hogan.Template(
@@ -291,7 +295,7 @@ Modernizr.load({
         }
     }
 });
-//TODO: schedules: next day and previous day, rather than keep appending times
+//TODO: schedules: next day and previous day
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
