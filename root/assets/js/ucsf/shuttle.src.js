@@ -144,7 +144,7 @@ ucsf.shuttle = (function () {
         renderList(
             'color',
             response,
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("stop",c,p,1),c,p,0,22,38,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("stopName",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,67,205,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule?");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,156,162,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("stop",c,p,1),c,p,0,22,38,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("stopName",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,67,205,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule/route?");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,156,162,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
         );
 
         dataToLocalStorage('shuttle_routes', response.routes);
@@ -289,7 +289,7 @@ Modernizr.load({
         if (window.location.pathname === "/shuttle/list/") {
             UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
         }
-        if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
+        if ((window.location.pathname === "/shuttle/schedule/route/") && window.location.search) {
             UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderScheduleMenu);
         }
     }
