@@ -150,14 +150,18 @@ ucsf.shuttle = (function () {
         dataToLocalStorage('shuttle_routes', response.routes);
     };
 
-    me.renderSchedule = function (response) {
+    me.renderScheduleMenu = function (response) {
         var resultsElement = document.getElementById('ucsf_shuttle_schedule');
         if (resultsElement) {
             var template = new Hogan.Template (
-                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,431,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"javascript:UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,195,211,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b(" routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'), startTime:Date.now(), endTime:new Date().setHours(23,59,59,999) },function(res) {console.dir(res);})\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,426,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"javascript:UCSF.Shuttle.times({ ");if(_.s(_.f("id",c,p,1),c,p,0,195,211,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b(" routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'), startTime:Date.now(), endTime:new Date().setHours(23,59,59,999) }, ucsf.shuttle.renderSchedule)\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
             );
             resultsElement.innerHTML = template.render(response);
         }
+    };
+
+    me.renderSchedule = function(response) {
+        window.console.dir(response);
     };
 
     me.renderTrip = function (response) {
@@ -264,7 +268,7 @@ Modernizr.load({
             UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
         }
         if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
-            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderSchedule);
+            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderScheduleMenu);
         }
     }
 });
