@@ -73,6 +73,8 @@ ucsf.shuttle = (function () {
             }
         }
 
+        form.datetime.disabled = form.when.value==="now";
+
         var reverseButton = document.getElementById('reverse_trip');
         if (reverseButton) {
             reverseButton.onclick = function () {
@@ -311,4 +313,3 @@ Modernizr.load({
     }
 });
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
-//TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)

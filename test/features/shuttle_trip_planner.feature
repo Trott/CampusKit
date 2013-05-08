@@ -79,3 +79,12 @@ Scenario: Plans don't break back button
   And I go back
   Then I should see "Grey"
   And I should not see "Red"
+
+Scenario: Time and Date buttons enabled on routes that aren't "Leave Now"
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select "Arrive by" for "when"
+  And I route the trip
+  Then I should see "Suggested Routes"
+  And "datetime" should not be disabled
