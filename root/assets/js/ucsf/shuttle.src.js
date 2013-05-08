@@ -189,14 +189,13 @@ ucsf.shuttle = (function () {
         var target = ucsf.shuttle.renderSchedule.target;
         if (target && target.innerHTML) {
             var template = new Hogan.Template(
-                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h3>");_.b(_.v(_.f("formattedDate",c,p,0)));_.b("</h3><ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,70,96,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No times found for selected date.</li>");}_.b("</ol><div><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("-86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Previous Day</button><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("+86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Next Day</button></div>");return _.fl();}
+                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h3>");_.b(_.v(_.f("formattedDate",c,p,0)));_.b("</h3><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("-86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Previous Day</button><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("+86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Next Day</button><ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,1118,1144,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No times found for selected date.</li>");}_.b("</ol>");return _.fl();}
             );
             var resultsHTML = template.render(response);
             if (target.nextSibling) {
                 target.nextSibling.innerHTML = resultsHTML;
             } else {
                 var resultsElement = document.createElement('div');
-                resultsElement.setAttribute('class','content');
                 resultsElement.innerHTML = resultsHTML;
                 target.parentNode.insertBefore(resultsElement);
             }
@@ -313,5 +312,3 @@ Modernizr.load({
 });
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
-//TODO: make shuttle trips bookmarkable
-//TODO: Move next/prev day buttons to top where the date is shown
