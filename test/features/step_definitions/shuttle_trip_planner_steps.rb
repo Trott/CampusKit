@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Given /^my localStorage is empty$/ do
 	visit "/"
 	execute_script('localStorage.clear()')
@@ -9,12 +11,15 @@ Given /I visit the Shuttle Trip Planner page/ do
 end
 
 Then /^I should see the route "([^"]*)" "([^"]*)"$/ do |id, value|
-	select = find('#' + id)
-	select.find(:xpath, XPath::HTML.option(value)).should be_selected
+	find(:xpath, "//select[@id = '#{id}']/option[text() = '#{value}']").should be_selected
 end
 
 Then /^I select a route "([^"]*)" "([^"]*)"$/ do |id, value|
 	select(value, :from => id)
+end
+
+Then /^I select "([^"]*)"$/ do |value|
+    select(value)
 end
 
 Then /^I route the trip$/ do
@@ -22,7 +27,7 @@ Then /^I route the trip$/ do
 end
 
 And /^I reverse the trip$/ do
-	click_button('Reverse Trip')
+	click_button('↑↓')
 end
 
 Then /^I should see "(.*?)"$/ do |text|

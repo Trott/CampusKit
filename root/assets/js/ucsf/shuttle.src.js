@@ -144,19 +144,45 @@ ucsf.shuttle = (function () {
         renderList(
             'color',
             response,
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("stop",c,p,1),c,p,0,22,38,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("stopName",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,67,205,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule?");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,156,162,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>Shuttles ");if(_.s(_.f("stop",c,p,1),c,p,0,22,38,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("for ");_.b(_.v(_.f("stopName",c,p,0)));});c.pop();}_.b("</h2><ol>");if(_.s(_.f("routes",c,p,1),c,p,0,67,205,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/shuttle/schedule/route?");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"><div class=\"shuttle-color ");if(_.s(_.f("id",c,p,1),c,p,0,156,162,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\"></div> ");_.b(_.v(_.f("routeShortName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("routes",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
         );
 
         dataToLocalStorage('shuttle_routes', response.routes);
     };
 
-    me.renderSchedule = function (response) {
+    me.renderScheduleMenu = function (response) {
         var resultsElement = document.getElementById('ucsf_shuttle_schedule');
         if (resultsElement) {
-            var template = new Hogan.Template (
-                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h2>");if(_.s(_.f("route",c,p,1),c,p,0,14,33,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" ");});c.pop();}_.b("Shuttle Schedule</h2><ol>");if(_.s(_.f("stops",c,p,1),c,p,0,78,115,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
+            var template = new Hogan.Template(
+                function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("route",c,p,1),c,p,0,10,123,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<h2>");_.b(_.v(_.f("routeShortName",c,p,0)));_.b(" Shuttle Schedule</h2><ol id=\"ucsf-schedule-container\" data-routeId=\"");if(_.s(_.f("id",c,p,1),c,p,0,108,114,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">");});c.pop();}if(_.s(_.f("stops",c,p,1),c,p,0,143,658,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"#\" data-stopId=\"");if(_.s(_.f("id",c,p,1),c,p,0,179,185,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\" onclick=\"ucsf.shuttle.renderSchedule.target=this;ucsf.shuttle.renderSchedule.startTime=new Date().setHours(0,0,0,0);UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',");if(_.s(_.f("id",c,p,1),c,p,0,379,395,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("stopId:'");_.b(_.v(_.f("id",c,p,0)));_.b("',");});c.pop();}_.b("routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule);return false\">");_.b(_.v(_.f("stopName",c,p,0)));_.b("</a></li>");});c.pop();}_.b("</ol>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Could not load content.</p>");}return _.fl();}
             );
             resultsElement.innerHTML = template.render(response);
+        }
+    };
+
+    me.renderSchedule = function(response) {
+        response.date = me.renderSchedule.startTime || Date.now();
+        response.formattedDate = new Date(response.date).toDateString();
+
+        if (response.times && response.times instanceof Array && response.times.length > 0) {
+            for (var i=0, l=response.times.length; i<l; i++) {
+                response.times[i].formattedTime = formatTime(response.times[i].time * 1000);
+            }
+        }
+        var target = ucsf.shuttle.renderSchedule.target;
+        if (target && target.innerHTML) {
+            var template = new Hogan.Template(
+                function(c,p,i){var _=this;_.b(i=i||"");_.b("<h3>");_.b(_.v(_.f("formattedDate",c,p,0)));_.b("</h3><ol class=\"shuttle-times-listing\">");if(_.s(_.f("times",c,p,1),c,p,0,70,96,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li>");_.b(_.v(_.f("formattedTime",c,p,0)));_.b("</li>");});c.pop();}if(!_.s(_.f("times",c,p,1),c,p,1,0,0,"")){_.b("<li>No times found for selected date.</li>");}_.b("</ol><div><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("-86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Previous Day</button><button onclick=\"ucsf.shuttle.renderSchedule.startTime=");_.b(_.v(_.f("date",c,p,0)));_.b("+86400000;ucsf.shuttle.renderSchedule.target=this.parentNode.parentNode.previousSibling;UCSF.Shuttle.times({apikey:'c631ef46e918c82cf81ef4869f0029d4',stopId:ucsf.shuttle.renderSchedule.target.getAttribute('data-stopId'),routeId:document.getElementById('ucsf-schedule-container').getAttribute('data-routeId'),startTime:ucsf.shuttle.renderSchedule.startTime,endTime:ucsf.shuttle.renderSchedule.startTime+86399999},ucsf.shuttle.renderSchedule)\">Next Day</button></div>");return _.fl();}
+            );
+            var resultsHTML = template.render(response);
+            if (target.nextSibling) {
+                target.nextSibling.innerHTML = resultsHTML;
+            } else {
+                var resultsElement = document.createElement('div');
+                resultsElement.setAttribute('class','content');
+                resultsElement.innerHTML = resultsHTML;
+                target.parentNode.insertBefore(resultsElement);
+            }
         }
     };
 
@@ -263,16 +289,13 @@ Modernizr.load({
         if (window.location.pathname === "/shuttle/list/") {
             UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
         }
-        if ((window.location.pathname === "/shuttle/schedule/") && window.location.search) {
-            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderSchedule);
+        if ((window.location.pathname === "/shuttle/schedule/route/") && window.location.search) {
+            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderScheduleMenu);
         }
     }
 });
-//TODO: schedules:
-//  retrieving all arrivals/departures at a stop between two times: http://localhost:8080/opentripplanner-api-webapp/ws/transit/stopTimesForStop?agency=ucsf&id=MCB&startTime=1366392129289&endTime=1366399999999
-//  for the various trips that make up a route (e.g., greenA, greenB, etc.) you should be able to use http://www.opentripplanner.org/apidoc/resource_TransitIndex.html#path__transit_stopTimesForTrip.html but I haven't been able to get that to work, harumph
-//  Oh hey, this looks promising: https://code.google.com/p/timetablepublisher/
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
 //TODO: if we load UCSF.Shuttle.js from appcache, but are offline, it shouldn't throw an alert box
+//TODO: Tests
