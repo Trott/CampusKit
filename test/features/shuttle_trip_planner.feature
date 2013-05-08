@@ -42,7 +42,7 @@ Scenario: Show Multiple Shuttles
   Then I should see "Red"
   And I should see "Yellow"
 
-Scenario: Optimal Route From Mission Bay To Buchanan Dental Center and Back
+Scenario: Optimal Route From Mission Bay To Buchanan Dental Center
   Given I am on the home page
   And I click "Shuttle"
   And I click "Trip Planner"
@@ -50,7 +50,12 @@ Scenario: Optimal Route From Mission Bay To Buchanan Dental Center and Back
   And I select a route "ucsf_shuttle_ending_at" "To Buchanan Dental Center"
   And I route the trip
   Then I should see "Red"
-  And I should not see "Grey"
-  And I reverse the trip
+
+Scenario: Optimal Route From Buchanan Dental Center To Mission Bay
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "ucsf_shuttle_starting_from" "From Buchanan Dental Center"
+  And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
+  And I route the trip
   Then I should see "Red"
-  And I should not see "Grey"
