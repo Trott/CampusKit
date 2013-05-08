@@ -23,35 +23,52 @@ ucsf.shuttle = (function () {
         }
 
         var template = new Hogan.Template(
-            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form id=\"ucsf_shuttle_trip_form\" action=\"javascript:ucsf.shuttle.plan()\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,158,234,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,180,199,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,447,521,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,469,488,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<fieldset disabled name=\"datetime\"><legend><select class=\"compact\" name=\"when\" onchange=\"form.datetime.disabled = value=='now'\"><option value=\"now\">Leave now</option><option value=\"depart\">Depart at</option><option value=\"arrive\">Arrive by</option></select></legend><select class=\"compact\" name=\"time\"><option value=\"6:00am\">6:00am</option><option value=\"6:15am\">6:15am</option><option value=\"6:30am\">6:30am</option><option value=\"6:45am\">6:45am</option><option value=\"7:00am\">7:00am</option><option value=\"7:15am\">7:15am</option><option value=\"7:30am\">7:30am</option><option value=\"7:45am\">7:45am</option><option value=\"8:00am\">8:00am</option><option value=\"8:15am\">8:15am</option><option value=\"8:30am\">8:30am</option><option value=\"8:45am\">8:45am</option><option value=\"9:00am\">9:00am</option><option value=\"9:15am\">9:15am</option><option value=\"9:30am\">9:30am</option><option value=\"9:45am\">9:45am</option><option value=\"10:00am\">10:00am</option><option value=\"10:15am\">10:15am</option><option value=\"10:30am\">10:30am</option><option value=\"10:45am\">10:45am</option><option value=\"11:00am\">11:00am</option><option value=\"11:15am\">11:15am</option><option value=\"11:30am\">11:30am</option><option value=\"11:45am\">11:45am</option><option value=\"12:00pm\">12:00pm</option><option value=\"12:15pm\">12:15pm</option><option value=\"12:30pm\">12:30pm</option><option value=\"12:45pm\">12:45pm</option><option value=\"1:00pm\">1:00pm</option><option value=\"1:15pm\">1:15pm</option><option value=\"1:30pm\">1:30pm</option><option value=\"1:45pm\">1:45pm</option><option value=\"2:00pm\">2:00pm</option><option value=\"2:15pm\">2:15pm</option><option value=\"2:30pm\">2:30pm</option><option value=\"2:45pm\">2:45pm</option><option value=\"3:00pm\">3:00pm</option><option value=\"3:15pm\">3:15pm</option><option value=\"3:30pm\">3:30pm</option><option value=\"3:45pm\">3:45pm</option><option value=\"4:00pm\">4:00pm</option><option value=\"4:15pm\">4:15pm</option><option value=\"4:30pm\">4:30pm</option><option value=\"4:45pm\">4:45pm</option><option value=\"5:00pm\">5:00pm</option><option value=\"5:15pm\">5:15pm</option><option value=\"5:30pm\">5:30pm</option><option value=\"5:45pm\">5:45pm</option><option value=\"6:00pm\">6:00pm</option><option value=\"6:15pm\">6:15pm</option><option value=\"6:30pm\">6:30pm</option><option value=\"6:45pm\">6:45pm</option><option value=\"7:00pm\">7:00pm</option><option value=\"7:15pm\">7:15pm</option><option value=\"7:30pm\">7:30pm</option><option value=\"7:45pm\">7:45pm</option><option value=\"8:00pm\">8:00pm</option><option value=\"8:15pm\">8:15pm</option><option value=\"8:30pm\">8:30pm</option><option value=\"8:45pm\">8:45pm</option><option value=\"9:00pm\">9:00pm</option></select><select class=\"compact\" name=\"date\"><option value=\"0\">Today</option><option value=\"1\">Tomorrow</option><option value=\"2\">In 2 days</option><option value=\"3\">In 3 days</option></select></fieldset><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
+            function(c,p,i){var _=this;_.b(i=i||"");_.b("<form id=\"ucsf_shuttle_trip_form\" action=\"/shuttle/planner/\"><h2>Trip Planner</h2><select name=\"begin\" id=\"ucsf_shuttle_starting_from\">");if(_.s(_.f("stops",c,p,1),c,p,0,145,221,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,167,186,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">From ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<button type=\"button\" id=\"reverse_trip\" class=\"reverse_trip\">&uarr;&darr;</button><select name=\"end\" id=\"ucsf_shuttle_ending_at\">");if(_.s(_.f("stops",c,p,1),c,p,0,434,508,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<option value=\"");if(_.s(_.f("id",c,p,1),c,p,0,456,475,"{{ }}")){_.rs(c,p,function(c,p,_){_.b(_.v(_.f("agencyId",c,p,0)));_.b("_");_.b(_.v(_.f("id",c,p,0)));});c.pop();}_.b("\">To ");_.b(_.v(_.f("stopName",c,p,0)));_.b("</option>");});c.pop();}_.b("</select>");if(!_.s(_.f("stops",c,p,1),c,p,1,0,0,"")){_.b("<p>Content could not be loaded.</p>");}_.b("<fieldset disabled name=\"datetime\"><legend><select class=\"compact\" name=\"when\" onchange=\"form.datetime.disabled = value=='now'\"><option value=\"now\">Leave now</option><option value=\"depart\">Depart at</option><option value=\"arrive\">Arrive by</option></select></legend><select class=\"compact\" name=\"time\"><option value=\"6:00am\">6:00am</option><option value=\"6:15am\">6:15am</option><option value=\"6:30am\">6:30am</option><option value=\"6:45am\">6:45am</option><option value=\"7:00am\">7:00am</option><option value=\"7:15am\">7:15am</option><option value=\"7:30am\">7:30am</option><option value=\"7:45am\">7:45am</option><option value=\"8:00am\">8:00am</option><option value=\"8:15am\">8:15am</option><option value=\"8:30am\">8:30am</option><option value=\"8:45am\">8:45am</option><option value=\"9:00am\">9:00am</option><option value=\"9:15am\">9:15am</option><option value=\"9:30am\">9:30am</option><option value=\"9:45am\">9:45am</option><option value=\"10:00am\">10:00am</option><option value=\"10:15am\">10:15am</option><option value=\"10:30am\">10:30am</option><option value=\"10:45am\">10:45am</option><option value=\"11:00am\">11:00am</option><option value=\"11:15am\">11:15am</option><option value=\"11:30am\">11:30am</option><option value=\"11:45am\">11:45am</option><option value=\"12:00pm\">12:00pm</option><option value=\"12:15pm\">12:15pm</option><option value=\"12:30pm\">12:30pm</option><option value=\"12:45pm\">12:45pm</option><option value=\"1:00pm\">1:00pm</option><option value=\"1:15pm\">1:15pm</option><option value=\"1:30pm\">1:30pm</option><option value=\"1:45pm\">1:45pm</option><option value=\"2:00pm\">2:00pm</option><option value=\"2:15pm\">2:15pm</option><option value=\"2:30pm\">2:30pm</option><option value=\"2:45pm\">2:45pm</option><option value=\"3:00pm\">3:00pm</option><option value=\"3:15pm\">3:15pm</option><option value=\"3:30pm\">3:30pm</option><option value=\"3:45pm\">3:45pm</option><option value=\"4:00pm\">4:00pm</option><option value=\"4:15pm\">4:15pm</option><option value=\"4:30pm\">4:30pm</option><option value=\"4:45pm\">4:45pm</option><option value=\"5:00pm\">5:00pm</option><option value=\"5:15pm\">5:15pm</option><option value=\"5:30pm\">5:30pm</option><option value=\"5:45pm\">5:45pm</option><option value=\"6:00pm\">6:00pm</option><option value=\"6:15pm\">6:15pm</option><option value=\"6:30pm\">6:30pm</option><option value=\"6:45pm\">6:45pm</option><option value=\"7:00pm\">7:00pm</option><option value=\"7:15pm\">7:15pm</option><option value=\"7:30pm\">7:30pm</option><option value=\"7:45pm\">7:45pm</option><option value=\"8:00pm\">8:00pm</option><option value=\"8:15pm\">8:15pm</option><option value=\"8:30pm\">8:30pm</option><option value=\"8:45pm\">8:45pm</option><option value=\"9:00pm\">9:00pm</option></select><select class=\"compact\" name=\"date\"><option value=\"0\">Today</option><option value=\"1\">Tomorrow</option><option value=\"2\">In 2 days</option><option value=\"3\">In 3 days</option></select></fieldset><input type=\"submit\" name=\"route\" value=\"Route Trip\"  /></form>");return _.fl();}
         );
         formContainer.innerHTML = template.render(response);
 
-        var now = formatTime(Date.now(),{minutesIncrement:15});
-        document.getElementById('ucsf_shuttle_trip_form').time.value = now;
+        var form = document.getElementById('ucsf_shuttle_trip_form'),
+            start = form.begin,
+            end = form.end;
 
-        var start = document.getElementById('ucsf_shuttle_starting_from'),
-            end = document.getElementById('ucsf_shuttle_ending_at');
+        // If there are query parameters, set forms using that, otherwise current time + localstorage.
+        var search = window.location.search.replace(/\+/g," ");
+        if (search) {
+            var startValue = decodeURIComponent( (/[&?]begin=([^&]*)/.exec(search)||["",""])[1] ),
+                endValue = decodeURIComponent( (/[&?]end=([^&]*)/.exec(search)||["",""])[1] ),
+                whenValue = decodeURIComponent( (/[&?]when=([^&]*)/.exec(search)||["",""])[1] ),
+                timeValue = decodeURIComponent( (/[&?]time=([^&]*)/.exec(search)||["",""])[1] ),
+                dateValue = decodeURIComponent( (/[&?]date=([^&]*)/.exec(search)||["",""])[1] );
 
-        // Should store value, not index, in localStorage for saved start/stop points, but need to then provide
-        //       that value to querySelector() in a way that rules out the possibility of code injection. For now,
-        //       just doing the index for security.
+            start.value = startValue || start.value;
+            end.value = endValue || end.value;
+            form.when.value = whenValue || form.when.value;
+            form.time.value = timeValue || form.time.value;
+            form.date.value = dateValue || form.date.value;
+            me.plan();
+        } else {
+            form.time.value = formatTime(Date.now(),{minutesIncrement:15});
 
-        if (Modernizr.localstorage && start && end) {
-            if (localStorage.shuttle_start) {
-                start.selectedIndex = parseInt(localStorage.shuttle_start, 10);
-            } else {
-                var from = start.querySelector('option[value="ucsf_Parnassus"]');
-                if (from) {
-                    start.selectedIndex = from.index;
+            // Should store value, not index, in localStorage for saved start/stop points, but need to then provide
+            //       that value to querySelector() in a way that rules out the possibility of code injection. For now,
+            //       just doing the index for security.
+
+            if (Modernizr.localstorage && start && end) {
+                if (localStorage.shuttle_start) {
+                    start.selectedIndex = parseInt(localStorage.shuttle_start, 10);
+                } else {
+                    var from = start.querySelector('option[value="ucsf_Parnassus"]');
+                    if (from) {
+                        start.selectedIndex = from.index;
+                    }
                 }
-            }
-            if (localStorage.shuttle_end) {
-                end.selectedIndex = parseInt(localStorage.shuttle_end, 10);
-            } else {
-                var to = end.querySelector('option[value="ucsf_MB"]');
-                if (to) {
-                    end.selectedIndex = to.index;
+                if (localStorage.shuttle_end) {
+                    end.selectedIndex = parseInt(localStorage.shuttle_end, 10);
+                } else {
+                    var to = end.querySelector('option[value="ucsf_MB"]');
+                    if (to) {
+                        end.selectedIndex = to.index;
+                    }
                 }
             }
         }
@@ -296,4 +313,5 @@ Modernizr.load({
 });
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
-//TODO: make directory lookups and shuttle trips bookmarkable
+//TODO: make shuttle trips bookmarkable
+//TODO: Move next/prev day buttons to top where the date is shown

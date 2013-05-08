@@ -43,7 +43,7 @@
 <script>
     var _dirq = _dirq || [];
     (function () {
-        var search = window.location.search;
+        var search = window.location.search.replace(/\+/g," ");
         if (search) {
             var form = document.getElementById('ucsf_directory_search_form'),
                 fn = decodeURIComponent( (/[&?]first_name=([^&]*)/.exec(search)||["",""])[1] ),

@@ -2,7 +2,7 @@
 var hogan = require("hogan.js");
 
 // construct template string
-var template = '<form id="ucsf_shuttle_trip_form" action="javascript:ucsf.shuttle.plan()">';
+var template = '<form id="ucsf_shuttle_trip_form" action="/shuttle/planner/">';
     template += '<h2>Trip Planner</h2>';
     template += '<select name="begin" id="ucsf_shuttle_starting_from">';
     template += '{{#stops}}';

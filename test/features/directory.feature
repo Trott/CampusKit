@@ -12,7 +12,7 @@ Scenario: Directory result
   And I click "Mark Bridge"
   Then I should see "Campus Phone:"
 
-Scenario: Results bookmarkable
+Scenario: Results don't break back button
   Given I am on the home page
   And I click "Directory"
   And I enter "Bridge" for "Last Name"

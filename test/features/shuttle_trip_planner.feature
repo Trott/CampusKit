@@ -59,3 +59,23 @@ Scenario: Optimal Route From Buchanan Dental Center To Mission Bay
   And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
   And I route the trip
   Then I should see "Red"
+
+Scenario: Plans don't break back button
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "ucsf_shuttle_starting_from" "From Parnassus Campus"
+  And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
+  And I route the trip
+  Then I should see "Suggested Routes"
+  And I should not see "Red"
+  And I should see "Grey"
+  And I select a route "ucsf_shuttle_starting_from" "From Mission Center Building"
+  And I select a route "ucsf_shuttle_ending_at" "To 16th St. BART"
+  And I route the trip
+  Then I should see "Suggested Routes"
+  And I should see "Red"
+  And I should not see "Grey"
+  And I go back
+  Then I should see "Grey"
+  And I should not see "Red"

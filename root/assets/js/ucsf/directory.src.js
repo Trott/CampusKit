@@ -9,8 +9,8 @@ ucsf.directory = (function () {
             return;
         }
         var result = response.data || [];
-        //TODO: this and all the other rendered stuff (including the progress meter) 
-        // should be templates with defaults and the option to pass in one to override.
+        //TODO: this and all the other rendered stuff should be templates with 
+        // defaults and the option to pass in one to override.
         var resultCount = result.length>20 ? 20 : result.length;
         var searchHTML = '<div class="menu"><h1>Search Results (' + resultCount + ')</h1>';
         if (resultCount === 20) {
