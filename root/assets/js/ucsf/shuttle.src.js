@@ -297,5 +297,3 @@ Modernizr.load({
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: On planner, if showing routes for today, don't show routes in the past. (arriveBy===true)
 //TODO: make directory lookups and shuttle trips bookmarkable
-//TODO: if we load UCSF.Shuttle.js from appcache, but are offline, it shouldn't throw an alert box
-//TODO: Tests

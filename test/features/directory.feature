@@ -10,4 +10,15 @@ Scenario: Directory result
   And I click the "Search" button
   Then I should not see "<strong>"
   And I click "Mark Bridge"
-  Then I should see "Mark Bridge"
+  Then I should see "Campus Phone:"
+
+Scenario: Results bookmarkable
+  Given I am on the home page
+  And I click "Directory"
+  And I enter "Bridge" for "Last Name"
+  And I click the "Search" button
+  Then I should see "Search Results"
+  And I click "Mark Bridge"
+  Then I should see "Campus Phone:"
+  And I go back
+  Then I should see "Search Results"

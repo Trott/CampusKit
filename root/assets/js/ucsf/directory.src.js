@@ -3,29 +3,7 @@ var _dirq = _dirq || [];
 ucsf.directory = (function () {
     var me = {};
 
-    me.search = function () {
-        document.getElementById("ucsf_directory_search_submit").disabled = true;
-        var that = this,
-            fn = document.getElementById('ucsf_directory_search_form').first_name.value,
-            ln = document.getElementById('ucsf_directory_search_form').last_name.value,
-            dep = document.getElementById('ucsf_directory_search_form').department.value;
-        if (!fn && !ln && !dep) {
-            // Nothing submitted in form, render empty result.
-            that.renderSearchResults({});
-            return;
-        }
-        var resultsElement = document.getElementById("searchresults");
-        resultsElement.innerHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
-        _dirq.push([{
-                first_name: fn,
-                last_name: ln,
-                dep_name: dep
-            },
-            function (response) { that.renderSearchResults(response); }]);
-    };
-
     me.renderSearchResults = function (response) {
-        document.getElementById("ucsf_directory_search_submit").disabled = false;
         if (response.error) {
             window.alert(response.error.message);
             return;

@@ -24,14 +24,14 @@
 
 <div id="searchresults"></div>
 
-<form id="ucsf_directory_search_form" action="javascript:ucsf.directory.search()">
+<form id="ucsf_directory_search_form" action="/directory/">
 <h1>Person Search</h1>
 <label for="first_name">First Name</label>
 <input name="first_name" id="first_name">
 <label for="last_name">Last Name</label>
 <input autofocus name="last_name" id="last_name">
-<label for="department">Department</label>
-<input name="department" id="department">
+<label for="dep_name">Department</label>
+<input name="dep_name" id="dep_name">
 <input type="submit" id="ucsf_directory_search_submit" value="Search">
 </form>
 
@@ -40,5 +40,37 @@
         <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
     </p>
 </footer>
+<script>
+    var _dirq = _dirq || [];
+    (function () {
+        var search = window.location.search;
+        if (search) {
+            var form = document.getElementById('ucsf_directory_search_form'),
+                fn = decodeURIComponent( (/[&?]first_name=([^&]*)/.exec(search)||["",""])[1] ),
+                ln = decodeURIComponent( (/[&?]last_name=([^&]*)/.exec(search)||["",""])[1] ),
+                dep = decodeURIComponent( (/[&?]dep_name=([^&]*)/.exec(search)||["",""])[1] );
+
+            form.first_name.value = fn;
+            form.last_name.value = ln;
+            form.dep_name.value = dep;
+        
+            document.getElementById("ucsf_directory_search_submit").disabled = true;
+            document.getElementById("searchresults").innerHTML = '<div><section class="center"><progress>Loading...</progress></section></div>';
+            _dirq.push(
+                [
+                    {
+                        first_name: fn,
+                        last_name: ln,
+                        dep_name: dep
+                    },
+                    function (response) {
+                        ucsf.directory.renderSearchResults(response); 
+                        document.getElementById("ucsf_directory_search_submit").disabled = false;
+                    }
+                ]
+            );
+        }
+    }());
+</script>
 </body>
 </html>
