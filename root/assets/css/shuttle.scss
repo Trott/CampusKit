@@ -1,0 +1,67 @@
+/*********
+* SHUTTLE
+**********/
+
+.shuttle-color {
+    border-radius: 5em;
+    width: 2.5em;
+    display: inline-block;
+    height: 0.75em;
+    margin-right: 0.5em;
+}
+.blue {
+    background-color: rgb(0,125,195);
+}
+.gold {
+    background-color: rgb(253,184,19);
+}
+.grey {
+    background-color: rgb(149,156,161);
+}
+.tan {
+    background-color: rgb(212,166,124);
+}
+.black {
+    background-color: rgb(35,31,32);
+}
+.purple {
+    background-color: rgb(121,119,183);
+}
+.pink {
+    background-color: rgb(208,99,166);
+}
+.va {
+    background-color: rgb(35,31,32);
+    background-image: linear-gradient(0, transparent 50%, rgba(255,255,255,1) 50%);
+    background-image: -webkit-linear-gradient(0, transparent 50%, rgba(255,255,255,1) 50%);
+    background-image: -ms-linear-gradient(0, transparent 50%, rgba(255,255,255,1) 50%);
+    background-image: -moz-linear-gradient(0, transparent 50%, rgba(255,255,255,1) 50%);
+    background-image: -o-linear-gradient(0, transparent 50%, rgba(255,255,255,1) 50%);
+    background-size: .4em;
+}
+.bronze {
+    background-color: rgb(173,150,0);
+}
+.yellow {
+    background-color: rgb(255,222,0);
+}
+.red {
+    background-color: rgb(237,23,79);
+}
+.lime {
+    background-color: rgb(141,198,63);
+}
+.green {
+    background-color: rgb(0,135,82);
+}
+
+.reverse_trip {
+    font-size: x-small;
+    width: 3em;
+    margin: 1em 50% 0 50%;
+}
+
+.shuttle-times-listing li {
+    border: 0;
+    font-weight: normal;
+}

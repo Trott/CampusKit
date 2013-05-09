@@ -314,5 +314,4 @@ Modernizr.load({
     }
 });
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
-//TODO: shorten timeout before reading from localStorage?
-//TODO: orthosurg tests and fixes
+//TODO: orthosurg and fitness tests and fixes
