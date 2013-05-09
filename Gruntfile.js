@@ -1,9 +1,6 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-//TODO: maps tests
-//TODO: orthosurg tests
-
   // Project configuration.
   grunt.initConfig({
     clean: ['dist'],

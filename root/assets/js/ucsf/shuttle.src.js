@@ -314,5 +314,5 @@ Modernizr.load({
     }
 });
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
-//TODO: build task inserts apikey in correct places and/or you only need the API key in one place
-//TODO: shorten timeout before reading from localStorage
+//TODO: shorten timeout before reading from localStorage?
+//TODO: orthosurg tests and fixes
