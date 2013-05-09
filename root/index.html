@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
 </head>
-<body class="front" data-default-target-id="main_menu">
+<body class="front">
     <!-- prefetch background images -->
     <img style="display:none" alt="" src="/assets/img/background-decor.png">
     <img style="display:none" alt="" src="/assets/img/watermark.png">
@@ -28,227 +28,30 @@
         </header>
         <ol class="menu front">
             <li>
-                <a data-target-id="il/shuttle/" href="shuttle/"><img class="dashboard_icon" src="/assets/img/homescreen/shut-72.png" alt=""><br>Shuttle</a>
+                <a href="shuttle/"><img class="dashboard_icon" src="/assets/img/homescreen/shut-72.png" alt=""><br>Shuttle</a>
             </li><li>
-            <a data-target-id="il/directory" href="directory"><img class="dashboard_icon" src="/assets/img/homescreen/dir-72.png" alt=""><br>Directory</a>
-        </li><li>
-        <a data-target-id="il/news" href="news"><img class="dashboard_icon" src="/assets/img/homescreen/news-72.png" alt=""><br>News</a>
-    </li><li>
-    <a data-target-id="il/maps" href="maps/"><img class="dashboard_icon" src="/assets/img/homescreen/map-72.png" alt=""><br>Maps</a>
-</li><li>
-<a data-target-id="il/library" href="library/"><img class="dashboard_icon" src="/assets/img/homescreen/lib-72.png" alt=""><br>Library</a>         
-</li><li>
-<a data-target-id="il/fitness" href="fitness"><img class="dashboard_icon" src="/assets/img/homescreen/fit-72.png" alt=""><br>Fitness</a>
-</li><li>
-<!-- <a data-target-id="il/events" href="events"><img class="dashboard_icon" src="/assets/img/homescreen/cal-72.png" alt=""><br>Events</a> -->
-<a href="events"><img class="dashboard_icon" src="/assets/img/homescreen/cal-72.png" alt=""><br>Events</a>
-</li><li>
-<a data-target-id="il/social" href="social"><img class="dashboard_icon" src="/assets/img/homescreen/soc-72.png" alt=""><br>Social&nbsp;Media</a>
-</li><li><a data-target-id="il/emergency" href="emergency"><img class="dashboard_icon" src="/assets/img/homescreen/emerg-72.png" alt=""><br>Emergency</a>
-</li>
-</ol>
-</div>
-<div id="il/shuttle/" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/shuttle">Shuttle</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Shuttle</h2>
-        <ol>
-            <li><a href="/shuttle/planner">Trip Planner</a></li>
-            <li><a href="/shuttle/list/">Shuttles By Route</a></li>
-            <li><a href="/shuttle/list/location">Shuttles By Location</a></li>
+                <a href="directory"><img class="dashboard_icon" src="/assets/img/homescreen/dir-72.png" alt=""><br>Directory</a>
+            </li><li>
+                <a href="news"><img class="dashboard_icon" src="/assets/img/homescreen/news-72.png" alt=""><br>News</a>
+            </li><li>
+                <a href="maps/"><img class="dashboard_icon" src="/assets/img/homescreen/map-72.png" alt=""><br>Maps</a>
+            </li><li>
+                <a href="library/"><img class="dashboard_icon" src="/assets/img/homescreen/lib-72.png" alt=""><br>Library</a>         
+            </li><li>
+                <a href="fitness"><img class="dashboard_icon" src="/assets/img/homescreen/fit-72.png" alt=""><br>Fitness</a>
+            </li><li>
+                <a href="events"><img class="dashboard_icon" src="/assets/img/homescreen/cal-72.png" alt=""><br>Events</a>
+            </li><li>
+                <a href="social"><img class="dashboard_icon" src="/assets/img/homescreen/soc-72.png" alt=""><br>Social&nbsp;Media</a>
+            </li><li>
+                <a href="emergency"><img class="dashboard_icon" src="/assets/img/homescreen/emerg-72.png" alt=""><br>Emergency</a>
+            </li>
         </ol>
     </div>
-</div>
-<div id="il/directory" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/directory/">Directory</a></span>
-    </header>
-    <div id="searchresults"></div>
-
-    <form id="ucsf_directory_search_form" action="/directory">
-    <h1>Person Search</h1>
-    <label for="first_name">First Name</label>
-    <input name="first_name" id="first_name">
-    <label for="last_name">Last Name</label>
-    <input autofocus name="last_name" id="last_name">
-    <label for="dep_name">Department</label>
-    <input name="dep_name" id="dep_name">
-    <input type="submit" id="ucsf_directory_search_submit" value="Search">
-    </form>
-</div>
-<div id="il/news" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/news">News</a></span>
-    </header>
-    <section id="ucsf-news" class="center"></section>
-    <section id="media-coverage" class="center"><progress>Loading...</progress></section>
-    <ol class="menu">
-        <li><a href="/pharmacy">Pharmacy News</a></li>
-    </ol>
-</div>
-<div id="il/maps" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/maps">Maps</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Maps</h2>
-        <ol>
-            <li><a href="/maps/map/?loc=Parnassus">Parnassus</a></li>
-            <li><a href="/maps/map/?loc=Mission+Bay">Mission Bay</a></li>
-            <li><a href="/maps/map/?loc=Mt.+Zion">Mt. Zion</a></li>
-            <li><a href="/maps/map/?loc=SFGH">San Francisco General Hospital</a></li>
-            <li><a href="/maps/locations/">Location List</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Library</h2>
-        <ol>
-            <li><a data-target-id="il/library/locations" href="/library/locations">Hours and Locations</a></li>
-            <li><a rel="external" href="http://ucsf.worldcat.org/m">Find Books and Journals</a></li>
-            <li><a rel="external" href="http://guides.library.ucsf.edu/content.php?pid=252446&amp;sid=2084303">Mobile Resources</a></li>
-            <li><a rel="external" href="http://tiny.ucsf.edu/reserve">Reserve a Study Room</a></li>
-            <li><a data-target-id="il/library/help/" href="/library/help/">Get Help</a></li>
-            <li><a href="/library/news">News</a></li>
-            <li><a rel="external" href="http://library.ucsf.edu/?ovrrdr=1">Full Library Site</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library/locations" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Locations</h2>
-        <ol>
-            <li><a data-target-id="il/library/locations/parnassus" href="/library/locations/parnassus">Parnassus Library</a></li>
-            <li><a data-target-id="il/library/locations/mission_bay" href="/library/locations/mission_bay">Mission Bay Library</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library/locations/parnassus" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Parnassus Library</h2>
-        <ol>
-            <li><a href="/maps/map/?loc=Kalmanovitz+Library">Map<br><br><span class="smallprint">530 Parnassus Avenue<br>San Francisco, CA 94143-0840<br></span></a></li>
-            <li><a href="tel:+14154762334">(415) 476-2334</a></li>
-            <li><a rel="external" class="no-ext-ind" href="http://library.ucsf.edu/locations/hours?ovrrdr=1"><span class="smallprint">Mon - Thurs: 7:45 am - 10:00 pm<br>Fri: 7:45 am - 8:00 pm<br>Sat: 10:00 am - 6:00 pm<br>Sun: 12:00 noon - 10:00 pm<br>24/7 Hearst Room, Parnassus Library (with student ID)<br>24/7 Computer Lab, S166 (with student ID)<br></span><br><br><span class="external">Holidays and exceptions</span></a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library/locations/mission_bay" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Mission Bay Library</h2>
-        <ol><li><a href="/maps/map/?loc=Rutter+Center">Map<br><br><span class="smallprint">William J. Rutter Conference Center<br>Room 150<br>1675 Owens Street<br>San Francisco, CA 94143-2119<br></span></a></li>
-            <li><a href="tel:+14155144060">(415) 514-4060</a></li>
-            <li><a rel="external" class="no-ext-ind" href="http://library.ucsf.edu/locations/hours?ovrrdr=1"><span class="smallprint">Mon - Thurs: 9:00am - 9:00pm<br>Fri: 9:00am - 5:30pm<br>Sat: 10:00am - 6:00pm<br>Sun: CLOSED<br>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.<br></span><br><br><span class="external">Holidays and exceptions</span></a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library/help/" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Help</h2>
-        <ol>
-            <li><a href="/library/askus/">Ask Us</a></li><li><a rel="external" href="http://guides.library.ucsf.edu/">Getting Started Guides</a></li>
-            <li><a data-target-id="il/library/howdoi/" href="/library/howdoi/">How Do I?</a></li>
-            <li><a href="/library/whereisit/">Where Is It?</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/library/howdoi/" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/library">Library</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>How Do I?</h2>
-        <ol>
-            <li><a href="/library/howdoi/remoteaccess">Get Network Access</a></li>
-            <li><a href="/library/howdoi/wifi">Use WiFi</a></li>
-            <li><a href="/library/howdoi/renew">Renew Books</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/fitness" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/fitness">Fitness</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Fitness</h2>
-        <ol>
-            <li><a href="/fitness/schedule">Group Fitness and Pools</a></li>
-            <li><a href="/fitness/locations">Hours and Locations</a></li>
-            <li><a rel="external" href="http://campuslifeservices.ucsf.edu/fitnessrecreation/">Fitness &amp; Recreation Website</a></li>
-        </ol>
-    </div>
-</div>
-<!-- <div id="il/events" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/events">Events</a></span>
-    </header>
-    <noscript><div class="content center"><p>JavaScript is required to load this content.</p></div></noscript>
-    <div class="jsonly">
-        <section id="ucsfevents" class="center"><progress>Loading...</progress></section>
-    </div>
-</div> -->
-<div id="il/social" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/social">Social Media</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Social Media</h2>
-        <ol>
-            <li><a rel="external" href="http://www.twitter.com/ucsf">Twitter</a></li>
-            <li><a rel="external" href="http://www.youtube.com/ucsf">YouTube</a></li>
-            <li><a rel="external" href="http://www.facebook.com/ucsf">Facebook</a></li>
-        </ol>
-    </div>
-</div>
-<div id="il/emergency" style="display:none">
-    <header>
-        <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/emergency">Emergency</a></span>
-    </header>
-    <div class="menu detailed">
-        <h2>Emergency</h2>
-        <ol>
-            <li><a href="tel:+911">911 <span class="smallprint">for emergencies only</span></a></li>
-            <li><a href="tel:+14154761414">UCSF Police Non-Emergency<br><span class="smallprint">(415) 476-1414</span></a></li>
-            <li><a href="tel:+14158857890">UCSF Medical Center Security<br><span class="smallprint">(415) 885-7890</span></a></li>
-            <li><a href="tel:+14155024000">Campus Emergency Information Hotline<br><span class="smallprint">(415) 502-4000</span></a></li>
-            <li><a href="tel:+18008738232">Back-up Campus Emergency Hotline<br><span class="smallprint">1 (800) 873-8232</span></a></li>
-            <li><a href="tel:+14158857828">UCSF Medical Center Information Hotline<br><span class="smallprint">(415) 885-7828</span></a></li>
-        </ol>
-    </div>
-</div>
-<footer id="footer">
-    <p>&copy; 2012 Regents of the University of California<br>
-        <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
-    </p>
-</footer>
-<script>
-var _newsq = _newsq || [];
-function loadSection() {
-    _newsq.push(["ucsf-news","feed_ucsf_news","http://feeds.feedburner.com/UCSF_News",
-        {more:{title:"More...",link:"http://ucsf.edu/news"}}]);
-    _newsq.push(["media-coverage","feed_media_coverage","http://feeds.feedburner.com/UCSF_Media_Coverage"]);
-    // _newsq.push(["ucsfevents","feed_ucsf_events","http://feeds2.feedburner.com/ucsf/event-calendar", {numEntries: 10, showTime: 1}]);
-}
-loadSection();
-window.onhashchange=loadSection;
-</script>
+    <footer id="footer">
+        <p>&copy; 2012 Regents of the University of California<br>
+            <a href="/about">About</a> | <a href="/feedback/">Feedback</a>
+        </p>
+    </footer>
 </body>
 </html>
