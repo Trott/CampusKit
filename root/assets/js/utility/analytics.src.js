@@ -52,6 +52,8 @@ ucsf.analytics = (function(){
 
     var script = document.createElement("script");
     script.src = "//www.google-analytics.com/ga.js";
+    script.async = true;
+    script.defer = true;
     document.getElementsByTagName("head")[0].appendChild(script);
 
     return me;
