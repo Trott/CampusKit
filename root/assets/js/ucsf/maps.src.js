@@ -1,3 +1,4 @@
+var ucsf = ucsf || {};
 ucsf.maps =  {
     'locationList': [
         {'lat': 37.767569, 'lon': -122.392223, 'zoom': 17, 'name': 'Mission Bay', 'marker': false},

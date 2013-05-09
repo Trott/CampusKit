@@ -1,4 +1,5 @@
 var _dirq = _dirq || [];
+var ucsf = ucsf || {};
 
 ucsf.directory = (function () {
     var me = {};
