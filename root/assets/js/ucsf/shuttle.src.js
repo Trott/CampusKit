@@ -1,3 +1,4 @@
+var ucsf = ucsf || {};
 ucsf.shuttle = (function () {
 	var me = {};
 

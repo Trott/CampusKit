@@ -1,4 +1,5 @@
 var _newsq = _newsq || [];
+var ucsf = ucsf || {};
 ucsf.news = (function () {
     "use strict";
     var me = {};
