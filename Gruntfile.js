@@ -46,7 +46,10 @@ module.exports = function(grunt) {
       },
       beforeconcat: ['Gruntfile.js',
               'root/research/js/profile.src.js',
-              'root/assets/js/ucsf/shuttle.src.js'],
+              'root/assets/js/ucsf/shuttle.src.js',
+              'root/assets/js/ucsf/directory.src.js',
+              'root/assets/js/ucsf/news.src.js',
+              'root/assets/js/ucsf/maps.src.js'],
       afterconcat: ['dist/ucsf.partial.js']
     },
     uglify: {
