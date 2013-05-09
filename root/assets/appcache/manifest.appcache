@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#09-May-2013
+#08-May-2013
 
 CACHE:
 
@@ -33,6 +33,9 @@ CACHE:
 //www.google.com/jsapi
 //www.google-analytics.com/ga.js
 /assets/js/ucsf.js
+//apis.ucsf.edu/static/UCSF.Shuttle.js
+//apis.ucsf.edu/static/UCSF.Person.js
+
 
 NETWORK:
 *
