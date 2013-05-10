@@ -35,7 +35,7 @@ Then(/^I should see "(.*?)"$/) do |text|
 end
 
 Then(/^"(.*?)" should not be disabled$/) do |arg1|
-  find(:xpath, "//fieldset[@name='datetime']")[:disabled].should eq nil
+  find(:xpath, "//fieldset[@name='datetime']")[:disabled].should_not eq "true"
 end
 
 Given(/^I select "(.*?)" for "(.*?)"$/) do |value, name|

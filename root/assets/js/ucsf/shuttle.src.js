@@ -292,7 +292,7 @@ ucsf.shuttle = (function () {
             options.date = (date.getMonth()+1) + '/' + (date.getDate()) + '/' + date.getFullYear();
         }
         var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
-        resultsElement.innerHTML='<div><section class="center"><progress>Loading...</progress></section></div>';
+        resultsElement.innerHTML='<div><section class="center"><progress><div class="spinner"></div></progress></section></div>';
         UCSF.Shuttle.plan(options, ucsf.shuttle.renderTrip);
         me.save();
     };
