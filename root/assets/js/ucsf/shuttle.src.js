@@ -313,6 +313,5 @@ Modernizr.load({
         }
     }
 });
-//TODO: if hover bug still exists post-fastclick, use Safari web inspector to figure out what CSS rule is causing the problem
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: orthosurg and fitness tests and fixes

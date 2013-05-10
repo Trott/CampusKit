@@ -234,7 +234,8 @@ footer a:hover {
     background-color: initial;
 }
 
-.menu li:hover {
+.no-touch .menu a:hover,
+.menu a:active {
     background-color: #eaf2fa;
 }
 
