@@ -313,5 +313,6 @@ Modernizr.load({
         }
     }
 });
+//TODO: fastclick
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: orthosurg and fitness tests and fixes
