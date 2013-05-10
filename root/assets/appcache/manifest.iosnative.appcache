@@ -20,7 +20,8 @@ CACHE:
 
 #internal HTML documents
 /
-/emergency
+/emergency/
+/about/
 
 #style sheets
 /assets/css/main.css
