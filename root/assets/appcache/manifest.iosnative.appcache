@@ -26,21 +26,12 @@ CACHE:
 /assets/css/main.css
 
 #style sheet images
-/assets/img/select-options-bg.png
 /assets/img/background-decor.png
-/assets/img/external-link.png
 /assets/img/watermark.png
 
 #javascript files
-//www.google.com/jsapi
 //www.google-analytics.com/ga.js
 /assets/js/ucsf.js
-/assets/js/shuttle.js
-/assets/js/directory.js
-/assets/js/news.js
-/assets/js/maps.js
-//apis.ucsf.edu/static/UCSF.Shuttle.js
-//apis.ucsf.edu/static/UCSF.Person.js
 
 NETWORK:
 *
