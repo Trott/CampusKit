@@ -6,7 +6,8 @@ module.exports = function(grunt) {
     clean: ['dist'],
     concat: {
       full: {
-        src: ['root/assets/js/core/modernizr.js',
+        src: ['root/assets/js/core/fastclick/fastclick.min.js',
+              'root/assets/js/core/modernizr.js',
               'dist/ucsf.partial.min.js'],
         dest: 'root/assets/js/ucsf.js'
       },
@@ -33,7 +34,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        predef: ['UCSF','Modernizr','Hogan','google'],
+        predef: ['UCSF','FastClick','Modernizr','Hogan','google'],
         boss: true,
         eqnull: true,
         browser: true
