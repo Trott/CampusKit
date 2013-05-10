@@ -48,6 +48,8 @@ Scenario: Optimal Route From Mission Bay To Buchanan Dental Center
   And I click "Trip Planner"
   And I select a route "ucsf_shuttle_starting_from" "From Mission Bay Campus"
   And I select a route "ucsf_shuttle_ending_at" "To Buchanan Dental Center"
+  And I select "Depart at" for "when"
+  And I select "9:00am" for "time"
   And I route the trip
   Then I should see "Red"
 
@@ -57,6 +59,8 @@ Scenario: Optimal Route From Buchanan Dental Center To Mission Bay
   And I click "Trip Planner"
   And I select a route "ucsf_shuttle_starting_from" "From Buchanan Dental Center"
   And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
+  And I select "Depart at" for "when"
+  And I select "9:00am" for "time"
   And I route the trip
   Then I should see "Red"
 
@@ -64,6 +68,8 @@ Scenario: Plans don't break back button
   Given I am on the home page
   And I click "Shuttle"
   And I click "Trip Planner"
+  And I select "Depart at" for "when"
+  And I select "9:00pm" for "time"
   And I select a route "ucsf_shuttle_starting_from" "From Parnassus Campus"
   And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
   And I route the trip
@@ -72,6 +78,7 @@ Scenario: Plans don't break back button
   And I should see "Grey"
   And I select a route "ucsf_shuttle_starting_from" "From Mission Center Building"
   And I select a route "ucsf_shuttle_ending_at" "To 16th St. BART"
+  And I select "9:00am" for "time"
   And I route the trip
   Then I should see "Suggested Routes"
   And I should see "Red"
