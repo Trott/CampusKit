@@ -1,4 +1,4 @@
-CampusKit makes it easy to create high-performance touch-friendly web sites and apps for mobile and tablet devices. 
+CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices. 
 
 See it in action at http://m.ucsf.edu/. (Actually, not yet. It's on our staging server. Will be in production soon. Honest.)
 
