@@ -1,14 +1,15 @@
 @import "compass/css3";
 
+// Config
 $default-border-radius: .5em;
 
+// Reset
 body, html {
     border: 0;
 }
 
 html,
 body,
-address,
 dd,
 div,
 dl,
@@ -25,6 +26,8 @@ menu {
     margin: 0;
 }
 
+
+//typography
 h1,
 h2,
 h3,
