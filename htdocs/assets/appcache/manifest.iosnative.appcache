@@ -1,0 +1,42 @@
+CACHE MANIFEST
+#10-May-2013
+
+CACHE:
+
+#images
+/assets/img/ucsf-logo.png
+/assets/img/ucsf-header-separator.png
+/assets/img/homescreen/cal-72.png
+/assets/img/homescreen/dir-72.png
+/assets/img/homescreen/emerg-72.png
+/assets/img/homescreen/fit-72.png
+/assets/img/homescreen/guide-72.png
+/assets/img/homescreen/lib-72.png
+/assets/img/homescreen/map-72.png
+/assets/img/homescreen/news-72.png
+/assets/img/homescreen/shut-72.png
+/assets/img/homescreen/soc-72.png
+/assets/img/homescreen/triv-72.png
+
+#internal HTML documents
+/
+/emergency/
+/about/
+/feedback/
+
+#style sheets
+/assets/css/main.css
+
+#style sheet images
+/assets/img/select-options-bg.png
+/assets/img/background-decor.png
+/assets/img/external-link.png
+/assets/img/watermark.png
+
+#javascript files
+//www.google.com/jsapi
+//www.google-analytics.com/ga.js
+/assets/js/ucsf.js
+
+NETWORK:
+*

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>UCSF Mobile | Orthopaedic Surgery</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
+	<noscript><style>.jsonly{display:none}</style></noscript>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<script src="/assets/js/ucsf.js"></script>
+	<script async src="//www.google-analytics.com/ga.js"></script>
+</head>
+<body>
+	<header>
+		<a href="http://m.ucsf.edu/"><img src="http://m.ucsf.edu/assets/img/ucsf-logo.png" alt="UCSF"></a><span><a href="/orthosurg/">Orthopaedic Surgery</a></span>
+	</header>
+	<noscript><div class="content center" ><p>JavaScript is required to load this content.</p></div></noscript>
+	<div class="jsonly">
+		<section id="ortho-fac" class="center"><progress><div class="spinner"></div></progress></section>
+	</div>
+	<script>
+	function render(data) {
+		var template = new Hogan.Template(
+			function(c,p,i){var _=this;_.b(i=i||"");_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");if(_.s(_.f("experts",c,p,1),c,p,0,61,266,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"tel:");_.b(_.v(_.f("TEL",c,p,0)));_.b("\"><div>");_.b(_.v(_.f("NAME",c,p,0)));_.b("</div><div class=smallprint>");_.b(_.v(_.f("POSITION",c,p,0)));_.b("</div><div class=smallprint>");_.b(_.v(_.f("LOCATION",c,p,0)));_.b("</div><div class=smallprint>");_.b(_.v(_.f("LOCATION2",c,p,0)));_.b("</div><div class=smallprint>");_.b(_.v(_.f("TEL",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");return _.fl();;}
+		);
+		document.getElementById("ortho-fac").innerHTML = template.render(data);
+	}
+	</script>
+	<script src="http://orthosurg.ucsf.edu/mobile/faculty.cfm"></script>
+
+	<footer id="footer"><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
+</body>
+</html>

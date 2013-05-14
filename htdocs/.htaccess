@@ -1,0 +1,19 @@
+AddDefaultCharset UTF-8
+AddType text/cache-manifest .appcache
+AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/css text/html text/plain text/xml
+
+ExpiresActive On
+ExpiresDefault "access plus 0 seconds"
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^public(.*)$ /ci/public$1 [L]
+    RewriteCond %{REQUEST_URI} !/fitness/index.html
+    RewriteCond %{REQUEST_URI} !/fitness/locations
+    RewriteRule ^fitness/(.+)$ /ci/fitness/$1 [L]
+    RewriteRule ^social/?$ /social.html [L]
+    RewriteRule ^emergency/?$ /emergency.html [L]
+    RewriteRule ^about/?$ /about.html [L]
+</IfModule>
