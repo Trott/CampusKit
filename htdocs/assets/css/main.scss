@@ -3,7 +3,9 @@
 @import "config";
 @import "reset";
 @import "typography";
+
 @import "header";
+@import "footer";
 
 .center {
     text-align: center;
@@ -37,34 +39,9 @@
   }
 }
 
-p a {
-    border-bottom: none;
-}
-
 input {
     border: 1px solid #cccccc;
     padding: 4px;
-}
-
-
-/**
- * Footer
- */
-
-footer {
-	font-size: 80%;
-	padding: 1em;
-	text-align: center;
-}
-
-footer a,
-footer a:visited {
-	text-decoration: none;
-	border-bottom: 1px solid #666666;
-}
-
-footer a:hover {
-	border-bottom: none;
 }
 
 /****************************************************************************
@@ -861,26 +838,3 @@ html {
 #main_menu {
     margin:0
 }
-
-footer {
-    font-size:.80em;
-    text-align:center;
-    position:relative;
-    width:auto;
-    margin:25px 0 15px;
-    overflow:visible;
-    height:28px;
-    display:block;
-}
-
-
-footer,footer a,footer a:visited,footer a:hover {
-    color:#fff;
-}
-
-footer a,footer a:visited {
-
-    text-decoration:none;
-    border-bottom:1px solid #fff;
-}
-
