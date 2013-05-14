@@ -317,3 +317,4 @@ Modernizr.load({
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: orthosurg and fitness tests and fixes
 //TODO: center div spinners in progress elements
+//TODO: You should only be able to get one spinner going on the main page. ucsf.spin should probably return false if it runs a second time

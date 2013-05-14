@@ -7,6 +7,7 @@
 
 // Google Analytics API requires this to be a global
 var _gaq = _gaq || [];
+var ucsf = ucsf || {};
 
 ucsf.analytics = (function(){
     var me = {};
