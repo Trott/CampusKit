@@ -316,3 +316,4 @@ Modernizr.load({
 //TODO: needs to work in IE. Maybe problem is that addEventListener works in IE9 but FastClick does not?
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: orthosurg and fitness tests and fixes
+//TODO: center div spinners in progress elements
