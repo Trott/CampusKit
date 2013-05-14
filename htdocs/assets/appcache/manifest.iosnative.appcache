@@ -26,6 +26,7 @@ CACHE:
 
 #style sheets
 /assets/css/main.css
+/assets/css/mainPage.css
 
 #style sheet images
 /assets/img/select-options-bg.png

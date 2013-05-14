@@ -3,6 +3,7 @@
 @import "config";
 @import "reset";
 @import "typography";
+@import "background";
 
 @import "header";
 @import "footer";
@@ -13,49 +14,3 @@
 @import "content";
 @import "menu";
 @import "button";
-
-@media all and (max-device-width: 320px) {
-    .dashboard_icon {
-        width: 57px;
-        height: 57px;
-    }
-}
-
-body,html {
-    height:100%;
-}
-
-html.no-touch,
-html.no-touch body,
-html.touch.overflowscrolling,
-html.touch.overflowscrolling body{
-    overflow:auto;
-}
-
-html.touch.overflowscrolling {
-    -webkit-overflow-scrolling:touch;
-}
-
-body {
-    font:100%/1.25 Arial,Helvetica,sans-serif;
-    font-size:.93em;
-    font-family:Helvetica,Verdana,Arial,sans-serif;
-    line-height:normal;
-}
-
-html {
-    width:100%;
-    position:relative;
-    background: rgba(98,172,180,1); /*Old browsers*/
-    @include background(
-        url(/assets/img/watermark.png), 
-        url(/assets/img/background-decor.png),
-        radial-gradient(center, ellipse cover, rgba(141,201,207,1) 0%, rgba(98,172,180,1) 100%));
-    background-repeat:no-repeat, no-repeat, no-repeat;
-    background-position:left top, right bottom, left top;
-    background-size:auto 100%, 100% 70%, 100% 100%;
-}
-
-#main_menu {
-    margin:0
-}
