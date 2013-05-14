@@ -3,6 +3,7 @@
 @import "config";
 @import "reset";
 @import "typography";
+@import "header";
 
 .center {
     text-align: center;
@@ -45,31 +46,6 @@ input {
     padding: 4px;
 }
 
-header.main {
-    display:none;
-}
-
-/* Don't hide banner on Android (which we detect with Modernizr .touch.not-overflowscrolling--lame!)
-      because Android doesn't show the background branding (also lame!) */
-html.touch.no-overflowscrolling header.main{
-    display:block;
-}
-
-header img {
-    border: none;
-    float: left;
-}
-
-header span {
-    float: left;
-    padding: 8px 0 0 5px;
-    font-weight: normal;
-    font-size: 16px;
-}
-
-header span, header span a {
-    color: #fff;
-}
 
 /**
  * Footer
@@ -524,36 +500,6 @@ span.required:after {
  *
  *
  */
-header {
-    @include background(linear-gradient(top, #414142, #57585a 58%, #58595b));
-    height: 36px;
-}
-
-body header span {
-	float: none;
-	margin-left: 4px;
-	position:relative;
-	bottom: 12px;
-}
-
-header {
-	padding-left: 10px;
-}
-
-header span {
-	font-size: 15px;
-	font-family: "Arial Regular", Arial, Helvetica, Verdana, sans-serif;
-	padding: 0;
-}
-
-header img {
-	float:none;
-}
-
-.separator {
-	padding: 0 8px 0 5px;
-}
-
 h4.light {
 	color: #555;
 }
@@ -683,15 +629,6 @@ form {
 .content form {
     margin: 0;
 }
-
-/****************************************************************************
- * Special Styles
- */
-
-header {
-    border-bottom: 0px solid #fff;
-}
-
 
 /********************************************************
  * MENUS/LISTS

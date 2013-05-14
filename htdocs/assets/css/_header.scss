@@ -1,0 +1,41 @@
+header.main {
+    display:none;
+}
+
+/* Don't hide banner on Android (which we detect with Modernizr .touch.not-overflowscrolling--lame!)
+      because Android doesn't show the background branding (also lame!) */
+html.touch.no-overflowscrolling header.main{
+    display:block;
+}
+
+header {
+    @include background(linear-gradient(top, #414142, #57585a 58%, #58595b));
+    border-bottom: 0px solid #fff;
+    height: 36px;
+    padding-left: 10px;
+
+}
+
+header img {
+    border: none;
+    float: none;
+}
+
+header span {
+    bottom: 12px;
+    float: none;
+    font-family: "Arial Regular", Arial, Helvetica, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    margin-left: 4px;
+    padding: 0;
+    position:relative;
+}
+
+header span, header span a {
+    color: #fff;
+}
+
+.separator {
+    padding: 0 8px 0 5px;
+}
