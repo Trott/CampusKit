@@ -82,7 +82,6 @@ form a.button {
 }
 
 form input[type="submit"],
-form input[type="reset"],
 form button,
 form a.button {
     background-color: #e4e7ee;
@@ -96,13 +95,11 @@ form a.button {
 }
 
 form input[type="submit"],
-form input[type="reset"],
 form button {
     padding: .5em 1em;
 }
 
 form input[type="submit"][disabled="disabled"],
-form input[type="reset"][disabled="disabled"],
 form button[disabled="disabled"],
 form a.button.disabled {
     color: #888;
@@ -110,22 +107,18 @@ form a.button.disabled {
 }
 
 form input[type="submit"][disabled="disabled"]:hover,
-form input[type="reset"][disabled="disabled"]:hover,
 form button[disabled="disabled"]:hover,
 form a.button:hover.disabled,
 form input[type="submit"][disabled="disabled"]:focus,
-form input[type="reset"][disabled="disabled"]:focus,
 form button[disabled="disabled"]:focus,
 form a.button:focus.disabled {
     background-color: #e4e7ee;
 }
 
 form input[type="submit"]:hover,
-form input[type="reset"]:hover,
 form button:hover,
 form a.button:hover,
 form input[type="submit"]:focus,
-form input[type="reset"]:focus,
 form button:focus,
 form a.button:focus {
     background-color: #cfd5e1;
@@ -276,15 +269,12 @@ form select {
 
 /* button */
 form input[type="submit"],
-form input[type="reset"],
 form button,
 form a.button,
 form input[type="submit"]:hover:disabled,
-form input[type="reset"]:hover:disabled,
 form button:hover:disabled,
 form a.button:hover.disabled,
 form input[type="submit"]:focus:disabled,
-form input[type="reset"]:focus:disabled,
 form button:focus:disabled,
 form a.button:focus.disabled {
     background: -moz-linear-gradient(#e4e7ee, #cfd5e1);
@@ -297,11 +287,9 @@ form a.button:focus.disabled {
 }
 
 form input[type="submit"]:hover,
-form input[type="reset"]:hover,
 form button:hover,
 form a.button:hover,
 form input[type="submit"]:focus,
-form input[type="reset"]:focus,
 form button:focus,
 form a.button:focus {
     background: -moz-linear-gradient(#cfd5e1, #bcc5d5);
