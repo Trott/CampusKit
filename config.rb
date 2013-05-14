@@ -2,12 +2,12 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "root/assets/css"
+css_dir = "htdocs/assets/css"
 http_css_dir = "assets/css"
-sass_dir = "root/assets/css"
-images_dir = "root/assets/img"
+sass_dir = "htdocs/assets/css"
+images_dir = "htdocs/assets/img"
 http_images_dir = "assets/img"
-javascripts_dir = "root/assets/js"
+javascripts_dir = "htdocs/assets/js"
 http_javascripts_dir = "assets/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
@@ -25,4 +25,4 @@ output_style = :compressed
 # project again passing --syntax sass, or you can uncomment this:
 # preferred_syntax = :sass
 # and then run:
-# sass-convert -R --from scss --to sass root/assets/css scss && rm -rf sass && mv scss sass
+# sass-convert -R --from scss --to sass htdocs/assets/css scss && rm -rf sass && mv scss sass
