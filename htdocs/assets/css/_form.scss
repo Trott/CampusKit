@@ -52,8 +52,7 @@ form > a.button,
 form > button,
 form > input,
 form > label:not(.option),
-form > select,
-form > textarea {
+form > select {
     margin-left: 10px;
 }
 
@@ -71,20 +70,9 @@ form > label + select {
 } 
 
 form input,
-form select,
-form textarea {
+form select {
     border: 1px solid #CCC;
     font-size: 1em;
-}
-
-form input,
-form textarea {
-    padding: 4px 0;
-}
-
-form textarea {
-    font: 100%/1.25 Arial, Helvetica, sans-serif;
-    height: 4em;
 }
 
 form p {
@@ -156,8 +144,7 @@ form p,
 form a.button,
 form input,
 form label,
-form select,
-form textarea {
+form select {
     display: block;
     width: 100%;
 }
@@ -232,8 +219,7 @@ span.required:after {
 .content > div > form > button,
 .content > div > form > input,
 .content > div > form > label,
-.content > div > form > select,
-.content > div > form > textarea{
+.content > div > form > select {
     margin-left: 0;
 }
 
@@ -275,7 +261,6 @@ form > :last-child {
 }
 
 form input,
-form textarea,
 form select {
     box-shadow: inset 0 0 3px #bbb;
     padding: 4px;
@@ -288,7 +273,6 @@ select {
 
 /* making control equal width */
 form input,
-form textarea,
 form select {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
