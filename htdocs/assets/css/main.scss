@@ -1,7 +1,6 @@
 @import "compass/css3";
 
-// Config
-$default-border-radius: .5em;
+@import "config";
 
 // Reset
 body, html {
