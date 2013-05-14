@@ -7,15 +7,11 @@
 @import "header";
 @import "footer";
 
+/* TODO: oof, get rid of this */
 .center {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
-
-.smallprint {
-    font-weight: normal;
-    font-size: 90%;
 }
 
 .spinner {
@@ -477,13 +473,6 @@ span.required:after {
  *
  *
  */
-h4.light {
-	color: #555;
-}
-
-.smallprint.light {
-	color: #999999;
-}
 
 ul {
     margin:.5em 0 1em 0;
