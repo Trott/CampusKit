@@ -40,6 +40,7 @@ CACHE:
 //www.google.com/jsapi
 //www.google-analytics.com/ga.js
 /assets/js/ucsf.js
+/assets/js/mainPage.js
 
 NETWORK:
 *

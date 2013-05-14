@@ -1,13 +1,15 @@
-ucsf.callAnalytics = function (event) {
-    "use strict";
-    // Analytics fires on page load, so if we're redirecting from something
-    // without a hash to the default hash, don't do anything.
-    if (event.oldURL.indexOf('#') !== -1) {
-        var path = (window.location.hash === '#/main_menu') ? '/' : window.location.hash.substr(4);
-        ucsf.analytics.trackPageview(path);
-    }
+var ucsf = ucsf || {};
+
+ucsf.spin = function (el) {
+    el.innerHTML = '<div class="spinner"></div>';
+    document.body.setAttribute("style", "background:rgba(0,0,0,0.5)");
 };
 
-if ('addEventListener' in window) {
-	window.addEventListener('hashchange', ucsf.callAnalytics, false);
-}
+(function () {
+    if (document.addEventListener && document.getElementByClassName) {
+        var icons = document.getElementByClassName('dashboard_icon');
+        for (var i=0, l=icons.length; i<l; i++) {
+            icons[i].addEventListener('click', ucsf.spin, false);
+        }
+    }
+}());
