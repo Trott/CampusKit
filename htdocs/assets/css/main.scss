@@ -429,32 +429,6 @@ form a.button:focus {
     background-color: #cfd5e1;
 }
 
-form input[type="submit"].primary,
-form input[type="reset"].primary,
-form button.primary,
-form a.button.primary,
-form input[type="submit"][disabled="disabled"].primary:hover,
-form input[type="reset"][disabled="disabled"].primary:hover,
-form button.primary[disabled="disabled"]:hover,
-form a.button.primary:hover.disabled,
-form input[type="submit"][disabled="disabled"].primary:focus,
-form input[type="reset"][disabled="disabled"].primary:focus,
-form button[disabled="disabled"].primary:focus,
-form a.button.primary:focus.disabled {
-    background-color: #fbaf3f;
-}
-
-form input[type="submit"].primary:hover,
-form input[type="reset"].primary:hover,
-form button.primary:hover,
-form a.button.primary:hover,
-form input[type="submit"].primary:focus,
-form input[type="reset"].primary:focus,
-form button.primary:focus,
-form a.button.primary:focus {
-    background-color: #ffb300;
-}
-
 /* full width form - default */
 form div,
 form h1,
@@ -910,38 +884,6 @@ form a.button:focus {
     background: -o-linear-gradient(top, #cfd5e1, #bcc5d5);
     background: -webkit-gradient(linear, left top, left bottom, from(#cfd5e1), to(#bcc5d5), color-stop(0.8, #bcc5d5));
     background: linear-gradient(#cfd5e1, #bcc5d5);
-}
-
-form input[type="submit"].primary,
-form input[type="reset"].primary,
-form button.primary,
-form a.button.primary,
-form input[type="submit"].primary:hover:disabled,
-form input[type="reset"].primary:hover:disabled,
-form button.primary:hover:disabled,
-form a.button.primary:hover.disabled,
-form input[type="submit"].primary:focus:disabled,
-form input[type="reset"].primary:focus:disabled,
-form button.primary:focus:disabled,
-form a.button.primary:focus.disabled {
-    background: -moz-linear-gradient(#fcbe60, #faa422);
-    background: -o-linear-gradient(top, #fcbe60, #faa422);
-    background: -webkit-gradient(linear, left top, left bottom, from(#fcbe60), to(#faa422), color-stop(0.8, #faa422));
-    background: linear-gradient(#fcbe60, #faa422);
-}
-
-form input[type="submit"].primary:hover,
-form input[type="reset"].primary:hover,
-form button.primary:hover,
-form a.button.primary:hover,
-form input[type="submit"].primary:focus,
-form input[type="reset"].primary:focus,
-form button.primary:focus,
-form a.button.primary:focus {
-    background: -moz-linear-gradient(#faa422, #db8504);
-    background: -o-linear-gradient(top, #faa422, #db8504);
-    background: -webkit-gradient(linear, left top, left bottom, from(#faa422), to(#db8504), color-stop(0.8, #db8504));
-    background: linear-gradient(#faa422, #db8504);
 }
 
 body,html {
