@@ -9,5 +9,26 @@ body.front .menu {
     border:0;
 }
 
-li {display:inline-block;height:108px;width:25%;list-style:none;padding:0;border:0;margin:0}
-li a {padding: 1em 0 0 0;background:0;color:#fff;font-size:75%;font-weight:normal;text-align:center}
+ol {
+	margin: 1em;
+}
+
+li {
+	display:inline-block;
+	height:108px;
+	width:25%;
+	list-style:none;
+	padding:0;
+	border:0;
+	margin:0;
+	text-align:center;
+}
+
+li a {
+	padding: 1em 0 0 0;
+	background:0;
+	color:#fff;
+	font-size:75%;
+	font-weight:normal;
+	text-align:center;
+}
