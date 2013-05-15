@@ -108,15 +108,7 @@
     border-bottom: none;
 }
 
-body.front .menu {
-    border:0;
-}
-
 .menu {background: #fff}
-.menu.front {background:0}
-
-.menu.front li{display:inline-block;height:108px;width:25%;list-style:none;padding:0;border:0;margin:0}
-.menu.front li a{padding: 1em 0 0 0;background:0;color:#fff;font-size:75%;font-weight:normal;text-align:center}
 
 .menu > ol:first-child > li:first-child,
 .menu > :first-child,
