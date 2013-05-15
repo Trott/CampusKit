@@ -317,4 +317,3 @@ Modernizr.load({
 //TODO: orthosurg and fitness tests and fixes
 //TODO: center div spinners in progress elements
 //TODO: You should only be able to get one spinner going on the main page. ucsf.spin should probably return false if it runs a second time
-//TODO: Offline appcache doesn't seem to quite entirely work on iPhone. What's up with that?
