@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#10-May-2013
+#14-May-2013
 
 CACHE:
 
@@ -28,6 +28,7 @@ CACHE:
 #style sheets
 /assets/css/main.css
 /assets/css/mainPage.css
+/assets/css/secondary.css
 
 #style sheet images
 /assets/img/select-options-bg.png
