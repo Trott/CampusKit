@@ -317,4 +317,3 @@ Modernizr.load({
 //TODO: center div spinners in progress elements
 //TODO: kill PHP/JS redirect
 //TODO: iOS: Something (FastClick?) causes links that are not appacached to not response at all in Safari when in Airplane mode
-//TODO: Issue with news.js using Modernizr and therefore needs ucsf.js to load first, not async/defer?
