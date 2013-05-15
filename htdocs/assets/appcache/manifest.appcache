@@ -18,10 +18,15 @@ CACHE:
 
 #internal HTML documents
 /
-
-/emergency/
+/shuttle/
+/directory/
+/news/
+/maps/
+/library/
+/fitness/
+/events/
 /social/
-
+/emergency/
 /about/
 /feedback/
 

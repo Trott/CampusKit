@@ -20,6 +20,14 @@ CACHE:
 
 #internal HTML documents
 /
+/shuttle/
+/directory/
+/news/
+/maps/
+/library/
+/fitness/
+/events/
+/social/
 /emergency/
 /about/
 /feedback/
