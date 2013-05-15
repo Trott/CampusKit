@@ -1,3 +1,7 @@
+// Because this script uses Modernizr, it requires ucsf.js to be loaded first.
+// So news.js and ucsf.js should be loaded with "defer" only (and not "async")
+// on pages that have news.js, so that ucsf.js can be loaded first.
+
 var _newsq = _newsq || [];
 var ucsf = ucsf || {};
 ucsf.news = (function () {
