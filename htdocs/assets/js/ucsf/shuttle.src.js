@@ -316,6 +316,5 @@ Modernizr.load({
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: center div spinners in progress elements
 //TODO: kill PHP/JS redirect
-//TODO: You should only be able to get one spinner going on the main page. ucsf.spin should probably return false if it runs a second time
 //TODO: iOS: Something (FastClick?) causes links that are not appacached to not response at all in Safari when in Airplane mode
 //TODO: Issue with news.js using Modernizr and therefore needs ucsf.js to load first, not async/defer?

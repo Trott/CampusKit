@@ -46,7 +46,6 @@ module.exports = function(grunt) {
         ucsf: true
       },
       beforeconcat: ['Gruntfile.js',
-              'htdocs/assets/js/ucsf/mainPage.src.js',
               'htdocs/research/js/profile.src.js',
               'htdocs/assets/js/ucsf/shuttle.src.js',
               'htdocs/assets/js/ucsf/directory.src.js',
@@ -61,11 +60,6 @@ module.exports = function(grunt) {
       ucsf: {
         files: {
           'dist/ucsf.partial.min.js': ['dist/ucsf.partial.js']
-        }
-      },
-      mainPage: {
-        files: {
-          'htdocs/assets/js/mainPage.js': ['htdocs/assets/js/ucsf/mainPage.src.js']
         }
       },
       profile: {

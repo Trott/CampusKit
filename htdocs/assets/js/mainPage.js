@@ -1,1 +1,0 @@
-var ucsf=ucsf||{};ucsf.spin=function(t){t.innerHTML='<div class="spinner"></div>';document.body.setAttribute("style","background:rgba(0,0,0,0.5)")};(function(){if(document.addEventListener&&document.getElementByClassName)for(var t=document.getElementByClassName("dashboard_icon"),e=0,a=t.length;a>e;e++)t[e].addEventListener("click",ucsf.spin,!1)})();
