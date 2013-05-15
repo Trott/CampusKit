@@ -6,13 +6,6 @@
 	<title>UCSF Mobile | Orthopaedic Surgery</title>
 	<link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="/assets/css/secondary.css" media="screen">
-		<script>
-	        window.onload = function () {
-            	var deferred = document.createElement('script');
-            	deferred.src = '/assets/js/ucsf.js';
-            	document.body.appendChild(deferred);
-            };
-	    </script>
 	<noscript><style>.jsonly{display:none}</style></noscript>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<script>;if (typeof google!=="undefined") google.load("feeds","1",{nocss:true});</script>
@@ -27,16 +20,14 @@
 	</div>
 	<script>
 		var _newsq = _newsq || [];
-		function loadSection() { 
-			_newsq.push(["ortho-cal","feed_ortho_cal","https://www.google.com/calendar/feeds/orthowebadmin%40gmail.com/public/basic", 
-				{
-					numEntries:10, 
-					template: function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("feed",c,p,1),c,p,0,9,223,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");if(_.s(_.f("entries",c,p,1),c,p,0,70,200,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("  <li>    <a href=\"");_.b(_.v(_.f("link",c,p,0)));_.b("\"><span class=\"external\">");_.b(_.v(_.f("title",c,p,0)));_.b("</span>    <div class=\"smallprint light\">");_.b(_.v(_.f("contentSnippet",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");});c.pop();}if(!_.s(_.f("feed",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p>Content could not be loaded.</p></div>");};return _.fl();;}
-				}]);
-		}
-		loadSection();
-		window.onhashchange=loadSection;
+		_newsq.push(["ortho-cal","feed_ortho_cal","https://www.google.com/calendar/feeds/orthowebadmin%40gmail.com/public/basic", 
+			{
+				numEntries:10, 
+				template: function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("feed",c,p,1),c,p,0,9,223,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");if(_.s(_.f("entries",c,p,1),c,p,0,70,200,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("  <li>    <a href=\"");_.b(_.v(_.f("link",c,p,0)));_.b("\"><span class=\"external\">");_.b(_.v(_.f("title",c,p,0)));_.b("</span>    <div class=\"smallprint light\">");_.b(_.v(_.f("contentSnippet",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");});c.pop();}if(!_.s(_.f("feed",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p>Content could not be loaded.</p></div>");};return _.fl();;}
+		}]);
 	</script>
 	<footer id="footer"><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
+	<script src="/assets/js/ucsf.js"></script>
+	<script src="/assets/js/news.js"></script>
 </body>
 </html>
