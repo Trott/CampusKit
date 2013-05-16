@@ -28,5 +28,5 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^shuttle/schedule/(.*) /shuttle/schedule/route/?$1 [L,R]
-    RewriteRule ^shuttle/list/location/[0-9]+$ /shuttle/list/location/ [L,R]
+    RewriteRule ^shuttle/list/location/.+$ /shuttle/list/location/ [L,R]
 </IfModule>
