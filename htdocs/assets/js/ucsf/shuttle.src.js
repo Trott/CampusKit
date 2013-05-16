@@ -313,4 +313,3 @@ Modernizr.load({
         }
     }
 });
-//TODO: kill PHP/JS redirect
