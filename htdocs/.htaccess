@@ -16,8 +16,14 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteRule ^social/?$ /social.html [L]
     RewriteRule ^emergency/?$ /emergency.html [L]
     RewriteRule ^about/?$ /about.html [L]
+    
     RewriteRule ^directory/query(.*)$ /directory/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^directory/detail/([^?].*)$ /directory/detail/?$1 [L,R]
+
+    RewriteRule ^shuttle/route_trip(.*)$ /shuttle/planner/? [L,R]
+    RewriteRule ^shuttle/list/color /shuttle/list/ [L,R]
+    RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/list/ [L,R]
+    RewriteRule ^shuttle/list/location/[0-9]+$ /shuttle/list/location/ [L,R]
 </IfModule>

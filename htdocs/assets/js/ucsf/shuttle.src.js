@@ -313,5 +313,4 @@ Modernizr.load({
         }
     }
 });
-//TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: kill PHP/JS redirect
