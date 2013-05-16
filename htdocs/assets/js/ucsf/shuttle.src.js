@@ -317,3 +317,5 @@ Modernizr.load({
 //TODO: center div spinners in progress elements
 //TODO: kill PHP/JS redirect
 //TODO: iOS: Something (FastClick?) causes links that are not appacached to not response at all in Safari when in Airplane mode
+//TODO: add ucsf-list-arrow.png to appacache
+//TODO: add separator to appcache or remove separator stuff altogether
