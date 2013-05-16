@@ -316,5 +316,4 @@ Modernizr.load({
 //TODO: make sure all the old URLs work for schedules, or at least get redirected reasonably
 //TODO: center div spinners in progress elements
 //TODO: kill PHP/JS redirect
-//TODO: add ucsf-list-arrow.png to appacache
 //TODO: add separator to appcache or remove separator stuff altogether
