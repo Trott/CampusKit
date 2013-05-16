@@ -24,6 +24,8 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
 
     RewriteRule ^shuttle/route_trip(.*)$ /shuttle/planner/? [L,R]
     RewriteRule ^shuttle/list/color /shuttle/list/ [L,R]
+    RewriteRule ^shuttle/schedule/grey /shuttle/schedule/route/?grey [L,R]
+    RewriteRule ^shuttle/schedule/blue /shuttle/schedule/route/?blue [L,R]
     RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/list/ [L,R]
     RewriteRule ^shuttle/list/location/[0-9]+$ /shuttle/list/location/ [L,R]
 </IfModule>
