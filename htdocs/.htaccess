@@ -30,6 +30,9 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteRule ^shuttle/schedule/(.*) /shuttle/schedule/route/?$1 [L,R]
     RewriteRule ^shuttle/list/location/.+$ /shuttle/list/location/ [L,R]
 
+    # They have a link at http://manuals.ucsfmedicalcenter.org/NursingDept/
+    RewriteRule ^shuttle/options /shuttle/ [L,R]
+
     RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
     RewriteRule ^maps/campus.php$ /maps/ [L,R]
 </IfModule>
