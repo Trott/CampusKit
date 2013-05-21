@@ -200,7 +200,7 @@ ucsf.shuttle = (function () {
             } else {
                 var resultsElement = document.createElement('div');
                 resultsElement.innerHTML = resultsHTML;
-                target.parentNode.insertBefore(resultsElement);
+                target.parentNode.insertBefore(resultsElement, null);
             }
         }
     };
