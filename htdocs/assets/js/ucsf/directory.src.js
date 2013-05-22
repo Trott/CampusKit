@@ -89,7 +89,7 @@ ucsf.directory = (function () {
 }());
 
 Modernizr.load({
-    load: 'http://apis.ucsf.edu/static/UCSF.Person.js',
+    load: 'http://apis.ucsf.edu/jsapi?person',
     callback: function () {
         var oldq = typeof _dirq === "undefined" ? [] : _dirq;
         _dirq = {

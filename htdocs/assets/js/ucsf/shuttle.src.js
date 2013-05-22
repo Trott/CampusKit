@@ -301,7 +301,7 @@ ucsf.shuttle = (function () {
 }());
 
 Modernizr.load({
-    load: 'http://apis.ucsf.edu/static/UCSF.Shuttle.js',
+    load: 'http://apis.ucsf.edu/jsapi?shuttle',
     callback: function () {
         var apikey='c631ef46e918c82cf81ef4869f0029d4';
         UCSF.Shuttle.stops({apikey:apikey}, ucsf.shuttle.renderStops);

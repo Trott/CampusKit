@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#16-May-2013 v2
+#22-May-2013
 
 CACHE:
 
@@ -44,8 +44,8 @@ CACHE:
 /assets/img/watermark.png
 
 #javascript files
-//apis.ucsf.edu/static/UCSF.Person.js
-//apis.ucsf.edu/static/UCSF.Shuttle.js
+//apis.ucsf.edu/jsapi?person
+//apis.ucsf.edu/jsapi?shuttle
 //www.google.com/jsapi
 //www.google-analytics.com/ga.js
 /assets/js/ucsf.js
