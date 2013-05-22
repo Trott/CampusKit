@@ -304,12 +304,12 @@ Modernizr.load({
     load: 'http://apis.ucsf.edu/static/UCSF.Shuttle.js',
     callback: function () {
         var apikey='c631ef46e918c82cf81ef4869f0029d4';
-        UCSF.Shuttle.stops({apikey:apikey}, ucsf.shuttle.renderStops);
+        UCSF.Shuttle.stops({apikey:apikey}, ucsf.shuttle.renderStops, ucsf.shuttle.renderStops);
         if (window.location.pathname === "/shuttle/list/") {
-            UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes);
+            UCSF.Shuttle.routes({apikey:apikey, stopId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderRoutes, ucsf.shuttle.renderRoutes);
         }
         if ((window.location.pathname === "/shuttle/schedule/route/") && window.location.search) {
-            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderScheduleMenu);
+            UCSF.Shuttle.stops({apikey:apikey, routeId:decodeURIComponent(window.location.search.substr(1))}, ucsf.shuttle.renderScheduleMenu, ucsf.shuttle.renderScheduleMenu);
         }
     }
 });
