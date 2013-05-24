@@ -50,7 +50,8 @@ module.exports = function(grunt) {
               'htdocs/assets/js/ucsf/shuttle.src.js',
               'htdocs/assets/js/ucsf/directory.src.js',
               'htdocs/assets/js/ucsf/news.src.js',
-              'htdocs/assets/js/ucsf/maps.src.js'],
+              'htdocs/assets/js/ucsf/maps.src.js',
+              'htdocs/assets/js/ucsf/free_food.src.js'],
       afterconcat: ['dist/ucsf.partial.js']
     },
     uglify: {
@@ -85,6 +86,11 @@ module.exports = function(grunt) {
       maps: {
         files: {
           'htdocs/assets/js/maps.js': ['htdocs/assets/js/core/template-2.0.0.js','htdocs/assets/js/ucsf/maps.src.js']
+        }
+      },
+      free_food: {
+        files: {
+          'htdocs/assets/js/free_food.js': ['htdocs/assets/js/ucsf/free_food.src.js']
         }
       }
     }
