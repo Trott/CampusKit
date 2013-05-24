@@ -18,8 +18,18 @@
     <header>
         <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/free_food">Free Food</a></span>
     </header>
-    <div ng-controller="ucsf.FreeFood.Controller" class="menu">
+    <div ng-controller="ucsf.FreeFood.Controller" class="menu detailed">
+        <h2>Free Food</h2>
         <div ng-show="isLoading"><progress><div class="spinner"></div></progress></div>
+        <ol ng-repeat="event in events">
+            <li ng-model="event">
+                <a href="">
+                    {{event.name}}
+                    <div class="smallprint light">{{event.datetime}}</div>
+                    <div class="smallprint light">{{event.location}}</div>
+                </a>
+            </li>
+        </ol>
     </div>
 <footer id="footer">
     <p>&copy; 2013 Regents of the University of California<br>
