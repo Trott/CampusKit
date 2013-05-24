@@ -1,0 +1,1 @@
+var ucsf=ucsf||{};ucsf.FreeFood={Controller:function(e){e.isLoading=!0;e.events=[];Modernizr.load({load:"http://apis.ucsf.edu/jsapi?free_food",callback:function(){var t="c631ef46e918c82cf81ef4869f0029d4";UCSF.FreeFood.events({apikey:t},function(t){e.$apply(function(){e.events=t.events||[];e.isLoading=!1})})}})}};ucsf.FreeFood.Controller.$inject=["$scope"];
