@@ -22,11 +22,12 @@
         <h2>Free Food</h2>
         <div ng-show="isLoading"><progress><div class="spinner"></div></progress></div>
         <ol ng-repeat="event in events">
-            <li ng-model="event">
-                <a href="">
+            <li>
+                <a href="#" ng-click="show=!show">
                     {{event.name}}
                     <div class="smallprint light">{{event.datetime}}</div>
                     <div class="smallprint light">{{event.location}}</div>
+                    <p ng-show="show">{{event.description}}</p>
                 </a>
             </li>
         </ol>
