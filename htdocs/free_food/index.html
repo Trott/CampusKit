@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html data-ng-app>
 <head>
     <meta charset="utf-8">
     <title>UCSF Mobile | Free Food</title>
@@ -18,19 +18,19 @@
     <header>
         <a href="/"><img src="/assets/img/ucsf-logo.png" alt="UCSF"><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/free_food">Free Food</a></span>
     </header>
-    <div ng-controller="ucsf.FreeFood.Controller" class="menu detailed">
+    <div data-ng-controller="ucsf.FreeFood.Controller" class="menu detailed">
         <h2>Free Food</h2>
-        <div ng-show="isLoading"><progress><div class="spinner"></div></progress></div>
-        <ol ng-repeat="event in events">
+        <div data-ng-show="isLoading"><progress><span class="spinner"></span></progress></div>
+        <ol data-ng-repeat="event in events">
             <li>
-                <a href="" ng-click="show=!show"><span ng-bind="event.name"></span>
-                    <div ng-bind="event.datetime | date:'EEE, MMM dd, h:mma'" class="smallprint light"></div>
-                    <div ng-bind="event.location" class="smallprint light"></div>
-                    <p ng-bind="event.description" ng-show="show"></p>
+                <a href="" data-ng-click="show=!show"><span data-ng-bind="event.name"></span>
+                    <div data-ng-bind="event.datetime | date:'EEE, MMM dd, h:mma'" class="smallprint light"></div>
+                    <div data-ng-bind="event.location" class="smallprint light"></div>
+                    <p data-ng-bind="event.description" data-ng-show="show"></p>
                 </a>
             </li>
         </ol>
-        <div ng-bind="message"></div>
+        <div data-ng-bind="message"></div>
 
     </div>
 <footer id="footer">
