@@ -3,18 +3,18 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    clean: ['dist'],
+    clean: ['tmp'],
     concat: {
       full: {
         src: ['htdocs/assets/js/core/fastclick/fastclick.min.js',
               'htdocs/assets/js/core/modernizr.js',
-              'dist/ucsf.partial.min.js'],
+              'tmp/ucsf.partial.min.js'],
         dest: 'htdocs/assets/js/ucsf.js'
       },
       partial: {
         src: ['htdocs/assets/js/ucsf/ucsf.src.js',
               'htdocs/assets/js/utility/analytics.src.js'],
-        dest: 'dist/ucsf.partial.js'
+        dest: 'tmp/ucsf.partial.js'
       }
     },
     qunit: {
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
               'htdocs/assets/js/ucsf/news.src.js',
               'htdocs/assets/js/ucsf/maps.src.js',
               'htdocs/assets/js/ucsf/free_food.src.js'],
-      afterconcat: ['dist/ucsf.partial.js']
+      afterconcat: ['tmp/ucsf.partial.js']
     },
     uglify: {
       options: {
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
       },
       ucsf: {
         files: {
-          'dist/ucsf.partial.min.js': ['dist/ucsf.partial.js']
+          'tmp/ucsf.partial.min.js': ['tmp/ucsf.partial.js']
         }
       },
       profile: {
