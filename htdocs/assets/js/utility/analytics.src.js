@@ -3,10 +3,6 @@ var _gaq = [
     ['_setSiteSpeedSampleRate', 100]
 ];
 
-//TODO: 
-//         a:"UA-552286-29",
-//         s:"/library/"
-
 // Special tracking for native client.
 if (/ mwf\-native\-[a-z]*\/[\d\.]*$/i.test(navigator.userAgent)) {
     _gaq.push(["_setCustomVar", 1, "mwf_native_client", "1"]);
