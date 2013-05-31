@@ -3,27 +3,25 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    clean: ['tmp'],
+    clean: [
+      'htdocs/assets/js',
+      'tmp'
+    ],
+
     concat: {
       full: {
-        src: ['htdocs/assets/js/core/fastclick/fastclick.min.js',
-              'htdocs/assets/js/core/modernizr.js',
+        src: ['src/js/external/fastclick/fastclick.min.js',
+              'src/js/external/modernizr.js',
               'tmp/ucsf.partial.min.js'],
         dest: 'htdocs/assets/js/ucsf.js'
       },
       partial: {
-        src: ['htdocs/assets/js/ucsf/ucsf.src.js',
-              'htdocs/assets/js/utility/analytics.src.js'],
+        src: ['src/js/ucsf.src.js',
+              'src/js/analytics.src.js'],
         dest: 'tmp/ucsf.partial.js'
       }
     },
-    qunit: {
-      files: []
-    },
-    watch: {
-      files: '<config:lint.files>',
-      tasks: 'lint qunit'
-    },
+
     jshint: {
       options: {
         curly: true,
@@ -46,14 +44,15 @@ module.exports = function(grunt) {
         ucsf: true
       },
       beforeconcat: ['Gruntfile.js',
-              'htdocs/research/js/profile.src.js',
-              'htdocs/assets/js/ucsf/shuttle.src.js',
-              'htdocs/assets/js/ucsf/directory.src.js',
-              'htdocs/assets/js/ucsf/news.src.js',
-              'htdocs/assets/js/ucsf/maps.src.js',
-              'htdocs/assets/js/ucsf/free_food.src.js'],
+              'src/js/modules/research/profile.src.js',
+              'src/js/modules/shuttle/shuttle.src.js',
+              'src/js/modules/directory/directory.src.js',
+              'src/js/modules/news/news.src.js',
+              'src/js/modules/maps/maps.src.js',
+              'src/js/modules/free_food/free_food.src.js'],
       afterconcat: ['tmp/ucsf.partial.js']
     },
+
     uglify: {
       options: {
         compress: {sequences:false}
@@ -65,32 +64,32 @@ module.exports = function(grunt) {
       },
       profile: {
         files: {
-          'htdocs/research/js/profile.js': ['htdocs/research/js/profile.src.js']
+          'htdocs/research/js/profile.js': ['src/js/modules/research/profile.src.js']
         }
       },
       shuttle: {
         files: {
-          'htdocs/assets/js/shuttle.js': ['htdocs/assets/js/core/template-2.0.0.js','htdocs/assets/js/ucsf/shuttle.src.js']
+          'htdocs/assets/js/shuttle.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/shuttle/shuttle.src.js']
         }
       },
       directory: {
         files: {
-          'htdocs/assets/js/directory.js': ['htdocs/assets/js/core/template-2.0.0.js','htdocs/assets/js/ucsf/directory.src.js']
+          'htdocs/assets/js/directory.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/directory/directory.src.js']
         }
       },
       news: {
         files: {
-          'htdocs/assets/js/news.js': ['htdocs/assets/js/core/template-2.0.0.js','htdocs/assets/js/ucsf/news.src.js']
+          'htdocs/assets/js/news.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/news/news.src.js']
         }
       },
       maps: {
         files: {
-          'htdocs/assets/js/maps.js': ['htdocs/assets/js/core/template-2.0.0.js','htdocs/assets/js/ucsf/maps.src.js']
+          'htdocs/assets/js/maps.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/maps/maps.src.js']
         }
       },
       free_food: {
         files: {
-          'htdocs/assets/js/free_food.js': ['htdocs/assets/js/ucsf/free_food.src.js']
+          'htdocs/assets/js/free_food.js': ['src/js/modules/free_food/free_food.src.js']
         }
       }
     }
@@ -101,5 +100,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
+  grunt.registerTask('copy', 'Copy files that do not need any processing', function() {
+    grunt.file.copy('src/js/external/angular.js', 'htdocs/assets/js/angular.js');
+  });
+
+  grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full', 'copy']);
 };
