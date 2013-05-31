@@ -1,6 +1,7 @@
 html,
 body {
     border: 0;
+    					/* Might these next two lines be better placed in _background.scss? */
     height: 100%; 		/* needed for Firefox */
     min-height:100%; 	/* needed for Android, see https://github.com/Trott/CampusKit/pull/6 */
 }
