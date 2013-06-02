@@ -4,7 +4,7 @@
 http_path = "/"
 css_dir = "htdocs/assets/css"
 http_css_dir = "assets/css"
-sass_dir = "htdocs/assets/css"
+sass_dir = "src/sass"
 images_dir = "htdocs/assets/img"
 http_images_dir = "assets/img"
 javascripts_dir = "htdocs/assets/js"
