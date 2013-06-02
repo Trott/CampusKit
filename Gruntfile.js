@@ -22,6 +22,14 @@ module.exports = function(grunt) {
       }
     },
 
+    compass: {
+      dist: {
+        options: {
+          config: 'config.rb'
+        }
+      }
+    },
+
     jshint: {
       options: {
         curly: true,
@@ -95,10 +103,11 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-concat');
 
   grunt.registerTask('copy', 'Copy files that do not need any processing', function() {
     grunt.file.copy('src/js/external/angular.js', 'htdocs/assets/js/angular.js');
