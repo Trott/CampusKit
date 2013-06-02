@@ -113,5 +113,5 @@ module.exports = function(grunt) {
     grunt.file.copy('src/js/external/angular.js', 'htdocs/assets/js/angular.js');
   });
 
-  grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full', 'copy']);
+  grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'compass:dist', 'concat:full', 'copy']);
 };
