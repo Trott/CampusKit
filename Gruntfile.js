@@ -87,9 +87,14 @@ module.exports = function(grunt) {
       options: {
         compress: {sequences:false}
       },
+      angular: {
+        files: {
+            'htdocs/assets/js/angular.js': ['lib/angular/angular.js']
+        }
+      },
       fastclick: {
         files: {
-          'tmp/fastclick.min.js': ['components/fastclick/lib/fastclick.js']
+          'tmp/fastclick.min.js': ['lib/fastclick/fastclick.js']
         }
       },
       ucsf: {
@@ -104,22 +109,22 @@ module.exports = function(grunt) {
       },
       shuttle: {
         files: {
-          'htdocs/assets/js/shuttle.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/shuttle/shuttle.src.js']
+          'htdocs/assets/js/shuttle.js': ['lib/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/shuttle/shuttle.src.js']
         }
       },
       directory: {
         files: {
-          'htdocs/assets/js/directory.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/directory/directory.src.js']
+          'htdocs/assets/js/directory.js': ['lib/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/directory/directory.src.js']
         }
       },
       news: {
         files: {
-          'htdocs/assets/js/news.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/news/news.src.js']
+          'htdocs/assets/js/news.js': ['lib/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/news/news.src.js']
         }
       },
       maps: {
         files: {
-          'htdocs/assets/js/maps.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/maps/maps.src.js']
+          'htdocs/assets/js/maps.js': ['lib/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/maps/maps.src.js']
         }
       },
       free_food: {
@@ -138,9 +143,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-rsync');
 
-  grunt.registerTask('copy', 'Copy files that do not need any processing', function() {
-    grunt.file.copy('components/angular/angular.min.js', 'htdocs/assets/js/angular.js');
-  });
-
-  grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'compass:dist', 'concat:full', 'copy']);
+  grunt.registerTask('default', ['clean', 'bower:install', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'compass:dist', 'concat:full']);
 };
