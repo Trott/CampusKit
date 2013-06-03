@@ -61,6 +61,23 @@ module.exports = function(grunt) {
       afterconcat: ['tmp/ucsf.partial.js']
     },
 
+    rsync: {
+        "deploy-staging": {
+            src: "htdocs/",
+            dest: "/var/www/html",
+            host: "m-stage",
+            recursive: true,
+            syncDest: true
+        },
+        "deploy-live": {
+            src: "htdocs/",
+            dest: "/var/www/html",
+            host: "m",
+            recursive: true,
+            syncDest: true
+        }
+    },
+
     uglify: {
       options: {
         compress: {sequences:false}
@@ -108,6 +125,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-rsync');
 
   grunt.registerTask('copy', 'Copy files that do not need any processing', function() {
     grunt.file.copy('src/js/external/angular.js', 'htdocs/assets/js/angular.js');
