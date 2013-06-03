@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
     concat: {
       full: {
-        src: ['src/js/external/fastclick/fastclick.min.js',
+        src: ['tmp/fastclick.min.js',
               'src/js/external/modernizr.js',
               'tmp/ucsf.partial.min.js'],
         dest: 'htdocs/assets/js/ucsf.js'
@@ -82,6 +82,11 @@ module.exports = function(grunt) {
       options: {
         compress: {sequences:false}
       },
+      fastclick: {
+        files: {
+          'tmp/fastclick.min.js': ['components/fastclick/lib/fastclick.js']
+        }
+      },
       ucsf: {
         files: {
           'tmp/ucsf.partial.min.js': ['tmp/ucsf.partial.js']
@@ -94,22 +99,22 @@ module.exports = function(grunt) {
       },
       shuttle: {
         files: {
-          'htdocs/assets/js/shuttle.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/shuttle/shuttle.src.js']
+          'htdocs/assets/js/shuttle.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/shuttle/shuttle.src.js']
         }
       },
       directory: {
         files: {
-          'htdocs/assets/js/directory.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/directory/directory.src.js']
+          'htdocs/assets/js/directory.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/directory/directory.src.js']
         }
       },
       news: {
         files: {
-          'htdocs/assets/js/news.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/news/news.src.js']
+          'htdocs/assets/js/news.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/news/news.src.js']
         }
       },
       maps: {
         files: {
-          'htdocs/assets/js/maps.js': ['src/js/external/hogan-2.0.0.js','src/js/modules/maps/maps.src.js']
+          'htdocs/assets/js/maps.js': ['components/hogan/web/builds/2.0.0/template-2.0.0.js','src/js/modules/maps/maps.src.js']
         }
       },
       free_food: {
@@ -128,7 +133,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-rsync');
 
   grunt.registerTask('copy', 'Copy files that do not need any processing', function() {
-    grunt.file.copy('src/js/external/angular.js', 'htdocs/assets/js/angular.js');
+    grunt.file.copy('components/angular/angular.min.js', 'htdocs/assets/js/angular.js');
   });
 
   grunt.registerTask('default', ['clean', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'compass:dist', 'concat:full', 'copy']);
