@@ -1,8 +1,13 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
+    // Project configuration.
+    grunt.initConfig({
+        bower: {
+            install: {
+            }
+        },
+
     clean: [
       'htdocs/assets/js',
       'tmp'
@@ -125,6 +130,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-concat');
