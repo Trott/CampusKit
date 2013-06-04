@@ -95,7 +95,7 @@ module.exports = function(grunt) {
             },
             profile: {
                 files: {
-                    'htdocs/research/js/profile.js': ['src/js/modules/research/profile.src.js']
+                    'htdocs/assets/js/profile.js': ['src/js/modules/research/profile.src.js']
                 }
             },
             shuttle: {
