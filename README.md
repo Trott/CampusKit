@@ -2,17 +2,25 @@ CampusKit makes it easy to create high-performance, touch-friendly websites and 
 
 See it in action at http://m.ucsf.edu/.
 
+
+Prerequisites
+-
+
+* git
+* node (http://nodejs.org/download/)
+* grunt (http://gruntjs.com/getting-started)
+* bower
+* compass (which in turn requires sass and ruby)
+
+
 Quick Start
 -
 
 1. Clone the repo
-2. Install Node.js (http://nodejs.org/download/)
-3. Install Grunt.js (http://gruntjs.com/getting-started)  
-    For new install: `sudo npm install -g grunt` then `sudo npm install -g grunt-cli`
-4. `cd CampusKit`
-5. `npm install`
-6. `grunt`
-7. Make the `/htdocs` directory your docroot in your web server
+2. `cd CampusKit`
+3. `npm install`
+4. `grunt`
+5. Make the `/htdocs` directory your docroot in your web server
 
 
 License and Copyright
