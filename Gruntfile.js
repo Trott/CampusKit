@@ -72,14 +72,16 @@ module.exports = function(grunt) {
             dest: "/var/www/html",
             host: "m-stage",
             recursive: true,
-            syncDest: true
+            syncDest: true,
+            args: ["--links"]
         },
         "deploy-live": {
             src: "htdocs/",
             dest: "/var/www/html",
             host: "m",
             recursive: true,
-            syncDest: true
+            syncDest: true,
+            args: ["--links"]
         }
     },
 
