@@ -1,12 +1,12 @@
-html,
-body {
-    border: 0;
-    					/* Might these next two lines be better placed in _background.scss? */
-    height: 100%; 		/* needed for Firefox */
-    min-height:100%; 	/* needed for Android, see https://github.com/Trott/CampusKit/pull/6 */
+html {
+    min-height: 100%;
 }
 
-html,
+body {
+    border: 0;
+    height: 100%;   /* needed for Firefox */
+}
+
 body,
 div,
 form,
@@ -18,13 +18,11 @@ ul {
     margin: 0;
 }
 
-html.no-touch,
-html.no-touch body,
-html.touch.overflowscrolling,
-html.touch.overflowscrolling body{
+.no-touch body,
+.touch.overflowscrolling body {
     overflow:auto;
 }
 
-html.touch.overflowscrolling {
+.touch.overflowscrolling {
     -webkit-overflow-scrolling:touch;
 }
