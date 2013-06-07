@@ -46,11 +46,18 @@
     display: block;
     background:url(/assets/img/ucsf-list-arrow.png) no-repeat 98%;
     padding: 1em;
-    /**
-    * This is needed to keep the rounded corners on the last child.
-    * No, I don't really understand why.
-    **/
+    /*
+     * This is needed to keep the rounded corners on the last child.
+     * No, I don't really understand why.
+     */
     background-color: initial;
+}
+
+/* 
+ * If an accordion link, do not show the '>' symbol in the UI. 
+ */
+.menu li a[href=""] {
+    background: none;
 }
 
 .no-touch .menu li:hover,
