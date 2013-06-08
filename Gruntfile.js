@@ -49,8 +49,9 @@ module.exports = function(grunt) {
                 Hogan: true,
                 ucsf: true
             },
-            beforeconcat: ['Gruntfile.js', 'src/js/modules/*/*.src.js'],
-            afterconcat: ['tmp/ucsf.partial.js']
+            beforeconcat: ['src/js/modules/*/*.src.js'],
+            afterconcat: ['tmp/ucsf.partial.js'],
+            gruntfile: ['Gruntfile.js']
         },
 
         rsync: {
@@ -123,6 +124,21 @@ module.exports = function(grunt) {
                     'htdocs/assets/js/free_food.js': ['src/js/modules/free_food/free_food.src.js']
                 }
             }
+        },
+
+        watch: {
+            gruntfile: {
+                files: 'Gruntfile.js',
+                tasks: ['jshint:gruntfile']
+            },
+            js: {
+                files: ['src/js/**/*.js'],
+                tasks: ['js']
+            },
+            css: {
+                files: ['src/sass/*.scss'],
+                tasks: ['compass:dist']
+            }
         }
     });
 
@@ -132,7 +148,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-rsync');
 
-    grunt.registerTask('default', ['clean', 'bower:install', 'jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'compass:dist', 'concat:full']);
+    grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'compass:dist']);
 };
