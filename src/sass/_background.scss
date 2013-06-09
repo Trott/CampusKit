@@ -1,6 +1,5 @@
 body {
     width:100%;
-    position:relative;
     background: rgba(98,172,180,1); /*Old browsers*/
     @include background(
         url(/assets/img/watermark.png), 
