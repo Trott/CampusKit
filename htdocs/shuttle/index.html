@@ -33,7 +33,29 @@
                     <a data-ng-click="show=!show" data-ng-init="show=false" href="">Trip Planner</a>
                     <div data-ng-show="show">
                         <p data-ng-show="stopsLoadError">Content could not be loaded. Please try again later.</p>
-                        <div data-ng-show="!stopsLoaded && !stopsLoadError"><progress><span class="spinner"></span></progress></div>
+                        <div data-ng-show="isLoading"><progress><span class="spinner"></span></progress></div>
+                        <div data-ng-show="planLoaded" class="content">
+                            <h2>Suggested Routes</h2>
+                            <div data-ng-repeat="itinerary in itineraries">
+                                <h3>Option {{itinerary.index}}</h3>
+                                <h4>{{itinerary.startTimeFormatted}} - {{itinerary.endTimeFormatted}} ({{itinerary.durationFormatted}} mins)</h4>
+                                <ol data-ng-repeat="leg in itinerary.legs">
+                                    <li>
+                                        <ul data-ng-show="leg.bus">
+                                            <li><strong>From:</strong> {{leg.bus.fromName}}</li>
+                                            <li><strong>To:</strong> {{leg.bus.toName}}</li>
+                                            <li><strong>Shuttle:</strong> {{leg.bus.route}} <div class="shuttle-color {{leg.bus.routeId}}"></div></li>
+                                            <li><strong>Depart:</strong> {{leg.bus.startTime}}</li>
+                                           <li><strong>Arrive:</strong> {{leg.bus.endTime}}</li>
+                                        </ul>
+                                        <ul>
+                                            <li data-ng-show="leg.walk"><strong>Walk to:</strong> {{leg.walk.toName}}</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                            <p data-ng-show="itineraries.length==0">No options found.</p>
+                        </div>
                         <form data-ng-show="stopsLoaded" data-ng-submit="plan()">
                             <select data-ng-model="begin" data-ng-options="stop.stopName for stop in stops" name="begin">
                             </select>
@@ -118,7 +140,7 @@
                                     <option value="3">In 3 days</option>
                                 </select>
                             </fieldset>
-                            <input type="submit" name="route" value="Route Trip" />
+                            <input data-ng-disabled="isLoading" type="submit" name="route" value="Route Trip" />
                         </form>
                     </div>
                 </li>
@@ -148,9 +170,11 @@
                 $scope.when = 'now';
                 $scope.date = 0;
 
+                $scope.isLoading = true;
                 $scope.stopsLoadError = false;
                 $scope.stopsLoaded = false;
-                $scope.showPlan = false;
+                $scope.planLoaded = false;
+                $scope.planLoadError = false;
 
                 var apikey = 'c631ef46e918c82cf81ef4869f0029d4'
                 var xhr = $http({
@@ -158,6 +182,7 @@
                     url: 'http://apis.ucsf.edu/shuttle/stops',
                     params: {apikey: apikey}
                 }).success(function (data) {
+                    $scope.isLoading = false;
                     if (data.stops) {
                         $scope.stops = $filter('orderBy')(data.stops, 'stopName');
 
@@ -173,10 +198,10 @@
                         )[0];
                         if (Modernizr.localstorage) {
                             if (localStorage.shuttle_start) {
-                                $scope.begin = $scope.stops[localStorage.shuttle_start];
+                                $scope.begin = $scope.stops[localStorage.shuttle_start] || $scope.begin;
                             } 
                             if (localStorage.shuttle_end) {
-                                $scope.end = $scope.stops[localStorage.shuttle_end];
+                                $scope.end = $scope.stops[localStorage.shuttle_end] || $scope.end;
                             }
                         }
                         $scope.stopsLoaded = true;
@@ -203,22 +228,80 @@
                         planXhrParams.date = $filter('date')(date , 'M/d/yyyy');
                     }
 
+                    $scope.isLoading = true;
+                    
                     var planXhr = $http({
                         method: 'GET', 
                         url: 'http://apis.ucsf.edu/shuttle/plan',
                         params: planXhrParams
                     }).success(function (data) {
-                        console.dir(data);
-                        $scope.showPlan = true;
+                        $scope.isLoading = false;
+                        $scope.planLoaded = true;
+                        var plan = data.plan || {};
+                        if (plan.itineraries) {
+                            // Used to check that the plan is within four hours of the target time.
+                            var datestamp = plan.date ? plan.date : Date.now();
+                            var fourHours = 4 * 60 * 60 * 1000;
+                            var index=1;
+                            var itinerariesCount = plan.itineraries.length;
+                            var removalQueue = [];
+                            var massagedLeg;
+                            var tripSteps;
+                            // Decrement with while rather than increment with for so that splice() doesn't mess up the loop
+                            for (var i=0; i<itinerariesCount; i++) {
+                                // Only use itineraries that are less than 2 hours (e.g., not overnight)
+                                // This check should probably be happening on the server side.
+                                // Then check that the time is within four hours of what was chosen
+                                // so the user doesn't get a trip for the next day.
+                                if ((plan.itineraries[i].duration < 2 * 60 * 60 * 1000) &&
+                                    (plan.itineraries[i].endTime >= datestamp - fourHours) &&
+                                    (plan.itineraries[i].endTime <= datestamp + fourHours)) {
+                                    plan.itineraries[i].index = index;
+                                    index++;
+                                    plan.itineraries[i].startTimeFormatted = $filter('date')(plan.itineraries[i].startTime, 'h:mma');
+                                    plan.itineraries[i].endTimeFormatted = $filter('date')(plan.itineraries[i].endTime, 'h:mma');
+                                    plan.itineraries[i].durationFormatted = Math.round(plan.itineraries[i].duration / (60 * 1000));
+                                    if (plan.itineraries[i].hasOwnProperty('legs')) {
+                                        tripSteps = plan.itineraries[i].legs.length;
+                                        for (var j=0; j<tripSteps; j++) {
+                                            massagedLeg = {};
+                                            massagedLeg.toName = plan.itineraries[i].legs[j].to.name;
+
+                                            if (plan.itineraries[i].legs[j].mode === "BUS") {
+                                                massagedLeg.fromName = plan.itineraries[i].legs[j].from.name;
+                                                massagedLeg.route = plan.itineraries[i].legs[j].route;
+                                                massagedLeg.routeId = plan.itineraries[i].legs[j].routeId;
+                                                massagedLeg.startTime = $filter('date')(plan.itineraries[i].legs[j].startTime, 'h:mma');
+                                                massagedLeg.endTime = $filter('date')(plan.itineraries[i].legs[j].endTime, 'h:mma');
+                                                plan.itineraries[i].legs[j].bus = massagedLeg;
+                                            }
+
+                                            if (plan.itineraries[i].legs[j].mode === "WALK") {
+                                                plan.itineraries[i].legs[j].walk = massagedLeg;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    removalQueue.push(i);
+                                }
+                            }
+                            // Start from end so splice() doesn't mess up
+                            i = removalQueue.length;
+                            while (i--) {
+                                plan.itineraries.splice(removalQueue[i],1);
+                            }
+                            $scope.itineraries = plan.itineraries;
+                        }
+                        //TODO: resultsElement.scrollIntoView();
+                        //TODO: reverse trip button
                     }).error(function () {
                         console.dir('oh noes!');
                     });
 
-
-                    // var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
-                    // resultsElement.innerHTML='<div><section class="center"><progress><div class="spinner"></div></progress></section></div>';
-                    // UCSF.Shuttle.plan(options, ucsf.shuttle.renderTrip);
-                    // me.save();
+                    if(Modernizr.localstorage) {
+                        localStorage.shuttle_start = $scope.stops.indexOf($scope.begin);
+                        localStorage.shuttle_end = $scope.stops.indexOf($scope.end);
+                    }
                 };
             },
             scheduleController: function ($scope) {  
