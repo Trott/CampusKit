@@ -95,3 +95,15 @@ Scenario: Time and Date buttons enabled on routes that aren't "Leave Now"
   And I route the trip
   Then I should see "Suggested Routes"
   And "datetime" should not be disabled
+
+Scenario: Route impossible trip, then route possible trip
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "From Mission Center Building"
+  And I select a route "To Mission Center Building"
+  And I route the trip
+  Then I should see "No options found"
+  And I select a route "To Mission Bay Campus"
+  And I route the trip
+  Then I should not see "No options found"
