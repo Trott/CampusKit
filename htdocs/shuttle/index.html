@@ -5,6 +5,7 @@
     TODO: style menu with gaps around items
     TODO: move controller code to its own file, duh
     TODO: tests, duh
+    TODO: move controller to its own file, duh
 -->
 <!DOCTYPE html>
 <html data-ng-app="shuttle">
@@ -33,7 +34,7 @@
                     <div data-ng-show="show">
                         <p data-ng-show="stopsLoadError">Content could not be loaded. Please try again later.</p>
                         <div data-ng-show="!stopsLoaded && !stopsLoadError"><progress><span class="spinner"></span></progress></div>
-                        <form data-ng-show="stopsLoaded" action="/shuttle/planner/">
+                        <form data-ng-show="stopsLoaded" data-ng-submit="plan()">
                             <select data-ng-model="begin" data-ng-options="stop.stopName for stop in stops" name="begin">
                             </select>
                             <button type="button" class="reverse_trip">&uarr;&darr;</button>
@@ -110,7 +111,7 @@
                                     <option value="8:45pm">8:45pm</option>
                                     <option value="9:00pm">9:00pm</option>
                                 </select>
-                                <select data-ng-disabled="when=='now'" class="compact" name="date">
+                                <select data-ng-model="date" data-ng-disabled="when=='now'" class="compact" name="date">
                                     <option value="0">Today</option>
                                     <option value="1">Tomorrow</option>
                                     <option value="2">In 2 days</option>
@@ -136,8 +137,7 @@
         <script src="/assets/js/angular.js"></script>
         <!--    <script src="/assets/js/shuttle.js"></script> -->
         <script>
-        angular.module('shuttle', []).controller(
-        {
+        angular.module('shuttle', []).controller({
             planController: function ($scope, $filter, $http) {
                 var now = Date.now(),
                     minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
@@ -146,17 +146,18 @@
                 }
                 $scope.time = $filter('lowercase')($filter('date')(now, 'h:' + minutes + 'a'));
                 $scope.when = 'now';
+                $scope.date = 0;
 
                 $scope.stopsLoadError = false;
                 $scope.stopsLoaded = false;
+                $scope.showPlan = false;
 
+                var apikey = 'c631ef46e918c82cf81ef4869f0029d4'
                 var xhr = $http({
                     method: 'GET', 
                     url: 'http://apis.ucsf.edu/shuttle/stops',
-                    params: {apikey: 'c631ef46e918c82cf81ef4869f0029d4'}
-                });
-                
-                xhr.success(function (data) {
+                    params: {apikey: apikey}
+                }).success(function (data) {
                     if (data.stops) {
                         $scope.stops = $filter('orderBy')(data.stops, 'stopName');
 
@@ -182,15 +183,48 @@
                     } else {
                         $scope.stopsLoadError = true;
                     }
+                }).error(function () {
+                    $scope.stopsLoadError = true;
                 });
 
-                xhr.error(function () {
-                    $scope.stopsLoadError = true;
-                })
+                $scope.plan = function () {
+
+                    var planXhrParams = {
+                        apikey: apikey,
+                        fromPlace: $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
+                        toPlace: $scope.end.id.agencyId + '_' + $scope.end.id.id                        
+                    }
+
+                    if ($scope.when !== "now") {
+                        planXhrParams.arriveBy = $scope.when==="arrive";
+                        planXhrParams.time = $scope.time;
+                        var date = new Date();
+                        date.setDate(date.getDate() + parseInt($scope.date,10));
+                        planXhrParams.date = $filter('date')(date , 'M/d/yyyy');
+                    }
+
+                    var planXhr = $http({
+                        method: 'GET', 
+                        url: 'http://apis.ucsf.edu/shuttle/plan',
+                        params: planXhrParams
+                    }).success(function (data) {
+                        console.dir(data);
+                        $scope.showPlan = true;
+                    }).error(function () {
+                        console.dir('oh noes!');
+                    });
+
+
+                    // var resultsElement = document.getElementById('ucsf_shuttle_itineraries');
+                    // resultsElement.innerHTML='<div><section class="center"><progress><div class="spinner"></div></progress></section></div>';
+                    // UCSF.Shuttle.plan(options, ucsf.shuttle.renderTrip);
+                    // me.save();
+                };
             },
-            scheduleController: function ($scope) {  }
-        }
-        );
+            scheduleController: function ($scope) {  
+                //TODO: write this controller
+            }
+        });
         </script>
     </body>
     </html>
