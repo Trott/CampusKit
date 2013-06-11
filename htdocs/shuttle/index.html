@@ -27,204 +27,42 @@
     </head>
     <body>
         <header class="header"><a href="/"><div class="logo"></div><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/shuttle">Shuttle</a></span></header>
-        <div class="menu detailed">
-            <ol>
-                <li data-ng-controller="planController">
-                    <a data-ng-click="show=!show" data-ng-init="show=false" href="">Trip Planner</a>
-                    <div data-ng-show="show">
-                        <p data-ng-show="stopsLoadError">Content could not be loaded. Please try again later.</p>
-                        <div data-ng-show="isLoading"><progress><span class="spinner"></span></progress></div>
-                        <div data-ng-show="planLoaded" class="content">
-                            <h2>Suggested Routes</h2>
-                            <div data-ng-repeat="itinerary in itineraries">
-                                <h3>Option {{itinerary.index}}</h3>
-                                <h4>{{itinerary.startTimeFormatted}} - {{itinerary.endTimeFormatted}} ({{itinerary.durationFormatted}} mins)</h4>
-                                <ol data-ng-repeat="leg in itinerary.legs">
-                                    <li>
-                                        <ul data-ng-show="leg.bus">
-                                            <li><strong>From:</strong> {{leg.bus.fromName}}</li>
-                                            <li><strong>To:</strong> {{leg.bus.toName}}</li>
-                                            <li><strong>Shuttle:</strong> {{leg.bus.route}} <div class="shuttle-color {{leg.bus.routeId}}"></div></li>
-                                            <li><strong>Depart:</strong> {{leg.bus.startTime}}</li>
-                                           <li><strong>Arrive:</strong> {{leg.bus.endTime}}</li>
-                                        </ul>
-                                        <ul>
-                                            <li data-ng-show="leg.walk"><strong>Walk to:</strong> {{leg.walk.toName}}</li>
-                                        </ul>
-                                    </li>
-                                </ol>
-                            </div>
-                            <p data-ng-show="!itineraries">No options found.</p>
-                        </div>
-                        <form data-ng-show="stopsLoaded" data-ng-submit="plan()">
-                            <select data-ng-model="begin" data-ng-options="'From ' + stop.stopName for stop in stops" name="begin">
-                            </select>
-                            <button type="button" data-ng-click="tmp=begin;begin=end;end=tmp" class="reverse_trip">&uarr;&darr;</button>
-                            <select data-ng-model="end" data-ng-options="'To ' + stop.stopName for stop in stops" name="end">
-                            </select>
-                            <fieldset name="datetime">
-                                <legend>
-                                    <select data-ng-model="when" class="compact" name="when">
-                                        <option value="now">Leave now</option>
-                                        <option value="depart">Depart at</option>
-                                        <option value="arrive">Arrive by</option>
-                                    </select>
-                                </legend>
-                                <select data-ng-disabled="when=='now'" data-ng-model="time" class="compact" name="time">
-                                    <option value="6:00 AM">6:00 AM</option>
-                                    <option value="6:15 AM">6:15 AM</option>
-                                    <option value="6:30 AM">6:30 AM</option>
-                                    <option value="6:45 AM">6:45 AM</option>
-                                    <option value="7:00 AM">7:00 AM</option>
-                                    <option value="7:15 AM">7:15 AM</option>
-                                    <option value="7:30 AM">7:30 AM</option>
-                                    <option value="7:45 AM">7:45 AM</option>
-                                    <option value="8:00 AM">8:00 AM</option>
-                                    <option value="8:15 AM">8:15 AM</option>
-                                    <option value="8:30 AM">8:30 AM</option>
-                                    <option value="8:45 AM">8:45 AM</option>
-                                    <option value="9:00 AM">9:00 AM</option>
-                                    <option value="9:15 AM">9:15 AM</option>
-                                    <option value="9:30 AM">9:30 AM</option>
-                                    <option value="9:45 AM">9:45 AM</option>
-                                    <option value="10:00 AM">10:00 AM</option>
-                                    <option value="10:15 AM">10:15 AM</option>
-                                    <option value="10:30 AM">10:30 AM</option>
-                                    <option value="10:45 AM">10:45 AM</option>
-                                    <option value="11:00 AM">11:00 AM</option>
-                                    <option value="11:15 AM">11:15 AM</option>
-                                    <option value="11:30 AM">11:30 AM</option>
-                                    <option value="11:45 AM">11:45 AM</option>
-                                    <option value="12:00 PM">12:00 PM</option>
-                                    <option value="12:15 PM">12:15 PM</option>
-                                    <option value="12:30 PM">12:30 PM</option>
-                                    <option value="12:45 PM">12:45 PM</option>
-                                    <option value="1:00 PM">1:00 PM</option>
-                                    <option value="1:15 PM">1:15 PM</option>
-                                    <option value="1:30 PM">1:30 PM</option>
-                                    <option value="1:45 PM">1:45 PM</option>
-                                    <option value="2:00 PM">2:00 PM</option>
-                                    <option value="2:15 PM">2:15 PM</option>
-                                    <option value="2:30 PM">2:30 PM</option>
-                                    <option value="2:45 PM">2:45 PM</option>
-                                    <option value="3:00 PM">3:00 PM</option>
-                                    <option value="3:15 PM">3:15 PM</option>
-                                    <option value="3:30 PM">3:30 PM</option>
-                                    <option value="3:45 PM">3:45 PM</option>
-                                    <option value="4:00 PM">4:00 PM</option>
-                                    <option value="4:15 PM">4:15 PM</option>
-                                    <option value="4:30 PM">4:30 PM</option>
-                                    <option value="4:45 PM">4:45 PM</option>
-                                    <option value="5:00 PM">5:00 PM</option>
-                                    <option value="5:15 PM">5:15 PM</option>
-                                    <option value="5:30 PM">5:30 PM</option>
-                                    <option value="5:45 PM">5:45 PM</option>
-                                    <option value="6:00 PM">6:00 PM</option>
-                                    <option value="6:15 PM">6:15 PM</option>
-                                    <option value="6:30 PM">6:30 PM</option>
-                                    <option value="6:45 PM">6:45 PM</option>
-                                    <option value="7:00 PM">7:00 PM</option>
-                                    <option value="7:15 PM">7:15 PM</option>
-                                    <option value="7:30 PM">7:30 PM</option>
-                                    <option value="7:45 PM">7:45 PM</option>
-                                    <option value="8:00 PM">8:00 PM</option>
-                                    <option value="8:15 PM">8:15 PM</option>
-                                    <option value="8:30 PM">8:30 PM</option>
-                                    <option value="8:45 PM">8:45 PM</option>
-                                    <option value="9:00 PM">9:00 PM</option>
-                                </select>
-                                <select data-ng-model="date" data-ng-disabled="when=='now'" class="compact" name="date">
-                                    <option value="0">Today</option>
-                                    <option value="1">Tomorrow</option>
-                                    <option value="2">In 2 days</option>
-                                    <option value="3">In 3 days</option>
-                                </select>
-                            </fieldset>
-                            <input data-ng-disabled="isLoading" type="submit" name="route" value="Route Trip" />
-                        </form>
-                    </div>
-                </li>
-                <li data-ng-controller="scheduleController">
-                    <a href="" data-ng-click="show=!show">Shuttles By Route</a>
-                    <div data-ng-show="show">Route!</div>
-                </li>
-                <li data-ng-controller="scheduleController">
-                    <a href="" data-ng-click="show=!show">Shuttles By Location</a>
-                    <div data-ng-show="show">Location!</div>
-                </li>
-            </ol>
-        </div>
+
+        <div ng-view></div>
+
         <footer><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
         <script src="/assets/js/ucsf.js"></script>
         <script src="/assets/js/angular.js"></script>
         <!--    <script src="/assets/js/shuttle.js"></script> -->
         <script>
-        angular.module('shuttle', []).controller({
-            planController: function ($scope, $filter, $http) {
-                var now = Date.now(),
-                    minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
-                if (minutes == 0) {
-                    minutes = "00";
-                }
-                $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
-                $scope.when = 'now';
-                $scope.date = 0;
-
-                $scope.isLoading = true;
-                $scope.stopsLoadError = false;
-                $scope.stopsLoaded = false;
-                $scope.planLoaded = false;
-                $scope.planLoadError = false;
-
+        angular.module('shuttle', []).
+            config(['$routeProvider', function($routeProvider) {
+                $routeProvider.
+                    when('/', {templateUrl: 'partials/main_menu.html'}).
+                    when('/planner', {templateUrl: 'partials/planner.html', controller: 'planController'}).
+                    when('/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/planner.html', controller: 'planController'}).
+                    otherwise({redirectTo: '/'});
+            }]).
+            controller({
+            planController: function ($scope, $filter, $http, $location, $routeParams) {
                 var apikey = 'c631ef46e918c82cf81ef4869f0029d4'
-                var xhr = $http({
-                    method: 'GET', 
-                    url: 'http://apis.ucsf.edu/shuttle/stops',
-                    params: {apikey: apikey}
-                }).success(function (data) {
-                    $scope.isLoading = false;
-                    if (data.stops) {
-                        $scope.stops = $filter('orderBy')(data.stops, 'stopName');
 
-                        $scope.begin = $filter('filter')($scope.stops, 
-                            function (elem) {
-                                return elem.stopName == 'Parnassus Campus';
-                            }
-                        )[0];
-                        $scope.end = $filter('filter')($scope.stops, 
-                            function (elem) {
-                                return elem.stopName == 'Mission Bay Campus';
-                            }
-                        )[0];
-                        if (Modernizr.localstorage) {
-                            if (localStorage.shuttle_start) {
-                                $scope.begin = $scope.stops[localStorage.shuttle_start] || $scope.begin;
-                            } 
-                            if (localStorage.shuttle_end) {
-                                $scope.end = $scope.stops[localStorage.shuttle_end] || $scope.end;
-                            }
-                        }
-                        $scope.stopsLoaded = true;
-                    } else {
-                        $scope.stopsLoadError = true;
-                    }
-                }).error(function () {
-                    $scope.stopsLoadError = true;
-                });
-
-                $scope.plan = function () {
-
+                if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
                     var planXhrParams = {
                         apikey: apikey,
-                        fromPlace: $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
-                        toPlace: $scope.end.id.agencyId + '_' + $scope.end.id.id                        
+                        fromPlace: $routeParams.fromPlace,
+                        toPlace: $routeParams.toPlace                        
                     }
 
-                    if ($scope.when !== "now") {
-                        planXhrParams.arriveBy = $scope.when==="arrive";
-                        planXhrParams.time = $scope.time;
+                    $scope.when = $routeParams.when;
+                    $scope.time = $routeParams.time;
+                    $scope.date = $routeParams.date;
+
+                    if ($routeParams.when !== "now") {
+                        planXhrParams.arriveBy = $routeParams.when==="arrive";
+                        planXhrParams.time = $routeParams.time;
                         var date = new Date();
-                        date.setDate(date.getDate() + parseInt($scope.date,10));
+                        date.setDate(date.getDate() + parseInt($routeParams.date,10));
                         planXhrParams.date = $filter('date')(date , 'M/d/yyyy');
                     }
 
@@ -294,13 +132,73 @@
                         }
                         //TODO: resultsElement.scrollIntoView();
                     }).error(function () {
+                        //TODO: uh, yeah, this
                         console.dir('oh noes!');
                     });
+                }
+
+                if (! $scope.time) {
+                    var now = Date.now(),
+                        minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
+                    if (minutes == 0) {
+                        minutes = "00";
+                    }
+                    $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
+                }
+                $scope.when = $scope.when || 'now';
+                $scope.date = $scope.date || 0;
+
+                $scope.isLoading = true;
+                $scope.stopsLoadError = false;
+                $scope.stopsLoaded = false;
+                $scope.planLoaded = false;
+                $scope.planLoadError = false;
+
+                var xhr = $http({
+                    method: 'GET', 
+                    url: 'http://apis.ucsf.edu/shuttle/stops',
+                    params: {apikey: apikey}
+                }).success(function (data) {
+                    $scope.isLoading = false;
+                    if (data.stops) {
+                        $scope.stops = $filter('orderBy')(data.stops, 'stopName');
+
+                        $scope.begin = $filter('filter')($scope.stops, 
+                            function (elem) {
+                                return elem.stopName == 'Parnassus Campus';
+                            }
+                        )[0];
+                        $scope.end = $filter('filter')($scope.stops, 
+                            function (elem) {
+                                return elem.stopName == 'Mission Bay Campus';
+                            }
+                        )[0];
+                        if (Modernizr.localstorage) {
+                            if (localStorage.shuttle_start) {
+                                $scope.begin = $scope.stops[localStorage.shuttle_start] || $scope.begin;
+                            } 
+                            if (localStorage.shuttle_end) {
+                                $scope.end = $scope.stops[localStorage.shuttle_end] || $scope.end;
+                            }
+                        }
+                        $scope.stopsLoaded = true;
+                    } else {
+                        $scope.stopsLoadError = true;
+                    }
+                }).error(function () {
+                    $scope.stopsLoadError = true;
+                });
+
+                $scope.plan = function () {
+                    var fromPlace = $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
+                        toPlace = $scope.end.id.agencyId + '_' + $scope.end.id.id;
 
                     if(Modernizr.localstorage) {
                         localStorage.shuttle_start = $scope.stops.indexOf($scope.begin);
                         localStorage.shuttle_end = $scope.stops.indexOf($scope.end);
                     }
+                    
+                    $location.url('/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
                 };
             },
             scheduleController: function ($scope) {  

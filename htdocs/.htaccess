@@ -29,6 +29,7 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^shuttle/schedule/(.*) /shuttle/schedule/route/?$1 [L,R]
     RewriteRule ^shuttle/list/location/.+$ /shuttle/list/location/ [L,R]
+    RewriteRule ^shuttle/planner /shuttle/#/planner [NE,L,R]
 
     # They have a link at http://manuals.ucsfmedicalcenter.org/NursingDept/
     RewriteRule ^shuttle/options /shuttle/ [L,R]
