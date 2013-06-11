@@ -10,12 +10,12 @@ Given(/I visit the Shuttle Trip Planner page/) do
 	visit "/shuttle/planner"
 end
 
-Then(/^I should see the route "([^"]*)" "([^"]*)"$/) do |id, value|
+Then(/^I should see the route "([^"]*)"$/) do |value|
 	find(:xpath, "//select[@id = '#{id}']/option[text() = '#{value}']").should be_selected
 end
 
-Then(/^I select a route "([^"]*)" "([^"]*)"$/) do |id, value|
-	select(value, :from => id)
+Given(/^I select a route "(.*?)"$/) do |value|
+    find(:xpath, "//option[text() = '#{value}']").click
 end
 
 Then(/^I select "([^"]*)"$/) do |value|
