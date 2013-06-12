@@ -69,6 +69,7 @@ ucsf.ctsiProfile = {
                 if (myProfile.hasOwnProperty("Keywords") && myProfile.Keywords.length > 0) {
                     keywords = myProfile.Keywords;
                     list = document.createElement("ol");
+                    list.setAttribute("class", "research-interests");
                     limit = keywords.length > 5 ? 5 : keywords.length;
                     for (i = 0; i < limit; i = i + 1) {
                         thisItem = document.createElement("li");
@@ -76,7 +77,7 @@ ucsf.ctsiProfile = {
                         list.appendChild(thisItem);
                     }
                     keywordsContainer = document.getElementById("ctsi-keywords");
-                    keywordsContainer.innerHTML = '<h1 class="content-first light">Research Interests</h1>';
+                    keywordsContainer.innerHTML = '<h1 class="light">Research Interests</h1>';
                     keywordsContainer.appendChild(list);
                 }
 
