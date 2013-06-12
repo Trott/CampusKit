@@ -71,10 +71,6 @@
      border-style: solid none none none;
 }
 
-.content ol li{
-    margin: 0 0 0 26px;
-}
-
 .content > :first-child {
     @include border-top-radius()
 }

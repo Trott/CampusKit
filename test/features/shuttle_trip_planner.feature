@@ -6,38 +6,38 @@ Feature: Shuttle Trip Planner
 Scenario: Remember Last Trip
   Given my localStorage is empty
   And I visit the Shuttle Trip Planner page
-  Then I should see the route "ucsf_shuttle_starting_from" "From Parnassus Campus"
-  And I should see the route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
-  And I select a route "ucsf_shuttle_starting_from" "From Mt. Zion"
-  And I select a route "ucsf_shuttle_ending_at" "To 654 Minnesota"
+  Then I should see "From Parnassus Campus" selected
+  And I should see "To Mission Bay Campus" selected
+  And I select a route "From Mt. Zion"
+  And I select a route "To 654 Minnesota"
   And I route the trip
   Then I should see "Suggested Routes"
   And I visit the Shuttle Trip Planner page
-  Then I should see the route "ucsf_shuttle_starting_from" "From Mt. Zion"
-  And I should see the route "ucsf_shuttle_ending_at" "To 654 Minnesota"
+  Then I should see "From Mt. Zion" selected
+  And I should see "To 654 Minnesota" selected
 
 Scenario: Remember Reversed Trip
   Given my localStorage is empty
   And I visit the Shuttle Trip Planner page
-  Then I should see the route "ucsf_shuttle_starting_from" "From Parnassus Campus"
-  And I should see the route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
-  And I select a route "ucsf_shuttle_starting_from" "From Mt. Zion"
-  And I select a route "ucsf_shuttle_ending_at" "To 654 Minnesota"
+  Then I should see "From Parnassus Campus" selected
+  And I should see "To Mission Bay Campus" selected
+  And I select a route "From Mt. Zion"
+  And I select a route "To 654 Minnesota"
   And I route the trip
   Then I should see "Suggested Routes"
   And I reverse the trip
   And I route the trip
   Then I should see "Suggested Routes"
   And I visit the Shuttle Trip Planner page
-  Then I should see the route "ucsf_shuttle_starting_from" "From 654 Minnesota"
-  And I should see the route "ucsf_shuttle_ending_at" "To Mt. Zion"
+  Then I should see "From 654 Minnesota" selected
+  And I should see "To Mt. Zion" selected
 
 Scenario: Show Multiple Shuttles
   Given I visit the Shuttle Trip Planner page
-  And I select a route "ucsf_shuttle_starting_from" "From 16th St. BART"
-  And I select a route "ucsf_shuttle_ending_at" "To Mission Center Building"
-  And I select "Arrive by"
-  And I select "8:00am"
+  And I select a route "From 16th St. BART"
+  And I select a route "To Mission Center Building"
+  And I select "Arrive by" for "when"
+  And I select "8:00 AM" for "time"
   And I route the trip
   Then I should see "Red"
   And I should see "Yellow"
@@ -46,10 +46,10 @@ Scenario: Optimal Route From Mission Bay To Buchanan Dental Center
   Given I am on the home page
   And I click "Shuttle"
   And I click "Trip Planner"
-  And I select a route "ucsf_shuttle_starting_from" "From Mission Bay Campus"
-  And I select a route "ucsf_shuttle_ending_at" "To Buchanan Dental Center"
+  And I select a route "From Mission Bay Campus"
+  And I select a route "To Buchanan Dental Center"
   And I select "Depart at" for "when"
-  And I select "9:00am" for "time"
+  And I select "9:00 AM" for "time"
   And I route the trip
   Then I should see "Red"
 
@@ -57,10 +57,10 @@ Scenario: Optimal Route From Buchanan Dental Center To Mission Bay
   Given I am on the home page
   And I click "Shuttle"
   And I click "Trip Planner"
-  And I select a route "ucsf_shuttle_starting_from" "From Buchanan Dental Center"
-  And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
+  And I select a route "From Buchanan Dental Center"
+  And I select a route "To Mission Bay Campus"
   And I select "Depart at" for "when"
-  And I select "9:00am" for "time"
+  And I select "9:00 AM" for "time"
   And I route the trip
   Then I should see "Red"
 
@@ -69,16 +69,16 @@ Scenario: Plans don't break back button
   And I click "Shuttle"
   And I click "Trip Planner"
   And I select "Depart at" for "when"
-  And I select "9:00pm" for "time"
-  And I select a route "ucsf_shuttle_starting_from" "From Parnassus Campus"
-  And I select a route "ucsf_shuttle_ending_at" "To Mission Bay Campus"
+  And I select "9:00 PM" for "time"
+  And I select a route "From Parnassus Campus"
+  And I select a route "To Mission Bay Campus"
   And I route the trip
   Then I should see "Suggested Routes"
   And I should not see "Red"
   And I should see "Grey"
-  And I select a route "ucsf_shuttle_starting_from" "From Mission Center Building"
-  And I select a route "ucsf_shuttle_ending_at" "To 16th St. BART"
-  And I select "9:00am" for "time"
+  And I select a route "From Mission Center Building"
+  And I select a route "To 16th St. BART"
+  And I select "9:00 AM" for "time"
   And I route the trip
   Then I should see "Suggested Routes"
   And I should see "Red"
@@ -95,3 +95,15 @@ Scenario: Time and Date buttons enabled on routes that aren't "Leave Now"
   And I route the trip
   Then I should see "Suggested Routes"
   And "datetime" should not be disabled
+
+Scenario: Route impossible trip, then route possible trip
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "From Mission Center Building"
+  And I select a route "To Mission Center Building"
+  And I route the trip
+  Then I should see "No options found"
+  And I select a route "To Mission Bay Campus"
+  And I route the trip
+  Then I should not see "No options found"
