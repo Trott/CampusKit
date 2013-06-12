@@ -99,7 +99,6 @@
                         }
                         $scope.$apply();
                     },
-                    //TODO: resultsElement.scrollIntoView();
                     function () {
                     //TODO: uh, yeah, this
                         $scope.$apply();
