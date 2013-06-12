@@ -186,6 +186,7 @@
                         $scope.stopsLoadError = true;
                     }
                 }).error(function () {
+                    $scope.isLoading = false;
                     $scope.stopsLoadError = true;
                 });
 
