@@ -106,8 +106,6 @@ ucsf.shuttle.renderSchedule)
             UCSF.Shuttle.stops(
                 options,
                 function (data) {
-                    window.console.log(options);
-                    window.console.log(data);
                     $scope.loading = false;
                     $scope.stops = data.stops || [];
 
