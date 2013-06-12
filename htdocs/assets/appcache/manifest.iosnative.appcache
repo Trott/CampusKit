@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#06-Jun-2013
+#12-Jun-2013
 
 CACHE:
 
@@ -35,11 +35,13 @@ CACHE:
 /assets/css/main.css
 /assets/css/mainPage.css
 /assets/css/secondary.css
+/assets/css/shuttle.css
 
 #style sheet images
 /assets/img/select-options-bg.png
 /assets/img/background-decor.png
 /assets/img/external-link.png
+/assets/img/select-options-bg.png
 /assets/img/ucsf-header-separator.png
 /assets/img/ucsf-list-arrow.png
 /assets/img/watermark.png
@@ -50,6 +52,15 @@ CACHE:
 //www.google.com/jsapi
 //www.google-analytics.com/ga.js
 /assets/js/ucsf.js
+/assets/js/angular.js
+/assets/js/shuttle.js
+
+# partials for shuttle app
+/shuttle/partials/main_menu.html
+/shuttle/partials/planner.html
+/shuttle/partials/routeList.html
+/shuttle/partials/schedule.html
+/shuttle/partials/stopList.html
 
 NETWORK:
 *

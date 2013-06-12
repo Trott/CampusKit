@@ -61,14 +61,13 @@
     margin: 1em 50% 0 50%;
 }
 
-ol.shuttle-times-listing {
-    margin: auto;
-    width: 12em;
+.shuttle-times-listing ol {
+    list-style-type: none;
+    text-align: left;
 }
 
-.shuttle-times-listing li {
-    border: 0;
-    padding: 0.1em 0;
-    font-weight: normal;
-    text-align: left
+.shuttle-times-listing {
+    margin: auto;
+    display: table;
+    text-align:center
 }

@@ -12,3 +12,10 @@ Scenario: Show Direction
   And I click "Mission Center Building"
   Then I should see "to 16th St. BART"
   And I should see "to Mission Bay"
+
+Scenario: Get By Location
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Location"
+  Then I should see "16th St. BART"
+  And I should see "VA Medical Center"
