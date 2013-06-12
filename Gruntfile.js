@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
-                predef: ['UCSF','FastClick','Modernizr','Hogan','google'],
+                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
                 boss: true,
                 eqnull: true,
                 browser: true
