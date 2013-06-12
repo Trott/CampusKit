@@ -6,5 +6,6 @@
             <a href="#/schedule/{{route.id.id}}"><div class="shuttle-color {{route.id.id}}"></div> {{route.routeShortName}}</a>
         </li>
     </ol>
+    <p data-ng-show="routes.length===0 && !loadError">No shuttles found.</p>
     <p data-ng-show="loadError">Could not load content. Please try again later.</p>
 </section>

@@ -14,7 +14,8 @@ ucsf.shuttle.renderSchedule)
         .when('/planner', {templateUrl: 'partials/planner.html', controller: 'planController'})
         .when('/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/planner.html', controller: 'planController'})
         .when('/list', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
-        .when('/list/:location', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
+        .when('/schedule//:stop', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
+        .when('/locations', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
         .when('/schedule/:route', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
         .when('/schedule/:route/:stop', {templateUrl: 'partials/schedule.html', controller: 'scheduleController'})
         .otherwise({redirectTo: '/'});
@@ -96,21 +97,25 @@ ucsf.shuttle.renderSchedule)
             $scope.loading = true;
             $scope.loadError = false;
             var options = {
-                apikey: apikey,
-                routeId: $routeParams.route
+                apikey: apikey
             };
+            if ($routeParams.route) {
+                options.routeId = $routeParams.route;
+            }
 
             UCSF.Shuttle.stops(
                 options,
                 function (data) {
+                    window.console.log(options);
+                    window.console.log(data);
                     $scope.loading = false;
-                    if (data.route && data.route.id && data.stops) {
-                        $scope.stops = data.stops || {};
+                    $scope.stops = data.stops || [];
+
+                    if (data.route && data.route.id) {
                         $scope.routeShortName = data.route.routeShortName || '';
                         $scope.routeId = data.route.id.id;
-                    } else {
-                        $scope.loadError = true;
                     }
+                    $scope.loadError = $scope.stops.length === 0;
                     $scope.$apply();
                 },
                 function () {
@@ -123,11 +128,15 @@ ucsf.shuttle.renderSchedule)
     )
     .controller(
         'routeMenuController',
-        ['$scope', function ($scope) {
+        ['$scope', '$routeParams', function ($scope, $routeParams) {
             $scope.loading = true;
             $scope.loadError = false;
+            var options = {apikey: apikey};
+            if ($routeParams.stop) {
+                options.stopId = $routeParams.stop;
+            }
             UCSF.Shuttle.routes(
-                {apikey: apikey},
+                options,
                 function (data) {
                     $scope.loading = false;
                     $scope.routes = data.routes || {};
