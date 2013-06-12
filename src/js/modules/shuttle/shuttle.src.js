@@ -1,4 +1,4 @@
-/* global angular, Modernizr, localStorage */
+/* global UCSF, angular, Modernizr, localStorage */
 (function () {
     'use strict';
     angular.module('shuttle', [])
@@ -12,7 +12,9 @@
     .controller(
         'planController',
         ['$scope', '$filter', '$http', '$location', '$routeParams', function ($scope, $filter, $http, $location, $routeParams) {
-            var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
+            var apikey = 'c631ef46e918c82cf81ef4869f0029d4',
+                xhrFunction,
+                xhrOptions;
 
             if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
                 var planXhrParams = {
@@ -35,11 +37,21 @@
 
                 $scope.isLoading = true;
 
-                $http({
-                    method: 'GET',
-                    url: 'http://apis.ucsf.edu/shuttle/plan',
-                    params: planXhrParams
-                }).success(function (data) {
+                // UCSF is from a script only loaded in IE9 and below.
+                // It knows to use XDR if there's no XHR.
+                if (typeof UCSF !== 'undefined') {
+                    xhrFunction = UCSF.Shuttle.plan;
+                    xhrOptions = planXhrParams;
+                } else {
+                    xhrFunction = $http;
+                    xhrOptions = {
+                        method: 'GET',
+                        url: 'http://apis.ucsf.edu/shuttle/plan',
+                        params: planXhrParams
+                    };
+                }
+
+                xhrFunction(xhrOptions).success(function (data) {
                     $scope.isLoading = false;
                     $scope.planLoaded = true;
                     var plan = data.plan || {};
@@ -120,11 +132,22 @@
             $scope.planLoaded = false;
             $scope.planLoadError = false;
 
-            $http({
-                method: 'GET',
-                url: 'http://apis.ucsf.edu/shuttle/stops',
-                params: {apikey: apikey}
-            }).success(function (data) {
+
+            // UCSF is from a script only loaded in IE9 and below.
+            // It knows to use XDR if there's no XHR.
+            if (typeof UCSF !== 'undefined') {
+                xhrFunction = UCSF.Shuttle.stops;
+                xhrOptions = {apikey: apikey};
+            } else {
+                xhrFunction = $http;
+                xhrOptions = {
+                    method: 'GET',
+                    url: 'http://apis.ucsf.edu/shuttle/stops',
+                    params: {apikey: apikey}
+                };
+            }
+
+            xhrFunction(xhrOptions).success(function (data) {
                 $scope.isLoading = false;
                 if (data.stops) {
                     $scope.stops = $filter('orderBy')(data.stops, 'stopName');

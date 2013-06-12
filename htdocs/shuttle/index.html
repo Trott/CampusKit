@@ -9,26 +9,29 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css" media="screen">
     <!--[if lte IE 7]>
         <link rel="stylesheet" type="text/css" href="/assets/css/ie.css" media="screen">
-        <![endif]-->
-        <link rel="stylesheet" type="text/css" href="/assets/css/secondary.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/assets/css/shuttle.css" media="screen">
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/secondary.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/assets/css/shuttle.css" media="screen">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-    </head>
-    <body>
-        <header class="header"><a href="/"><div class="logo"></div><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/shuttle">Shuttle</a></span></header>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+</head>
+<body>
+    <header class="header"><a href="/"><div class="logo"></div><span>Mobile</span></a><img src="/assets/img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="/shuttle">Shuttle</a></span></header>
 
-        <div ng-view></div>
+    <div ng-view></div>
 
-        <footer><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
-        <script src="/assets/js/ucsf.js"></script>
-        <script src="/assets/js/angular.js"></script>
-        <script src="/assets/js/shuttle.js"></script>
-    </body>
-    </html>
-    <!--TODO: make sure all loading indicators show up and disappear correctly. -->
-    <!--TODO: Android Browser and IE, you are my mortal enemies. -->
+    <footer><p>University of California &copy; 2010-12 UC Regents<br><a href="/about">About</a> | <a href="/feedback/">Feedback</a></p></footer>
+    <script src="/assets/js/ucsf.js"></script>
+    <script src="/assets/js/angular.js"></script>
+    <!--[if lte IE 9]
+        <script src="http://apis.ucsf.edu/jsapi?shuttle"></src>
+    <![endif]-->
+    <script src="/assets/js/shuttle.js"></script>
+</body>
+</html>
+<!--TODO: make sure all loading indicators show up and disappear correctly. -->
+<!--TODO: Android Browser and IE, you are my mortal enemies. Solution is probably to go back to loading -->
