@@ -22,17 +22,16 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^directory/detail/([^?].*)$ /directory/detail/?$1 [L,R]
 
-    RewriteRule ^shuttle/route_trip(.*)$ /shuttle/planner/? [L,R]
-    RewriteRule ^shuttle/list/color /shuttle/list/ [L,R]
-    RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/list/ [L,R]
+    RewriteRule ^shuttle/route_trip(.*)$ /shuttle/#/planner [NE,L,R]
+    RewriteRule ^shuttle/list/color /shuttle/#/list [NE,L,R]
+    RewriteRule ^shuttle/list /shuttle/#/list [NE,L,R]
+    RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/#/list/ [NE,L,R]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shuttle/schedule/(.*) /shuttle/schedule/route/?$1 [L,R]
-    RewriteRule ^shuttle/list/location/.+$ /shuttle/list/location/ [L,R]
     RewriteRule ^shuttle/planner /shuttle/#/planner [NE,L,R]
-
-    # They have a link at http://manuals.ucsfmedicalcenter.org/NursingDept/
-    RewriteRule ^shuttle/options /shuttle/ [L,R]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^shuttle    /shuttle
 
     RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
     RewriteRule ^maps/campus.php$ /maps/ [L,R]
