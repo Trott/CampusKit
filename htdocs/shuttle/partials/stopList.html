@@ -1,5 +1,5 @@
 <div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
-<section class="menu">
+<section data-ng-hide="loading" class="menu">
     <h2><span data-ng-show="routeId" class="shuttle-color {{routeId}}"></span>{{routeShortName}} Shuttle Schedule</h2>
     <ol>
         <li data-ng-repeat="stop in stops | orderBy: 'stopName'">
