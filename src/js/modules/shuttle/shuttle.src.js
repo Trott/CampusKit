@@ -16,6 +16,10 @@
                 xhrFunction,
                 xhrOptions;
 
+            $scope.planLoading = false;
+            $scope.planLoaded = false;
+            $scope.planLoadError = false;
+
             if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
                 var planXhrParams = {
                     apikey: apikey,
@@ -35,12 +39,12 @@
                     planXhrParams.date = $filter('date')(date, 'M/d/yyyy');
                 }
 
-                $scope.isLoading = true;
+                $scope.planLoading = true;
 
                 UCSF.Shuttle.plan(
                     planXhrParams,
                     function (data) {
-                        $scope.isLoading = false;
+                        $scope.planLoading = false;
                         $scope.planLoaded = true;
                         var plan = data.plan || {};
                         if (plan.itineraries) {
@@ -100,7 +104,8 @@
                         $scope.$apply();
                     },
                     function () {
-                    //TODO: uh, yeah, this
+                        $scope.planLoading = false;
+                        $scope.planLoadError = true;
                         $scope.$apply();
                     }
                 );
@@ -117,16 +122,14 @@
             $scope.when = $scope.when || 'now';
             $scope.date = $scope.date || 0;
 
-            $scope.isLoading = true;
+            $scope.stopsLoading = true;
             $scope.stopsLoadError = false;
             $scope.stopsLoaded = false;
-            $scope.planLoaded = false;
-            $scope.planLoadError = false;
 
             UCSF.Shuttle.stops(
                 {apikey: apikey},
                 function (data) {
-                    $scope.isLoading = false;
+                    $scope.stopsLoading = false;
                     if (data.stops) {
                         $scope.stops = $filter('orderBy')(data.stops, 'stopName');
 
@@ -155,7 +158,7 @@
                     $scope.$apply();
                 },
                 function () {
-                    $scope.isLoading = false;
+                    $scope.stopsLoading = false;
                     $scope.stopsLoadError = true;
                     $scope.$apply();
                 }

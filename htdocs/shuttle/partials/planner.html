@@ -1,5 +1,5 @@
 <p data-ng-show="stopsLoadError">Content could not be loaded. Please try again later.</p>
-<div data-ng-show="isLoading"><progress><span class="spinner"></span></progress></div>
+<div data-ng-show="stopsLoading || planLoading"><progress><span class="spinner"></span></progress></div>
 <div data-ng-show="planLoaded" class="content">
     <h2>Suggested Routes</h2>
     <div data-ng-repeat="itinerary in itineraries">
