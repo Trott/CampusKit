@@ -1,19 +1,150 @@
 /* global UCSF, angular, Modernizr, localStorage */
+/* former schedule render code:
+
+ucsf.shuttle.renderSchedule)
+
+*/
 (function () {
     'use strict';
+    var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
         .when('/', {templateUrl: 'partials/main_menu.html'})
         .when('/planner', {templateUrl: 'partials/planner.html', controller: 'planController'})
         .when('/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/planner.html', controller: 'planController'})
+        .when('/list', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
+        .when('/list/:location', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
+        .when('/schedule/:route', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
+        .when('/schedule/:route/:stop', {templateUrl: 'partials/schedule.html', controller: 'scheduleController'})
         .otherwise({redirectTo: '/'});
     }])
     .controller(
+        'scheduleController',
+        ['$scope', '$routeParams', '$filter', function ($scope, $routeParams, $filter) {
+            $scope.loading = true;
+            $scope.loadError = false;
+            $scope.loaded = false;
+
+            var startTime = new Date().setHours(0,0,0,0);
+
+            var options = {
+                apikey: apikey,
+                routeId: $routeParams.route,
+                stopId: $routeParams.stop,
+                startTime: startTime,
+                endTime: startTime + 86399999
+            };
+
+            var getTimes = function () {
+                UCSF.Shuttle.times(
+                    options,
+                    function (data) {
+                        $scope.loading = false;
+                        $scope.loadError = !! data.error;
+                        $scope.loaded = ! $scope.loadError;
+                        $scope.times = [];
+                        if (data.times && data.times.length > 0) {
+                            $scope.times = data.times;
+                            var sample = data.times[0];
+                            if (sample && sample.trip) {
+                                $scope.routeShortName = sample.trip.route && sample.trip.route.shortName;
+                                $scope.routeId = sample.trip.routeId && sample.trip.routeId.id;
+                            }
+                        }
+                        $scope.startTime = startTime;
+                        $scope.$apply();
+                    },
+                    function () {
+                        $scope.loading = false;
+                        $scope.loadError = true;
+                        $scope.$apply();
+                    }
+                );
+            };
+
+            $scope.changeDay = function (changeBy) {
+                var changeInMs = changeBy * 86400000;
+                startTime = options.startTime += changeInMs;
+                options.endTime += changeInMs;
+                $scope.loading = true;
+                $scope.loaded = false;
+                getTimes();
+            };
+
+            getTimes();
+
+            // Look up stop name. Yup. Its own request. Lame. Total opportunity to improve things here, someone, anyone?
+            UCSF.Shuttle.stops(
+                {apikey: apikey, routeId: $routeParams.route},
+                function (data) {
+                    var stop = $filter('filter')(data.stops, function (elem) {
+                        return elem.id && elem.id.id === $routeParams.stop;
+                    }).pop();
+                    $scope.stopName = stop && stop.stopName;
+                    $scope.$apply();
+                },
+                function () {
+                    // Couldn't load the stop name. Not crucial. Fail silently.
+                }
+            );
+        }]
+    )
+    .controller(
+        'stopController',
+        ['$scope', '$routeParams', function ($scope, $routeParams) {
+            $scope.loading = true;
+            $scope.loadError = false;
+            var options = {
+                apikey: apikey,
+                routeId: $routeParams.route
+            };
+
+            UCSF.Shuttle.stops(
+                options,
+                function (data) {
+                    $scope.loading = false;
+                    if (data.route && data.route.id && data.stops) {
+                        $scope.stops = data.stops || {};
+                        $scope.routeShortName = data.route.routeShortName || '';
+                        $scope.routeId = data.route.id.id;
+                    } else {
+                        $scope.loadError = true;
+                    }
+                    $scope.$apply();
+                },
+                function () {
+                    $scope.loading = false;
+                    $scope.loadError = true;
+                    $scope.$apply();
+                }
+            );
+        }]
+    )
+    .controller(
+        'routeMenuController',
+        ['$scope', function ($scope) {
+            $scope.loading = true;
+            $scope.loadError = false;
+            UCSF.Shuttle.routes(
+                {apikey: apikey},
+                function (data) {
+                    $scope.loading = false;
+                    $scope.routes = data.routes || {};
+                    $scope.$apply();
+                },
+                function () {
+                    $scope.loading = false;
+                    $scope.loadError = true;
+                    $scope.$apply();
+                }
+            );
+        }]
+    )
+    .controller(
         'planController',
         ['$scope', '$filter', '$location', '$routeParams', function ($scope, $filter, $location, $routeParams) {
-            var apikey = 'c631ef46e918c82cf81ef4869f0029d4',
-                xhrFunction,
+            var xhrFunction,
                 xhrOptions;
 
             $scope.planLoading = false;

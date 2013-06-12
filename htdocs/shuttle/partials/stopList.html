@@ -1,0 +1,8 @@
+<div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
+<section class="menu">
+    <h2>{{routeShortName}} Shuttle Schedule</h2>
+    <ol>
+        <li data-ng-repeat="stop in stops"><a href="#/schedule/{{routeId}}/{{stop.id.id}}">{{stop.stopName}}</a></li>
+    </ol>
+    <p data-ng-show="loadError">Could not load content.</p>
+</section>
