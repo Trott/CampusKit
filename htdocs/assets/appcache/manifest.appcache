@@ -54,11 +54,11 @@ CACHE:
 /assets/js/shuttle.js
 
 # partials for shuttle app
-/shuttle/partials/main_menu.html
-/shuttle/partials/planner.html
-/shuttle/partials/routeList.html
-/shuttle/partials/schedule.html
-/shuttle/partials/stopList.html
+# /shuttle/partials/main_menu.html
+# /shuttle/partials/planner.html
+# /shuttle/partials/routeList.html
+# /shuttle/partials/schedule.html
+# /shuttle/partials/stopList.html
 
 NETWORK:
 *
