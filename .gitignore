@@ -3,5 +3,4 @@ components
 node_modules
 robots.txt
 tmp
-htdocs/assets/js
-htdocs/assets/css
+htdocs
