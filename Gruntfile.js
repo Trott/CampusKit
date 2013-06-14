@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             install: {}
         },
 
-        clean: ['htdocs/*', 'tmp/*'],
+        clean: ['htdocs/*', 'tmp/*', 'components/*', 'lib/*'],
 
         concat: {
             full: {
