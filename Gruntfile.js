@@ -148,12 +148,16 @@ module.exports = function(grunt) {
                 tasks: ['jshint:gruntfile']
             },
             js: {
-                files: ['src/js/**/*.js'],
+                files: [site + '/js/**/*.js'],
                 tasks: ['js']
             },
             css: {
-                files: ['src/sass/*.scss'],
+                files: [site + '/sass/*.scss'],
                 tasks: ['compass:dist']
+            },
+            html: {
+                files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
+                tasks: ['copy']
             }
         }
     });
