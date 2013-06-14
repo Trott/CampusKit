@@ -40,6 +40,7 @@ module.exports = function(grunt) {
         copy : {
             main: {
                 files: [
+                    {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: 'htdocs/'},
                     {expand: true, cwd: site, src: ['appcache/**'], dest: 'htdocs/assets/'},
                     {expand: true, cwd: site, src: ['img/**'], dest: 'htdocs/assets/'}
                 ]
@@ -153,5 +154,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-rsync');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'compass:dist']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'compass:dist', 'copy']);
 };
