@@ -9,7 +9,12 @@ module.exports = function(grunt) {
             install: {}
         },
 
-        clean: ['htdocs/*', 'tmp/*', 'components/*', 'lib/*'],
+        clean: {
+            all: {
+                dot: true,
+                src: ['htdocs/*', 'tmp/*', 'components/*', 'lib/*']
+            }
+        },
 
         compass: {
             dist: {
@@ -51,6 +56,7 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: 'htdocs/'},
                     {expand: true, cwd: site, src: ['appcache/**'], dest: 'htdocs/assets/'},
+                    {expand: true, cwd: site, src: ['font/**'], dest: 'htdocs/assets/'},
                     {expand: true, cwd: site, src: ['img/**'], dest: 'htdocs/assets/'}
                 ]
             }
