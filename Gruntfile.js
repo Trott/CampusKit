@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             install: {}
         },
 
-        clean: ['htdocs/', 'tmp'],
+        clean: ['htdocs/*', 'tmp/*'],
 
         concat: {
             full: {
@@ -25,7 +25,14 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    config: 'config.rb'
+                    cssDir: 'htdocs/assets/css',
+                    httpStylesheetsPath: '/assets/css',
+                    sassDir: site + '/sass',
+                    imagesDir: 'htdocs/assets/img',
+                    httpImagesPath: '/assets/img',
+                    javascriptsDir: 'htdocs/assets/js',
+                    httpJavascriptsPath: '/assets/js',
+                    outputStyle: 'compressed'
                 }
             }
         },
