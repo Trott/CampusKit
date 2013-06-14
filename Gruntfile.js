@@ -165,4 +165,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
     grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'compass:dist', 'copy']);
+    grunt.registerTask('server', ['connect:server']);
 };
