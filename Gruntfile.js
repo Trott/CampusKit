@@ -11,17 +11,6 @@ module.exports = function(grunt) {
 
         clean: ['htdocs/*', 'tmp/*', 'components/*', 'lib/*'],
 
-        concat: {
-            full: {
-                src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
-                dest: 'htdocs/assets/js/campuskit.js'
-            },
-            partial: {
-                src: ['src/js/campuskit.src.js', site + '/js/*.src.js'],
-                dest: 'tmp/campuskit.partial.js'
-            }
-        },
-
         compass: {
             dist: {
                 options: {
@@ -34,6 +23,25 @@ module.exports = function(grunt) {
                     httpJavascriptsPath: '/assets/js',
                     outputStyle: 'compressed'
                 }
+            }
+        },
+
+        concat: {
+            full: {
+                src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
+                dest: 'htdocs/assets/js/campuskit.js'
+            },
+            partial: {
+                src: ['src/js/campuskit.src.js', site + '/js/*.src.js'],
+                dest: 'tmp/campuskit.partial.js'
+            }
+        },
+
+        copy : {
+            main: {
+                files: [
+                    {expand: true, cwd: site, src: ['img/**'], dest: 'htdocs/assets/'}
+                ]
             }
         },
 
@@ -137,6 +145,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
