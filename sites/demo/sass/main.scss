@@ -1,7 +1,7 @@
 @import "topcoat";
 
 .topcoat-icon-button {
-	margin: 1em;
+	margin: 1rem;
 }
 
 .icon--feedback {
@@ -9,4 +9,20 @@
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+}
+
+.icon--info {
+	background: url("../img/icons/circle_outline.svg") no-repeat;
+	-webkit-background-size: cover;
+ 	-moz-background-size: cover;
+  	background-size: cover;
+
+  	line-height: 1.5rem;
+  	text-align: center;
+  	font-family: serif;
+  	font-style: italic;
+}
+
+.icon--info:after {
+	content: 'i';
 }
