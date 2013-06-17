@@ -1,0 +1,26 @@
+CACHE MANIFEST
+
+#version 1.0 6-17-2013
+
+CACHE:
+
+#images
+
+
+#internal HTML documents
+
+
+#style sheets
+http://localhost:8000/assets/css/main.css
+
+#style sheet images
+http://localhost:8000/assets/img/hamburger_dark.svg
+http://localhost:8000/assets/img/icons/circle_outline.svg
+http://localhost:8000/assets/img/icons/feedback.svg
+http://localhost:8000/assets/img/search.svg
+
+#javascript files
+http://localhost:8000/assets/js/campuskit.js
+
+NETWORK:
+*
