@@ -1,14 +1,7 @@
 @import "topcoat";
 
-.topcoat-icon-button {
+.padded {
 	margin: 1rem;
-}
-
-.icon--home {
-  background: url("../img/icons/home.svg") no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
 }
 
 .icon--feedback {
@@ -18,17 +11,33 @@
   background-size: cover;
 }
 
-.icon--info {
+.icon--large--info {
 	background: url("../img/icons/circle_outline.svg") no-repeat;
 	-webkit-background-size: cover;
  	-moz-background-size: cover;
   	background-size: cover;
 
-  	line-height: 1.5rem;
+  	line-height: 2.5rem;
   	text-align: center;
   	font-family: serif;
   	font-style: italic;
+  	font-weight: 400;
+  	font-size: 2rem;
 }
-.icon--info:after {
+.icon--large--info:after {
 	content: 'i';
+}
+
+.float-left {
+	float: left;
+	margin-right: 1rem;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+section {
+    border: 1px solid;
+    padding: 0 1rem;
 }
