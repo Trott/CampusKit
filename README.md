@@ -6,10 +6,10 @@ See it in action at http://m.ucsf.edu/.
 Prerequisites
 -
 
-* node (http://nodejs.org/download/)
-* grunt (http://gruntjs.com/getting-started)
-* bower
-* compass (which in turn requires sass and ruby)
+* [node](http://nodejs.org/download/)
+* [grunt](http://gruntjs.com/getting-started)
+* [bower](http://bower.io/)
+* [compass](http://compass-style.org/install/) (which in turn requires sass and ruby)
 
 
 Quick Start
