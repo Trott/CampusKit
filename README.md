@@ -6,7 +6,6 @@ See it in action at http://m.ucsf.edu/.
 Prerequisites
 -
 
-* git
 * node (http://nodejs.org/download/)
 * grunt (http://gruntjs.com/getting-started)
 * bower
@@ -16,7 +15,7 @@ Prerequisites
 Quick Start
 -
 
-1. Clone the repo
+1. Clone the repo or [download CampusKit](https://github.com/Trott/CampusKit/tags)
 2. `cd CampusKit`
 3. `npm install`
 4. `grunt`
