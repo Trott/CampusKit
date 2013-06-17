@@ -4,6 +4,13 @@
 	margin: 1rem;
 }
 
+.icon--home {
+  background: url("../img/icons/home.svg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
 .icon--feedback {
   background: url("../img/icons/feedback.svg") no-repeat;
   -webkit-background-size: cover;
@@ -22,7 +29,6 @@
   	font-family: serif;
   	font-style: italic;
 }
-
 .icon--info:after {
 	content: 'i';
 }
