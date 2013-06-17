@@ -20,7 +20,7 @@ Quick Start
 2. `cd CampusKit`
 3. `npm install`
 4. `grunt`
-5. Make the `/htdocs` directory your docroot in your web server
+5. Make the `/htdocs` directory your docroot in your web server. Or just type `grunt server` and open `http://localhost:8000` in a web browser!
 
 
 License and Copyright
