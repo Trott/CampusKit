@@ -1,9 +1,5 @@
 @import "topcoat";
 
-.padded {
-	margin: 1rem;
-}
-
 .icon--feedback {
   background: url("../img/icons/feedback.svg") no-repeat;
   -webkit-background-size: cover;
@@ -33,15 +29,16 @@
 	margin-right: 1rem;
 }
 
-h2 {
+.underline {
     text-decoration: underline;
 }
 
-section {
+.boxed {
     border: 1px solid;
+    margin: 1rem;
     padding: 0 1rem;
 }
 
-code {
+.nowrap {
   white-space: nowrap;
 }
