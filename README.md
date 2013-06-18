@@ -21,6 +21,10 @@ Quick Start
 4. `grunt`
 5. Make the `/htdocs` directory your docroot in your web server. Or just type `grunt server` and open `http://localhost:8000` in a web browser!
 
+Video Tutorials
+-
+
+1. [Installing the CampusKit Demo Sites](http://www.youtube.com/watch?v=7AmiQxh_ETM)
 
 License and Copyright
 -
