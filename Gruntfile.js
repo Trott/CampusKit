@@ -3,6 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var site = 'sites/' + (grunt.option('site') || 'demo');
+    var dest = 'htdocs/';
 
     // Project configuration.
     grunt.initConfig({
@@ -13,19 +14,19 @@ module.exports = function (grunt) {
         clean: {
             all: {
                 dot: true,
-                src: ['htdocs/*', 'tmp/*', 'components/*', 'lib/*']
+                src: [dest + '*', 'tmp/*', 'components/*', 'lib/*']
             }
         },
 
         compass: {
             dist: {
                 options: {
-                    cssDir: 'htdocs/assets/css',
+                    cssDir: dest + 'assets/css',
                     httpStylesheetsPath: '/assets/css',
                     sassDir: site + '/sass',
-                    imagesDir: 'htdocs/assets/img',
+                    imagesDir: dest + 'assets/img',
                     httpImagesPath: '/assets/img',
-                    javascriptsDir: 'htdocs/assets/js',
+                    javascriptsDir: dest + 'assets/js',
                     httpJavascriptsPath: '/assets/js',
                     outputStyle: 'compressed'
                 }
@@ -35,7 +36,7 @@ module.exports = function (grunt) {
         concat: {
             full: {
                 src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
-                dest: 'htdocs/assets/js/campuskit.js'
+                dest: dest + 'assets/js/campuskit.js'
             },
             partial: {
                 src: ['src/js/campuskit.src.js', site + '/js/*.src.js'],
@@ -55,10 +56,10 @@ module.exports = function (grunt) {
         copy : {
             main: {
                 files: [
-                    {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: 'htdocs/'},
-                    {expand: true, cwd: site, src: ['appcache/**'], dest: 'htdocs/assets/'},
-                    {expand: true, cwd: site, src: ['font/**'], dest: 'htdocs/assets/'},
-                    {expand: true, cwd: site, src: ['img/**'], dest: 'htdocs/assets/'}
+                    {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
+                    {expand: true, cwd: site, src: ['appcache/**'], dest: dest + 'assets/'},
+                    {expand: true, cwd: site, src: ['font/**'], dest: dest + 'assets/'},
+                    {expand: true, cwd: site, src: ['img/**'], dest: dest + 'assets/'}
                 ]
             }
         },
@@ -114,11 +115,6 @@ module.exports = function (grunt) {
                     sequences: false
                 }
             },
-            angular: {
-                files: {
-                    'htdocs/assets/js/angular.js': ['lib/angular/angular.js']
-                }
-            },
             fastclick: {
                 files: {
                     'tmp/fastclick.min.js': ['lib/fastclick/fastclick.js']
@@ -135,7 +131,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: site + '/js/modules/',
                         src: ['**/*.js'],
-                        dest: 'htdocs/assets/js/modules/',
+                        dest: dest + 'assets/js/modules/',
                         ext: '.js',
                         flatten: true
                     }
