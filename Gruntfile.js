@@ -1,5 +1,6 @@
 /*global module:false*/
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    'use strict';
 
     var site = 'sites/' + (grunt.option('site') || 'demo');
 
@@ -89,21 +90,21 @@ module.exports = function(grunt) {
         },
 
         rsync: {
-            "deploy-staging": {
-                src: "htdocs/",
-                dest: "/var/www/html",
-                host: "m-stage",
+            'deploy-staging': {
+                src: 'htdocs/',
+                dest: '/var/www/html',
+                host: 'm-stage',
                 recursive: true,
                 syncDest: true,
-                args: ["--links"]
+                args: ['--links']
             },
-            "deploy-live": {
-                src: "htdocs/",
-                dest: "/var/www/html",
-                host: "m",
+            'deploy-live': {
+                src: 'htdocs/',
+                dest: '/var/www/html',
+                host: 'm',
                 recursive: true,
                 syncDest: true,
-                args: ["--links"]
+                args: ['--links']
             }
         },
 
