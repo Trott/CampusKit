@@ -1,7 +1,7 @@
-.sass-cache
-components
-node_modules
+/.sass-cache
+/components
+/node_modules
 robots.txt
-tmp
-htdocs
-lib
+/tmp
+/htdocs
+/lib
