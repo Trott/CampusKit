@@ -1,9 +1,3 @@
-/* global UCSF, angular, Modernizr, localStorage */
-/* former schedule render code:
-
-ucsf.shuttle.renderSchedule)
-
-*/
 (function () {
     'use strict';
     var apikey = 'c631ef46e918c82cf81ef4869f0029d4';

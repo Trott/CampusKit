@@ -11,6 +11,10 @@ Prerequisites
 * [bower](http://bower.io/)
 * [compass](http://compass-style.org/install/) (which in turn requires sass and ruby)
 
+If you wish to build native apps, you will also need:
+
+* [phonegap-cli](https://github.com/mwbrooks/phonegap-cli)
+* an account at build.phonegap.com(http://build.phonegap.com)
 
 Quick Start
 -
