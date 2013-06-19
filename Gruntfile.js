@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var site = 'sites/' + (grunt.option('site') || 'demo');
-    var dest = 'htdocs/';
+    var dest = 'htdocs';
 
     // Project configuration.
     grunt.initConfig({
@@ -14,20 +14,20 @@ module.exports = function (grunt) {
         clean: {
             all: {
                 dot: true,
-                src: [dest + '*', 'tmp/*', 'components/*', 'lib/*']
+                src: [dest + '/*', 'tmp/*', 'components/*', 'lib/*']
             }
         },
 
         compass: {
             dist: {
                 options: {
-                    cssDir: dest + 'assets/css',
-                    httpStylesheetsPath: '/assets/css',
+                    cssDir: dest + '/css',
+                    httpStylesheetsPath: '/css',
                     sassDir: site + '/sass',
-                    imagesDir: dest + 'assets/img',
-                    httpImagesPath: '/assets/img',
-                    javascriptsDir: dest + 'assets/js',
-                    httpJavascriptsPath: '/assets/js',
+                    imagesDir: dest + '/img',
+                    httpImagesPath: '/img',
+                    javascriptsDir: dest + '/js',
+                    httpJavascriptsPath: '/js',
                     outputStyle: 'compressed'
                 }
             }
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
         concat: {
             full: {
                 src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
-                dest: dest + 'assets/js/campuskit.js'
+                dest: dest + '/js/campuskit.js'
             },
             partial: {
                 src: ['src/js/campuskit.src.js', site + '/js/*.src.js'],
@@ -57,9 +57,9 @@ module.exports = function (grunt) {
             main: {
                 files: [
                     {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
-                    {expand: true, cwd: site, src: ['appcache/**'], dest: dest + 'assets/'},
-                    {expand: true, cwd: site, src: ['font/**'], dest: dest + 'assets/'},
-                    {expand: true, cwd: site, src: ['img/**'], dest: dest + 'assets/'}
+                    {expand: true, cwd: site, src: ['appcache/**'], dest: dest},
+                    {expand: true, cwd: site, src: ['font/**'], dest: dest},
+                    {expand: true, cwd: site, src: ['img/**'], dest: dest}
                 ]
             }
         },
@@ -131,7 +131,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: site + '/js/modules/',
                         src: ['**/*.js'],
-                        dest: dest + 'assets/js/modules/',
+                        dest: dest + '/js/modules/',
                         ext: '.js',
                         flatten: true
                     }
