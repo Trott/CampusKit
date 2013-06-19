@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         clean: {
             all: {
                 dot: true,
-                src: [dest + '/*', 'tmp/*', 'components/*', 'lib/*']
+                src: [dest + '/*', 'tmp/*', 'components/*', 'lib/*', 'phonegap/platforms/*']
             }
         },
 
