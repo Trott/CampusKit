@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-#version 1.1 6-17-2013
+#version 1.0 6-18-2013
 
 CACHE:
 
@@ -11,21 +11,21 @@ CACHE:
 
 
 #style sheets
-/assets/css/main.css
+/css/main.css
 
 #style sheet images
-/assets/img/hamburger_dark.svg
-/assets/img/icons/circle_outline.svg
-/assets/img/icons/feedback.svg
-/assets/img/search.svg
+/img/hamburger_dark.svg
+/img/icons/circle_outline.svg
+/img/icons/feedback.svg
+/img/search.svg
 
 #style sheet fonts
-/assets/font/SourceSansPro-Regular.otf
-/assets/font/SourceSansPro-Light.otf
-/assets/font/SourceSansPro-Semibold.otf
+/font/SourceSansPro-Regular.otf
+/font/SourceSansPro-Light.otf
+/font/SourceSansPro-Semibold.otf
 
 #javascript files
-/assets/js/campuskit.js
+/js/campuskit.js
 
 NETWORK:
 *
