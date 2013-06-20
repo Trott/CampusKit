@@ -26,10 +26,13 @@ module.exports = function (grunt) {
         {expand: true, cwd: site, src: ['img/**'], dest: dest}
     ];
 
+    var configCleanAllSrc = [dest + '/*', 'tmp/*', 'components/*', 'lib/*'];
+
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption, src:'**', dest: dest}
         );
+        configCleanAllSrc.push('phonegap/platforms/*');
     }
 
     // Project configuration.
@@ -41,7 +44,7 @@ module.exports = function (grunt) {
         clean: {
             all: {
                 dot: true,
-                src: [dest + '/*', 'tmp/*', 'components/*', 'lib/*', 'phonegap/platforms/*']
+                src: configCleanAllSrc
             }
         },
 
