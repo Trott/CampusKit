@@ -74,7 +74,7 @@ ucsf.maps =  {
         var mapType = new google.maps.ImageMapType({
             tileSize: new google.maps.Size(256,256),
             getTileUrl: function(coord,zoom) {
-                return "/maps/img/tiles/"+zoom+"/"+coord.x+"/"+coord.y+".png";
+                return "http://apis.ucsf.edu/map/tile/"+zoom+"/"+coord.x+"/"+coord.y;
             }
         });
         var map = new google.maps.Map(document.getElementById("map_canvas"),
