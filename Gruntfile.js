@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
-            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption, src:'**', dest: dest}
+            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption, src: '**', dest: dest}
         );
         configCleanAllSrc.push('phonegap/platforms/*');
     }
