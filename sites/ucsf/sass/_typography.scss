@@ -67,7 +67,7 @@ a {
       for example, and also in .menu.detailed (see comment for no-ext-ind).
 */
 a[rel~=external]:after, span.external:after, .detailed li a span.external:after  {
-    content: "\a0 " url(/img/external-link.png);
+    content: "\a0 " url(../img/external-link.png);
 }
 
 /* Allow suppression of external link indicator via class "no-ext-ind".
