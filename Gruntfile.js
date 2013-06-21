@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     var siteOption = grunt.option('site') || 'demo';
     var platformOption = grunt.option('platform') || 'web';
 
-    if (platformOption in ['web','phonegap']) {
+    if (platformOption in ['web', 'phonegap']) {
         grunt.fail.fatal('Platform must be either "web" or "phonegap"');
     }
 
