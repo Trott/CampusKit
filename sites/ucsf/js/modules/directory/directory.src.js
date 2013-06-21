@@ -26,7 +26,7 @@ ucsf.directory = (function () {
                 if (! (result[i].hasOwnProperty('id') && result[i].hasOwnProperty('name'))) {
                     continue;
                 }
-                searchHTML = searchHTML + '<li><a href="/directory/detail/?' + encodeURIComponent(result[i].id) + '">';
+                searchHTML = searchHTML + '<li><a href="detail/index.html?' + encodeURIComponent(result[i].id) + '">';
                 searchHTML = searchHTML + '<span style="">';
                 searchHTML = searchHTML + result[i].name;
                 if (result[i].hasOwnProperty('department')) {
@@ -75,7 +75,7 @@ ucsf.directory = (function () {
 
                 if (myProfile.hasOwnProperty("ProfilesURL")) {
                     var profileLink = document.createElement("a");
-                    profileLink.setAttribute("href","/research/?fno=" + me.id);
+                    profileLink.setAttribute("href","../../research/index.html?fno=" + me.id);
                     profileLink.innerHTML = 'Research &amp; Publications';
                     var currentItem = document.createElement("li");
                     currentItem.appendChild(profileLink);

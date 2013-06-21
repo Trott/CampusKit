@@ -2,8 +2,8 @@ body {
     width:100%;
     background: rgba(98,172,180,1); /*Old browsers*/
     @include background(
-        url(/img/watermark.png), 
-        url(/img/background-decor.png),
+        url(../img/watermark.png), 
+        url(../img/background-decor.png),
         radial-gradient(center, ellipse cover, rgba(141,201,207,1) 0%, rgba(98,172,180,1) 100%));
     background-repeat:no-repeat, no-repeat, no-repeat;
     background-position:left top, right bottom, left top;

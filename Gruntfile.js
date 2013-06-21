@@ -2,8 +2,38 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var site = 'sites/' + (grunt.option('site') || 'demo');
-    var dest = 'htdocs';
+    var siteOption = grunt.option('site') || 'demo';
+    var platformOption = grunt.option('platform') || 'web';
+
+    if (platformOption in ['web', 'phonegap']) {
+        grunt.fail.fatal('Platform must be either "web" or "phonegap"');
+    }
+
+    var site = 'sites/' + siteOption;
+
+    var dest;
+
+    if (platformOption === 'phonegap') {
+        dest = 'phonegap/www';
+    } else {
+        dest = 'htdocs';
+    }
+
+    var configCopyMainFiles = [
+        {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
+        {expand: true, cwd: site, src: ['appcache/**'], dest: dest},
+        {expand: true, cwd: site, src: ['font/**'], dest: dest},
+        {expand: true, cwd: site, src: ['img/**'], dest: dest}
+    ];
+
+    var configCleanAllSrc = [dest + '/*', 'tmp/*', 'components/*', 'lib/*'];
+
+    if (platformOption === 'phonegap') {
+        configCopyMainFiles.unshift(
+            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption, src: '**', dest: dest}
+        );
+        configCleanAllSrc.push('phonegap/platforms/*');
+    }
 
     // Project configuration.
     grunt.initConfig({
@@ -14,7 +44,7 @@ module.exports = function (grunt) {
         clean: {
             all: {
                 dot: true,
-                src: [dest + '/*', 'tmp/*', 'components/*', 'lib/*']
+                src: configCleanAllSrc
             }
         },
 
@@ -55,12 +85,7 @@ module.exports = function (grunt) {
 
         copy : {
             main: {
-                files: [
-                    {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
-                    {expand: true, cwd: site, src: ['appcache/**'], dest: dest},
-                    {expand: true, cwd: site, src: ['font/**'], dest: dest},
-                    {expand: true, cwd: site, src: ['img/**'], dest: dest}
-                ]
+                files: configCopyMainFiles
             }
         },
 
