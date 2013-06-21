@@ -118,7 +118,7 @@ if (document.getElementById('map_canvas')) {
 
 if (document.getElementById('locations_menu')) {
     var template = new Hogan.Template(
-        function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("locationList",c,p,1),c,p,0,17,72,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"/maps/map/?loc=");_.b(_.v(_.f("name",c,p,0)));_.b("\">");_.b(_.v(_.f("name",c,p,0)));_.b("</a></li>");});c.pop();}return _.fl();}
+        function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("locationList",c,p,1),c,p,0,17,72,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"../maps/map/index.html?loc=");_.b(_.v(_.f("name",c,p,0)));_.b("\">");_.b(_.v(_.f("name",c,p,0)));_.b("</a></li>");});c.pop();}return _.fl();}
     );
     document.getElementById('locations_menu').innerHTML = template.render(ucsf.maps);
 }
