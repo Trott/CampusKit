@@ -33,7 +33,7 @@ module.exports = function (grunt) {
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/www', src: '**', dest: dest},
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
         );
-        configCleanAllSrc.push('phonegap/platforms/*');
+        configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
     }
 
     // Project configuration.
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
-                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
+                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular', 'cordova'],
                 boss: true,
                 eqnull: true,
                 browser: true
@@ -109,7 +109,8 @@ module.exports = function (grunt) {
                 Modernizr: true,
                 google: true,
                 Hogan: true,
-                ucsf: true
+                ucsf: true,
+                cordova: true
             },
             beforeconcat: [site + '/js/modules/*/*.src.js'],
             afterconcat: ['tmp/campuskit.partial.js'],
