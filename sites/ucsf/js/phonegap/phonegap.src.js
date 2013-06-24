@@ -1,12 +1,17 @@
-/* global cordova, document, window */
+(function () {
+    var script = document.createElement('script');
+    script.type="text/javascript";
+    script.src="phonegap.js";
+    document.body.appendChild(script);
+}());
 
-window.alert('checking for addEventListener');
+/* global cordova, document, window */
+window.alert('phonegap!!');
 if (document.addEventListener) {
-    window.alert('adding deviceready callback');
     document.addEventListener('deviceready', function () {
         'use strict';
 
-        window.alert('deviceready!');
+        window.alert('phonegap deviceready! yay!!');
 
         var navBar = cordova.require('cordova/plugin/iOSNavigationBar');
 
@@ -60,5 +65,4 @@ if (document.addEventListener) {
 
         navBar.show();
     }, false);
-    window.alert('added deviceready callback');
 }
