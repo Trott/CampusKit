@@ -6,12 +6,18 @@
         document.body.appendChild(script);
     }
     scriptAppend('phonegap.js');
-    scriptAppend('childbrowser.js');
 }());
 
-// document.addEventListener('deviceready', function () {
-//     'use strict';
-//
-//     ... Go crazy with the PhoneGap APIs and plugins here ...
-//
-// }, false);
+document.addEventListener('deviceready',
+    function () {
+        'use strict';
+        var href = window.location.href;
+        var basepath = href.substr(0, href.lastIndexOf('/') + 1);
+
+        var anchors = document.getElementsByTagName('a');
+        for (var i=0, l=anchors.length; i<l; i++) {
+            anchors[i].setAttribute('onclick', 'window.open("' + anchors[i].href + '", "_blank", "location=no,keyboardDisplayRequiresUserAction=no"); return false');
+        }
+    },
+    false
+);
