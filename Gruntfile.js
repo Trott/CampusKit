@@ -103,7 +103,7 @@ module.exports = function (grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
-                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular', 'cordova'],
+                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
                 boss: true,
                 eqnull: true,
                 browser: true
@@ -112,8 +112,7 @@ module.exports = function (grunt) {
                 Modernizr: true,
                 google: true,
                 Hogan: true,
-                ucsf: true,
-                cordova: true
+                ucsf: true
             },
             beforeconcat: [site + '/js/modules/*/*.src.js'],
             afterconcat: ['tmp/campuskit.partial.js'],
