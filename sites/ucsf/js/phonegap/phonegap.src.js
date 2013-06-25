@@ -6,14 +6,11 @@
 }());
 
 /* global cordova, document, window */
-window.alert('phonegap!!');
 if (document.addEventListener) {
     document.addEventListener('deviceready', function () {
         'use strict';
 
-        window.alert('phonegap deviceready! yay!!');
-
-        var navBar = cordova.require('cordova/plugin/iOSNavigationBar');
+        var navBar = cordova.require('phonegap/plugin/iOSNavigationBar');
 
         navBar.init();
 
