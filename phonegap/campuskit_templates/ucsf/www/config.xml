@@ -10,7 +10,7 @@
     </description>
 
     <author href="http://github.com/Trott/CampusKit" email="rtrott@gmail.com">
-       Rich Trott 
+       Rich Trott
     </author>
 
     <feature name="http://api.phonegap.com/1.0/device" />
@@ -19,6 +19,7 @@
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
+    <preference name="prerendered-icon" value="true" />
 
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
