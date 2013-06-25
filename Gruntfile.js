@@ -28,11 +28,16 @@ module.exports = function (grunt) {
 
     var configCleanAllSrc = [dest + '/*', 'tmp/*', 'components/*', 'lib/*'];
 
+    var configConcatPartialSrc = ['src/js/campuskit.src.js', site + '/js/*.src.js'];
+
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
-            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption, src: '**', dest: dest}
+            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/www', src: '**', dest: dest},
+            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
         );
-        configCleanAllSrc.push('phonegap/platforms/*');
+        configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
+        configCleanAllSrc.push('phonegap/plugins/*');
+        configConcatPartialSrc.unshift(site + '/js/phonegap/phonegap.src.js');
     }
 
     // Project configuration.
@@ -69,7 +74,7 @@ module.exports = function (grunt) {
                 dest: dest + '/js/campuskit.js'
             },
             partial: {
-                src: ['src/js/campuskit.src.js', site + '/js/*.src.js'],
+                src: configConcatPartialSrc,
                 dest: 'tmp/campuskit.partial.js'
             }
         },
