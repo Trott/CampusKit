@@ -16,7 +16,7 @@ document.addEventListener('deviceready',
 
         var anchors = document.getElementsByTagName('a');
         for (var i=0, l=anchors.length; i<l; i++) {
-            anchors[i].setAttribute('onclick', 'window.open("' + anchors[i].href + '", "_blank", "location=no,keyboardDisplayRequiresUserAction=no"); return false');
+            anchors[i].setAttribute('onclick', 'window.open("' + anchors[i].href + '", "_blank", "location=no,transitionstyle=crossdissolve"); return false');
         }
     },
     false
