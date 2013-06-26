@@ -74,7 +74,7 @@ module.exports = function (grunt) {
                 dest: dest + '/js/campuskit.js'
             },
             partial: {
-                src: configConcatPartialSrc,
+                src: ['src/js/campuskit.src.js', site + '/js/*.src.js', site + '/js/' + platformOption + '/*.src.js'],
                 dest: 'tmp/campuskit.partial.js'
             }
         },
