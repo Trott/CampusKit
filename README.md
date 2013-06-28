@@ -1,7 +1,6 @@
 CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices. 
 
-See it in action at http://m.ucsf.edu/.
-
+If you need more than the Prerequisites, Quick Start, and Video Tutorials listed below, see [the complete index of documentation](wiki).
 
 Prerequisites
 -
