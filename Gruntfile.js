@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                 options: {
                     cssDir: dest + '/css',
                     httpStylesheetsPath: '/css',
-                    sassDir: site + '/sass',
+                    sassDir: site + '/css',
                     imagesDir: dest + '/img',
                     httpImagesPath: '/img',
                     javascriptsDir: dest + '/js',
@@ -176,7 +176,7 @@ module.exports = function (grunt) {
                 tasks: ['js']
             },
             css: {
-                files: [site + '/sass/*.scss'],
+                files: [site + '/css/*.scss'],
                 tasks: ['compass:dist']
             },
             html: {
