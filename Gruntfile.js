@@ -50,21 +50,6 @@ module.exports = function (grunt) {
             }
         },
 
-        compass: {
-            dist: {
-                options: {
-                    cssDir: dest + '/css',
-                    httpStylesheetsPath: '/css',
-                    sassDir: site + '/css',
-                    imagesDir: dest + '/img',
-                    httpImagesPath: '/img',
-                    javascriptsDir: dest + '/js',
-                    httpJavascriptsPath: '/js',
-                    outputStyle: 'compressed'
-                }
-            }
-        },
-
         concat: {
             full: {
                 src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
@@ -88,6 +73,15 @@ module.exports = function (grunt) {
         copy : {
             main: {
                 files: configCopyMainFiles
+            }
+        },
+
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: site + '/css',
+                src: ['*.css', '!*.min.css'],
+                dest: dest + '/css/'
             }
         },
 
@@ -177,7 +171,7 @@ module.exports = function (grunt) {
             },
             css: {
                 files: [site + '/css/*.scss'],
-                tasks: ['compass:dist']
+                tasks: ['cssmin:minify']
             },
             html: {
                 files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
@@ -188,16 +182,16 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-rsync');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'compass:dist', 'copy']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
     grunt.registerTask('server', ['connect:server']);
 };

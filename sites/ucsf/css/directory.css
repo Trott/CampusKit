@@ -1,0 +1,32 @@
+/* line 1, ../scss/directory.scss */
+pre {
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+}
+
+/* line 8, ../scss/directory.scss */
+ul.ucsf-directory {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 12, ../scss/directory.scss */
+ul.ucsf-directory li {
+  padding: 1em;
+  margin: 0;
+  border: 1px #DDD;
+  border-style: solid none none none;
+}
+
+/* line 19, ../scss/directory.scss */
+ul.ucsf-directory li:first-child {
+  border-style: none none none none;
+}
+
+/* line 23, ../scss/directory.scss */
+.info {
+  font-style: italic;
+  text-align: center;
+}
