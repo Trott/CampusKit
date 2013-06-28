@@ -1,0 +1,42 @@
+@media all and (max-device-width: 320px) {
+  /* line 2, ../scss/mainPage.scss */
+  .dashboard_icon {
+    width: 57px;
+    height: 57px;
+  }
+
+  /* line 7, ../scss/mainPage.scss */
+  li a {
+    font-size: 80%;
+  }
+}
+/* line 12, ../scss/mainPage.scss */
+body.front .menu {
+  border: 0;
+}
+
+/* line 16, ../scss/mainPage.scss */
+ol {
+  margin: 1em 0;
+}
+
+/* line 20, ../scss/mainPage.scss */
+li {
+  display: inline-block;
+  height: 108px;
+  width: 25%;
+  list-style: none;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  text-align: center;
+}
+
+/* line 31, ../scss/mainPage.scss */
+li a {
+  padding: 1em 0 0 0;
+  background: 0;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+}

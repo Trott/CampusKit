@@ -1,5 +1,3 @@
-@import "topcoat";
-
 .icon--feedback {
   background: url("../img/icons/feedback.svg") no-repeat;
   -webkit-background-size: cover;
