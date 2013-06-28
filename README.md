@@ -1,6 +1,6 @@
 CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices. 
 
-If you need more than the Prerequisites, Quick Start, and Video Tutorials listed below, see [the complete index of documentation](/wiki).
+If you need more than the Prerequisites, Quick Start, and Video Tutorials listed below, see [the complete index of documentation](https://github.com/Trott/CampusKit/wiki).
 
 Prerequisites
 -
