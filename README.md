@@ -8,7 +8,6 @@ Prerequisites
 * [node](http://nodejs.org/download/)
 * [grunt](http://gruntjs.com/getting-started)
 * [bower](http://bower.io/)
-* [compass](http://compass-style.org/install/) (which in turn requires sass and ruby)
 
 If you wish to build native apps, you will also need:
 
