@@ -1,0 +1,78 @@
+/* line 1, ../scss/library.scss */
+ul.bulleted li {
+  list-style-type: disc;
+  margin-left: 2em;
+}
+
+/* line 6, ../scss/library.scss */
+ul.bulleted li a {
+  padding: 0;
+  display: inline;
+}
+
+/* line 11, ../scss/library.scss */
+.clear {
+  width: 100%;
+  clear: both;
+  float: none;
+  height: 1px;
+}
+
+/********************************************************
+ * TWO-COLUMN LISTS
+ *******************************************************/
+/* line 21, ../scss/library.scss */
+ul.two-col-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 27, ../scss/library.scss */
+ul.two-col-list li {
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  float: left;
+  overflow: hidden;
+}
+
+/********************************************************
+ * LIBRARY FLOORPLAN LEGEND STYLES
+ *******************************************************/
+/* line 38, ../scss/library.scss */
+.ucsf-library-floorplan-legend {
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding-left: 25px;
+}
+
+/* line 43, ../scss/library.scss */
+.ucsf-library-floorplan-legend-computer {
+  background-image: url(../img/ucsf-library-floorplan-legend-computer.gif);
+}
+
+/* line 47, ../scss/library.scss */
+.ucsf-library-floorplan-legend-elevator {
+  background-image: url(../img/ucsf-library-floorplan-legend-elevator.gif);
+}
+
+/* line 51, ../scss/library.scss */
+.ucsf-library-floorplan-legend-photocopy {
+  background-image: url(../img/ucsf-library-floorplan-legend-photocopy.gif);
+}
+
+/* line 55, ../scss/library.scss */
+.ucsf-library-floorplan-legend-reshelving {
+  background-image: url(../img/ucsf-library-floorplan-legend-reshelving.gif);
+}
+
+/* line 59, ../scss/library.scss */
+.ucsf-library-floorplan-legend-restroom {
+  background-image: url(../img/ucsf-library-floorplan-legend-restroom.gif);
+}
+
+/* line 63, ../scss/library.scss */
+.ucsf-library-floorplan-legend-stairs {
+  background-image: url(../img/ucsf-library-floorplan-legend-stairs.gif);
+}
