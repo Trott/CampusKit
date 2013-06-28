@@ -1,0 +1,44 @@
+@import "topcoat";
+
+.icon--feedback {
+  background: url("../img/icons/feedback.svg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+.icon--large--info {
+	background: url("../img/icons/circle_outline.svg") no-repeat;
+	-webkit-background-size: cover;
+ 	-moz-background-size: cover;
+  	background-size: cover;
+
+  	line-height: 2.5rem;
+  	text-align: center;
+  	font-family: serif;
+  	font-style: italic;
+  	font-weight: 400;
+  	font-size: 2rem;
+}
+.icon--large--info:after {
+	content: 'i';
+}
+
+.float-left {
+	float: left;
+	margin-right: 1rem;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.boxed {
+    border: 1px solid;
+    margin: 1rem;
+    padding: 0 1rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+}

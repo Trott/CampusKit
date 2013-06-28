@@ -1,0 +1,83 @@
+body {
+    font:100%/1.25 Arial,Helvetica,sans-serif;
+    font-size:.93em;
+    font-family:Helvetica,Verdana,Arial,sans-serif;
+    line-height:normal;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    display: block;
+    padding: 0;
+    margin: 0;
+    line-height: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+
+h1,
+h2 {
+    font-size: 1.2em;
+}
+
+h3,
+h4 {
+    font-size: 1.1em;
+}
+
+a {
+    text-decoration: none;
+}
+
+p a {
+    border-bottom: none;
+}
+
+.smallprint {
+    font-weight: normal;
+    font-size: 90%;
+}
+
+h4.light {
+	color: #555;
+}
+
+.smallprint.light {
+	color: #999999;
+}
+
+ul {
+    margin:.5em 0 1em 0;
+}
+
+ul li {
+    font-weight: normal;
+    list-style-type: none;
+}
+
+a {
+    color:#38939b;
+}
+
+/* The rel=external stuff is not solely for menus, but primarily.
+   Use span.external:after around a link with class no-ext-ind to keep indicator
+      from being styled like the link.  This is useful if links are underlined,
+      for example, and also in .menu.detailed (see comment for no-ext-ind).
+*/
+a[rel~=external]:after, span.external:after, .detailed li a span.external:after  {
+    content: "\a0 " url(../img/external-link.png);
+}
+
+/* Allow suppression of external link indicator via class "no-ext-ind".
+   This is useful for .menu.detailed where a span.external inside an
+   a[rel=external] can show where the indicator should end up.  This keeps the
+   indicator from floating off to the right away from the relevant text. This is
+   desirable, rather than just not using rel=external, because rel=external
+   will determine how the link is handled in the native client and possibly in
+   screen readers.
+*/
+a[rel=external].no-ext-ind:after {
+    content: "";
+}

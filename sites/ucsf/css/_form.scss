@@ -1,0 +1,299 @@
+form {
+    background-color: #fff;
+    padding-bottom: 1em;
+    padding-right: 20px;
+}
+
+/*
+ * Forms Heading
+ */
+form > h1,
+form > h2,
+form > h3,
+form > h4 {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+form > h1,
+form > h2 {
+    background: #efefef;
+    color: #000;
+    padding: 0.5em 10px;
+}
+
+form > h1.light,
+form > h2.light {
+    background-color: #f6f6f6;
+    color: #555;
+}
+
+form > h3,
+form > h4 {
+    padding: 10px;
+    width: 100%;
+}
+
+form > fieldset {
+    border: 0;
+    padding-left: 4px;
+}
+
+form > fieldset > select {
+    margin-left: 4px;
+}
+
+form > a.button,
+form > button,
+form > input,
+form > label:not(.option),
+form > select {
+    margin-left: 10px;
+}
+
+/*
+ * Forms Basic Elements
+ */
+form > label,
+form > select,
+form > fieldset {
+    margin-top: 1em;
+}
+
+form > label + select {
+    margin-top: 0;
+} 
+
+form input,
+form select {
+    border: 1px solid #CCC;
+    font-size: 1em;
+}
+
+form p {
+    margin-bottom: .5em;
+}
+
+/*
+ * Forms Buttons
+ */
+form a.button {
+    text-align: center;
+}
+
+form input[type="submit"],
+form button,
+form a.button {
+    background-color: #e4e7ee;
+    border: 0;
+    color: #000;
+    cursor: pointer;
+    font: 100%/1.25 Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    padding: .5em 0;
+    height: auto;
+}
+
+form input[type="submit"],
+form button {
+    padding: .5em 1em;
+}
+
+form input[type="submit"][disabled="disabled"],
+form button[disabled="disabled"],
+form a.button.disabled {
+    color: #888;
+    cursor: default;
+}
+
+form input[type="submit"][disabled="disabled"]:hover,
+form button[disabled="disabled"]:hover,
+form a.button:hover.disabled,
+form input[type="submit"][disabled="disabled"]:focus,
+form button[disabled="disabled"]:focus,
+form a.button:focus.disabled {
+    background-color: #e4e7ee;
+}
+
+form input[type="submit"]:hover,
+form button:hover,
+form a.button:hover,
+form input[type="submit"]:focus,
+form button:focus,
+form a.button:focus {
+    background-color: #cfd5e1;
+}
+
+/* full width form - default */
+form div,
+form h1,
+form h2,
+form p,
+form a.button,
+form input,
+form label,
+form select {
+    display: block;
+    width: 100%;
+}
+
+/* form input that shouldn't take up the full width */
+.compact {
+    width: auto;
+    display: inline-block;
+    padding-right: 1.5em; /* padding for little downward triangle clicky indicator thing */
+}
+
+.option input {
+    display:inline;
+        width:auto;
+}
+
+/* short width form */
+form.short input,
+form.short > label {
+    display: inline;
+    width: auto;
+}
+
+form .last {
+    border-bottom: none;
+}
+
+form > div,
+form > p {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* form option alignment */
+form .option {
+    padding: 0 0 0 10px;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+/* required label */
+span.required:after {
+    content: "*";
+    color: #536895;
+    padding-left:.2em;
+}
+
+/* ------------------------------------------------------
+ * multi level form
+*/
+.content form {
+    padding-left: 0;
+}
+
+.content form {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 20px;
+}
+
+.content > div > form > div,
+.content > div > form > p {
+    border-bottom: none;
+    padding: 0;
+}
+
+.content > div > form{
+    padding-right: 0;
+}
+
+.content > div > form > a.button,
+.content > div > form > button,
+.content > div > form > input,
+.content > div > form > label,
+.content > div > form > select {
+    margin-left: 0;
+}
+
+/**
+ * Forms
+ */
+
+form {
+    margin: 10px 10px 0 10px;
+}
+
+.content form {
+    margin: 0;
+}
+
+/**
+ * Border radius on everything
+ */
+form,
+.content,
+.menu, { 
+    @include border-radius() 
+}
+
+form > :first-child {
+    @include border-top-radius()
+}
+
+form > :last-child {
+    @include border-bottom-radius()
+}
+
+/**
+ * Forms
+ */
+
+.content form {
+    @include border-radius(0)
+}
+
+form input,
+form select {
+    box-shadow: inset 0 0 3px #bbb;
+    padding: 4px;
+}
+
+select {
+    background: url(../img/select-options-bg.png) center right no-repeat;
+    -webkit-appearance: none;	  	
+}
+
+/* making control equal width */
+form input,
+form select {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* button */
+form input[type="submit"],
+form button,
+form a.button,
+form input[type="submit"]:hover:disabled,
+form button:hover:disabled,
+form a.button:hover.disabled,
+form input[type="submit"]:focus:disabled,
+form button:focus:disabled,
+form a.button:focus.disabled {
+    background: -moz-linear-gradient(#e4e7ee, #cfd5e1);
+    background: -o-linear-gradient(top, #e4e7ee, #cfd5e1);
+    background: -webkit-gradient(linear, left top, left bottom, from(#e4e7ee), to(#cfd5e1), color-stop(0.8, #cfd5e1));
+    background: linear-gradient(#e4e7ee, #cfd5e1);
+    @include border-radius();
+    box-shadow: 0 2px 2px #999;
+    text-shadow: 0 1px 1px #fff;
+}
+
+form input[type="submit"]:hover,
+form button:hover,
+form a.button:hover,
+form input[type="submit"]:focus,
+form button:focus,
+form a.button:focus {
+    background: -moz-linear-gradient(#cfd5e1, #bcc5d5);
+    background: -o-linear-gradient(top, #cfd5e1, #bcc5d5);
+    background: -webkit-gradient(linear, left top, left bottom, from(#cfd5e1), to(#bcc5d5), color-stop(0.8, #bcc5d5));
+    background: linear-gradient(#cfd5e1, #bcc5d5);
+}

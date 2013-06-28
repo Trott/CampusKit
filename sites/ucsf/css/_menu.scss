@@ -1,0 +1,152 @@
+.menu img {
+    max-width: 100%;
+    height: auto;
+ }
+
+.menu {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.menu > h1,
+.menu > h2 {
+    background: #efefef;
+    color: #000;
+    padding: .5em 0 .4em 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu li p {
+    font-weight: normal;
+}
+
+.menu > h1.light,
+.menu > h2.light {
+    background-color: #f6f6f6;
+    color: #555;
+}
+
+.menu p {
+    color: #000;
+    padding: .5em 0;
+    font-weight: normal;
+}
+
+.menu ol {
+    list-style-type: none;
+}
+
+.menu li {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu li a {
+    display: block;
+    background:url(../img/ucsf-list-arrow.png) no-repeat 98%;
+    padding: 1em;
+    /*
+     * This is needed to keep the rounded corners on the last child.
+     * No, I don't really understand why.
+     */
+    background-color: initial;
+}
+
+/* 
+ * If an accordion link, do not show the '>' symbol in the UI. 
+ */
+.menu li a[href=""] {
+    background: none;
+}
+
+.no-touch .menu li:hover,
+.menu a:active {
+    background-color: #eaf2fa;
+}
+
+.menu.detailed.center li a {
+    padding: .9em 2em .8em 2em;
+}
+
+.menu li > p:first-child:last-child {
+    padding: .9em; /* singular paragraph text within li */
+}
+
+.menu.detailed p {
+    color: #555;
+}
+
+.menu.left li,
+.menu.detailed li {
+    text-align: left;
+}
+
+.menu.left li a {
+    padding-left: .9em;
+}
+
+.menu.center li {
+    text-align: center;
+}
+
+.menu.detailed li {
+    font-size: 1em;
+}
+
+.menu.detailed li > a,
+.menu.detailed li > p
+{
+    padding: .9em 2em .8em .9em;
+}
+
+.menu .button a {
+    color: #2685BB;
+}
+
+.menu {
+    margin: 10px 10px 0 10px;
+    width: auto;
+}
+
+.menu a:last-child li,
+.menu > *:last-child {
+    border-bottom: none;
+}
+
+.menu {background: #fff}
+
+.menu > ol:first-child > li:first-child,
+.menu > :first-child,
+.menu > :first-child:last-child li:first-child a:hover,
+.menu > :first-child:last-child li:first-child a:focus,
+.menu > :first-child:last-child li:first-child a:active,
+.menu > :first-child li:first-child a:hover,
+.menu > :first-child li:first-child a:focus,
+.menu > :first-child li:first-child a:active,
+.menu > h1 {
+    @include border-top-radius()
+}
+
+.menu > :first-child:last-child,
+.menu ol > :last-child
+{
+    @include border-bottom-radius()
+}
+
+.menu > h1,
+.menu > h2 {
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e5e5e5));
+    background: -moz-linear-gradient(#fff, #e5e5e5);
+    background: -o-linear-gradient(top, #fff, #e5e5e5);
+    background: linear-gradient(#fff, #e5e5e5);
+}
+
+.menu > h1.light,
+.menu > h2.light {
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e5e5e5));
+    background: -moz-linear-gradient(#fff, #e5e5e5);
+    background: -o-linear-gradient(top, #fff, #e5e5e5);
+    background: linear-gradient(#fff, #e5e5e5);
+}
+
