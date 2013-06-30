@@ -1,7 +1,7 @@
 {
-  "name": "HandheldU",
-  "version": "0.1.0",
-  "description": "Handheld web site",
+  "name": "CampusKit",
+  "version": "0.4.1",
+  "description": "Create high-performance touch-friendly web sites and apps for mobile and tablet devices.",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Trott/mwf.git"
+    "url": "git://github.com/Trott/CampusKit.git"
   },
   "author": "Rich Trott",
   "license": "BSD",
