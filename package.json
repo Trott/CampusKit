@@ -1,6 +1,6 @@
 {
-  "name": "CampusKit",
-  "version": "0.4.2",
+  "name": "campuskit",
+  "version": "0.4.4",
   "description": "Create high-performance touch-friendly web sites and apps for mobile and tablet devices.",
   "main": "Gruntfile.js",
   "directories": {
@@ -13,12 +13,12 @@
     "type": "git",
     "url": "git://github.com/Trott/CampusKit.git"
   },
-  "author": "Rich Trott",
+  "author": "Rich Trott <rtrott@gmail.com>",
   "license": "BSD",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-contrib-jshint": "0.1.1",
+    "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.1.3",
     "grunt-rsync": "~0.1.1",
