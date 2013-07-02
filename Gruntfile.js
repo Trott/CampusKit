@@ -52,7 +52,13 @@ module.exports = function (grunt) {
 
         concat: {
             full: {
-                src: ['tmp/fastclick.min.js', 'src/js/external/modernizr.js', 'tmp/campuskit.partial.min.js'],
+                src: [
+                    'tmp/fastclick.min.js',
+                    'src/js/external/modernizr.js',
+                    site + '/js/*.min.js',
+                    site + '/js/' + platformOption + '/*.min.js',
+                    'tmp/campuskit.partial.min.js'
+                ],
                 dest: dest + '/js/campuskit.js'
             },
             partial: {
