@@ -28,6 +28,7 @@ Video Tutorials
 
 1. [Installing the CampusKit Demo Sites](http://www.youtube.com/watch?v=7AmiQxh_ETM)
 2. [Building a Native App with CampusKit](http://www.youtube.com/watch?v=ARKt6licNK8)
+3. [Using the CampusKit Yeoman Generator](http://www.youtube.com/watch?v=EIM8OUpOgf0)
 
 License and Copyright
 -
