@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         {expand: true, cwd: site, src: ['img/**'], dest: dest}
     ];
 
-    var configCleanAllSrc = [dest + '/*', 'tmp/*', 'components/*', 'lib/*'];
+    var configCleanAllSrc = [dest + '/*', 'tmp/*', 'bower_components/*', 'lib/*'];
 
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
