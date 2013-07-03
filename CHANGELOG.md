@@ -1,5 +1,9 @@
 ## 0.5.0
 
+Feature:
+
+ - We've added this shiny, new CHANGELOG.
+
 Features:
 
  - We've got a Yeoman generator now!
