@@ -93,24 +93,7 @@ module.exports = function (grunt) {
 
         jshint: {
             options: {
-                curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                undef: true,
-                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
-                boss: true,
-                eqnull: true,
-                browser: true
-            },
-            globals: {
-                Modernizr: true,
-                google: true,
-                Hogan: true,
-                ucsf: true
+                jshintrc: '.jshintrc'
             },
             beforeconcat: [site + '/js/modules/*/*.src.js'],
             afterconcat: ['tmp/campuskit.partial.js'],
