@@ -6,8 +6,8 @@
             <strong>Class:</strong> {{ class.name }}<br>
             <strong>Date:</strong> {{ class.date }}<br>
             <strong>Time:</strong> {{class.startTime}} - {{class.endTime}}<br>
-            <span data-ng-show="class.instructor"><strong>Instructor:</strong> {{class.instructor}}</span>
-            <strong>Location:</strong> {{class.location}} ({{class.campus}})
+            <span data-ng-show="class.instructorLastName"><strong>Instructor:</strong> {{class.instructorFirstName}} {{class.instructorLastName}}</span>
+            <strong>Location:</strong> {{class.location}}
         </p>
     </div>
 </div>
