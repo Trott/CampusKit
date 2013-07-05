@@ -1,4 +1,3 @@
-// TODO: implement apis.ucsf.edu component
 // TODO: implmenet search filter
 (function () {
     'use strict';
