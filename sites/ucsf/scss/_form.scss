@@ -64,7 +64,7 @@ form > label + select {
     margin-top: 0;
 } 
 
-form input,
+input,
 form select {
     border: 1px solid #CCC;
     font-size: 1em;
@@ -130,7 +130,7 @@ form h1,
 form h2,
 form p,
 form a.button,
-form input,
+input,
 form label,
 form select {
     display: block;
@@ -248,7 +248,7 @@ form > :last-child {
     @include border-radius(0)
 }
 
-form input,
+input,
 form select {
     box-shadow: inset 0 0 3px #bbb;
     padding: 4px;
@@ -260,7 +260,7 @@ select {
 }
 
 /* making control equal width */
-form input,
+input,
 form select {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;

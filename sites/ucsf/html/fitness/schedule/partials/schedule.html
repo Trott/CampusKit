@@ -2,6 +2,9 @@
 <div class="content" data-ng-show="loaded">
     <h1>Group Fitness and Pools</h1>
     <div>
+        <input id="ucsf-fitness-search" type="search" data-ng-model="query" placeholder="Search">
+    </div>
+    <div>
         <p data-ng-repeat="class in classes">
             <strong>Class:</strong> {{ class.name }}<br>
             <strong>Date:</strong> {{ class.date }}<br>
@@ -11,4 +14,4 @@
         </p>
     </div>
 </div>
-<div class="content" data-ng-show="! classes.length || loadError"><p>Fitness schedule data could not be loaded.</p></div>
+<div class="content" data-ng-show="! classes.length && ! loading"><p>Fitness schedule data could not be loaded.</p></div>
