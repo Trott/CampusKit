@@ -15,13 +15,30 @@
             $scope.loadError = false;
             $scope.loaded = false;
 
-            $scope.query = "";
+            $scope.query = '';
+            $scope.filter = function (elem) {
+                switch ($scope.filter.type) {
+                    case "mbclasses":
+                        return elem.name.indexOf('Mission Bay') !== -1;
+                    case "pclasses":
+                        return elem.name.indexOf('Parnassus') !== -1;
+                    case "mbopool":
+                        return elem.location === "Outdoor Pool (Mission Bay)";
+                    case "mbipool":
+                        return elem.location === "Indoor Pool (Mission Bay)";
+                    case "pipool":
+                        return elem.location === "Indoor Pool (Parnassus)";
+                    default:
+                        return true;
+                }
+            };
+            $scope.filter.type = 'all';
 
             var options = {
                 apikey: apikey
             };
 
-            if (window.UCSF && window.UCSF.Fitness && typeof window.UCSF.Fitness.schedule === "function") {
+            if (window.UCSF && window.UCSF.Fitness && typeof window.UCSF.Fitness.schedule === 'function') {
                 window.UCSF.Fitness.schedule(
                     options,
                     function (data) {
