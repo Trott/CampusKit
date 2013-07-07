@@ -1,17 +1,26 @@
 <div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
 <div class="content" data-ng-show="loaded">
     <h1>Group Fitness and Pools</h1>
-    <div>
+    <div class="compact-radio-collection">
         <input id="ucsf-fitness-search" type="search" data-ng-model="query" placeholder="Search">
+        <input type="radio" data-ng-model="filter" class="compact" name="filter" id="all"><label for="all">All&nbsp;results</label><br>
+        <input type="radio" data-ng-model="filter" class="compact" name="filter" id="parnassus"><label for="parnassus">Parnassus&nbsp;only</label>
+        <input type="radio" data-ng-model="filter" class="compact" name="filter" id="mission-bay"><label for="mission-bay">Mission&nbsp;Bay&nbsp;only</label><br>
+        <input type="radio" data-ng-model="filter" class="compact" name="filter" id="pool"><label for="pool">Pool&nbsp;only</label>
+        <input type="radio" data-ng-model="filter" class="compact" name="filter" id="classes"><label for="classes">Classes&nbsp;only</label>
     </div>
     <div>
-        <p data-ng-repeat="class in classes">
-            <strong>Class:</strong> {{ class.name }}<br>
-            <strong>Date:</strong> {{ class.date }}<br>
-            <strong>Time:</strong> {{class.startTime}} - {{class.endTime}}<br>
-            <span data-ng-show="class.instructorLastName"><strong>Instructor:</strong> {{class.instructorFirstName}} {{class.instructorLastName}}<br></span>
-            <strong>Location:</strong> {{class.location}}
-        </p>
+        <ul>
+            <li data-ng-repeat="class in classes">
+                <ul>
+                    <li>{{ class.name }}</li>
+                    <li>{{ class.day }}, {{ class.date }}</li>
+                    <li>{{class.startTime}} - {{class.endTime}}</li>
+                    <li data-ng-show="class.instructorLastName">{{class.instructorFirstName}} {{class.instructorLastName}}</li>
+                    <li>{{class.location}}</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>
 <div class="content" data-ng-show="! classes.length && ! loading"><p>Fitness schedule data could not be loaded.</p></div>

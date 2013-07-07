@@ -395,6 +395,11 @@ form a.button:focus {
   background: linear-gradient(#cfd5e1, #bcc5d5);
 }
 
+/* line 301, ../scss/_form.scss */
+.compact-radio-collection {
+  text-align: center;
+}
+
 /* line 1, ../scss/_content.scss */
 .content img {
   max-width: 100%;

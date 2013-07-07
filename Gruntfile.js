@@ -159,7 +159,7 @@ module.exports = function (grunt) {
                 tasks: ['js']
             },
             css: {
-                files: [site + '/css/*.scss'],
+                files: [site + '/css/**'],
                 tasks: ['cssmin:minify']
             },
             html: {
