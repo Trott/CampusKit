@@ -11,7 +11,7 @@
     </div>
     <div>
         <ul>
-            <li data-ng-repeat="class in classes">
+            <li data-ng-repeat="class in classes | filter:query">
                 <ul>
                     <li>{{ class.name }}</li>
                     <li>{{ class.day }}, {{ class.date }}</li>

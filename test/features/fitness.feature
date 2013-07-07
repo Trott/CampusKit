@@ -29,7 +29,7 @@ Scenario: Fitness schedule search box
   And I click "Fitness"
   And I click "Group Fitness and Pools"
   And I search for "Parnassus"
-  Then I should not see "Mission Bay"
+  Then I should not see "Indoor Pool (Mission Bay)"
 
 Scenario: Fitness schedule radio button filters
   Given my localStorage is empty

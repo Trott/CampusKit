@@ -15,6 +15,8 @@
             $scope.loadError = false;
             $scope.loaded = false;
 
+            $scope.query = "";
+
             var options = {
                 apikey: apikey
             };
