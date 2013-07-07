@@ -46,7 +46,7 @@ form > fieldset > select {
 form > a.button,
 form > button,
 form > input,
-form > label:not(.option),
+form > label,
 form > select {
     margin-left: 10px;
 }
@@ -55,7 +55,7 @@ form > select {
  * Forms Basic Elements
  */
 form > label,
-form > select,
+select,
 form > fieldset {
     margin-top: 1em;
 }
@@ -64,8 +64,8 @@ form > label + select {
     margin-top: 0;
 } 
 
-form input,
-form select {
+input,
+select {
     border: 1px solid #CCC;
     font-size: 1em;
 }
@@ -130,9 +130,9 @@ form h1,
 form h2,
 form p,
 form a.button,
-form input,
+input,
 form label,
-form select {
+select {
     display: block;
     width: 100%;
 }
@@ -142,11 +142,6 @@ form select {
     width: auto;
     display: inline-block;
     padding-right: 1.5em; /* padding for little downward triangle clicky indicator thing */
-}
-
-.option input {
-    display:inline;
-        width:auto;
 }
 
 /* short width form */
@@ -164,13 +159,6 @@ form > div,
 form > p {
     border-bottom: 1px solid #ddd;
     padding: 10px;
-}
-
-/* form option alignment */
-form .option {
-    padding: 0 0 0 10px;
-    margin-bottom: 0;
-    border-bottom: none;
 }
 
 /* required label */
@@ -248,8 +236,8 @@ form > :last-child {
     @include border-radius(0)
 }
 
-form input,
-form select {
+input,
+select {
     box-shadow: inset 0 0 3px #bbb;
     padding: 4px;
 }
@@ -260,8 +248,8 @@ select {
 }
 
 /* making control equal width */
-form input,
-form select {
+input,
+select {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

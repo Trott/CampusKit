@@ -9,10 +9,6 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
-    RewriteRule ^public(.*)$ /ci/public$1 [L]
-    RewriteCond %{REQUEST_URI} !/fitness/index.html
-    RewriteCond %{REQUEST_URI} !/fitness/locations
-    RewriteRule ^fitness/(.+)$ /ci/fitness/$1 [L]
     
     RewriteRule ^directory/query(.*)$ /directory/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
