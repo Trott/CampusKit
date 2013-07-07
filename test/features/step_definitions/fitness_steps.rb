@@ -9,3 +9,11 @@ end
 Then(/^I should see the Fitness search box$/) do
 	find("input#ucsf-fitness-search").should be_visible
 end
+
+Given(/^I search for "(.*?)"$/) do |search_terms|
+	fill_in "ucsf-fitness-search", :with => search_terms
+end
+
+Given(/^I choose "(.*?)"$/) do |label|
+  	choose label
+end

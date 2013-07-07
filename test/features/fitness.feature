@@ -22,3 +22,19 @@ Scenario: Fitness schedule options
   And I should see "Mission Bay"
   And I should see "Indoor Pool"
   And I should see the Fitness search box
+
+Scenario: Fitness schedule search box
+  Given my localStorage is empty
+  And I am on the home page
+  And I click "Fitness"
+  And I click "Group Fitness and Pools"
+  And I search for "Parnassus"
+  Then I should not see "Mission Bay"
+
+Scenario: Fitness schedule radio button filters
+  Given my localStorage is empty
+  And I am on the home page
+  And I click "Fitness"
+  And I click "Group Fitness and Pools"
+  And I choose "mission-bay"
+  Then I should not see "Parnassus"
