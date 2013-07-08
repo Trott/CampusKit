@@ -30,6 +30,7 @@ Scenario: Fitness schedule search box
   And I click "Group Fitness and Pools"
   And I search for "Parnassus"
   Then I should not see "Indoor Pool (Mission Bay)"
+  And I should not see "No results"
 
 Scenario: Fitness schedule radio button filters
   Given my localStorage is empty
@@ -38,3 +39,11 @@ Scenario: Fitness schedule radio button filters
   And I click "Group Fitness and Pools"
   And I select "Mission Bay Classes"
   Then I should not see "Studio 1 Parnassus"
+
+Scenario: "No results" message
+  Given my localStorage is empty
+  And I am on the home page
+  And I click "Fitness"
+  And I click "Group Fitness and Pools"
+  And I search for "big long string that should return no actual results"
+  Then I should see "No results"

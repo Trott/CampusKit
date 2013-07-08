@@ -14,16 +14,17 @@
     </div>
     <div>
         <ul>
-            <li data-ng-repeat="class in classes | filter:query | filter:filter">
+            <li data-ng-repeat="class in filtered = (classes | filter:query | filter:filter)">
                 <ul>
                     <li>{{ class.day }}, {{ class.date }}</li>
-                    <li>{{class.startTime}} - {{class.endTime}}</li>
+                    <li>{{ class.startTime }} - {{ class.endTime }}</li>
                     <li>{{ class.name }}</li>
-                    <li data-ng-show="class.instructorLastName">Instructor: {{class.instructorFirstName}} {{class.instructorLastName}}</li>
-                    <li>{{class.location}}</li>
+                    <li data-ng-show="class.instructorLastName">Instructor: {{ class.instructorFirstName }} {{ class.instructorLastName }}</li>
+                    <li>{{ class.location }}</li>
                 </ul>
             </li>
         </ul>
+        <div data-ng-hide="filtered.length">No results.</div>
     </div>
 </div>
 <div class="content" data-ng-show="! classes.length && ! loading"><p>Fitness schedule data could not be loaded.</p></div>
