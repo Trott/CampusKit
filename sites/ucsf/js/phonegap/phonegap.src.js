@@ -9,6 +9,8 @@
     scriptAppend('GAPlugin.js');
 }());
 
+var gaPlugin;
+
 document.addEventListener('deviceready',
     function () {
         'use strict';
@@ -19,6 +21,11 @@ document.addEventListener('deviceready',
         for (var i=0, l=anchors.length; i<l; i++) {
             anchors[i].setAttribute('onclick', 'window.open("' + anchors[i].href + '", "_blank", "location=no,transitionstyle=crossdissolve"); return false');
         }
+
+        var doNothing = function () {};
+        gaPlugin = window.plugins.gaPlugin;
+        gaPlugin.init(doNothing, doNothing, "UA-42301127-1", 10);
+        document.addEventListener('unload', function () {gaPlugin.exit(doNothing, doNothing);}, false);
     },
     false
 );
