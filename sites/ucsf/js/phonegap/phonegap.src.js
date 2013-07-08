@@ -6,6 +6,7 @@
         document.body.appendChild(script);
     }
     scriptAppend('phonegap.js');
+    scriptAppend('GAPlugin.js');
 }());
 
 document.addEventListener('deviceready',
