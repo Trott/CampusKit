@@ -37,7 +37,7 @@ Scenario: Fitness schedule radio button filters
   And I am on the home page
   And I click "Fitness"
   And I click "Group Fitness and Pools"
-  And I select "Mission Bay Classes"
+  And I filter for "Mission Bay Classes"
   Then I should not see "Studio 1 Parnassus"
 
 Scenario: "No results" message

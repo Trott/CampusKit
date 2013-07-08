@@ -14,6 +14,6 @@ Given(/^I search for "(.*?)"$/) do |search_terms|
 	fill_in "ucsf-fitness-search", :with => search_terms
 end
 
-Given(/^I select "(.*?)"$/) do |label|
+Given(/^I filter for "(.*?)"$/) do |label|
   	select label
 end
