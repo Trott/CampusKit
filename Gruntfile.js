@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
         );
         configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
-        configCleanAllSrc.push('phonegap/plugins/*');
+        configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
     }
 
     // Project configuration.
