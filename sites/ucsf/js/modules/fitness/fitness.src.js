@@ -1,4 +1,3 @@
-// TODO: implmenet search filter
 (function () {
     'use strict';
     var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
