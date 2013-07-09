@@ -1,15 +1,10 @@
 AddDefaultCharset UTF-8
-AddType text/cache-manifest .appcache
 AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/css text/html text/plain text/xml
-
-ExpiresActive On
-ExpiresDefault "access plus 0 seconds"
-Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
-    
+
     RewriteRule ^directory/query(.*)$ /directory/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
