@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>UCSF Mobile</title>
+    <title>UCSF Mobile | Directory</title>
         <link rel="stylesheet" type="text/css" href="../css/main.css" media="screen">
     <!--[if lte IE 7]>
         <link rel="stylesheet" type="text/css" href="../css/ie.css" media="screen">
@@ -60,7 +60,7 @@ var Hogan={};(function(a,b){function i(a){return String(a===null||a===undefined?
             form.first_name.value = fn;
             form.last_name.value = ln;
             form.dep_name.value = dep;
-        
+
             document.getElementById("ucsf_directory_search_submit").disabled = true;
             document.getElementById("searchresults").innerHTML = '<progress><div class="spinner"></div></progress>';
             _dirq.push(
@@ -71,7 +71,7 @@ var Hogan={};(function(a,b){function i(a){return String(a===null||a===undefined?
                         dep_name: dep
                     },
                     function (response) {
-                        ucsf.directory.renderSearchResults(response); 
+                        ucsf.directory.renderSearchResults(response);
                         document.getElementById("ucsf_directory_search_submit").disabled = false;
                     }
                 ]

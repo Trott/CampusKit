@@ -8,13 +8,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/ie.css" media="screen">
     <![endif]-->
        <link rel="stylesheet" type="text/css" href="../../css/secondary.css" media="screen">
-        <script>
-                window.onload = function () {
-                    var newsDeferred = document.createElement('script');
-                    newsDeferred.src = 'http://orthosurg.ucsf.edu/mobile/news.cfm';
-                    document.body.appendChild(newsDeferred);
-                };
-        </script>
+
         <noscript><style>.jsonly{display:none}</style></noscript>
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     </head>
@@ -39,7 +33,7 @@ var Hogan={};(function(a,b){function i(a){return String(a===null||a===undefined?
                 template = new Hogan.Template(
                     function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("title",c,p,1),c,p,0,10,59,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<div class=\"menu detailed\"><h2>");_.b(_.v(_.f("title",c,p,0)));_.b("</h2><ol>");});c.pop();}if(_.s(_.f("post",c,p,1),c,p,0,78,213,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("  <li>    <a href=\"");_.b(_.v(_.f("POST_LINK",c,p,0)));_.b("\"><span class=\"external\">");_.b(_.v(_.f("POST_TITLE",c,p,0)));_.b("</span>    <div class=\"smallprint light\">");_.b(_.v(_.f("POST_DATE",c,p,0)));_.b("</div></a>");});c.pop();}_.b("</ol></div>");if(!_.s(_.f("post",c,p,1),c,p,1,0,0,"")){_.b("<div class=\"content\"><p>Content could not be loaded.</p></div>");};return _.fl();;}
                     );
-                
+
                 document.getElementById("ortho-news").innerHTML = template.render(newsData);
             }
         </script>
@@ -47,4 +41,5 @@ var Hogan={};(function(a,b){function i(a){return String(a===null||a===undefined?
         <footer id="footer"><p>University of California &copy; 2010-12 UC Regents<br><a href="../../about/index.html">About</a> | <a href="../../feedback/index.html">Feedback</a></p></footer>
     </body>
     <script async defer src="../../js/campuskit.js"></script>
+    <script defer src="http://orthosurg.ucsf.edu/mobile/news.cfm"></src>
 </html>
