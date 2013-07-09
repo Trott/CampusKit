@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
         );
         configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
-        configCleanAllSrc.push('phonegap/plugins/*');
+        configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
     }
 
     // Project configuration.
@@ -93,24 +93,7 @@ module.exports = function (grunt) {
 
         jshint: {
             options: {
-                curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                undef: true,
-                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
-                boss: true,
-                eqnull: true,
-                browser: true
-            },
-            globals: {
-                Modernizr: true,
-                google: true,
-                Hogan: true,
-                ucsf: true
+                jshintrc: '.jshintrc'
             },
             beforeconcat: [site + '/js/modules/*/*.src.js'],
             afterconcat: ['tmp/campuskit.partial.js'],
@@ -176,7 +159,7 @@ module.exports = function (grunt) {
                 tasks: ['js']
             },
             css: {
-                files: [site + '/css/*.scss'],
+                files: [site + '/css/**'],
                 tasks: ['cssmin:minify']
             },
             html: {
@@ -200,4 +183,5 @@ module.exports = function (grunt) {
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
     grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
     grunt.registerTask('server', ['connect:server']);
+    grunt.registerTask('build', ['default']);
 };
