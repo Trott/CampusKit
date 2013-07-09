@@ -1,10 +1,10 @@
 (function () {
-    function scriptAppend(src) {
+    var scriptAppend = function (src) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = src;
         document.body.appendChild(script);
-    }
+    };
 
     var basePath = window.localStorage.getItem('basePath') || (function () {
         var href = window.location.href;
@@ -12,7 +12,8 @@
         window.localStorage.setItem('basePath', basePath);
         return basePath;
     }());
-    scriptAppend(basePath + 'phonegap.js');
+
+    scriptAppend('phonegap.js');
     scriptAppend(basePath + 'GAPlugin.js');
     scriptAppend(basePath + 'js/modules/ga_init.js');
 }());
@@ -28,3 +29,6 @@ document.addEventListener('deviceready',
     },
     false
 );
+
+
+
