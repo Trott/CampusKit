@@ -1,8 +1,11 @@
-## 0.5.0
+## 0.5.1
 
 Feature:
 
- - We've added this shiny, new CHANGELOG.
+ - We've added this shiny, new CHANGELOG and also a CONTRIBUTORS list.
+ - UCSF demo app now works fully in PhoneGap.
+
+## 0.5.0
 
 Features:
 
