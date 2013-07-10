@@ -23,8 +23,8 @@ document.addEventListener('deviceready',
         document.body.addEventListener('click',
             function (e) {
                 if ( e.srcElement && e.srcElement.nodeName === "A" ){
-                    e.PreventDefault();
-                    window.open('e.srcElement.href', '_system');
+                    window.open(e.srcElement.href, '_system');
+                    e.preventDefault();
                 }
             },
             true
