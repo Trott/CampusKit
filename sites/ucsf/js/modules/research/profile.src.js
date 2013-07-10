@@ -134,8 +134,8 @@ ucsf.ctsiProfile = {
 };
 
 // Now that the callbacks are defined, let's append the <script> tag.
-if (window.location.search) {
-    window.onload = function () {
+if (window.location.search && window.addEventListener) {
+    window.addEventListener('load', function () {
         "use strict";
         var queryString = decodeURIComponent(window.location.search),
             match = queryString.match(/[&?]fno=([\w.@]+)/),
@@ -149,5 +149,5 @@ if (window.location.search) {
                 '&callback=ucsf.ctsiProfile.renderProfile&publications=full&mobile=on';
             document.body.appendChild(deferred);
         }
-    };
+    }, false);
 }
