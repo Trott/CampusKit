@@ -3,7 +3,7 @@
     <h2><span data-ng-show="routeId" class="shuttle-color {{routeId}}"></span>{{routeShortName}} Shuttle Schedule</h2>
     <ol>
         <li data-ng-repeat="stop in stops | orderBy: 'stopName'">
-        	<a href="#/schedule/{{routeId}}/{{stop.id.id}}">{{stop.stopName}}</a>
+        	<a href="#/shuttle/schedule/{{routeId}}/{{stop.id.id}}">{{stop.stopName}}</a>
         </li>
     </ol>
     <p data-ng-show="loadError">Could not load content.</p>

@@ -4,18 +4,17 @@
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'partials/main_menu.html'})
-        .when('/planner', {templateUrl: 'partials/planner.html', controller: 'planController'})
-        .when('/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/planner.html', controller: 'planController'})
-        .when('/list', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
-        .when('/schedule//:stop', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
-        .when('/locations', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
-        .when('/schedule/:route', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
-        .when('/schedule/:route/:stop', {templateUrl: 'partials/schedule.html', controller: 'scheduleController'})
-        .otherwise({redirectTo: '/'});
+        .when('/shuttle', {templateUrl: 'partials/shuttle/main_menu.html'})
+        .when('/shuttle/planner', {templateUrl: 'partials/shuttle/planner.html', controller: 'planShuttleController'})
+        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/shuttle/planner.html', controller: 'planShuttleController'})
+        .when('/shuttle/list', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuShuttleController'})
+        .when('/shuttle/schedule//:stop', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuShuttleController'})
+        .when('/shuttle/locations', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopShuttleController'})
+        .when('/shuttle/schedule/:route', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopShuttleController'})
+        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'partials/shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
     .controller(
-        'scheduleController',
+        'scheduleShuttleController',
         ['$scope', '$routeParams', '$filter', function ($scope, $routeParams, $filter) {
             $scope.loading = true;
             $scope.loadError = false;
@@ -86,7 +85,7 @@
         }]
     )
     .controller(
-        'stopController',
+        'stopShuttleController',
         ['$scope', '$routeParams', function ($scope, $routeParams) {
             $scope.loading = true;
             $scope.loadError = false;
@@ -119,7 +118,7 @@
         }]
     )
     .controller(
-        'routeMenuController',
+        'routeMenuShuttleController',
         ['$scope', '$routeParams', function ($scope, $routeParams) {
             $scope.loading = true;
             $scope.loadError = false;
@@ -143,7 +142,7 @@
         }]
     )
     .controller(
-        'planController',
+        'planShuttleController',
         ['$scope', '$filter', '$location', '$routeParams', function ($scope, $filter, $location, $routeParams) {
             var xhrFunction,
                 xhrOptions;
@@ -305,7 +304,7 @@
                     localStorage.shuttleEnd = $scope.stops.indexOf($scope.end);
                 }
 
-                $location.url('/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
+                $location.url('/shuttle/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
             };
         }]
     );

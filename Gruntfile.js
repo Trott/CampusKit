@@ -37,6 +37,16 @@ module.exports = function (grunt) {
         configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
     }
 
+    var configJshintModules = [site + '/js/modules/*/*.src.js'];
+    if (platformOption === 'phonegap') {
+        configJshintModules.push(site + '/js/phonegap/modules/*/*.src.js');
+    }
+
+    var configUglifyModules = ['**/*.js'];
+    if (platformOption === 'phonegap') {
+        configUglifyModules.push(['../phonegap/modules/**/*.js']);
+    }
+
     // Project configuration.
     grunt.initConfig({
         bower: {
@@ -95,7 +105,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            beforeconcat: [site + '/js/modules/*/*.src.js'],
+            beforeconcat: configJshintModules,
             afterconcat: ['tmp/campuskit.partial.js'],
             gruntfile: ['Gruntfile.js']
         },
@@ -140,7 +150,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: site + '/js/modules/',
-                        src: ['**/*.js'],
+                        src: configUglifyModules,
                         dest: dest + '/js/modules/',
                         ext: '.js',
                         flatten: true

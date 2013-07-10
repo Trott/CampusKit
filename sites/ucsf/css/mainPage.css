@@ -6,22 +6,18 @@
   }
 
   /* line 7, ../scss/mainPage.scss */
-  li a {
+  .front li a {
     font-size: 80%;
   }
 }
 /* line 12, ../scss/mainPage.scss */
-body.front .menu {
+.front {
   border: 0;
-}
-
-/* line 16, ../scss/mainPage.scss */
-ol {
   margin: 1em 0;
 }
 
-/* line 20, ../scss/mainPage.scss */
-li {
+/* line 17, ../scss/mainPage.scss */
+.front li {
   display: inline-block;
   height: 108px;
   width: 25%;
@@ -32,8 +28,8 @@ li {
   text-align: center;
 }
 
-/* line 31, ../scss/mainPage.scss */
-li a {
+/* line 28, ../scss/mainPage.scss */
+.front li a {
   padding: 1em 0 0 0;
   background: 0;
   color: #fff;
