@@ -4,15 +4,14 @@
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'partials/main_menu.html'})
-        .when('/planner', {templateUrl: 'partials/planner.html', controller: 'planController'})
-        .when('/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/planner.html', controller: 'planController'})
-        .when('/list', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
-        .when('/schedule//:stop', {templateUrl: 'partials/routeList.html', controller: 'routeMenuController'})
-        .when('/locations', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
-        .when('/schedule/:route', {templateUrl: 'partials/stopList.html', controller: 'stopController'})
-        .when('/schedule/:route/:stop', {templateUrl: 'partials/schedule.html', controller: 'scheduleController'})
-        .otherwise({redirectTo: '/'});
+        .when('/shuttle', {templateUrl: 'shuttle/partials/main_menu.html'})
+        .when('/shutttle/planner', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
+        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
+        .when('/shuttle/list', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
+        .when('/shuttle/schedule//:stop', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
+        .when('/shuttle/locations', {templateUrl: 'shuttle/partials/stopList.html', controller: 'stopController'})
+        .when('/shuttle/schedule/:route', {templateUrl: 'shuttle/partials/stopList.html', controller: 'stopController'})
+        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/partials/schedule.html', controller: 'scheduleController'});
     }])
     .controller(
         'scheduleController',

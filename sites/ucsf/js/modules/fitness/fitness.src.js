@@ -4,8 +4,7 @@
     angular.module('fitness', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'partials/schedule.html', controller: 'scheduleController'})
-        .otherwise({redirectTo: '/'});
+        .when('/fitness/schedule', {templateUrl: 'fitness/partials/schedule.html', controller: 'scheduleController'});
     }])
     .controller(
         'scheduleController',
