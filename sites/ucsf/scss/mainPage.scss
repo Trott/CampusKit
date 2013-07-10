@@ -4,20 +4,17 @@
         height: 57px;
     }
 
-    li a {
+    .front li a {
     	font-size: 80%;
     }
 }
 
-body.front .menu {
+.front {
     border:0;
-}
-
-ol {
 	margin: 1em 0;
 }
 
-li {
+.front li {
 	display:inline-block;
 	height:108px;
 	width:25%;
@@ -28,7 +25,7 @@ li {
 	text-align:center;
 }
 
-li a {
+.front li a {
 	padding: 1em 0 0 0;
 	background:0;
 	color:#fff;
