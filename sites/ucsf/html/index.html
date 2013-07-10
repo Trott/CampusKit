@@ -25,7 +25,7 @@
         <a href="./index.html"><div class="logo"></div><span>Mobile</span></a>
     </header>
 
-    <div id="main" data-ng-view>
+    <div data-ng-app="main" data-ng-view>
         <progress><span class="spinner"></span></progress>
     </div>
 
@@ -40,10 +40,5 @@
     <script src="http://apis.ucsf.edu/jsapi?shuttle&amp;fitness"></script>
     <script src="js/modules/shuttle.js"></script>
     <script src="js/modules/fitness.js"></script>
-    <script>
-        angular.element(document).ready(function() {
-            angular.bootstrap(document.getElementById('main'),['main']);
-        });
-    </script>
 </body>
 </html>
