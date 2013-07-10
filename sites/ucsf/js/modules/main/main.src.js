@@ -3,6 +3,6 @@
     angular.module('main', ['shuttle'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'main/partials/main_menu.html'});
+        .when('/', {templateUrl: 'partials/main/main_menu.html'});
     }]);
 }());

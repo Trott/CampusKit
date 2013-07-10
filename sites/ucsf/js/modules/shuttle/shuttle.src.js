@@ -4,14 +4,14 @@
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/shuttle', {templateUrl: 'shuttle/partials/main_menu.html'})
-        .when('/shuttle/planner', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
-        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
-        .when('/shuttle/list', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
-        .when('/shuttle/schedule//:stop', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
-        .when('/shuttle/locations', {templateUrl: 'shuttle/partials/stopList.html', controller: 'stopController'})
-        .when('/shuttle/schedule/:route', {templateUrl: 'shuttle/partials/stopList.html', controller: 'stopController'})
-        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/partials/schedule.html', controller: 'scheduleController'});
+        .when('/shuttle', {templateUrl: 'partials/shuttle/main_menu.html'})
+        .when('/shuttle/planner', {templateUrl: 'partials/shuttle/planner.html', controller: 'planController'})
+        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/shuttle/planner.html', controller: 'planController'})
+        .when('/shuttle/list', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuController'})
+        .when('/shuttle/schedule//:stop', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuController'})
+        .when('/shuttle/locations', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopController'})
+        .when('/shuttle/schedule/:route', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopController'})
+        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'partials/shuttle/schedule.html', controller: 'scheduleController'});
     }])
     .controller(
         'scheduleController',
