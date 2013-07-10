@@ -16,10 +16,7 @@ AddOutputFilterByType DEFLATE application/javascript application/x-javascript te
     RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/#/list/ [NE,L,R]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shuttle/planner /shuttle/#/planner [NE,L,R]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shuttle    /shuttle
+    RewriteRule ^(.*)$ /#$1
 
     RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
     RewriteRule ^maps/campus.php$ /maps/ [L,R]
