@@ -5,7 +5,7 @@
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
         .when('/shuttle', {templateUrl: 'shuttle/partials/main_menu.html'})
-        .when('/shutttle/planner', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
+        .when('/shuttle/planner', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
         .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'shuttle/partials/planner.html', controller: 'planController'})
         .when('/shuttle/list', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
         .when('/shuttle/schedule//:stop', {templateUrl: 'shuttle/partials/routeList.html', controller: 'routeMenuController'})
@@ -304,7 +304,7 @@
                     localStorage.shuttleEnd = $scope.stops.indexOf($scope.end);
                 }
 
-                $location.url('/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
+                $location.url('/shuttle/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
             };
         }]
     );

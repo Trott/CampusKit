@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>UCSF Mobile</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
     <!--[if lte IE 7]>
         <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen">
     <![endif]-->
@@ -29,10 +29,6 @@
         <progress><span class="spinner"></span></progress>
     </div>
 
-    <div id="shuttle" data-ng-view></div>
-
-    <div id="fitness" data-ng-view></div>
-
     <footer id="footer">
         <p>&copy; 2013 Regents of the University of California<br>
             <a href="about/index.html">About</a> | <a href="feedback/index.html">Feedback</a>
@@ -46,9 +42,7 @@
     <script src="js/modules/fitness.js"></script>
     <script>
         angular.element(document).ready(function() {
-            angular.bootstrap(document.getElementById('main'),['main'])
-            angular.bootstrap(document.getElementById('shuttle'),['shuttle']);
-            angular.bootstrap(document.getElementById('fitness'),['fitness']);
+            angular.bootstrap(document.getElementById('main'),['main']);
         });
     </script>
 </body>
