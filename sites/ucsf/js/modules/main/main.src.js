@@ -3,6 +3,7 @@
     angular.module('main', ['shuttle', 'fitness'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'partials/main/main_menu.html'});
+        .when('/', {templateUrl: 'partials/main/main_menu.html'})
+        .otherwise({redirectTo: '/'});
     }]);
 }());
