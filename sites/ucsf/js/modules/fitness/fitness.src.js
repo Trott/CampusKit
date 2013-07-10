@@ -4,7 +4,9 @@
     angular.module('fitness', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/fitness/schedule', {templateUrl: 'fitness/partials/schedule.html', controller: 'scheduleController'});
+        .when('/fitness/schedule', {templateUrl: 'partials/fitness/schedule.html', controller: 'scheduleController'})
+        .when('/fitness/locations', {templateUrl: 'partials/fitness/locations.html'})
+        .when('/fitness', {templateUrl: 'partials/fitness/main_menu.html'});
     }])
     .controller(
         'scheduleController',

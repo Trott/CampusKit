@@ -20,12 +20,15 @@
 
 document.addEventListener('deviceready',
     function () {
-        'use strict';
-
-        var anchors = document.getElementsByTagName('a');
-        for (var i=0, l=anchors.length; i<l; i++) {
-            anchors[i].setAttribute('onclick', 'window.open("' + anchors[i].href + '", "_blank", "location=no,transitionstyle=crossdissolve"); return false');
-        }
+        document.body.addEventListener('click',
+            function (e) {
+                if ( e.srcElement && e.srcElement.nodeName === "A" ){
+                    e.PreventDefault();
+                    window.open('e.srcElement.href', '_system');
+                }
+            },
+            true
+        );
     },
     false
 );

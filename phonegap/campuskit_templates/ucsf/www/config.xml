@@ -15,11 +15,11 @@
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <preference name="phonegap-version" value="2.9.0" />
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
     <preference name="prerendered-icon" value="true" />
+    <preference name="show-splash-screen-spinner" value="false" />
 
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
@@ -47,5 +47,5 @@
     <gap:splash src="res/screen/ios/screen-ipad-portrait-2x.png"     gap:platform="ios"     width="1536" height="2008" />
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
-    <gap:plugin name="GAPlugin" /> 
+    <gap:plugin name="GAPlugin" />
 </widget>
