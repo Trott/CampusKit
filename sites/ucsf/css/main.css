@@ -211,11 +211,9 @@ header {
 }
 
 /* This .main is here because this particular style is really to accommodate the footer */
-/* line 2, ../scss/_footer.scss */
-.main {
-  margin-bottom: -28px;
-}
-
+/*.main {
+    margin-bottom: -28px;
+}*/
 /* hide footer if Angular has not yet loaded main content */
 /* line 7, ../scss/_footer.scss */
 .main-footer[data-ng-cloak] {

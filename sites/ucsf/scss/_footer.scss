@@ -1,8 +1,3 @@
-/* This .main is here because this particular style is really to accommodate the footer */
-.main {
-    margin-bottom: -28px;
-}
-
 /* hide footer if Angular has not yet loaded main content */
 .main-footer[data-ng-cloak] {
     display:none !important;
