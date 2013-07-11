@@ -216,8 +216,14 @@ header {
   margin-bottom: -28px;
 }
 
-/* line 6, ../scss/_footer.scss */
-footer {
+/* hide footer if Angular has not yet loaded main content */
+/* line 7, ../scss/_footer.scss */
+.main-footer[data-ng-cloak] {
+  display: none !important;
+}
+
+/* line 11, ../scss/_footer.scss */
+.main-footer {
   display: block;
   font-size: .80em;
   height: 28px;
@@ -229,23 +235,23 @@ footer {
   width: auto;
 }
 
-/* line 21, ../scss/_footer.scss */
-footer,
-footer a,
-footer a:visited,
-footer a:hover {
+/* line 26, ../scss/_footer.scss */
+.main-footer,
+.main-footer a,
+.main-footer a:visited,
+.main-footer a:hover {
   color: #fff;
 }
 
-/* line 26, ../scss/_footer.scss */
-footer a,
-footer a:visited {
+/* line 31, ../scss/_footer.scss */
+.main-footer a,
+.main-footer a:visited {
   text-decoration: none;
   border-bottom: 1px solid #fff;
 }
 
-/* line 31, ../scss/_footer.scss */
-footer a:hover {
+/* line 36, ../scss/_footer.scss */
+.main-footer a:hover {
   border-bottom: none;
 }
 

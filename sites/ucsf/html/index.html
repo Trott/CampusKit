@@ -26,15 +26,15 @@
         <a href="./index.html"><div class="logo"></div><span>Mobile</span></a>
     </header>
 
-    <div class="main" data-ng-app="main" data-ng-view data-ng-animate="{enter: 'transition-in'}">
-        <progress><span class="spinner"></span></progress>
+    <div data-ng-app="main">
+        <div class="main" data-ng-view data-ng-animate="{enter: 'transition-in'}"></div>
+        <footer class="main-footer" data-ng-cloak>
+            <p>&copy; 2013 Regents of the University of California<br>
+                <a href="about/index.html">About</a> | <a href="feedback/index.html">Feedback</a>
+            </p>
+        </footer>
     </div>
 
-    <footer class="main-footer">
-        <p>&copy; 2013 Regents of the University of California<br>
-            <a href="about/index.html">About</a> | <a href="feedback/index.html">Feedback</a>
-        </p>
-    </footer>
     <script src="js/campuskit.js"></script>
     <script src="js/modules/angular.js"></script>
     <script src="js/modules/main.js"></script>

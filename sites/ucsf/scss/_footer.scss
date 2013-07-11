@@ -3,7 +3,12 @@
     margin-bottom: -28px;
 }
 
-footer {
+/* hide footer if Angular has not yet loaded main content */
+.main-footer[data-ng-cloak] {
+    display:none !important;
+}
+
+.main-footer {
     display:block;
     font-size:.80em;
     height:28px;
@@ -15,19 +20,19 @@ footer {
     width:auto;
 }
 
-footer,
-footer a,
-footer a:visited,
-footer a:hover {
+.main-footer,
+.main-footer a,
+.main-footer a:visited,
+.main-footer a:hover {
     color:#fff;
 }
 
-footer a,
-footer a:visited {
+.main-footer a,
+.main-footer a:visited {
     text-decoration:none;
     border-bottom:1px solid #fff;
 }
 
-footer a:hover {
+.main-footer a:hover {
     border-bottom: none;
 }
