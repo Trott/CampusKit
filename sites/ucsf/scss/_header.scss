@@ -1,11 +1,11 @@
-/* Hide header banner... */
-header {
+/* Hide header banner...*/
+.main-header {
     display:none;
 }
 
-/* ...unless we're on old Android (which we detect with Modernizr .touch.not-overflowscrolling--lame!)
+/* ...unless we're on old Android (which we detect with Modernizr .touch.no-overflowscrolling--lame!)
       because old Android doesn't show the background branding */
-.touch.no-overflowscrolling header {
+.touch.no-overflowscrolling .main-header {
     display:block;
     @include background(linear-gradient(top, #414142, #57585a 58%, #58595b));
     border-bottom: 0px solid #fff;
@@ -13,7 +13,7 @@ header {
     padding-left: 10px;
 }
 
-.touch.no-overflowscrolling header img {
+.touch.no-overflowscrolling .main-header img {
     border: none;
     float: none;
 }
@@ -30,7 +30,7 @@ header {
     background-image: url('../img/ucsf-logo.png');
 }
 
-.touch.no-overflowscrolling header span {
+.touch.no-overflowscrolling .main-header span {
     bottom: 12px;
     color: #fff;
     float: none;
@@ -42,7 +42,7 @@ header {
     position:relative;
 }
 
-.touch.no-overflowscrolling header span a {
+.touch.no-overflowscrolling .main-header span a {
     color: #fff;
 }
 

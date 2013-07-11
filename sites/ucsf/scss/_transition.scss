@@ -8,8 +8,13 @@
 
 .transition-in-setup {
     opacity: 0;
-} 
+}
 
 .transition-in-setup.transition-in-start {
     opacity: 1;
+}
+
+/* hide cloaked content if Angular hasn't provided content yet */
+[data-ng-cloak] {
+    display:none !important;
 }

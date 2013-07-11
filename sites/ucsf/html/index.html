@@ -22,11 +22,11 @@
     <!-- prefetch background images -->
     <img style="display:none" alt="" src="img/background-decor.png">
     <img style="display:none" alt="" src="img/watermark.png">
-    <header>
-        <a href="./index.html"><div class="logo"></div><span>Mobile</span></a>
-    </header>
 
     <div data-ng-app="main">
+        <header class="main-header" data-ng-cloak>
+            <a href="./index.html"><div class="logo"></div><span>Mobile</span></a>
+        </header>
         <div data-ng-view data-ng-animate="{enter: 'transition-in'}">
         </div>
         <footer class="main-footer" data-ng-cloak>
@@ -34,7 +34,9 @@
                 <a href="about/index.html">About</a> | <a href="feedback/index.html">Feedback</a>
             </p>
         </footer>
-    </div>
+        <div data-ng-cloak data-ng-controller="backButtonController">
+            <button data-ng-hide="hideBackButton" onclick="window.history.go(-1);" class="nav-button">&larr; Back</button>
+        </div>
 
     <script src="js/campuskit.js"></script>
     <script src="js/modules/angular.js"></script>

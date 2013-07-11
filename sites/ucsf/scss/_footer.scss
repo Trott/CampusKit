@@ -1,8 +1,3 @@
-/* hide footer if Angular has not yet loaded main content */
-.main-footer[data-ng-cloak] {
-    display:none !important;
-}
-
 .main-footer {
     display:block;
     font-size:.80em;
