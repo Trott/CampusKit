@@ -36,3 +36,36 @@
   font-weight: normal;
   text-align: center;
 }
+
+/* AngularJS ngAnimate stuff */
+/* line 37, ../scss/mainPage.scss */
+.transition-in-setup {
+  position: absolute;
+  left: -100%;
+  width: 100%;
+}
+
+/* line 43, ../scss/mainPage.scss */
+.transition-in-setup.transition-in-start {
+  left: 0;
+}
+
+/* line 47, ../scss/mainPage.scss */
+.transition-out-setup {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+/* line 53, ../scss/mainPage.scss */
+transition-out-setup.transition-out-start {
+  left: -100%;
+}
+
+/* line 57, ../scss/mainPage.scss */
+.transition-in-setup, .transition-out-setup {
+  -webkit-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  -moz-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  -o-transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
