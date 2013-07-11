@@ -283,11 +283,9 @@ body {
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
   background-color: #fff;
-  border: 0;
 }
 
-/* line 13, ../scss/_navigation.scss */
+/* line 12, ../scss/_navigation.scss */
 .nav-button:active {
   background-color: #666;
-  border: 1px;
 }
