@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('main', ['shuttle', 'fitness'])
+    angular.module('main', ['shuttle', 'fitness', 'feedback'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
         .when('/', {templateUrl: 'partials/main/mainMenu.html'})
