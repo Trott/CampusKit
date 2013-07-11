@@ -1,0 +1,15 @@
+.transition-in-setup {
+    -webkit-transition: 1s linear all; /* Safari/Chrome */
+    -moz-transition: 1s linear all; /* Firefox */
+    -ms-transition: 1s linear all; /* IE10 */
+    -o-transition: 1s linear all; /* Opera */
+    transition: 1s linear all; /* Future Browsers */
+}
+
+.transition-in-setup {
+    opacity: 0;
+} 
+
+.transition-in-setup.transition-in-start {
+    opacity: 1;
+}

@@ -210,7 +210,13 @@ header {
   padding: 0 8px 0 5px;
 }
 
-/* line 1, ../scss/_footer.scss */
+/* This .main is here because this particular style is really to accommodate the footer */
+/* line 2, ../scss/_footer.scss */
+.main {
+  margin-bottom: -28px;
+}
+
+/* line 6, ../scss/_footer.scss */
 footer {
   display: block;
   font-size: .80em;
@@ -223,7 +229,7 @@ footer {
   width: auto;
 }
 
-/* line 16, ../scss/_footer.scss */
+/* line 21, ../scss/_footer.scss */
 footer,
 footer a,
 footer a:visited,
@@ -231,14 +237,38 @@ footer a:hover {
   color: #fff;
 }
 
-/* line 21, ../scss/_footer.scss */
+/* line 26, ../scss/_footer.scss */
 footer a,
 footer a:visited {
   text-decoration: none;
   border-bottom: 1px solid #fff;
 }
 
-/* line 26, ../scss/_footer.scss */
+/* line 31, ../scss/_footer.scss */
 footer a:hover {
   border-bottom: none;
+}
+
+/* line 1, ../scss/_transition.scss */
+.transition-in-setup {
+  -webkit-transition: 1s linear all;
+  /* Safari/Chrome */
+  -moz-transition: 1s linear all;
+  /* Firefox */
+  -ms-transition: 1s linear all;
+  /* IE10 */
+  -o-transition: 1s linear all;
+  /* Opera */
+  transition: 1s linear all;
+  /* Future Browsers */
+}
+
+/* line 9, ../scss/_transition.scss */
+.transition-in-setup {
+  opacity: 0;
+}
+
+/* line 13, ../scss/_transition.scss */
+.transition-in-setup.transition-in-start {
+  opacity: 1;
 }
