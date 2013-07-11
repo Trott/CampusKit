@@ -5,7 +5,7 @@
     <title>UCSF Mobile</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
     <!--[if lte IE 7]>
-        <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/ie.css" media="screen">
     <![endif]-->
     <link rel="stylesheet" type="text/css" href="css/mainPage.css" media="screen">
     <link rel="stylesheet" type="text/css" href="css/secondary.css" media="screen">
@@ -35,9 +35,12 @@
             </p>
         </footer>
         <div data-ng-cloak data-ng-controller="backButtonController">
-            <button data-ng-hide="hideBackButton" onclick="window.history.go(-1);" class="nav-button">Back</button>
+            <button data-ng-hide="hideBackButton"
+            data-ng-animate="{show: 'transition-in'}"
+            onclick="window.history.go(-1);"
+            class="nav-button">Back</button>
         </div>
-
+    </div>
     <script src="js/campuskit.js"></script>
     <script src="js/modules/angular.js"></script>
     <script src="js/modules/main.js"></script>
