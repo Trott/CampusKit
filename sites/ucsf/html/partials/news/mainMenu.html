@@ -1,5 +1,6 @@
+<section>
 <progress data-ng-hide="feed"><span class="spinner"></span></progress>
-<section data-ng-show="feed.entries && feed.entries.length>0" class="menu detailed">
+<div data-ng-show="feed.entries && feed.entries.length>0" class="menu detailed">
 	<h2>UCSF News</h2>
 	<ol data-ng-repeat="entry in feed.entries">
 		<li>
@@ -8,8 +9,9 @@
 			</a>
 		</li>
 	</ol>
-</section>
+</div>
 <div class="content" data-ng-cloak data-ng-show="feed && ! feed.entries || feed.entries.length===0">
 	<h2>UCSF News</h2>
 	<p>Content could not be loaded.</p>
 </div>
+</section>
