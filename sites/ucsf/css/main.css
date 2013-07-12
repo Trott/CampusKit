@@ -104,6 +104,18 @@ ul li {
 }
 
 /* line 60, ../scss/_typography.scss */
+ul.bulleted li {
+  list-style-type: disc;
+  margin-left: 2em;
+}
+
+/* line 65, ../scss/_typography.scss */
+ul.bulleted li a {
+  padding: 0;
+  display: inline;
+}
+
+/* line 70, ../scss/_typography.scss */
 a {
   color: #38939b;
 }
@@ -113,7 +125,7 @@ a {
       from being styled like the link.  This is useful if links are underlined,
       for example, and also in .menu.detailed (see comment for no-ext-ind).
 */
-/* line 69, ../scss/_typography.scss */
+/* line 79, ../scss/_typography.scss */
 a[rel~=external]:after, span.external:after, .detailed li a span.external:after {
   content: "\a0 " url(../img/external-link.png);
 }
@@ -126,7 +138,7 @@ a[rel~=external]:after, span.external:after, .detailed li a span.external:after 
    will determine how the link is handled in the native client and possibly in
    screen readers.
 */
-/* line 81, ../scss/_typography.scss */
+/* line 91, ../scss/_typography.scss */
 a[rel=external].no-ext-ind:after {
   content: "";
 }
