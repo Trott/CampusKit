@@ -13,16 +13,3 @@ Scenario: News page via home screen navigation
   And I am on the home page
   And I click "News"
   Then I should see news items
-
-Scenario: Pharmacy News via News page
-  Given my localStorage is empty
-  And I visit a news page
-  And I click "Pharmacy News"
-  Then I should see School of Pharmacy News
-
-Scenario: Pharmacy News via Native iOS page
-  Given my localStorage is empty
-  And I am on the Native iOS home page
-  And I click "News"
-  And I click "Pharmacy News"
-  Then I should see School of Pharmacy News
