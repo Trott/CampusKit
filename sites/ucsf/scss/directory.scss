@@ -1,26 +1,28 @@
-pre {
-    display: block;
-    padding: 0;
-    margin: 0;
-    font-family: inherit;
+.ucsf-directory-detail {
+    background: #fff;
 }
 
-ul.ucsf-directory {
-    margin:0; padding:0
+.menu .ucsf-directory-detail {
+    margin: 1em;
+    border: 2px solid #777;
 }
 
-ul.ucsf-directory li {
-    padding:1em;
-    margin:0;
-    border: 1px #DDD;
-    border-style: solid none none none;
-}
-
-ul.ucsf-directory li:first-child {
-    border-style: none none none none;
+.ucsf-directory-detail li a {
+    background: none;
 }
 
 .info {
     font-style: italic;
     text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu li.ucsf-directory-noclick{
+    border: none;
+    text-align: left;
+    padding: 0.25em;
+}
+
+.no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
+    background: #fff;
 }

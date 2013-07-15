@@ -93,29 +93,27 @@ form > select {
   margin-left: 10px;
 }
 
-/*
- * Forms Basic Elements
- */
-/* line 59, ../scss/_form.scss */
+/* line 57, ../scss/_form.scss */
 form > label,
 select,
-form > fieldset {
+form > fieldset,
+input {
   margin-top: 1em;
 }
 
-/* line 63, ../scss/_form.scss */
+/* line 61, ../scss/_form.scss */
 form > label + select {
   margin-top: 0;
 }
 
-/* line 68, ../scss/_form.scss */
+/* line 66, ../scss/_form.scss */
 input,
 select {
   border: 1px solid #CCC;
   font-size: 1em;
 }
 
-/* line 73, ../scss/_form.scss */
+/* line 71, ../scss/_form.scss */
 form p {
   margin-bottom: .5em;
 }
@@ -123,12 +121,12 @@ form p {
 /*
  * Forms Buttons
  */
-/* line 80, ../scss/_form.scss */
+/* line 78, ../scss/_form.scss */
 form a.button {
   text-align: center;
 }
 
-/* line 86, ../scss/_form.scss */
+/* line 84, ../scss/_form.scss */
 form input[type="submit"],
 form button,
 form a.button {
@@ -142,13 +140,13 @@ form a.button {
   height: auto;
 }
 
-/* line 98, ../scss/_form.scss */
+/* line 96, ../scss/_form.scss */
 form input[type="submit"],
 form button {
   padding: .5em 1em;
 }
 
-/* line 104, ../scss/_form.scss */
+/* line 102, ../scss/_form.scss */
 form input[type="submit"][disabled="disabled"],
 form button[disabled="disabled"],
 form a.button.disabled {
@@ -156,7 +154,7 @@ form a.button.disabled {
   cursor: default;
 }
 
-/* line 114, ../scss/_form.scss */
+/* line 112, ../scss/_form.scss */
 form input[type="submit"][disabled="disabled"]:hover,
 form button[disabled="disabled"]:hover,
 form a.button:hover.disabled,
@@ -166,7 +164,7 @@ form a.button:focus.disabled {
   background-color: #e4e7ee;
 }
 
-/* line 123, ../scss/_form.scss */
+/* line 121, ../scss/_form.scss */
 form input[type="submit"]:hover,
 form button:hover,
 form a.button:hover,
@@ -177,7 +175,7 @@ form a.button:focus {
 }
 
 /* full width form - default */
-/* line 135, ../scss/_form.scss */
+/* line 133, ../scss/_form.scss */
 form div,
 form h1,
 form h2,
@@ -191,7 +189,7 @@ select {
 }
 
 /* form input that shouldn't take up the full width */
-/* line 141, ../scss/_form.scss */
+/* line 139, ../scss/_form.scss */
 .compact {
   width: auto;
   display: inline-block;
@@ -200,19 +198,19 @@ select {
 }
 
 /* short width form */
-/* line 149, ../scss/_form.scss */
+/* line 147, ../scss/_form.scss */
 form.short input,
 form.short > label {
   display: inline;
   width: auto;
 }
 
-/* line 154, ../scss/_form.scss */
+/* line 152, ../scss/_form.scss */
 form .last {
   border-bottom: none;
 }
 
-/* line 159, ../scss/_form.scss */
+/* line 157, ../scss/_form.scss */
 form > div,
 form > p {
   border-bottom: 1px solid #ddd;
@@ -220,7 +218,7 @@ form > p {
 }
 
 /* required label */
-/* line 165, ../scss/_form.scss */
+/* line 163, ../scss/_form.scss */
 span.required:after {
   content: "*";
   color: #536895;
@@ -230,31 +228,31 @@ span.required:after {
 /* ------------------------------------------------------
  * multi level form
 */
-/* line 174, ../scss/_form.scss */
+/* line 172, ../scss/_form.scss */
 .content form {
   padding-left: 0;
 }
 
-/* line 178, ../scss/_form.scss */
+/* line 176, ../scss/_form.scss */
 .content form {
   padding-top: 0;
   padding-bottom: 0;
   padding-right: 20px;
 }
 
-/* line 185, ../scss/_form.scss */
+/* line 183, ../scss/_form.scss */
 .content > div > form > div,
 .content > div > form > p {
   border-bottom: none;
   padding: 0;
 }
 
-/* line 190, ../scss/_form.scss */
+/* line 188, ../scss/_form.scss */
 .content > div > form {
   padding-right: 0;
 }
 
-/* line 198, ../scss/_form.scss */
+/* line 196, ../scss/_form.scss */
 .content > div > form > a.button,
 .content > div > form > button,
 .content > div > form > input,
@@ -266,12 +264,12 @@ span.required:after {
 /**
  * Forms
  */
-/* line 206, ../scss/_form.scss */
+/* line 204, ../scss/_form.scss */
 form {
   margin: 10px 10px 0 10px;
 }
 
-/* line 210, ../scss/_form.scss */
+/* line 208, ../scss/_form.scss */
 .content form {
   margin: 0;
 }
@@ -279,7 +277,7 @@ form {
 /**
  * Border radius on everything
  */
-/* line 219, ../scss/_form.scss */
+/* line 217, ../scss/_form.scss */
 form,
 .content,
 .menu {
@@ -290,7 +288,7 @@ form,
   border-radius: 5px;
 }
 
-/* line 223, ../scss/_form.scss */
+/* line 221, ../scss/_form.scss */
 form > :first-child {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -300,7 +298,7 @@ form > :first-child {
   border-top-right-radius: 5px;
 }
 
-/* line 227, ../scss/_form.scss */
+/* line 225, ../scss/_form.scss */
 form > :last-child {
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -313,7 +311,7 @@ form > :last-child {
 /**
  * Forms
  */
-/* line 235, ../scss/_form.scss */
+/* line 233, ../scss/_form.scss */
 .content form {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -322,21 +320,21 @@ form > :last-child {
   border-radius: 0;
 }
 
-/* line 240, ../scss/_form.scss */
+/* line 238, ../scss/_form.scss */
 input,
 select {
   box-shadow: inset 0 0 3px #bbb;
   padding: 4px;
 }
 
-/* line 245, ../scss/_form.scss */
+/* line 243, ../scss/_form.scss */
 select {
   background: url(../img/select-options-bg.png) center right no-repeat;
   -webkit-appearance: none;
 }
 
 /* making control equal width */
-/* line 252, ../scss/_form.scss */
+/* line 250, ../scss/_form.scss */
 input,
 select {
   -moz-box-sizing: border-box;
@@ -345,7 +343,7 @@ select {
 }
 
 /* button */
-/* line 267, ../scss/_form.scss */
+/* line 265, ../scss/_form.scss */
 form input[type="submit"],
 form button,
 form a.button,
@@ -368,7 +366,7 @@ form a.button:focus.disabled {
   text-shadow: 0 1px 1px #fff;
 }
 
-/* line 282, ../scss/_form.scss */
+/* line 280, ../scss/_form.scss */
 form input[type="submit"]:hover,
 form button:hover,
 form a.button:hover,

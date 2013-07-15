@@ -14,21 +14,52 @@
     }());
 
     scriptAppend('phonegap.js');
-    scriptAppend(basePath + 'GAPlugin.js');
-    scriptAppend(basePath + 'js/modules/ga_init.js');
+    scriptAppend('GAPlugin.js');
 }());
 
 document.addEventListener('deviceready',
     function () {
+
+        var gaPlugin = window.plugins.gaPlugin;
+        var doNothing = function () {};
+
+        gaPlugin.init(doNothing, doNothing, "UA-42301127-1", 10);
+
+        window.addEventListener('unload',
+            function () {
+                gaPlugin.exit(doNothing, doNothing);
+            },
+            false
+        );
+
+        var trackPage = function (href) {
+            gaPlugin.trackPage(doNothing, doNothing, regexp.exec(window.location.href)[1]);
+        };
+        // regexp to get relevant part of the path
+        var regexp = /\/www\/(.*)/;
+
         document.body.addEventListener('click',
             function (e) {
-                if ( e.srcElement && e.srcElement.nodeName === "A" ){
-                    window.open(e.srcElement.href, '_system');
-                    e.preventDefault();
+                // Open external links in the system browser.
+                if ( e.srcElement ) {
+                    var element = e.srcElement;
+                    while (e.srcElement.nodeName !== 'BODY') {
+                        if (element.nodeName === 'A') {
+                            trackPage(element.href);
+                            if (e.srcElement.rel === "external") {
+                                window.open(e.srcElement.href, '_system');
+                                e.preventDefault();
+                            }
+                            break;
+                        }
+                        element = element.parentNode;
+                    }
                 }
             },
-            true
+            false
         );
+
+        trackPage(window.location.href);
     },
     false
 );
