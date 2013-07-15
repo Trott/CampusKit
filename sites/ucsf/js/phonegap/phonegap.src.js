@@ -32,23 +32,25 @@ document.addEventListener('deviceready',
             false
         );
 
+        // regexp to get relevant part of the path
+        var regexp = /\/www\/(.*)/;
+
         var trackPage = function (href) {
             gaPlugin.trackPage(doNothing, doNothing, regexp.exec(window.location.href)[1]);
         };
-        // regexp to get relevant part of the path
-        var regexp = /\/www\/(.*)/;
 
         document.body.addEventListener('click',
             function (e) {
                 // Open external links in the system browser.
                 if ( e.srcElement ) {
                     var element = e.srcElement;
-                    while (e.srcElement.nodeName !== 'BODY') {
+                    while (element.nodeName !== 'BODY') {
                         if (element.nodeName === 'A') {
-                            trackPage(element.href);
-                            if (e.srcElement.rel === "external") {
-                                window.open(e.srcElement.href, '_system');
+                            if (element.rel === "external") {
+                                window.open(element.href, '_system');
                                 e.preventDefault();
+                            } else {
+                                trackPage(element.href);
                             }
                             break;
                         }
