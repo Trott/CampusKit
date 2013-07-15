@@ -1,6 +1,13 @@
-var ucsf = ucsf || {};
-ucsf.maps =  {
-    'locationList': [
+(function () {
+    'use strict';
+    angular.module('maps', [])
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+        .when('/maps', {templateUrl: 'partials/maps/mainMenu.html'})
+        .when('/maps/locations', {templateUrl: 'partials/maps/locations.html', controller: 'mapsLocationController'})
+        .when('/maps/map/:location', {templateUrl: 'partials/maps/map.html', controller: 'mapsMapController'});
+    }])
+    .value('locationList', [
         {'lat': 37.767569, 'lon': -122.392223, 'zoom': 17, 'name': 'Mission Bay', 'marker': false},
         {'lat': 37.763154, 'lon': -122.457941, 'zoom': 17, 'name': 'Parnassus', 'marker': false},
         {'lat': 37.7846389, 'lon': -122.439604, 'zoom': 18, 'name': 'Mt. Zion', 'marker': false},
@@ -45,80 +52,91 @@ ucsf.maps =  {
         {'lat': 37.762728, 'lon':-122.459943, 'zoom': 17, 'name': 'UC Hall', 'marker': true},
         {'lat': 37.784654, 'lon':-122.439373, 'zoom': 17, 'name': 'UCSF Medical Center at Mt. Zion', 'marker': true},
         {'lat': 37.769765, 'lon': -122.426147, 'zoom': 12, 'name': 'All Campuses', 'marker': false}
-        ],
-    'render': function() {
-        "use strict";
-        var queryString = decodeURIComponent(window.location.search.replace(/\+/g," ")),
-        match = queryString.match(/[?&]loc=([\w. ()]+)/),
-        locationCode,
-        mapLocation;
+    ])
+    .controller(
+        'mapsLocationController',
+        ['$scope', 'locationList', function ($scope, locationList) {
+            $scope.locationList = locationList;
+        }]
+    )
+    .controller(
+        'mapsMapController',
+        ['$scope', '$routeParams', '$window', 'locationList',
+            function ($scope, $routeParams, $window, locationList) {
+                $window.ucsfMapsCallback = function () {
+                    var locationCode = $routeParams.location,
+                        mapLocation;
 
-        locationCode = match !== null ? match[1] : 'All Campuses';
-        for (var i = 0; i < ucsf.maps.locationList.length; i++) {
-            if (ucsf.maps.locationList[i].name === locationCode) {
-                mapLocation = ucsf.maps.locationList[i];
-                break;
-            }
-        }
+                    for (var i = 0; i < locationList.length; i++) {
+                        if (locationList[i].name === locationCode) {
+                            mapLocation = locationList[i];
+                            break;
+                        }
+                        if (locationList[i].name === 'All Campuses') {
+                            mapLocation = locationList[i];
+                        }
+                    }
 
-        var mapTypeId = 'UCSF Custom Map';
-        var mapStyle = [
-        {featureType:"administrative", elementType:"all", stylers:[{hue:"#dae6c3"},{saturation:22},{lightness:-5}]},
-        {featureType:"landscape", elementType:"all", stylers:[{hue:"#dae6c3"},{saturation:16},{lightness:-7}]},
-        {featureType:"road", elementType:"geometry", stylers:[{hue:"#ffffff"},{saturation:-100},{lightness:100}]},
-        {featureType: "road.local", elementType: "labels", stylers: [{ visibility: "off" }]}
-        ];
+                    var mapTypeId = 'UCSF Custom Map';
+                    var mapStyle = [
+                        {featureType:"administrative", elementType:"all", stylers:[{hue:"#dae6c3"},{saturation:22},{lightness:-5}]},
+                        {featureType:"landscape", elementType:"all", stylers:[{hue:"#dae6c3"},{saturation:16},{lightness:-7}]},
+                        {featureType:"road", elementType:"geometry", stylers:[{hue:"#ffffff"},{saturation:-100},{lightness:100}]},
+                        {featureType: "road.local", elementType: "labels", stylers: [{ visibility: "off" }]}
+                    ];
 
-        var styledMap = new google.maps.StyledMapType(mapStyle);
+                    var styledMap = new google.maps.StyledMapType(mapStyle);
 
-        var mapType = new google.maps.ImageMapType({
-            tileSize: new google.maps.Size(256,256),
-            getTileUrl: function(coord,zoom) {
-                return "http://apis.ucsf.edu/map/tile/"+zoom+"/"+coord.x+"/"+coord.y;
-            }
-        });
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            {center:new google.maps.LatLng(mapLocation.lat,mapLocation.lon),
-                mapTypeId:google.maps.MapTypeId.ROADMAP,
-                zoom:mapLocation.zoom,
-                mapTypeControl:false}
-                );
-        map.overlayMapTypes.insertAt(0, mapType);
-
-        map.mapTypes.set(mapTypeId, styledMap);
-        map.setMapTypeId(mapTypeId);
-
-        if (mapLocation.marker) {
-            google.maps.event.addListener(
-                new google.maps.Marker({
-                    position: new google.maps.LatLng(mapLocation.lat, mapLocation.lon),
-                    map: map,
-                    title: mapLocation.name }),
-                'click',
-                function(){
-                    var info = new google.maps.InfoWindow({
-                        content: "<div>" + mapLocation.name + "</div><div><a href=\"https://maps.google.com/maps?daddr=" +
-                        mapLocation.lat + "," + mapLocation.lon + "\">Directions</a></div>",
-                        position: new google.maps.LatLng(mapLocation.lat, mapLocation.lon)
+                    var mapType = new google.maps.ImageMapType({
+                        tileSize: new google.maps.Size(256,256),
+                        getTileUrl: function(coord,zoom) {
+                            return "http://apis.ucsf.edu/map/tile/"+zoom+"/"+coord.x+"/"+coord.y;
+                        }
                     });
-                    info.open(map);
+
+                    var map = new google.maps.Map(document.getElementById("map_canvas"),
+                        {center:new google.maps.LatLng(mapLocation.lat,mapLocation.lon),
+                            mapTypeId:google.maps.MapTypeId.ROADMAP,
+                            zoom:mapLocation.zoom,
+                            mapTypeControl:false}
+                            );
+                    map.overlayMapTypes.insertAt(0, mapType);
+
+                    map.mapTypes.set(mapTypeId, styledMap);
+                    map.setMapTypeId(mapTypeId);
+
+                    if (mapLocation.marker) {
+                        google.maps.event.addListener(
+                            new google.maps.Marker({
+                                position: new google.maps.LatLng(mapLocation.lat, mapLocation.lon),
+                                map: map,
+                                title: mapLocation.name }),
+                            'click',
+                            function(){
+                                var info = new google.maps.InfoWindow({
+                                    content: "<div>" + mapLocation.name + "</div><div><a href=\"https://maps.google.com/maps?daddr=" +
+                                    mapLocation.lat + "," + mapLocation.lon + "\">Directions</a></div>",
+                                    position: new google.maps.LatLng(mapLocation.lat, mapLocation.lon)
+                                });
+                                info.open(map);
+                            }
+                        );
+                    }
+                };
+
+                if (! $window.google || ! $window.google.maps) {
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = "http://maps.googleapis.com/maps/api/js?&sensor=false&callback=ucsfMapsCallback";
+                    document.body.appendChild(script);
+                } else {
+                    $window.ucsfMapsCallback();
                 }
-                );
-        }
-    }
-};
-
-// Can't use yepnope()/Modernizr.load() because Google Maps uses document.write().
-if (document.getElementById('map_canvas')) {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "http://maps.googleapis.com/maps/api/js?&sensor=false&callback=ucsf.maps.render";
-    document.body.appendChild(script);
-}
-
-if (document.getElementById('locations_menu')) {
-    var template = new Hogan.Template(
-        function(c,p,i){var _=this;_.b(i=i||"");if(_.s(_.f("locationList",c,p,1),c,p,0,17,72,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("<li><a href=\"../maps/map/index.html?loc=");_.b(_.v(_.f("name",c,p,0)));_.b("\">");_.b(_.v(_.f("name",c,p,0)));_.b("</a></li>");});c.pop();}return _.fl();}
+            }
+        ]
     );
-    document.getElementById('locations_menu').innerHTML = template.render(ucsf.maps);
-}
+}());
+
+
+
+

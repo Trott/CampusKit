@@ -1,5 +1,5 @@
-Given(/^I enter "(.*?)" for "(.*?)"$/) do |text, field|
-  fill_in(field, :with => text)
+Given(/^I enter "(.*?)"$/) do |value|
+  first("input").set(value)
 end
 
 Given(/^I click the "(.*?)" button$/) do |text|

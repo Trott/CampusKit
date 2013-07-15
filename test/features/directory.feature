@@ -6,19 +6,20 @@ Feature: Directory
 Scenario: Directory result
   Given I am on the home page
   And I click "Directory"
-  And I enter "Bridge" for "Last Name"
+  And I enter "Bridge"
   And I click the "Search" button
   Then I should not see "<strong>"
   And I click "Mark Bridge"
-  Then I should see "Campus Phone:"
+  Then I should see "+1 415 476"
 
 Scenario: Results don't break back button
   Given I am on the home page
   And I click "Directory"
-  And I enter "Bridge" for "Last Name"
+  Then I should see "Person Search"
+  And I enter "Bridge"
   And I click the "Search" button
   Then I should see "Search Results"
   And I click "Mark Bridge"
-  Then I should see "Campus Phone:"
+  Then I should see "+1 415 476"
   And I go back
-  Then I should see "Search Results"
+  Then I should see "Person Search"

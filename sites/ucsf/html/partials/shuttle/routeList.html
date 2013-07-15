@@ -1,5 +1,6 @@
+<section>
 <div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
-<section data-ng-hide="loading" class="menu detailed">
+<div data-ng-hide="loading" class="menu detailed">
     <h2>Shuttles<span data-ng-show="location"> for {{location}}</span></h2>
     <ol>
         <li data-ng-repeat="route in routes | orderBy: 'routeShortName'">
@@ -8,4 +9,5 @@
     </ol>
     <p data-ng-show="!routes.length && !loadError">No shuttles found.</p>
     <p data-ng-show="loadError">Could not load content. Please try again later.</p>
+</div>
 </section>

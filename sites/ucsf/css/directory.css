@@ -1,32 +1,34 @@
 /* line 1, ../scss/directory.scss */
-pre {
-  display: block;
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
+.ucsf-directory-detail {
+  background: #fff;
 }
 
-/* line 8, ../scss/directory.scss */
-ul.ucsf-directory {
-  margin: 0;
-  padding: 0;
+/* line 5, ../scss/directory.scss */
+.menu .ucsf-directory-detail {
+  margin: 1em;
+  border: 2px solid #777;
 }
 
-/* line 12, ../scss/directory.scss */
-ul.ucsf-directory li {
-  padding: 1em;
-  margin: 0;
-  border: 1px #DDD;
-  border-style: solid none none none;
+/* line 10, ../scss/directory.scss */
+.ucsf-directory-detail li a {
+  background: none;
 }
 
-/* line 19, ../scss/directory.scss */
-ul.ucsf-directory li:first-child {
-  border-style: none none none none;
-}
-
-/* line 23, ../scss/directory.scss */
+/* line 14, ../scss/directory.scss */
 .info {
   font-style: italic;
   text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 20, ../scss/directory.scss */
+.menu li.ucsf-directory-noclick {
+  border: none;
+  text-align: left;
+  padding: 0.25em;
+}
+
+/* line 26, ../scss/directory.scss */
+.no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
+  background: #fff;
 }

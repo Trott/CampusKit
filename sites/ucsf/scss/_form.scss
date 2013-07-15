@@ -51,12 +51,10 @@ form > select {
     margin-left: 10px;
 }
 
-/*
- * Forms Basic Elements
- */
 form > label,
 select,
-form > fieldset {
+form > fieldset,
+input {
     margin-top: 1em;
 }
 

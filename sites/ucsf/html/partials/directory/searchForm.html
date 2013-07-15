@@ -1,0 +1,31 @@
+<div data-ng-controller="directorySearchController">
+
+    <form data-ng-submit="search()">
+        <h2>Person Search</h2>
+        <input autofocus placeholder="Name or department" data-ng-model="keywords">
+        <input type="submit" value="Search">
+    </form>
+
+    <progress data-ng-show="loading"><span class="spinner"></span></progress>
+
+
+    <div class="menu" data-ng-hide="loading || ! searchSubmitted">
+        <h2>Search Results ({{results.data && results.data.length || 0}})</h2>
+        <p class="info" data-ng-show="results.message">{{results.message}}</p>
+        <p class="info" data-ng-show="loadError">An error occurred. Please try again later.</p>
+        <ol data-ng-show="!loadError">
+            <li data-ng-repeat="result in results.data">
+                <a href="" data-ng-init="show=false" data-ng-click="show=!show">
+                    <span>{{result.displayname}}<span data-ng-repeat="degree in result.ucsfedudegree">, {{degree}}</span></span>
+                    <span data-ng-show="result.ucsfeduprimarydepartmentname"> &ndash; {{result.ucsfeduprimarydepartmentname}}</span>
+                </a>
+                <ul class="ucsf-directory-detail" data-ng-show="show">
+                    <li data-ng-repeat="number in result.telephonenumber"><a href="tel:{{number}}">{{number}}</a></li>
+                    <li data-ng-repeat="email in result.mail"><a href="mailto:{{email}}">{{email}}</a></li>
+                    <li class="ucsf-directory-noclick" data-ng-repeat="title in result.ucsfeduworkingtitle">{{title}}</li>
+                    <li class="ucsf-directory-noclick" data-ng-repeat="address in result.postaladdress">{{address}}</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</div>
