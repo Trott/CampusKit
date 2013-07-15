@@ -1,6 +1,9 @@
 (function () {
     'use strict';
     angular.module('main', ['shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback'])
+    .config(['$compileProvider', function ($compileProvider) {
+        $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    }])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
         .when('/', {templateUrl: 'partials/main/mainMenu.html'})
