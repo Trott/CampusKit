@@ -26,9 +26,10 @@
   border: none;
   text-align: left;
   padding: 0.25em;
+  white-space: pre;
 }
 
-/* line 26, ../scss/directory.scss */
+/* line 27, ../scss/directory.scss */
 .no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
   background: #fff;
 }

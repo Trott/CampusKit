@@ -283,8 +283,6 @@ form,
 .menu {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
   border-radius: 5px;
 }
 
@@ -315,8 +313,6 @@ form > :last-child {
 .content form {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
   border-radius: 0;
 }
 
@@ -359,8 +355,6 @@ form a.button:focus.disabled {
   background: linear-gradient(#e4e7ee, #cfd5e1);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
   border-radius: 5px;
   box-shadow: 0 2px 2px #999;
   text-shadow: 0 1px 1px #fff;
