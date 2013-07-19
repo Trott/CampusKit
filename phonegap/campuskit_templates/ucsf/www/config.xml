@@ -47,5 +47,5 @@
     <gap:splash src="res/screen/ios/screen-ipad-portrait-2x.png"     gap:platform="ios"     width="1536" height="2008" />
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
-    <gap:plugin name="GAPlugin" />
+    <gap:plugin name="com.adobe.plugins.gaplugin" />
 </widget>
