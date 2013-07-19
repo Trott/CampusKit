@@ -1,8 +1,13 @@
 (function () {
     'use strict';
-    angular.module('main', ['shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback'])
+    angular.module('main', ['angularytics', 'shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback'])
     .config(['$compileProvider', function ($compileProvider) {
         $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+    }])  
+    .config(['AngularyticsProvider', function(AngularyticsProvider) {
+        AngularyticsProvider.setEventHandlers(['Google']);
+    }]).run(['Angularytics', function(Angularytics) {
+        Angularytics.init();
     }])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
