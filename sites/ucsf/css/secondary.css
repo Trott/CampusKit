@@ -781,4 +781,5 @@ div.button a.light:active {
 /* line 1, ../scss/_subordinate.scss */
 .subordinate {
   padding: 0 1.6em;
+  margin-top: 0;
 }

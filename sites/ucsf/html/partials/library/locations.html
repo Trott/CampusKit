@@ -1,29 +1,36 @@
-<div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
-
-<section data-ng-show="loaded">
-
+<section>
     <div class="menu detailed">
         <ol>
             <li data-ng-init="showP=false"><a href="" data-ng-click="showP=!showP">Parnassus Library</a></li>
         </ol>
     </div>
-        
-    <div class="content subordinate">
-        <div data-ng-show="showP">
-            <div class="timetable">
-                <ol>
-                    <li>Mon - Thurs: 7:45 am - 10:00 pm
-                    <li>Fri: 7:45 am - 8:00 pm
-                    <li>Sat: 10:00 am - 6:00 pm
-                    <li>Sun: 12:00 noon - 10:00 pm
-                    <li>24/7 Hearst Room, Parnassus Library (with student ID)
-                    <li>24/7 Computer Lab, S166 (with student ID)
-                </ol>
-            </div>
-        </div>
-    </div>
 
     <div class="subordinate">
+        <div data-ng-show="showP && loading">
+            <progress>
+                <span class="spinner"></span>
+            </progress>
+        </div>
+
+        <div class="content" data-ng-show="showP && loaded">
+            <div>
+                <div class="timetable">
+                    <ol>
+                        <li>Mon - Thurs: 7:45 am - 10:00 pm</li>
+                        <li>Fri: 7:45 am - 8:00 pm</li>
+                        <li>Sat: 10:00 am - 6:00 pm</li>
+                        <li>Sun: 12:00 noon - 10:00 pm</li>
+                        <li>24/7 Hearst Room, Parnassus Library (with student ID)</li>
+                        <li>24/7 Computer Lab, S166 (with student ID)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="content subordinate" data-ng-show="showP && loadError">
+            <p>Library hours data could not be loaded.</p>
+        </div>
+
         <div data-ng-show="showP">
             <div class="menu detailed">
                 <ol>
@@ -40,21 +47,31 @@
         </ol>
     </div>
 
-    <div class="content subordinate">
-        <div data-ng-show="showMB">
-            <div class="timetable">
-                <ol>
-                    <li>Mon - Thurs: 9:00am - 9:00pm
-                    <li>Fri: 9:00am - 5:30pm
-                    <li>Sat: 10:00am - 6:00pm
-                    <li>Sun: CLOSED
-                    <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.
-                </ol>
+    <div class="subordinate">
+        <div data-ng-show="showMB && loading">
+            <progress>
+                <span class="spinner"></span>
+            </progress>
+        </div>
+
+        <div class="content" data-ng-show="showMB && loaded">
+            <div>
+                <div class="timetable">
+                    <ol>
+                        <li>Mon - Thurs: 9:00am - 9:00pm</li>
+                        <li>Fri: 9:00am - 5:30pm</li>
+                        <li>Sat: 10:00am - 6:00pm</li>
+                        <li>Sun: CLOSED</li>
+                        <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.</li>
+                    </ol>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="subordinate">
+        <div class="content subordinate" data-ng-show="showMB && loadError">
+            <p>Library hours data could not be loaded.</p>
+        </div>
+
         <div data-ng-show="showMB">
             <div class="menu detailed">
                 <ol>
@@ -65,5 +82,3 @@
         </div>
     </div>
 </section>  
-
-<div class="content" data-ng-show="loadError"><p>Library hours data could not be loaded.</p></div>
