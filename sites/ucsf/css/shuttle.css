@@ -87,16 +87,3 @@
   width: 3em;
   margin: 1em 50% 0 50%;
 }
-
-/* line 64, ../scss/shuttle.scss */
-.shuttle-times-listing ol {
-  list-style-type: none;
-  text-align: left;
-}
-
-/* line 69, ../scss/shuttle.scss */
-.shuttle-times-listing {
-  margin: auto;
-  display: table;
-  text-align: center;
-}

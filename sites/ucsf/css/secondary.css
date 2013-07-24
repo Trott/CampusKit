@@ -283,6 +283,8 @@ form,
 .menu {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
 }
 
@@ -313,6 +315,8 @@ form > :last-child {
 .content form {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
 }
 
@@ -355,6 +359,8 @@ form a.button:focus.disabled {
   background: linear-gradient(#e4e7ee, #cfd5e1);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   box-shadow: 0 2px 2px #999;
   text-shadow: 0 1px 1px #fff;
@@ -539,18 +545,19 @@ form a.button:focus {
   font-weight: normal;
 }
 
-/* line 36, ../scss/_menu.scss */
-.menu ol {
+/* line 37, ../scss/_menu.scss */
+.menu ol,
+ol.menu {
   list-style-type: none;
 }
 
-/* line 40, ../scss/_menu.scss */
+/* line 41, ../scss/_menu.scss */
 .menu li {
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-/* line 45, ../scss/_menu.scss */
+/* line 46, ../scss/_menu.scss */
 .menu li a {
   display: block;
   background: url(../img/ucsf-list-arrow.png) no-repeat 98%;
@@ -565,83 +572,83 @@ form a.button:focus {
 /* 
  * If an accordion link, do not show the '>' symbol in the UI. 
  */
-/* line 59, ../scss/_menu.scss */
+/* line 60, ../scss/_menu.scss */
 .menu li a[href=""] {
   background: none;
 }
 
-/* line 64, ../scss/_menu.scss */
+/* line 65, ../scss/_menu.scss */
 .no-touch .menu li:hover,
 .menu a:active {
   background-color: #eaf2fa;
 }
 
-/* line 68, ../scss/_menu.scss */
+/* line 69, ../scss/_menu.scss */
 .menu.detailed.center li a {
   padding: .9em 2em .8em 2em;
 }
 
-/* line 72, ../scss/_menu.scss */
+/* line 73, ../scss/_menu.scss */
 .menu li > p:first-child:last-child {
   padding: .9em;
   /* singular paragraph text within li */
 }
 
-/* line 76, ../scss/_menu.scss */
+/* line 77, ../scss/_menu.scss */
 .menu.detailed p {
   color: #555;
 }
 
-/* line 81, ../scss/_menu.scss */
+/* line 82, ../scss/_menu.scss */
 .menu.left li,
 .menu.detailed li {
   text-align: left;
 }
 
-/* line 85, ../scss/_menu.scss */
+/* line 86, ../scss/_menu.scss */
 .menu.left li a {
   padding-left: .9em;
 }
 
-/* line 89, ../scss/_menu.scss */
+/* line 90, ../scss/_menu.scss */
 .menu.center li {
   text-align: center;
 }
 
-/* line 93, ../scss/_menu.scss */
+/* line 94, ../scss/_menu.scss */
 .menu.detailed li {
   font-size: 1em;
 }
 
-/* line 99, ../scss/_menu.scss */
+/* line 100, ../scss/_menu.scss */
 .menu.detailed li > a,
 .menu.detailed li > p {
   padding: .9em 2em .8em .9em;
 }
 
-/* line 103, ../scss/_menu.scss */
+/* line 104, ../scss/_menu.scss */
 .menu .button a {
   color: #2685BB;
 }
 
-/* line 107, ../scss/_menu.scss */
+/* line 108, ../scss/_menu.scss */
 .menu {
   margin: 10px 10px 0 10px;
   width: auto;
 }
 
-/* line 113, ../scss/_menu.scss */
+/* line 114, ../scss/_menu.scss */
 .menu a:last-child li,
 .menu > *:last-child {
   border-bottom: none;
 }
 
-/* line 117, ../scss/_menu.scss */
+/* line 118, ../scss/_menu.scss */
 .menu {
   background: #fff;
 }
 
-/* line 127, ../scss/_menu.scss */
+/* line 128, ../scss/_menu.scss */
 .menu > ol:first-child > li:first-child,
 .menu > :first-child,
 .menu > :first-child:last-child li:first-child a:hover,
@@ -659,7 +666,7 @@ form a.button:focus {
   border-top-right-radius: 5px;
 }
 
-/* line 133, ../scss/_menu.scss */
+/* line 134, ../scss/_menu.scss */
 .menu > :first-child:last-child,
 .menu ol > :last-child {
   -moz-border-radius-bottomleft: 5px;
@@ -670,7 +677,7 @@ form a.button:focus {
   border-bottom-right-radius: 5px;
 }
 
-/* line 138, ../scss/_menu.scss */
+/* line 139, ../scss/_menu.scss */
 .menu > h1,
 .menu > h2 {
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#e5e5e5));
@@ -679,7 +686,7 @@ form a.button:focus {
   background: linear-gradient(#ffffff, #e5e5e5);
 }
 
-/* line 146, ../scss/_menu.scss */
+/* line 147, ../scss/_menu.scss */
 .menu > h1.light,
 .menu > h2.light {
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#e5e5e5));
@@ -756,4 +763,22 @@ div.button a.light:active {
   background: -moz-linear-gradient(#ffc847, #ffb300);
   background: -o-linear-gradient(top, #ffc847, #ffb300);
   background: linear-gradient(#ffc847, #ffb300);
+}
+
+/* line 1, ../scss/_timetable.scss */
+.timetable ol {
+  list-style-type: none;
+  text-align: left;
+}
+
+/* line 6, ../scss/_timetable.scss */
+.timetable {
+  display: table;
+  margin: auto;
+  text-align: center;
+}
+
+/* line 1, ../scss/_subordinate.scss */
+.subordinate {
+  padding: 0 1.6em;
 }
