@@ -8,5 +8,5 @@ Scenario: Parnassus library hours
   And I click "Library"
   And I click "Hours and Locations"
   And I click "Parnassus"
-  Then I should see "0 am"
-  And I should see "0 pm"
+  Then I should see "am - "
+  And I should see "pm"
