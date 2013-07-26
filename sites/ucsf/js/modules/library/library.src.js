@@ -21,7 +21,7 @@
                     $scope.$apply(function () {
                         $scope.loading = false;
                         $scope.loaded = true;
-                        $scope.hours = data.locations;
+                        $scope.locations = data.locations;
                     });
                 },
                 function () {
