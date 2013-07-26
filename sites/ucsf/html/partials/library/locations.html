@@ -13,15 +13,21 @@
         </div>
 
         <div class="content" data-ng-show="showP && loaded">
+            <h2>Hours</h2>
             <div>
                 <div class="timetable">
-                    <ol>
-                        <li ng-repeat="entry in locations.parnassus">{{entry.day}}, {{entry.date}}: {{entry.text}}</li>
-                    </ol>
-                    <ol>
-                        <li>24/7 Hearst Room, Parnassus Library (with student ID)</li>
-                        <li>24/7 Computer Lab, S166 (with student ID)</li>
-                    </ol>
+                    <table>
+                        <tr ng-repeat="entry in locations.parnassus">
+                            <td>{{entry.day}} {{entry.date}}</td>
+                            <td>{{entry.text}}</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <ul>
+                            <li>24/7 Hearst Room, Parnassus Library (with student ID)</li>
+                            <li>24/7 Computer Lab, S166 (with student ID)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,14 +60,20 @@
         </div>
 
         <div class="content" data-ng-show="showMB && loaded">
+            <h2>Hours</h2>
             <div>
                 <div class="timetable">
-                    <ol>
-                        <li ng-repeat="entry in locations.missionBay">{{entry.day}}, {{entry.date}}: {{entry.text}}</li>
-                    </ol>
-                    <ol>
-                        <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.</li>
-                    </ol>
+                    <table>
+                        <tr ng-repeat="entry in locations.parnassus">
+                            <td>{{entry.day}} {{entry.date}}</td>
+                            <td>{{entry.text}}</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <ul>
+                            <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

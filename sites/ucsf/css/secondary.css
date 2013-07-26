@@ -778,6 +778,17 @@ div.button a.light:active {
   text-align: center;
 }
 
+/* line 12, ../scss/_timetable.scss */
+.timetable table {
+  text-align: left;
+}
+
+/* line 16, ../scss/_timetable.scss */
+.timetable td {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 /* line 1, ../scss/_subordinate.scss */
 .subordinate {
   padding: 0 1.6em;
