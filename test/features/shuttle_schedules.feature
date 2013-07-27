@@ -41,3 +41,10 @@ Scenario: Get shuttles for Surge/Woods
   And I should not see "Trip Planner"
   And I should not see "Shuttles By Route"
   And I should not see "Shuttles By Location"
+
+Scenario: Show stop order
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Gold"
+  Then I should see "Parnassus - Mt. Zion - Mission Bay - SFGH"
