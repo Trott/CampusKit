@@ -105,6 +105,7 @@
 
                     if (data.route && data.route.id) {
                         $scope.routeShortName = data.route.routeShortName || '';
+                        $scope.routeLongName = data.route.routeLongName || '';
                         $scope.routeId = data.route.id.id;
                     }
                     $scope.loadError = $scope.stops.length === 0;
