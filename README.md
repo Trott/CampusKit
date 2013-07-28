@@ -1,4 +1,4 @@
-# ![CampusKit](https://raw.github.com/Trott/CampusKit/logo/logo.png)
+<!-- # ![CampusKit](https://raw.github.com/Trott/CampusKit/logo/logo.png) -->
 
 CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices. 
 
