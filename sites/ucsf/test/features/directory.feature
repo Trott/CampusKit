@@ -6,6 +6,7 @@ Feature: Directory
 Scenario: Directory result
   Given I am on the home page
   And I click "Directory"
+  Then I should see "Person Search"
   And I enter "Bridge"
   And I click the "Search" button
   Then I should not see "<strong>"
