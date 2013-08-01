@@ -1,5 +1,5 @@
 Given(/^I visit the Fitness page$/) do
- 	visit "/fitness"
+ 	visit "#/fitness"
 end
 
 Then(/^I should see the Fitness menu$/) do

@@ -1,5 +1,5 @@
 Given(/I visit a news page/) do
-  visit '/news'
+  visit '#/news'
 end
 
 Then(/I should see news items/) do

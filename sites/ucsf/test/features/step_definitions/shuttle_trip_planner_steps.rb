@@ -7,7 +7,7 @@ Given(/^my localStorage is empty$/) do
 end
 
 Given(/I visit the Shuttle Trip Planner page/) do
-	visit "/shuttle/planner"
+	visit "#/shuttle/planner"
 end
 
 Then(/^I should see "(.*?)" selected$/) do |value|
