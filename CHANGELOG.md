@@ -1,3 +1,11 @@
+## 0.6.1
+
+Features:
+
+ - LiveReload
+ - Tons of features and bug fixes for sample UCSF app
+ - SHINY NEW LOGO!
+
 ## 0.5.1
 
 Features:
