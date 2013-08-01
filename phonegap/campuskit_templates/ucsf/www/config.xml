@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "edu.ucsf.UCSFMobile"
-        version   = "2.2.0">
+        version   = "2.2.1">
     <name>UCSF_Mobile</name>
 
     <description>
