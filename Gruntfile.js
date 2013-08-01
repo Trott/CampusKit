@@ -1,4 +1,4 @@
-/*global module:false*/
+/* global module: false */
 module.exports = function (grunt) {
     'use strict';
 
@@ -81,7 +81,13 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     base: 'htdocs',
-                    keepalive: true
+                    keepalive: true,
+                    middleware: function (connect) {
+                        return [
+                            require('connect-livereload')(),
+                            connect.static('htdocs')
+                        ];
+                    }
                 }
             }
         },
@@ -103,11 +109,53 @@ module.exports = function (grunt) {
 
         jshint: {
             options: {
-                jshintrc: '.jshintrc'
+                curly: true,
+                eqeqeq: true,
+                immed: true,
+                latedef: true,
+                newcap: true,
+                noarg: true,
+                sub: true,
+                undef: true,
+                boss: true,
+                eqnull: true,
+                globals: {
+                    "angular": true,
+                    "FastClick": true,
+                    "google": false,
+                    "Hogan": false,
+                    "Modernizr": false,
+                    "UCSF": false
+                }
             },
-            beforeconcat: configJshintModules,
-            afterconcat: ['tmp/campuskit.partial.js'],
-            gruntfile: ['Gruntfile.js']
+            beforeconcat: {
+                options: {
+                    browser: true
+                },
+                src: configJshintModules
+            },
+            afterconcat: {
+                options: {
+                    browser: true
+                },
+                src: ['tmp/campuskit.partial.js']
+            },
+            gruntfile: {
+                options: {
+                    es5: true,
+                    globals: {
+                        "module": false,
+                        "require": false
+                    }
+                },
+                src: ['Gruntfile.js']
+            }
+        },
+
+        open: {
+            server: {
+                url: 'http://localhost:8000'
+            }
         },
 
         rsync: {
@@ -175,6 +223,12 @@ module.exports = function (grunt) {
             html: {
                 files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
                 tasks: ['copy']
+            },
+            livereload: {
+                options: {
+                    livereload: true
+                },
+                files: ['htdocs/**']
             }
         }
     });
@@ -188,10 +242,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-rsync');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
     grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
-    grunt.registerTask('server', ['connect:server']);
+    grunt.registerTask('server', ['open', 'connect:server']);
     grunt.registerTask('build', ['default']);
 };
