@@ -34,7 +34,7 @@
         {'lat': 37.762889, 'lon':-122.460227, 'zoom': 17, 'name': 'Lucia Child Care', 'marker': true},
         {'lat': 37.761002, 'lon':-122.460350, 'zoom': 17, 'name': 'Medical Research IV', 'marker': true},
         {'lat': 37.763145, 'lon':-122.458197, 'zoom': 17, 'name': 'Medical Sciences', 'marker': true},
-        {'lat': 37.763371, 'lon':-122.458488, 'zoom': 17, 'name': 'Millberry Union', 'marker': true},
+        {'lat': 37.763671, 'lon':-122.458148, 'zoom': 17, 'name': 'Millberry Union', 'marker': true},
         {'lat': 37.769015, 'lon':-122.389536, 'zoom': 17, 'name': 'Mission Bay Housing East', 'marker': true},
         {'lat': 37.769683, 'lon':-122.389951, 'zoom': 17, 'name': 'Mission Bay Housing North', 'marker': true},
         {'lat': 37.768930, 'lon':-122.390750, 'zoom': 17, 'name': 'Mission Bay Housing South', 'marker': true},
