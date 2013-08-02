@@ -1,5 +1,9 @@
 ## 0.6.1
 
+ - `grunt run` for livereload + watch + open
+
+## 0.6.0
+
 Features:
 
  - LiveReload
