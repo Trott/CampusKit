@@ -81,7 +81,9 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     base: 'htdocs',
+                    hostname: 'localhost',
                     keepalive: true,
+                    port: 8000,
                     middleware: function (connect) {
                         return [
                             require('connect-livereload')(),
