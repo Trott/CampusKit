@@ -82,7 +82,6 @@ module.exports = function (grunt) {
                 options: {
                     base: 'htdocs',
                     hostname: 'localhost',
-                    keepalive: true,
                     port: 8000,
                     middleware: function (connect) {
                         return [
@@ -249,6 +248,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
     grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
-    grunt.registerTask('server', ['open', 'connect:server']);
+    grunt.registerTask('server', ['connect:server:keepalive']);
     grunt.registerTask('build', ['default']);
+    grunt.registerTask('run', ['connect:server', 'open', 'watch']);
 };
