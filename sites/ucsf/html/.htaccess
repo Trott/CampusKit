@@ -1,6 +1,14 @@
 AddDefaultCharset UTF-8
 AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/css text/html text/plain text/xml
 
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType image/png "access plus 1 week"
+    ExpiresByType application/x-javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
