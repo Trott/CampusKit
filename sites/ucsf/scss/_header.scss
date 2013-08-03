@@ -5,7 +5,8 @@
 
 /* ...unless we're on old Android (which we detect with Modernizr .touch.no-overflowscrolling--lame!)
       because old Android doesn't show the background branding */
-.touch.no-overflowscrolling .main-header {
+.touch.no-overflowscrolling .main-header,
+.header {
     display:block;
     @include background(linear-gradient(top, #414142, #57585a 58%, #58595b));
     border-bottom: 0px solid #fff;
@@ -30,7 +31,8 @@
     background-image: url('../img/ucsf-logo.png');
 }
 
-.touch.no-overflowscrolling .main-header span {
+.touch.no-overflowscrolling .main-header span,
+.header span {
     bottom: 12px;
     color: #fff;
     float: none;
@@ -42,7 +44,8 @@
     position:relative;
 }
 
-.touch.no-overflowscrolling .main-header span a {
+.touch.no-overflowscrolling .main-header span a,
+.header span a {
     color: #fff;
 }
 

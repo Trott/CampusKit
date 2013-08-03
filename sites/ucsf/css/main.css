@@ -165,8 +165,9 @@ body {
 
 /* ...unless we're on old Android (which we detect with Modernizr .touch.no-overflowscrolling--lame!)
       because old Android doesn't show the background branding */
-/* line 8, ../scss/_header.scss */
-.touch.no-overflowscrolling .main-header {
+/* line 9, ../scss/_header.scss */
+.touch.no-overflowscrolling .main-header,
+.header {
   display: block;
   background: -webkit-linear-gradient(top, #414142, #57585a 58%, #58595b);
   background: -moz-linear-gradient(top, #414142, #57585a 58%, #58595b);
@@ -177,13 +178,13 @@ body {
   padding-left: 10px;
 }
 
-/* line 16, ../scss/_header.scss */
+/* line 17, ../scss/_header.scss */
 .touch.no-overflowscrolling .main-header img {
   border: none;
   float: none;
 }
 
-/* line 21, ../scss/_header.scss */
+/* line 22, ../scss/_header.scss */
 .logo {
   width: 53px;
   height: 36px;
@@ -192,13 +193,14 @@ body {
   display: inline-block;
 }
 
-/* line 29, ../scss/_header.scss */
+/* line 30, ../scss/_header.scss */
 .no-svg .logo {
   background-image: url("../img/ucsf-logo.png");
 }
 
-/* line 33, ../scss/_header.scss */
-.touch.no-overflowscrolling .main-header span {
+/* line 35, ../scss/_header.scss */
+.touch.no-overflowscrolling .main-header span,
+.header span {
   bottom: 12px;
   color: #fff;
   float: none;
@@ -210,12 +212,13 @@ body {
   position: relative;
 }
 
-/* line 45, ../scss/_header.scss */
-.touch.no-overflowscrolling .main-header span a {
+/* line 48, ../scss/_header.scss */
+.touch.no-overflowscrolling .main-header span a,
+.header span a {
   color: #fff;
 }
 
-/* line 49, ../scss/_header.scss */
+/* line 52, ../scss/_header.scss */
 .separator {
   padding: 0 8px 0 5px;
 }
