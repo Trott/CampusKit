@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "edu.ucsf.UCSFMobile"
         version   = "2.2.1">
-    <name>UCSF_Mobile</name>
+    <name>UCSF Mobile</name>
 
     <description>
         UCSF Mobile
