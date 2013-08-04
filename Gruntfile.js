@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     if (platformOption === 'phonegap') {
         dest = 'phonegap/www';
     } else {
-        dest = 'htdocs';
+        dest = 'dist';
     }
 
     var configCopyMainFiles = [
@@ -80,13 +80,13 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    base: 'htdocs',
+                    base: 'dist',
                     hostname: 'localhost',
                     port: 8000,
                     middleware: function (connect) {
                         return [
                             require('connect-livereload')(),
-                            connect.static('htdocs')
+                            connect.static('dist')
                         ];
                     }
                 }
@@ -161,7 +161,7 @@ module.exports = function (grunt) {
 
         rsync: {
             'deploy-staging': {
-                src: 'htdocs/',
+                src: 'dist/',
                 dest: '/var/www/html',
                 host: 'm-stage',
                 recursive: true,
@@ -169,7 +169,7 @@ module.exports = function (grunt) {
                 args: ['--links']
             },
             'deploy-live': {
-                src: 'htdocs/',
+                src: 'dist/',
                 dest: '/var/www/html',
                 host: 'm',
                 recursive: true,
@@ -229,7 +229,7 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 },
-                files: ['htdocs/**']
+                files: ['dist/**']
             }
         }
     });

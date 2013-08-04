@@ -1,6 +1,6 @@
 # ![CampusKit](https://raw.github.com/Trott/CampusKit/logo/logo.png)
 
-CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices. 
+CampusKit makes it easy to create high-performance, touch-friendly websites and apps for mobile and tablet devices.
 
 If you need more than the Prerequisites, Quick Start, and Video Tutorials listed below, see [the complete index of documentation](https://github.com/Trott/CampusKit/wiki).
 
@@ -23,7 +23,7 @@ Quick Start
 2. `cd CampusKit`
 3. `npm install`
 4. `grunt`
-5. Make the `/htdocs` directory your docroot in your web server. Or just type `grunt server` and open `http://localhost:8000` in a web browser!
+5. Make the `/dist` directory your docroot in your web server. Or just type `grunt server` and open `http://localhost:8000` in a web browser!
 
 Video Tutorials
 -
