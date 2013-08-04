@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    var UCSF = UCSF || {};
     var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
@@ -31,7 +30,7 @@
                 startTime: startTime,
                 endTime: startTime + 86399999
             };
-            if (UCSF.Shuttle) {
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
                 var getTimes = function () {
                     UCSF.Shuttle.times(
                         options,
@@ -103,7 +102,7 @@
                 options.routeId = $routeParams.route;
             }
 
-            if (UCSF.Shuttle) {
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
 
                 UCSF.Shuttle.stops(
                     options,
@@ -141,7 +140,7 @@
                 options.stopId = $routeParams.stop;
             }
 
-            if (UCSF.Shuttle) {
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
                 UCSF.Shuttle.routes(
                     options,
                     function (data) {
@@ -169,7 +168,7 @@
 
             $scope.planLoading = false;
             $scope.planLoaded = false;
-            $scope.planLoadError = false;
+            $scope.loadError = false;
 
             if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
                 var planXhrParams = {
@@ -192,7 +191,7 @@
 
                 $scope.planLoading = true;
 
-                if (UCSF.Shuttle) {
+                if (typeof UCSF === "object" && UCSF.Shuttle) {
                     UCSF.Shuttle.plan(
                         planXhrParams,
                         function (data) {
@@ -257,81 +256,85 @@
                         },
                         function () {
                             $scope.planLoading = false;
-                            $scope.planLoadError = true;
+                            $scope.loadError = true;
                             $scope.$apply();
                         }
                     );
-
-
-                    if (! $scope.time) {
-                        var now = Date.now(),
-                        minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
-                        if (minutes === 0) {
-                            minutes = '00';
-                        }
-                        $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
-                    }
-                    $scope.when = $scope.when || 'now';
-                    $scope.date = $scope.date || 0;
-
-                    $scope.stopsLoading = true;
-                    $scope.stopsLoadError = false;
-                    $scope.stopsLoaded = false;
-
-                    UCSF.Shuttle.stops(
-                        {apikey: apikey},
-                        function (data) {
-                            $scope.stopsLoading = false;
-                            if (data.stops) {
-                                $scope.stops = $filter('orderBy')(data.stops, 'stopName');
-
-                                $scope.begin = $filter('filter')($scope.stops,
-                                    function (elem) {
-                                        return elem.stopName === 'Parnassus Campus';
-                                    }
-                                    )[0];
-                                $scope.end = $filter('filter')($scope.stops,
-                                    function (elem) {
-                                        return elem.stopName === 'Mission Bay Campus';
-                                    }
-                                    )[0];
-                                if (Modernizr.localstorage) {
-                                    if (localStorage.shuttleStart) {
-                                        $scope.begin = $scope.stops[localStorage.shuttleStart] || $scope.begin;
-                                    }
-                                    if (localStorage.shuttleEnd) {
-                                        $scope.end = $scope.stops[localStorage.shuttleEnd] || $scope.end;
-                                    }
-                                }
-                                $scope.stopsLoaded = true;
-                            } else {
-                                $scope.stopsLoadError = true;
-                            }
-                            $scope.$apply();
-                        },
-                        function () {
-                            $scope.stopsLoading = false;
-                            $scope.stopsLoadError = true;
-                            $scope.$apply();
-                        }
-                    );
-
-                    $scope.plan = function () {
-                        var fromPlace = $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
-                        toPlace = $scope.end.id.agencyId + '_' + $scope.end.id.id;
-
-                        if (Modernizr.localstorage) {
-                            localStorage.shuttleStart = $scope.stops.indexOf($scope.begin);
-                            localStorage.shuttleEnd = $scope.stops.indexOf($scope.end);
-                        }
-
-                        $location.url('/shuttle/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
-                    };
                 } else {
                     $scope.planLoading = false;
-                    $scope.planLoadError = true;
+                    $scope.loadError = true;
                 }
             }
+
+
+            if (! $scope.time) {
+                var now = Date.now(),
+                minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
+                if (minutes === 0) {
+                    minutes = '00';
+                }
+                $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
+            }
+            $scope.when = $scope.when || 'now';
+            $scope.date = $scope.date || 0;
+
+            $scope.stopsLoading = true;
+            $scope.stopsLoaded = false;
+
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
+                UCSF.Shuttle.stops(
+                    {apikey: apikey},
+                    function (data) {
+                        $scope.stopsLoading = false;
+                        if (data.stops) {
+                            $scope.stops = $filter('orderBy')(data.stops, 'stopName');
+
+                            $scope.begin = $filter('filter')($scope.stops,
+                                function (elem) {
+                                    return elem.stopName === 'Parnassus Campus';
+                                }
+                                )[0];
+                            $scope.end = $filter('filter')($scope.stops,
+                                function (elem) {
+                                    return elem.stopName === 'Mission Bay Campus';
+                                }
+                                )[0];
+                            if (Modernizr.localstorage) {
+                                if (localStorage.shuttleStart) {
+                                    $scope.begin = $scope.stops[localStorage.shuttleStart] || $scope.begin;
+                                }
+                                if (localStorage.shuttleEnd) {
+                                    $scope.end = $scope.stops[localStorage.shuttleEnd] || $scope.end;
+                                }
+                            }
+                            $scope.stopsLoaded = true;
+                        } else {
+                            $scope.loadError = true;
+                        }
+                        $scope.$apply();
+                    },
+                    function () {
+                        $scope.stopsLoading = false;
+                        $scope.loadError = true;
+                        $scope.$apply();
+                    }
+                );
+            } else {
+                $scope.stopsLoading = false;
+                $scope.loadError = true;
+            }
+
+            $scope.plan = function () {
+                var fromPlace = $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
+                toPlace = $scope.end.id.agencyId + '_' + $scope.end.id.id;
+
+                if (Modernizr.localstorage) {
+                    localStorage.shuttleStart = $scope.stops.indexOf($scope.begin);
+                    localStorage.shuttleEnd = $scope.stops.indexOf($scope.end);
+                }
+
+                $location.url('/shuttle/planner/' + [fromPlace, toPlace, $scope.when, $scope.time, $scope.date].join('/'));
+            };
         }]
     );
 }());
