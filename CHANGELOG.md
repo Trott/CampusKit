@@ -1,6 +1,7 @@
 ## 0.6.1
 
  - `grunt run` for livereload + watch + open
+ - rename `htdocs` to `dist` to be like the cool kids
 
 ## 0.6.0
 
