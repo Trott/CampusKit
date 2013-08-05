@@ -57,6 +57,16 @@ ul li {
     list-style-type: none;
 }
 
+ul.bulleted li {
+    list-style-type: disc;
+        margin-left: 2em;
+}
+
+ul.bulleted li a {
+    padding: 0;
+    display: inline;
+}
+
 a {
     color:#38939b;
 }

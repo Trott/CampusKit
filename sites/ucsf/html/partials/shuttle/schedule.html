@@ -1,0 +1,21 @@
+<section>
+    <div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
+    <div class="content" data-ng-hide="loading">
+        <h2><span class="shuttle-color {{routeId}}"></span>{{routeShortName}} Shuttle</h2>
+        <h3>{{stopName}}</h3>
+
+        <p data-ng-show="loadError">Could not load schedule data. Please try again later.</p>
+
+        <div data-ng-show="loaded">
+            <div class="timetable">
+                <button data-ng-click="changeDay(-1)">Previous Day</button><button data-ng-click="changeDay(1)">Next Day</button>
+                <h4>{{startTime | date:'EEE MMM d yyyy'}}</h4>
+
+                <ol>
+                    <li data-ng-repeat="time in times">{{time.time * 1000 | date:'shortTime'}}<span class="smallprint" data-ng-show="time.trip.tripHeadsign"> {{time.trip.tripHeadsign}}</span></li>
+                    <li data-ng-hide="times.length || loadError">No times found for selected date.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>

@@ -4,34 +4,31 @@
         height: 57px;
     }
 
-    li a {
-    	font-size: 80%;
+    .front li a {
+        font-size: 80%;
     }
 }
 
-body.front .menu {
+.front {
     border:0;
+    margin: 1em 0;
 }
 
-ol {
-	margin: 1em 0;
+.front li {
+    display:inline-block;
+    height:108px;
+    width:25%;
+    list-style:none;
+    padding:0;
+    border:0;
+    margin:0;
+    text-align:center;
 }
 
-li {
-	display:inline-block;
-	height:108px;
-	width:25%;
-	list-style:none;
-	padding:0;
-	border:0;
-	margin:0;
-	text-align:center;
-}
-
-li a {
-	padding: 1em 0 0 0;
-	background:0;
-	color:#fff;
-	font-weight:normal;
-	text-align:center;
+.front li a {
+    padding: 1em 0 0 0;
+    background:0;
+    color:#fff;
+    font-weight:normal;
+    text-align:center;
 }

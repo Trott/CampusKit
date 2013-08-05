@@ -48,7 +48,7 @@
 /* line 33, ../scss/shuttle.scss */
 .va {
   background-color: #231f20;
-  background-image: linear-gradient(0, transparent 50%, white 50%);
+  background-image: linear-gradient(0, transparent 50%, #ffffff 50%);
   background-image: -webkit-linear-gradient(0, transparent 50%, white 50%);
   background-image: -ms-linear-gradient(0, transparent 50%, white 50%);
   background-image: -moz-linear-gradient(0, transparent 50%, white 50%);
@@ -86,17 +86,4 @@
   font-size: x-small;
   width: 3em;
   margin: 1em 50% 0 50%;
-}
-
-/* line 64, ../scss/shuttle.scss */
-.shuttle-times-listing ol {
-  list-style-type: none;
-  text-align: left;
-}
-
-/* line 69, ../scss/shuttle.scss */
-.shuttle-times-listing {
-  margin: auto;
-  display: table;
-  text-align: center;
 }

@@ -1,0 +1,19 @@
+<section>
+<div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
+<div data-ng-hide="loading">
+    <div data-ng-show="routeId" class="menu">
+        <h2><span data-ng-show="routeId" class="shuttle-color {{routeId}}"></span>{{routeShortName}} </span>Shuttle</h2>
+    </div>
+    <div data-ng-hide="routeId" class="menu">
+        <h2>Shuttle Locations</h2>
+    </div>
+    <div class="menu">
+        <h3 data-ng-show="routeLongName">{{routeLongName}}</h3>
+        <ol>
+            <li data-ng-repeat="stop in stops | orderBy: 'stopName'">
+                <a href="#/shuttle/schedule/{{routeId}}/{{stop.id.id}}">{{stop.stopName}}</a>
+            </li>
+        </ol>
+        <p data-ng-show="loadError">Could not load content.</p>
+    </div>
+</section>

@@ -9,7 +9,8 @@
 }
 
 .menu > h1,
-.menu > h2 {
+.menu > h2,
+.menu > h3, {
     background: #efefef;
     color: #000;
     padding: .5em 0 .4em 0;
@@ -33,7 +34,8 @@
     font-weight: normal;
 }
 
-.menu ol {
+.menu ol,
+ol.menu {
     list-style-type: none;
 }
 

@@ -1,4 +1,4 @@
-footer {
+.main-footer {
     display:block;
     font-size:.80em;
     height:28px;
@@ -10,19 +10,19 @@ footer {
     width:auto;
 }
 
-footer,
-footer a,
-footer a:visited,
-footer a:hover {
+.main-footer,
+.main-footer a,
+.main-footer a:visited,
+.main-footer a:hover {
     color:#fff;
 }
 
-footer a,
-footer a:visited {
+.main-footer a,
+.main-footer a:visited {
     text-decoration:none;
     border-bottom:1px solid #fff;
 }
 
-footer a:hover {
+.main-footer a:hover {
     border-bottom: none;
 }

@@ -1,0 +1,19 @@
+.timetable ol {
+    list-style-type: none;
+    text-align: left;
+}
+
+.timetable {
+    display: table;
+    margin: auto;
+    text-align: center;
+}
+
+.timetable table { 
+	text-align: left;
+}
+
+.timetable td {
+	padding-left: 1em; 
+	padding-right:1em;
+}

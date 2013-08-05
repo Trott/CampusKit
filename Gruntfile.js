@@ -1,4 +1,4 @@
-/*global module:false*/
+/* global module: false */
 module.exports = function (grunt) {
     'use strict';
 
@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     if (platformOption === 'phonegap') {
         dest = 'phonegap/www';
     } else {
-        dest = 'htdocs';
+        dest = 'dist';
     }
 
     var configCopyMainFiles = [
@@ -34,7 +34,17 @@ module.exports = function (grunt) {
             {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
         );
         configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
-        configCleanAllSrc.push('phonegap/plugins/*');
+        configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
+    }
+
+    var configJshintModules = [site + '/js/modules/*/*.src.js'];
+    if (platformOption === 'phonegap') {
+        configJshintModules.push(site + '/js/phonegap/modules/*/*.src.js');
+    }
+
+    var configUglifyModules = ['**/*.js'];
+    if (platformOption === 'phonegap') {
+        configUglifyModules.push(['../phonegap/modules/**/*.js']);
     }
 
     // Project configuration.
@@ -70,8 +80,15 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    base: 'htdocs',
-                    keepalive: true
+                    base: 'dist',
+                    hostname: 'localhost',
+                    port: 8000,
+                    middleware: function (connect) {
+                        return [
+                            require('connect-livereload')(),
+                            connect.static('dist')
+                        ];
+                    }
                 }
             }
         },
@@ -101,25 +118,50 @@ module.exports = function (grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
-                predef: ['UCSF', 'FastClick', 'Modernizr', 'Hogan', 'google', 'angular'],
                 boss: true,
                 eqnull: true,
-                browser: true
+                globals: {
+                    "angular": true,
+                    "FastClick": true,
+                    "google": false,
+                    "Hogan": false,
+                    "Modernizr": false,
+                    "UCSF": false
+                }
             },
-            globals: {
-                Modernizr: true,
-                google: true,
-                Hogan: true,
-                ucsf: true
+            beforeconcat: {
+                options: {
+                    browser: true
+                },
+                src: configJshintModules
             },
-            beforeconcat: [site + '/js/modules/*/*.src.js'],
-            afterconcat: ['tmp/campuskit.partial.js'],
-            gruntfile: ['Gruntfile.js']
+            afterconcat: {
+                options: {
+                    browser: true
+                },
+                src: ['tmp/campuskit.partial.js']
+            },
+            gruntfile: {
+                options: {
+                    es5: true,
+                    globals: {
+                        "module": false,
+                        "require": false
+                    }
+                },
+                src: ['Gruntfile.js']
+            }
+        },
+
+        open: {
+            server: {
+                url: 'http://localhost:8000'
+            }
         },
 
         rsync: {
             'deploy-staging': {
-                src: 'htdocs/',
+                src: 'dist/',
                 dest: '/var/www/html',
                 host: 'm-stage',
                 recursive: true,
@@ -127,7 +169,7 @@ module.exports = function (grunt) {
                 args: ['--links']
             },
             'deploy-live': {
-                src: 'htdocs/',
+                src: 'dist/',
                 dest: '/var/www/html',
                 host: 'm',
                 recursive: true,
@@ -144,7 +186,7 @@ module.exports = function (grunt) {
             },
             fastclick: {
                 files: {
-                    'tmp/fastclick.min.js': ['lib/fastclick/fastclick.js']
+                    'tmp/fastclick.min.js': ['lib/fastclick/lib/fastclick.js']
                 }
             },
             campuskit: {
@@ -157,7 +199,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: site + '/js/modules/',
-                        src: ['**/*.js'],
+                        src: configUglifyModules,
                         dest: dest + '/js/modules/',
                         ext: '.js',
                         flatten: true
@@ -176,12 +218,18 @@ module.exports = function (grunt) {
                 tasks: ['js']
             },
             css: {
-                files: [site + '/css/*.scss'],
+                files: [site + '/css/**'],
                 tasks: ['cssmin:minify']
             },
             html: {
                 files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
                 tasks: ['copy']
+            },
+            livereload: {
+                options: {
+                    livereload: true
+                },
+                files: ['dist/**']
             }
         }
     });
@@ -195,9 +243,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-rsync');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
     grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
-    grunt.registerTask('server', ['connect:server']);
+    grunt.registerTask('server', ['connect:server:keepalive']);
+    grunt.registerTask('build', ['default']);
+    grunt.registerTask('run', ['connect:server', 'open', 'watch']);
 };

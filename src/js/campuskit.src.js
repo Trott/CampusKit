@@ -4,6 +4,9 @@ FastClick.attach(document.body);
 //  links that do nothing when they should report a "you're offline!" error
 // If we convert everything to SPA, we'll still need something like this
 //  for offsite links.
+//
+// TODO: Since most people don't use appcache (and we're not using it either), and many
+//  that use it won't have offsite links, maybe this can all go anyway?
 
 if (window.addEventListener) {
     window.addEventListener(

@@ -17,8 +17,8 @@
     <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-precomposed.png">
 </head>
 <body>
-    <header>
-        <a href="../index.html"><div class="logo"></div><span>Mobile</span></a><img src="../img/ucsf-header-separator.png" alt=" | " class="separator"><span><a href="../free_food/index.html">Free Food</a></span>
+    <header class="header">
+        <div class="logo"></div><span>Mobile</span>
     </header>
     <div data-ng-controller="ucsf.FreeFood.Controller" class="menu detailed">
         <h2>Free Food</h2>
@@ -35,9 +35,9 @@
         <div data-ng-bind="message"></div>
 
     </div>
-<footer id="footer">
+<footer class="main-footer">
     <p>&copy; 2013 Regents of the University of California<br>
-        <a href="../about/index.html">About</a> | <a href="../feedback/index.html">Feedback</a>
+        <a href="../#/about">About</a> | <a href="../#/feedback">Feedback</a>
     </p>
 </footer>
 <script src="../js/campuskit.js"></script>

@@ -1,19 +1,18 @@
 AddDefaultCharset UTF-8
-AddType text/cache-manifest .appcache
 AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/css text/html text/plain text/xml
 
-ExpiresActive On
-ExpiresDefault "access plus 0 seconds"
-Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType image/png "access plus 1 week"
+    ExpiresByType application/x-javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
-    RewriteRule ^public(.*)$ /ci/public$1 [L]
-    RewriteCond %{REQUEST_URI} !/fitness/index.html
-    RewriteCond %{REQUEST_URI} !/fitness/locations
-    RewriteRule ^fitness/(.+)$ /ci/fitness/$1 [L]
-    
+
     RewriteRule ^directory/query(.*)$ /directory/$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -25,10 +24,7 @@ Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
     RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/#/list/ [NE,L,R]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shuttle/planner /shuttle/#/planner [NE,L,R]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^shuttle    /shuttle
+    RewriteRule ^(.*)$ /#$1 [NE,L,R]
 
     RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
     RewriteRule ^maps/campus.php$ /maps/ [L,R]

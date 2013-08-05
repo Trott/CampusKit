@@ -1,0 +1,32 @@
+<section>
+<div data-ng-show="loading"><progress><span class="spinner"></span></progress></div>
+<div class="content" data-ng-show="loaded">
+    <h1>Group Fitness and Pools</h1>
+    <div>
+        <input id="ucsf-fitness-search" type="search" data-ng-model="query" placeholder="Search">
+        <select data-ng-model="filter.type">
+            <option value="all">Full Schedule</option>
+            <option value="mbclasses">Mission Bay Classes</option>
+            <option value="pclasses">Parnassus Classes</option>
+            <option value="mbopool">Mission Bay Outdoor Pool Lap/Family Swim</option>
+            <option value="mbipool">Mission Bay Indoor Pool Lap/Family Swim</option>
+            <option value="pipool">Parnassus Indoor Pool Lap/Family Swim</option>
+        </select>
+    </div>
+    <div>
+        <ul>
+            <li data-ng-repeat="class in filtered = (classes | filter:query | filter:filter)">
+                <ul>
+                    <li>{{ class.day }}, {{ class.date }}</li>
+                    <li>{{ class.startTime }} - {{ class.endTime }}</li>
+                    <li>{{ class.name }}</li>
+                    <li data-ng-show="class.instructorLastName">Instructor: {{ class.instructorFirstName }} {{ class.instructorLastName }}</li>
+                    <li>{{ class.location }}</li>
+                </ul>
+            </li>
+        </ul>
+        <div data-ng-hide="filtered.length">No results.</div>
+    </div>
+</div>
+<div class="content" data-ng-show="! classes.length && ! loading"><p>Fitness schedule data could not be loaded.</p></div>
+</section>
