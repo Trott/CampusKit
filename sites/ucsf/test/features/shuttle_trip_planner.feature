@@ -102,8 +102,11 @@ Scenario: Route impossible trip, then route possible trip
   And I click "Trip Planner"
   And I select a route "From Mission Center Building"
   And I select a route "To Mission Center Building"
+  And I select "Depart at" for "when"
+  And I select "9:00 AM" for "time"
   And I route the trip
   Then I should see "No options found"
   And I select a route "To Mission Bay Campus"
   And I route the trip
-  Then I should not see "No options found"
+  Then I should see "Red"
+  And I should not see "No options found"
