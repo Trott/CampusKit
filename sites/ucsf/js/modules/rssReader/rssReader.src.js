@@ -20,10 +20,11 @@
 
                 if (! navigator.onLine) {
                     if (localStorageKey) {
-                        deferred.resolve(loadFromStorage(localStorageKey));
+                        deferred.resolve(loadFromStorage(localStorageKey).feed);
+                    } else {
+                        deferred.resolve({});
                     }
-                    deferred.resolve({});
-                    return;
+                    return deferred.promise;
                 }
 
                 Modernizr.load([{load:'http://www.google.com/jsapi', callback: function() {
