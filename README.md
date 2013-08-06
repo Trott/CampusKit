@@ -14,7 +14,8 @@ Prerequisites
 If you wish to build native apps, you will also need:
 
 * [phonegap-cli](https://github.com/mwbrooks/phonegap-cli)
-* an account at build.phonegap.com(http://build.phonegap.com)
+
+Also for the native apps, it will likely be useful to have a free Adobe ID account for [PhoneGap Build](http://build.phonegap.com).
 
 Quick Start
 -
