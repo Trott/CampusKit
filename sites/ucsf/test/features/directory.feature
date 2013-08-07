@@ -34,3 +34,12 @@ Scenario: Results include URL for telephone numbers
   Then I should see "Search Results"
   And I click "Mark Bridge"
   Then I should see a "tel:" URL
+
+Scenario: Search by name and department
+  Given I am on the home page
+  And I click "Directory"
+  Then I should see "Person Search"
+  And I enter "Richard dept:Library"
+  And I click the "Search" button
+  Then I should see "Search Results"
+  And I should see "Trott"
