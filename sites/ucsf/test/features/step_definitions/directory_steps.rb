@@ -1,5 +1,6 @@
 Given(/^I enter "(.*?)"$/) do |value|
     first("input").set(value)
+    sleep
 end
 
 Given(/^I click the "(.*?)" button$/) do |text|
