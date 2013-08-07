@@ -9,4 +9,5 @@ Scenario: Home screen
 
 Scenario: Native iOS Home screen
   Given I am on the Native iOS home page
+  And I click "No thanks"
   Then I should see the home page
