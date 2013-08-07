@@ -53,3 +53,11 @@ Scenario: Search by name and multi-word department
   Then I should see "Search Results"
   And I should see "MC3-Emergency Department"
   And I should not see "Surgery"
+
+Scenario: Hyphenated and apostrophenated names
+  Given I am on the home page
+  And I click "Directory"
+  Then I should see "Person Search"
+  And I enter "O'Brien-Jonsson"
+  And I click the "Search" button
+  Then I should see "Bonnie O'Brien-Jonsson"

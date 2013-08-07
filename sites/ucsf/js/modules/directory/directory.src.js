@@ -16,11 +16,10 @@
             $scope.results = {};
 
             var allowedCharsOnly = function (value) {
-                // Only allow alphabetic characters, space, colon, and quotation mark.
                 // This is done for convenience/sanity, not security.
                 // Client-side checks are easily bypassed, duh.
                 // Server-side still needs to gracefully handle anything thrown at it.
-                return value.replace(/[^A-Za-z :"]/g, ' ');
+                return value.replace(/[^A-Za-z :"'\-]/g, ' ');
             };
 
             $scope.search = function () {
