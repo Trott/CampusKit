@@ -22,7 +22,7 @@
     border: none;
     text-align: left;
     padding: 0.25em;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 .no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
@@ -31,6 +31,5 @@
 
 .profile-photo {
     float:left;
-    height:100px;
     margin:0 3px 3px 0;
 }
