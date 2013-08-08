@@ -1,29 +1,28 @@
 /* line 1, ../scss/directory.scss */
 .ucsf-directory-detail {
   background: #fff;
-  overflow: hidden;
 }
 
-/* line 7, ../scss/directory.scss */
-.menu .ucsf-directory-detail,
+/* line 5, ../scss/directory.scss */
 .menu .ucsf-directory-detail ul {
   margin: 1em;
   border: 2px solid #777;
+  overflow: hidden;
 }
 
-/* line 12, ../scss/directory.scss */
+/* line 11, ../scss/directory.scss */
 .ucsf-directory-detail li a {
   background: none;
 }
 
-/* line 16, ../scss/directory.scss */
+/* line 15, ../scss/directory.scss */
 .info {
   font-style: italic;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-/* line 22, ../scss/directory.scss */
+/* line 21, ../scss/directory.scss */
 .menu li.ucsf-directory-noclick {
   border: none;
   text-align: left;
@@ -31,7 +30,14 @@
   white-space: pre;
 }
 
-/* line 29, ../scss/directory.scss */
+/* line 28, ../scss/directory.scss */
 .no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
   background: #fff;
+}
+
+/* line 32, ../scss/directory.scss */
+.profile-photo {
+  float: left;
+  height: 100px;
+  margin: 0 3px 3px 0;
 }
