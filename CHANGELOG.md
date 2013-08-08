@@ -1,3 +1,8 @@
+## next release (current master)
+
+ - UCSF demo app: improved offline news experience
+ - UCSF demo app: profile images in directory search results
+
 ## 0.6.1
 
  - `grunt run` for livereload + watch + open

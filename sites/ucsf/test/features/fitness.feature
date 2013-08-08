@@ -32,7 +32,7 @@ Scenario: Fitness schedule search box
   Then I should not see "Indoor Pool (Mission Bay)"
   And I should not see "No results"
 
-Scenario: Fitness schedule radio button filters
+Scenario: Fitness schedule filters
   Given my localStorage is empty
   And I am on the home page
   And I click "Fitness"
