@@ -4,32 +4,39 @@
 }
 
 /* line 5, ../scss/directory.scss */
-.menu .ucsf-directory-detail {
+.menu .ucsf-directory-detail ul {
   margin: 1em;
   border: 2px solid #777;
+  overflow: hidden;
 }
 
-/* line 10, ../scss/directory.scss */
+/* line 11, ../scss/directory.scss */
 .ucsf-directory-detail li a {
   background: none;
 }
 
-/* line 14, ../scss/directory.scss */
+/* line 15, ../scss/directory.scss */
 .info {
   font-style: italic;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-/* line 20, ../scss/directory.scss */
+/* line 21, ../scss/directory.scss */
 .menu li.ucsf-directory-noclick {
   border: none;
   text-align: left;
   padding: 0.25em;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
-/* line 27, ../scss/directory.scss */
+/* line 28, ../scss/directory.scss */
 .no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
   background: #fff;
+}
+
+/* line 32, ../scss/directory.scss */
+.profile-photo {
+  float: left;
+  margin: 0 3px 3px 0;
 }

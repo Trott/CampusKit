@@ -33,4 +33,14 @@ Scenario: Results include URL for telephone numbers
   And I click the "Search" button
   Then I should see "Search Results"
   And I click "Mark Bridge"
-  Then I should see a "tel:" URL
+  Then I should see a "tel:+1 415 476-9831" URL
+
+Scenario: Profile images
+  Given I am on the home page
+  And I click "Directory"
+  Then I should see "Person Search"
+  And I enter "Rich Schneider"
+  And I click the "Search" button
+  Then I should see "Search Results"
+  And I click "Richard Schneider"
+  Then I should see a profile photo

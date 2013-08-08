@@ -2,9 +2,10 @@
     background: #fff;
 }
 
-.menu .ucsf-directory-detail {
+.menu .ucsf-directory-detail ul {
     margin: 1em;
     border: 2px solid #777;
+    overflow: hidden;
 }
 
 .ucsf-directory-detail li a {
@@ -21,9 +22,14 @@
     border: none;
     text-align: left;
     padding: 0.25em;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 .no-touch .menu li.ucsf-directory-noclick:hover, .menu .ucsf-directory-noclick a:active {
     background: #fff;
+}
+
+.profile-photo {
+    float:left;
+    margin:0 3px 3px 0;
 }
