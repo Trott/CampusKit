@@ -1,8 +1,10 @@
 .ucsf-directory-detail {
     background: #fff;
+    overflow: hidden;
 }
 
-.menu .ucsf-directory-detail {
+.menu .ucsf-directory-detail,
+.menu .ucsf-directory-detail ul {
     margin: 1em;
     border: 2px solid #777;
 }

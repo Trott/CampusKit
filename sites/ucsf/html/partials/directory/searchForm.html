@@ -19,12 +19,15 @@
                     <span>{{result.displayname}}<span data-ng-repeat="degree in result.ucsfedudegree">, {{degree}}</span></span>
                     <span data-ng-show="result.ucsfeduprimarydepartmentname"> &ndash; {{result.ucsfeduprimarydepartmentname}}</span>
                 </a>
-                <ul class="ucsf-directory-detail" data-ng-show="show">
+                <div class="ucsf-directory-detail" data-ng-show="show">
+                <img src="http://profiles.ucsf.edu/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID={{profilenodeid}}" alt="" style="float:left; height:100px; margin:0 3px 3px 0">
+                <ul>
                     <li data-ng-repeat="number in result.telephonenumber"><a href="tel:{{number}}">{{number}}</a></li>
                     <li data-ng-repeat="email in result.mail"><a href="mailto:{{email}}">{{email}}</a></li>
                     <li class="ucsf-directory-noclick" data-ng-repeat="title in result.ucsfeduworkingtitle">{{title}}</li>
                     <li class="ucsf-directory-noclick" data-ng-repeat="address in result.postaladdress">{{address}}</li>
                 </ul>
+            </div>
             </li>
         </ol>
     </div>
