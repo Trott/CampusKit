@@ -214,16 +214,28 @@ form {
  */
 form,
 .content,
-.menu, { 
-    @include border-radius() 
+.menu { 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 form > :first-child {
-    @include border-top-radius()
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 form > :last-child {
-    @include border-bottom-radius()
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /**
@@ -231,7 +243,9 @@ form > :last-child {
  */
 
 .content form {
-    @include border-radius(0)
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 input,
@@ -267,7 +281,9 @@ form a.button:focus.disabled {
     background: -o-linear-gradient(top, #e4e7ee, #cfd5e1);
     background: -webkit-gradient(linear, left top, left bottom, from(#e4e7ee), to(#cfd5e1), color-stop(0.8, #cfd5e1));
     background: linear-gradient(#e4e7ee, #cfd5e1);
-    @include border-radius();
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     box-shadow: 0 2px 2px #999;
     text-shadow: 0 1px 1px #fff;
 }

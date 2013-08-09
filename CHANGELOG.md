@@ -1,5 +1,6 @@
 ## next release (current master)
 
+ - Process Sass files as part of build process
  - UCSF demo app: improved offline news experience
  - UCSF demo app: profile images in directory search results
 
