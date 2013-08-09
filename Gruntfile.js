@@ -236,6 +236,10 @@ module.exports = function (grunt) {
                 files: [site + '/js/**/*.js'],
                 tasks: ['js']
             },
+            scss: {
+                files: [site + '/scss/**.scss'],
+                tasks: ['sass:dist']
+            },
             css: {
                 files: [site + '/css/**'],
                 tasks: ['cssmin:minify']
