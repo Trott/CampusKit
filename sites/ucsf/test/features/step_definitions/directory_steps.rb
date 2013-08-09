@@ -14,6 +14,10 @@ Then(/^I go back$/) do
     evaluate_script('window.history.back()')
 end
 
-Then(/^I should see a "(.*?)" URL$/) do |arg1|
-    should have_xpath("//a[@href='tel:+1 415 476-9831']");
+Then(/^I should see a "(.*?)" URL$/) do |url|
+    should have_xpath("//a[@href='#{url}']");
+end
+
+Then(/^I should see a profile photo$/) do
+  should have_xpath("//img[contains(concat(' ',normalize-space(@class),' '),' profile-photo ')]")
 end

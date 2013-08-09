@@ -7,7 +7,7 @@
         .when('/directory', {templateUrl: 'partials/directory/searchForm.html', controller: 'directorySearchController'})
         .when('/directory/:keywords', {templateUrl: 'partials/directory/searchForm.html', controller: 'directorySearchController'});
     }])
-    . controller(
+    .controller(
         'directorySearchController',
         ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
             $scope.searchSubmitted = false;
