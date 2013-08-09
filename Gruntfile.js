@@ -121,12 +121,12 @@ module.exports = function (grunt) {
                 boss: true,
                 eqnull: true,
                 globals: {
-                    "angular": true,
-                    "FastClick": true,
-                    "google": false,
-                    "Hogan": false,
-                    "Modernizr": false,
-                    "UCSF": false
+                    'angular': true,
+                    'FastClick': true,
+                    'google': false,
+                    'Hogan': false,
+                    'Modernizr': false,
+                    'UCSF': false
                 }
             },
             beforeconcat: {
@@ -145,8 +145,8 @@ module.exports = function (grunt) {
                 options: {
                     es5: true,
                     globals: {
-                        "module": false,
-                        "require": false
+                        'module': false,
+                        'require': false
                     }
                 },
                 src: ['Gruntfile.js']
@@ -175,6 +175,25 @@ module.exports = function (grunt) {
                 recursive: true,
                 syncDest: true,
                 args: ['--links']
+            }
+        },
+
+        sass: {
+            dist: {
+                files: [
+                    {
+                        cwd: site + '/scss',
+                        dest: site + '/css',
+                        expand: true,
+                        ext: '.css',
+                        src: ['[a-zA-Z]**.scss']
+                    }
+                ],
+                options: {
+                    includePaths: [
+                        site + '/scss'
+                    ]
+                },
             }
         },
 
@@ -245,9 +264,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-rsync');
+    grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'cssmin:minify', 'copy']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy']);
     grunt.registerTask('server', ['connect:server:keepalive']);
     grunt.registerTask('build', ['default']);
     grunt.registerTask('run', ['connect:server', 'open', 'watch']);

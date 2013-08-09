@@ -7,11 +7,14 @@
       because old Android doesn't show the background branding */
 .touch.no-overflowscrolling .main-header,
 .header {
-    display:block;
-    @include background(linear-gradient(top, #414142, #57585a 58%, #58595b));
-    border-bottom: 0px solid #fff;
-    height: 36px;
-    padding-left: 10px;
+  display: block;
+  background: -webkit-linear-gradient(top, #414142, #57585a 58%, #58595b);
+  background: -moz-linear-gradient(top, #414142, #57585a 58%, #58595b);
+  background: -o-linear-gradient(top, #414142, #57585a 58%, #58595b);
+  background: linear-gradient(to bottom, #414142, #57585a 58%, #58595b);
+  border-bottom: 0px solid #fff;
+  height: 36px;
+  padding-left: 10px;
 }
 
 .touch.no-overflowscrolling .main-header img {

@@ -1,22 +1,14 @@
 @media all and (max-device-width: 320px) {
-  /* line 2, ../scss/mainPage.scss */
   .dashboard_icon {
     width: 57px;
-    height: 57px;
-  }
-
-  /* line 7, ../scss/mainPage.scss */
+    height: 57px; }
   .front li a {
-    font-size: 80%;
-  }
-}
-/* line 12, ../scss/mainPage.scss */
+    font-size: 80%; } }
+
 .front {
   border: 0;
-  margin: 1em 0;
-}
+  margin: 1em 0; }
 
-/* line 17, ../scss/mainPage.scss */
 .front li {
   display: inline-block;
   height: 108px;
@@ -25,14 +17,11 @@
   padding: 0;
   border: 0;
   margin: 0;
-  text-align: center;
-}
+  text-align: center; }
 
-/* line 28, ../scss/mainPage.scss */
 .front li a {
   padding: 1em 0 0 0;
   background: 0;
-  color: #fff;
+  color: white;
   font-weight: normal;
-  text-align: center;
-}
+  text-align: center; }
