@@ -1,1 +1,0 @@
-To generate the CSS files: compass compile --sass-dir=<PATH TO THIS DIR> --css-dir=<PATH TO css DIR>
