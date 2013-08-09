@@ -1,8 +1,12 @@
 ## next release (current master)
 
  - Process Sass files as part of build process
- - UCSF demo app: improved offline news experience
- - UCSF demo app: profile images in directory search results
+
+### UCSF demo app:
+
+- improved offline news experience
+- power users can now search for name and department in directory search by prefacing the department word with `dept:`
+ - profile images in directory search results
 
 ## 0.6.1
 

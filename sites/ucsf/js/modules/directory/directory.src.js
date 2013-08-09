@@ -15,20 +15,19 @@
             $scope.loadError = false;
             $scope.results = {};
 
-            var alphaSpaceOnly = function (value) {
-                // Only allow alphabetic characters and space.
+            var allowedCharsOnly = function (value) {
                 // This is done for convenience/sanity, not security.
                 // Client-side checks are easily bypassed, duh.
-                // Server-side still needs to gracefully handle anything thrown out it.
-                return value.replace(/[^A-Za-z ]/g, ' ');
+                // Server-side still needs to gracefully handle anything thrown at it.
+                return value.replace(/[^A-Za-z :"'\-]/g, ' ');
             };
 
             $scope.search = function () {
-                $location.url('/directory/' + alphaSpaceOnly($scope.keywords));
+                $location.url('/directory/' + allowedCharsOnly($scope.keywords));
             };
 
             if ($routeParams.keywords) {
-                $scope.keywords = alphaSpaceOnly($routeParams.keywords);
+                $scope.keywords = allowedCharsOnly($routeParams.keywords);
                 $scope.loading = true;
                 $scope.searchSubmitted = true;
                 $scope.loadError = false;
