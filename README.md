@@ -29,9 +29,13 @@ Quick Start
 Video Tutorials
 -
 
-1. [Installing the CampusKit Demo Sites](http://www.youtube.com/watch?v=7AmiQxh_ETM)
-2. [Building a Native App with CampusKit](http://www.youtube.com/watch?v=ARKt6licNK8)
-3. [Using the CampusKit Yeoman Generator](http://www.youtube.com/watch?v=EIM8OUpOgf0)
+1. [Prerequisites](http://www.youtube.com/watch?v=63EmdRzHFmA)
+2. [Scaffolding](http://www.youtube.com/watch?v=wec_Me7MFJ8)
+3. [Watch and LiveReload](http://www.youtube.com/watch?v=tnW7KCBKn6Q)
+4. [Customizing Your Site/App](http://www.youtube.com/watch?v=SqhVkWNcRLs)
+5. [Deploying Your Web App](http://www.youtube.com/watch?v=f5L-BfLqyZo)
+6. [Building Your Native App Locally](http://www.youtube.com/watch?v=DtvhvQ2KyFg)
+7. [Building The UCSF Demo App In The Cloud](http://www.youtube.com/watch?v=IjbaCeKYP5o)
 
 License and Copyright
 -
