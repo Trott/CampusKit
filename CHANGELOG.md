@@ -6,7 +6,7 @@
 
 - improved offline news experience
 - power users can now search for name and department in directory search by prefacing the department word with `dept:`
- - profile images in directory search results
+- profile images in directory search results
 
 ## 0.6.1
 
