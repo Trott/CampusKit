@@ -8,6 +8,7 @@
 - search for name and department in directory search by prefacing the department word with `dept:`
 - profile images in directory search results
 - update feedback form URL per Qualtrics support to avoid certificate errors for Android users
+- add Laurel Heights to map locations
 
 ## 0.6.1
 
