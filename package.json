@@ -1,20 +1,13 @@
 {
   "name": "campuskit",
-  "version": "0.6.1",
   "description": "Create high-performance touch-friendly web sites and apps for mobile and tablet devices.",
   "main": "Gruntfile.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/Trott/CampusKit.git"
   },
   "author": "Rich Trott <rtrott@gmail.com>",
-  "license": "BSD",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "0.1.1",

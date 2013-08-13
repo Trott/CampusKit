@@ -159,6 +159,13 @@ module.exports = function (grunt) {
             }
         },
 
+        release: {
+            options: {
+                file: 'bower.json',
+                npm: false
+            }
+        },
+
         rsync: {
             'deploy-staging': {
                 src: 'dist/',
