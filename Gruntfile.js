@@ -267,6 +267,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-rsync');
     grunt.loadNpmTasks('grunt-sass');
 
