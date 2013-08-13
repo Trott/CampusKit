@@ -1,4 +1,4 @@
-## next release (current master)
+## 0.6.2
 
  - Process Sass files as part of build process
 
