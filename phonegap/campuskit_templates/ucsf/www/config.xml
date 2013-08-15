@@ -3,10 +3,10 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "edu.ucsf.UCSFMobile"
         version   = "2.2.1">
-    <name>UCSF Mobile</name>
+    <name>UCSF</name>
 
     <description>
-        UCSF Mobile
+        University of California, San Francisco
     </description>
 
     <author href="http://github.com/Trott/CampusKit" email="rtrott@gmail.com">

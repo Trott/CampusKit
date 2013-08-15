@@ -2,10 +2,10 @@ Feature: Feedback Forms
   In order to provide a high quality experience for users
   Users should be able to give us feedback
 
-Scenario: UCSF Mobile Feedback Form
+Scenario: UCSF Feedback Form
   Given I am on the home page
   And I click "Feedback"
-  And I click "UCSF Mobile"
+  And I click "This App (UCSF)"
   Then I should see "Comments/Suggestions"
 
 Scenario: Shuttle Feedback Form
