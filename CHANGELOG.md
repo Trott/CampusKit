@@ -9,6 +9,7 @@
 - profile images in directory search results
 - update feedback form URL per Qualtrics support to avoid certificate errors for Android users
 - add Laurel Heights to map locations
+- rebrand "UCSF Mobile" as just "UCSF"
 
 ## 0.6.1
 
