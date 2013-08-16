@@ -83,6 +83,17 @@
                         // Couldn't load the stop name. Not crucial. Fail silently.
                     }
                 );
+
+                // And one last call to get prediction data.
+                UCSF.Shuttle.predictions(
+                    {apikey: apikey, routeId: $routesParams.route, stopId: $routeParams.stopId},
+                    function (data) {
+                        $scope.predictions = data.predictions;
+                    },
+                    function () {
+                        //Couldn't load prediction data. Not crucial. Fail silently.
+                    }
+                );
             } else {
                 $scope.loading = false;
                 $scope.loadError = true;
