@@ -86,9 +86,10 @@
 
                 // And one last call to get prediction data.
                 UCSF.Shuttle.predictions(
-                    {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stopId},
+                    {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
                     function (data) {
-                        $scope.predictions = data.predictions;
+                        $scope.predictions = data;
+                        $scope.$apply();
                     },
                     function () {
                         //Couldn't load prediction data. Not crucial. Fail silently.

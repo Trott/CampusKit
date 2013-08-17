@@ -10,8 +10,9 @@
 
             <div data-ng-show="predictions" class="timetable">
                 <h4>NextBus</h4>
+                <p>Shuttle arriving in:</p>
                 <ol>
-                    <li data-ng-repeat="prediction in predictions">{{prediction.time}}</li>
+                    <li data-ng-repeat="time in predictions.times">{{time}} minutes</li>
                 </ol>
             </div>
 
