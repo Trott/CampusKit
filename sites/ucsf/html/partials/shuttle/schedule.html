@@ -8,9 +8,9 @@
 
         <div data-ng-show="loaded">
 
-            <div data-ng-show="predictions" class="timetable">
+            <div data-ng-show="predictions.times" class="timetable">
                 <h4>NextBus</h4>
-                <p>Shuttle arriving in:</p>
+                <p>Shuttle in:</p>
                 <ol>
                     <li data-ng-repeat="time in predictions.times">{{time}} minutes</li>
                 </ol>
