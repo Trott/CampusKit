@@ -86,7 +86,7 @@
 
                 // And one last call to get prediction data.
                 UCSF.Shuttle.predictions(
-                    {apikey: apikey, routeId: $routesParams.route, stopId: $routeParams.stopId},
+                    {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stopId},
                     function (data) {
                         $scope.predictions = data.predictions;
                     },
