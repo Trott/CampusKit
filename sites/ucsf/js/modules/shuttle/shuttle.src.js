@@ -16,7 +16,7 @@
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
     .controller(
         'scheduleShuttleController',
-        ['$scope', '$routeParams', '$filter', function ($scope, $routeParams, $filter) {
+        ['$scope', '$routeParams', '$filter', '$timeout', function ($scope, $routeParams, $filter, $timeout) {
             $scope.loading = true;
             $scope.loadError = false;
             $scope.loaded = false;
@@ -84,17 +84,32 @@
                     }
                 );
 
-                // And one last call to get prediction data.
-                UCSF.Shuttle.predictions(
-                    {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
-                    function (data) {
-                        $scope.predictions = data;
-                        $scope.$apply();
-                    },
-                    function () {
-                        //Couldn't load prediction data. Not crucial. Fail silently.
+                var timeout;
+                var updatePredictions = function () {
+                    UCSF.Shuttle.predictions(
+                        {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
+                        function (data) {
+                            $scope.predictions = data;
+                            $scope.$apply();
+                            // Update these predictions in 30 seconds
+                            timeout = $timeout(updatePredictions, 30 * 1000);
+                        },
+                        function () {
+                            //Couldn't load prediction data. Not crucial. Fail silently.
+                            //But try again in 30 seconds.
+                            timeout = $timeout(updatePredictions, 30 * 1000);
+                        }
+                    );
+                };
+
+                $scope.$on('$destroy', function () {
+                    if (timeout) {
+                        $timeout.cancel(timeout);
                     }
-                );
+                });
+
+                // And one last call to get prediction data.
+                updatePredictions();
             } else {
                 $scope.loading = false;
                 $scope.loadError = true;
