@@ -12,7 +12,7 @@
                 <h4>NextBus</h4>
                 <p>Shuttle in:</p>
                 <ol>
-                    <li data-ng-repeat="time in predictions.times">{{time}} minutes</li>
+                    <li data-ng-repeat="time in predictions.times">{{time}} minute<span data-ng-hide="time===1">s</span></li>
                 </ol>
             </div>
 
