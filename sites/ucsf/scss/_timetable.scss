@@ -5,15 +5,17 @@
 
 .timetable {
     display: table;
-    margin: auto;
+    margin: 0.5em auto;
+    padding: 0.5em;
     text-align: center;
+    border: 1px solid #ccc;
 }
 
-.timetable table { 
+.timetable table {
 	text-align: left;
 }
 
 .timetable td {
-	padding-left: 1em; 
+	padding-left: 1em;
 	padding-right:1em;
 }

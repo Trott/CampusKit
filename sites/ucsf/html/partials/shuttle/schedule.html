@@ -7,7 +7,17 @@
         <p data-ng-show="loadError">Could not load schedule data. Please try again later.</p>
 
         <div data-ng-show="loaded">
-            <div class="timetable">
+
+            <div data-ng-show="predictions.times" class="timetable">
+                <h4>GPS</h4>
+                <p>Shuttle in:</p>
+                <ol>
+                    <li data-ng-repeat="time in predictions.times">{{time}} minute<span data-ng-hide="time===1">s</span></li>
+                </ol>
+            </div>
+
+            <div  data-ng-show="loaded" class="timetable">
+                <h4>Schedule</h4>
                 <button data-ng-click="changeDay(-1)">Previous Day</button><button data-ng-click="changeDay(1)">Next Day</button>
                 <h4>{{startTime | date:'EEE MMM d yyyy'}}</h4>
 
@@ -16,6 +26,7 @@
                     <li data-ng-hide="times.length || loadError">No times found for selected date.</li>
                 </ol>
             </div>
+
         </div>
     </div>
 </section>

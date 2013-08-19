@@ -76,9 +76,9 @@ Scenario: Plans don't break back button
   Then I should see "Suggested Routes"
   And I should not see "Red"
   And I should see "Grey"
+  And I select "9:00 AM" for "time"
   And I select a route "From Mission Center Building"
   And I select a route "To 16th St. BART"
-  And I select "9:00 AM" for "time"
   And I route the trip
   Then I should see "Suggested Routes"
   And I should see "Red"
