@@ -55,6 +55,6 @@ Scenario: Show GPS-based predictions for Grey shuttle
   And I click "Shuttles By Route"
   And I click "Grey"
   And I click "401 Parnassus (LPPI)"
-  Then I should see "NextBus"
+  Then I should see "GPS"
   And I should see "Shuttle in:"
   And I should see "minutes"
