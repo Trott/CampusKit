@@ -3,6 +3,7 @@
 ### UCSF demo app:
 
 - rebrand "UCSF Mobile" as just "UCSF"
+- GPS predictions of Shuttle arrival times via NextBus
 
 ## 0.6.2
 
