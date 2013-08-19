@@ -89,7 +89,8 @@
                     UCSF.Shuttle.predictions(
                         {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
                         function (data) {
-                            $scope.predictions = data;
+                            var times = data.times.slice(0,3);
+                            $scope.predictions = {times: times};
                             $scope.$apply();
                             // Update these predictions in 30 seconds
                             timeout = $timeout(updatePredictions, 30 * 1000);
