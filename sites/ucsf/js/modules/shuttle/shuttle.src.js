@@ -96,8 +96,12 @@
                             timeout = $timeout(updatePredictions, 30 * 1000);
                         },
                         function () {
-                            //Couldn't load prediction data. Not crucial. Fail silently.
-                            //But try again in 30 seconds.
+                            //Couldn't load prediction data.
+                            //Remove any prediction data that was there before
+                            // so that we don't show stale data.
+                            $scope.predictions = {};
+                            $scope.$apply();
+                            //Try again in 30 seconds.
                             timeout = $timeout(updatePredictions, 30 * 1000);
                         }
                     );
