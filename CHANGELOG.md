@@ -4,6 +4,7 @@
 
 - rebrand "UCSF Mobile" as just "UCSF"
 - GPS predictions of Shuttle arrival times via NextBus
+- Make Feedback link more touch-friendly (i.e., larger)
 
 ## 0.6.2
 
