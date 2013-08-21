@@ -6,8 +6,8 @@
     <div data-ng-repeat="itinerary in itineraries">
         <h3>Option {{itinerary.index}}</h3>
         <h4>{{itinerary.startTimeFormatted}} - {{itinerary.endTimeFormatted}} ({{itinerary.durationFormatted}} mins)</h4>
-        <ol data-ng-repeat="leg in itinerary.legs">
-            <li>
+        <ol>
+            <li data-ng-repeat="leg in itinerary.legs">
                 <ul data-ng-show="leg.bus">
                     <li><strong>From:</strong> {{leg.bus.fromName}}</li>
                     <li><strong>To:</strong> {{leg.bus.toName}}</li>
