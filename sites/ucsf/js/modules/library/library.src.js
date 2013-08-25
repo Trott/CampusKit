@@ -5,9 +5,9 @@
     angular.module('library', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/library', {templateUrl: 'partials/library/mainMenu.html'})
-        .when('/library/locations', {controller: 'locationsLibraryController', templateUrl: 'partials/library/locations.html'})
-        .when('/library/help', {templateUrl: 'partials/library/help.html'});
+        .when('/library', {templateUrl: 'library/mainMenu.html'})
+        .when('/library/locations', {controller: 'locationsLibraryController', templateUrl: 'library/locations.html'})
+        .when('/library/help', {templateUrl: 'library/help.html'});
     }])
     .controller('locationsLibraryController', ['$scope', function ($scope) {
         $scope.loading = true;

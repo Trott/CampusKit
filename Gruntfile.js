@@ -108,6 +108,18 @@ module.exports = function (grunt) {
             }
         },
 
+        inline_angular_templates: {
+            dist: {
+                options: {
+                    base: 'sites/ucsf/angular_templates',
+                    selector: '#ng-app'
+                },
+                files: {
+                    'dist/index.html': [site + '/angular_templates/*/*.html']
+                }
+            }
+        },
+
         jshint: {
             options: {
                 curly: true,
@@ -205,6 +217,14 @@ module.exports = function (grunt) {
             }
         },
 
+        smoosher: {
+            default_options: {
+                files: {
+                    'dist/index.html': 'dist/index.html',
+                },
+            },
+        },
+
         uglify: {
             options: {
                 compress: {
@@ -254,7 +274,7 @@ module.exports = function (grunt) {
             },
             html: {
                 files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
-                tasks: ['copy']
+                tasks: ['copy', 'inline_angular_templates', 'smoosher']
             },
             livereload: {
                 options: {
@@ -274,13 +294,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-html-smoosher');
+    grunt.loadNpmTasks('grunt-inline-angular-templates');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-rsync');
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy', 'inline_angular_templates', 'smoosher']);
     grunt.registerTask('server', ['connect:server:keepalive']);
     grunt.registerTask('build', ['default']);
     grunt.registerTask('run', ['connect:server', 'open', 'watch']);

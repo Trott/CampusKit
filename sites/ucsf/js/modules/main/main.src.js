@@ -11,7 +11,7 @@
     }])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/', {templateUrl: 'partials/main/mainMenu.html'})
+        .when('/', {templateUrl: 'main/mainMenu.html'})
         .otherwise({redirectTo: '/'});
     }])
     .controller('backButtonController', ['$scope', '$location', function ($scope, $location) {
