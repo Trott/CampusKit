@@ -3,6 +3,6 @@
     angular.module('emergency', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/emergency', {templateUrl: 'partials/emergency/mainMenu.html'});
+        .when('/emergency', {templateUrl: 'emergency/mainMenu.html'});
     }]);
 }());

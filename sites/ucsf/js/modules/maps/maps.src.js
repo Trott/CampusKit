@@ -3,9 +3,9 @@
     angular.module('maps', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/maps', {templateUrl: 'partials/maps/mainMenu.html'})
-        .when('/maps/locations', {templateUrl: 'partials/maps/locations.html', controller: 'mapsLocationController'})
-        .when('/maps/map/:location', {templateUrl: 'partials/maps/map.html', controller: 'mapsMapController'});
+        .when('/maps', {templateUrl: 'maps/mainMenu.html'})
+        .when('/maps/locations', {templateUrl: 'maps/locations.html', controller: 'mapsLocationController'})
+        .when('/maps/map/:location', {templateUrl: 'maps/map.html', controller: 'mapsMapController'});
     }])
     .value('locationList', [
         {'lat': 37.767569, 'lon': -122.392223, 'zoom': 17, 'name': 'Mission Bay', 'marker': false},
