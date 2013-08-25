@@ -217,6 +217,14 @@ module.exports = function (grunt) {
             }
         },
 
+        smoosher: {
+            default_options: {
+                files: {
+                    'dist/index.html': 'dist/index.html',
+                },
+            },
+        },
+
         uglify: {
             options: {
                 compress: {
@@ -266,7 +274,7 @@ module.exports = function (grunt) {
             },
             html: {
                 files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
-                tasks: ['copy', 'inline_angular_templates']
+                tasks: ['copy', 'inline_angular_templates', 'smoosher']
             },
             livereload: {
                 options: {
@@ -286,6 +294,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-html-smoosher');
     grunt.loadNpmTasks('grunt-inline-angular-templates');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-release');
@@ -293,7 +302,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy', 'inline_angular_templates']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy', 'inline_angular_templates', 'smoosher']);
     grunt.registerTask('server', ['connect:server:keepalive']);
     grunt.registerTask('build', ['default']);
     grunt.registerTask('run', ['connect:server', 'open', 'watch']);
