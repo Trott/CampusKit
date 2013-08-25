@@ -1,5 +1,9 @@
 ## next release
 
+- Inline JS
+- Inline CSS
+- Inline AngularJS templates
+
 ### UCSF demo app:
 
 - rebrand "UCSF Mobile" as just "UCSF"
