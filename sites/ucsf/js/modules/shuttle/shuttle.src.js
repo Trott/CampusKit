@@ -4,14 +4,14 @@
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/shuttle', {templateUrl: 'partials/shuttle/mainMenu.html'})
-        .when('/shuttle/planner', {templateUrl: 'partials/shuttle/planner.html', controller: 'planShuttleController'})
-        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'partials/shuttle/planner.html', controller: 'planShuttleController'})
-        .when('/shuttle/list', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuShuttleController'})
-        .when('/shuttle/schedule//:stop', {templateUrl: 'partials/shuttle/routeList.html', controller: 'routeMenuShuttleController'})
-        .when('/shuttle/locations', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopShuttleController'})
-        .when('/shuttle/schedule/:route', {templateUrl: 'partials/shuttle/stopList.html', controller: 'stopShuttleController'})
-        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'partials/shuttle/schedule.html', controller: 'scheduleShuttleController'});
+        .when('/shuttle', {templateUrl: 'shuttle/mainMenu.html'})
+        .when('/shuttle/planner', {templateUrl: 'shuttle/planner.html', controller: 'planShuttleController'})
+        .when('/shuttle/planner/:fromPlace/:toPlace/:when/:time/:date', {templateUrl: 'shuttle/planner.html', controller: 'planShuttleController'})
+        .when('/shuttle/list', {templateUrl: 'shuttle/routeList.html', controller: 'routeMenuShuttleController'})
+        .when('/shuttle/schedule//:stop', {templateUrl: 'shuttle/routeList.html', controller: 'routeMenuShuttleController'})
+        .when('/shuttle/locations', {templateUrl: 'shuttle/stopList.html', controller: 'stopShuttleController'})
+        .when('/shuttle/schedule/:route', {templateUrl: 'shuttle/stopList.html', controller: 'stopShuttleController'})
+        .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
     .controller(

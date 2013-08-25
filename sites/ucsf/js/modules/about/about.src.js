@@ -3,6 +3,6 @@
     angular.module('about', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/about', {templateUrl: 'partials/about/mainMenu.html'});
+        .when('/about', {templateUrl: 'about/mainMenu.html'});
     }]);
 }());

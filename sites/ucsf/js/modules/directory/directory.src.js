@@ -4,8 +4,8 @@
     angular.module('directory', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/directory', {templateUrl: 'partials/directory/searchForm.html', controller: 'directorySearchController'})
-        .when('/directory/:keywords', {templateUrl: 'partials/directory/searchForm.html', controller: 'directorySearchController'});
+        .when('/directory', {templateUrl: 'directory/searchForm.html', controller: 'directorySearchController'})
+        .when('/directory/:keywords', {templateUrl: 'directory/searchForm.html', controller: 'directorySearchController'});
     }])
     .controller(
         'directorySearchController',

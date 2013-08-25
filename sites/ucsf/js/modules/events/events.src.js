@@ -3,9 +3,9 @@
     angular.module('events', ['rssReader'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/events', {templateUrl: 'partials/events/mainMenu.html'})
-        .when('/events/ucsfevents', {templateUrl: 'partials/events/ucsfEvents.html', controller: 'eventsController'})
-        .when('/events/academicevents', {templateUrl: 'partials/events/academicEvents.html', controller: 'academicEventsController'});
+        .when('/events', {templateUrl: 'events/mainMenu.html'})
+        .when('/events/ucsfevents', {templateUrl: 'events/ucsfEvents.html', controller: 'eventsController'})
+        .when('/events/academicevents', {templateUrl: 'events/academicEvents.html', controller: 'academicEventsController'});
     }])
     .controller(
         'eventsController',

@@ -3,7 +3,7 @@
     angular.module('news', ['rssReader'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-        .when('/news', {templateUrl: 'partials/news/mainMenu.html', controller: 'newsController'});
+        .when('/news', {templateUrl: 'news/mainMenu.html', controller: 'newsController'});
     }])
     .controller(
         'newsController',
