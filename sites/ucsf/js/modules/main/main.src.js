@@ -3,7 +3,7 @@
     angular.module('main', ['angularytics', 'shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback'])
     .config(['$compileProvider', function ($compileProvider) {
         $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
-    }])  
+    }])
     .config(['AngularyticsProvider', function(AngularyticsProvider) {
         AngularyticsProvider.setEventHandlers(['Google']);
     }]).run(['Angularytics', function(Angularytics) {
@@ -14,7 +14,7 @@
         .when('/', {templateUrl: 'main/mainMenu.html'})
         .otherwise({redirectTo: '/'});
     }])
-    .controller('backButtonController', ['$scope', '$location', function ($scope, $location) {
+    .controller('BackButtonController', ['$scope', '$location', function ($scope, $location) {
         var getHideBackButton = function () {
             return $location.path() === '/';
         };
