@@ -165,6 +165,20 @@ module.exports = function (grunt) {
             }
         },
 
+        karma: {
+            unit: {
+                options: {
+                    browsers: ['Chrome'],
+                    files: [
+                        site + '/js/modules/angular/angular.js',
+                        site + '/js/modules/main/main.src.js',
+                        site + '/test/**/*.js'
+                    ],
+                    frameworks: ['jasmine'],
+                }
+            }
+        },
+
         open: {
             server: {
                 url: 'http://localhost:8000'
@@ -296,6 +310,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-html-smoosher');
     grunt.loadNpmTasks('grunt-inline-angular-templates');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-rsync');
