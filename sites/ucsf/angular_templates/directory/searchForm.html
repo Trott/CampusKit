@@ -12,7 +12,7 @@
     <div class="menu" data-ng-hide="loading || ! searchSubmitted">
         <h2>Search Results ({{results.data && results.data.length || 0}})</h2>
         <p class="info" data-ng-show="results.message">{{results.message}}</p>
-        <p class="info" data-ng-show="loadError">An error occurred. Please <a href=".">try again</a>.</p>
+        <p class="info" data-ng-show="loadError">An error occurred. Please <a href="" data-ng-click="load()">try again</a>.</p>
         <ol data-ng-show="!loadError">
             <li data-ng-repeat="result in results.data">
                 <a href="" data-ng-init="show=false" data-ng-click="show=!show">
