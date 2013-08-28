@@ -14,11 +14,19 @@
         .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
-    .factory('ShuttleService', function () {
+    .factory('ShuttleService', ['$rootScope', function ($scope) {
         var wrapper = function (functionName, options, successCallback, failureCallback) {
+            var wrappedSuccess = function (data) {
+                successCallback(data);
+                $scope.$apply();
+            };
+            var wrappedFailure = function (error, data) {
+                failureCallback(error, data);
+                $scope.$apply();
+            };
             if (typeof UCSF === "object" && UCSF.Shuttle) {
                 options.apikey = apikey;
-                UCSF.Shuttle[functionName](options, successCallback, failureCallback);
+                UCSF.Shuttle[functionName](options, wrappedSuccess, wrappedFailure);
             } else {
                 failureCallback();
             }
@@ -34,7 +42,7 @@
                 wrapper('predictions', options, successCallback, failureCallback);
             }
         };
-    })
+    }])
     .controller(
         'scheduleShuttleController',
         ['$scope', '$routeParams', '$filter', '$timeout', 'ShuttleService', function ($scope, $routeParams, $filter, $timeout, ShuttleService) {
@@ -65,13 +73,11 @@
                     }
                 }
                 $scope.startTime = startTime;
-                $scope.$apply();
             };
 
             var failureCallback = function () {
                 $scope.loading = false;
                 $scope.loadError = true;
-                $scope.$apply();
             };
 
             $scope.changeDay = function (changeBy) {
@@ -94,7 +100,6 @@
                                 return elem.id && elem.id.id === $routeParams.stop;
                             }).pop();
                             $scope.stopName = stop && stop.stopName;
-                            $scope.$apply();
                     },
                     function () {
                         // Couldn't load the stop name. Not crucial. Fail silently.
@@ -112,7 +117,6 @@
                     function (data) {
                         var times = data.times.slice(0,3);
                         $scope.predictions = {times: times};
-                        $scope.$apply();
                         // Update these predictions in 30 seconds
                         timeout = $timeout(updatePredictions, 30 * 1000);
                     },
@@ -121,7 +125,6 @@
                         //Remove any prediction data that was there before
                         // so that we don't show stale data.
                         $scope.predictions = {};
-                        $scope.$apply();
                         //Try again in 30 seconds.
                         timeout = $timeout(updatePredictions, 30 * 1000);
                     }
@@ -140,19 +143,17 @@
     )
     .controller(
         'stopShuttleController',
-        ['$scope', '$routeParams', function ($scope, $routeParams) {
+        ['$scope', '$routeParams', 'ShuttleService', function ($scope, $routeParams, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
-            var options = {
-                apikey: apikey
-            };
+            var options = {};
             if ($routeParams.route) {
                 options.routeId = $routeParams.route;
             }
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
+            $scope.load = function () {
 
-                UCSF.Shuttle.stops(
+                ShuttleService.stops(
                     options,
                     function (data) {
                         $scope.loading = false;
@@ -164,18 +165,15 @@
                             $scope.routeId = data.route.id.id;
                         }
                         $scope.loadError = $scope.stops.length === 0;
-                        $scope.$apply();
                     },
                     function () {
                         $scope.loading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
-                    );
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-            }
+                );
+            };
+
+            $scope.load();
         }]
     )
     .controller(
