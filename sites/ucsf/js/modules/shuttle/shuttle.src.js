@@ -43,6 +43,9 @@
             },
             routes: function (options, successCallback, failureCallback) {
                 wrapper('routes', options, successCallback, failureCallback);
+            },
+            plan: function (options, successCallback, failureCallback) {
+                wrapper('plan', options, successCallback, failureCallback);
             }
         };
     }])
@@ -208,7 +211,7 @@
     )
     .controller(
         'planShuttleController',
-        ['$scope', '$filter', '$location', '$routeParams', function ($scope, $filter, $location, $routeParams) {
+        ['$scope', '$filter', '$location', '$routeParams', 'ShuttleService', function ($scope, $filter, $location, $routeParams, ShuttleService) {
             var xhrFunction,
             xhrOptions;
 
@@ -216,31 +219,31 @@
             $scope.planLoaded = false;
             $scope.loadError = false;
 
-            if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
-                var planXhrParams = {
-                    apikey: apikey,
-                    fromPlace: $routeParams.fromPlace,
-                    toPlace: $routeParams.toPlace
-                };
+            $scope.load = function () {
 
-                $scope.when = $routeParams.when;
-                $scope.time = $routeParams.time;
-                $scope.date = $routeParams.date;
+                if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
+                    var planXhrParams = {
+                        fromPlace: $routeParams.fromPlace,
+                        toPlace: $routeParams.toPlace
+                    };
 
-                if ($routeParams.when !== 'now') {
-                    planXhrParams.arriveBy = $routeParams.when === 'arrive';
-                    planXhrParams.time = $routeParams.time;
-                    var date = new Date();
-                    date.setDate(date.getDate() + parseInt($routeParams.date, 10));
-                    planXhrParams.date = $filter('date')(date, 'M/d/yyyy');
-                }
+                    $scope.when = $routeParams.when;
+                    $scope.time = $routeParams.time;
+                    $scope.date = $routeParams.date;
 
-                $scope.planLoading = true;
+                    if ($routeParams.when !== 'now') {
+                        planXhrParams.arriveBy = $routeParams.when === 'arrive';
+                        planXhrParams.time = $routeParams.time;
+                        var date = new Date();
+                        date.setDate(date.getDate() + parseInt($routeParams.date, 10));
+                        planXhrParams.date = $filter('date')(date, 'M/d/yyyy');
+                    }
 
-                if (typeof UCSF === "object" && UCSF.Shuttle) {
-                    UCSF.Shuttle.plan(
+                    $scope.planLoading = true;
+
+                    ShuttleService.plan(
                         planXhrParams,
-                        function (data) {
+                            function (data) {
                             $scope.planLoading = false;
                             $scope.planLoaded = true;
                             var plan = data.plan || {};
@@ -298,38 +301,31 @@
                                 }
                                 $scope.itineraries = plan.itineraries;
                             }
-                            $scope.$apply();
                         },
                         function () {
                             $scope.planLoading = false;
                             $scope.loadError = true;
-                            $scope.$apply();
                         }
                     );
-                } else {
-                    $scope.planLoading = false;
-                    $scope.loadError = true;
                 }
-            }
 
 
-            if (! $scope.time) {
-                var now = Date.now(),
-                minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
-                if (minutes === 0) {
-                    minutes = '00';
+                if (! $scope.time) {
+                    var now = Date.now(),
+                    minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
+                    if (minutes === 0) {
+                        minutes = '00';
+                    }
+                    $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
                 }
-                $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
-            }
-            $scope.when = $scope.when || 'now';
-            $scope.date = $scope.date || 0;
+                $scope.when = $scope.when || 'now';
+                $scope.date = $scope.date || 0;
 
-            $scope.stopsLoading = true;
-            $scope.stopsLoaded = false;
+                $scope.stopsLoading = true;
+                $scope.stopsLoaded = false;
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                UCSF.Shuttle.stops(
-                    {apikey: apikey},
+                ShuttleService.stops(
+                    {},
                     function (data) {
                         $scope.stopsLoading = false;
                         if (data.stops) {
@@ -357,18 +353,15 @@
                         } else {
                             $scope.loadError = true;
                         }
-                        $scope.$apply();
                     },
                     function () {
                         $scope.stopsLoading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
                 );
-            } else {
-                $scope.stopsLoading = false;
-                $scope.loadError = true;
-            }
+            };
+
+            $scope.load();
 
             $scope.plan = function () {
                 var fromPlace = $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
