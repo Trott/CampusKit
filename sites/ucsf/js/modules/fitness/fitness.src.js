@@ -8,13 +8,24 @@
         .when('/fitness/locations', {templateUrl: 'fitness/locations.html'})
         .when('/fitness', {templateUrl: 'fitness/mainMenu.html'});
     }])
+    .factory('FitnessService', function () {
+        return {
+            schedule: function (options, successCallback, failureCallback) {
+                if (window.UCSF && window.UCSF.Fitness && typeof window.UCSF.Fitness.schedule === 'function') {
+                    window.UCSF.Fitness.schedule(
+                        {apikey: apikey},
+                        successCallback,
+                        failureCallback
+                    );
+                } else {
+                    failureCallback();
+                }
+            }
+        };
+    })
     .controller(
         'scheduleFitnessController',
-        ['$scope', function ($scope) {
-            $scope.loading = true;
-            $scope.loadError = false;
-            $scope.loaded = false;
-
+        ['$scope', 'FitnessService', function ($scope, FitnessService) {
             $scope.query = '';
             $scope.filter = function (elem) {
                 switch ($scope.filter.type) {
@@ -34,33 +45,31 @@
             };
             $scope.filter.type = 'all';
 
-            var options = {
-                apikey: apikey
+            var successCallback = function (data) {
+                $scope.$apply(function () {
+                    $scope.loading = false;
+                    $scope.loadError = !! data.error;
+                    $scope.loaded = ! $scope.loadError;
+
+                    $scope.classes = data.classes;
+                });
             };
 
-            if (window.UCSF && window.UCSF.Fitness && typeof window.UCSF.Fitness.schedule === 'function') {
-                window.UCSF.Fitness.schedule(
-                    options,
-                    function (data) {
-                        $scope.$apply(function () {
-                            $scope.loading = false;
-                            $scope.loadError = !! data.error;
-                            $scope.loaded = ! $scope.loadError;
+            var failureCallback = function () {
+                $scope.$apply(function () {
+                    $scope.loading = false;
+                    $scope.loadError = true;
+                });
+            };
 
-                            $scope.classes = data.classes;
-                        });
-                    },
-                    function () {
-                        $scope.$apply(function () {
-                            $scope.loading = false;
-                            $scope.loadError = true;
-                        });
-                    }
-                );
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-            }
+            $scope.load = function() {
+                $scope.loading = true;
+                $scope.loadError = false;
+                $scope.loaded = false;
+                FitnessService.schedule({}, successCallback, failureCallback);
+            };
+
+            $scope.load();
         }]
     );
 }());
