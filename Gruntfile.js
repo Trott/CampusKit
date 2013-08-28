@@ -233,7 +233,7 @@ module.exports = function (grunt) {
             },
             fastclick: {
                 files: {
-                    'tmp/fastclick.min.js': ['lib/fastclick/lib/fastclick.js']
+                    'tmp/fastclick.min.js': ['lib/fastclick/fastclick.js']
                 }
             },
             campuskit: {
