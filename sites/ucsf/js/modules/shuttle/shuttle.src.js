@@ -83,21 +83,26 @@
                 ShuttleService.times(options, successCallback, failureCallback);
             };
 
-            ShuttleService.times(options, successCallback, failureCallback);
+            $scope.load = function () {
 
-            ShuttleService.stops(
-                {routeId: $routeParams.route},
-                function (data) {
-                        var stop = $filter('filter')(data.stops, function (elem) {
-                            return elem.id && elem.id.id === $routeParams.stop;
-                        }).pop();
-                        $scope.stopName = stop && stop.stopName;
-                        $scope.$apply();
-                },
-                function () {
-                    // Couldn't load the stop name. Not crucial. Fail silently.
-                }
-            );
+                ShuttleService.times(options, successCallback, failureCallback);
+
+                ShuttleService.stops(
+                    {routeId: $routeParams.route},
+                    function (data) {
+                            var stop = $filter('filter')(data.stops, function (elem) {
+                                return elem.id && elem.id.id === $routeParams.stop;
+                            }).pop();
+                            $scope.stopName = stop && stop.stopName;
+                            $scope.$apply();
+                    },
+                    function () {
+                        // Couldn't load the stop name. Not crucial. Fail silently.
+                    }
+                );
+            };
+
+            $scope.load();
 
             var timeout;
 
