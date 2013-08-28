@@ -40,6 +40,9 @@
             },
             predictions: function (options, successCallback, failureCallback) {
                 wrapper('predictions', options, successCallback, failureCallback);
+            },
+            routes: function (options, successCallback, failureCallback) {
+                wrapper('routes', options, successCallback, failureCallback);
             }
         };
     }])
@@ -178,32 +181,29 @@
     )
     .controller(
         'routeMenuShuttleController',
-        ['$scope', '$routeParams', function ($scope, $routeParams) {
+        ['$scope', '$routeParams', 'ShuttleService', function ($scope, $routeParams, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
-            var options = {apikey: apikey};
+            var options = {};
             if ($routeParams.stop) {
                 options.stopId = $routeParams.stop;
             }
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                UCSF.Shuttle.routes(
+            $scope.load = function () {
+                ShuttleService.routes(
                     options,
                     function (data) {
                         $scope.loading = false;
                         $scope.routes = data.routes || {};
-                        $scope.$apply();
                     },
                     function () {
                         $scope.loading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
-                    );
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-            }
+                );
+            };
+
+            $scope.load();
         }]
     )
     .controller(
