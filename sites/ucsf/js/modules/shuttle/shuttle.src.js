@@ -14,9 +14,21 @@
         .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
+    .factory('ShuttleService', function () {
+        return {
+            times: function (options, successCallback, failureCallback) {
+                if (typeof UCSF === "object" && UCSF.Shuttle) {
+                    options.apikey = apikey;
+                    UCSF.Shuttle.times(options, successCallback, failureCallback);
+                } else {
+                    failureCallback();
+                }
+            }
+        };
+    })
     .controller(
         'scheduleShuttleController',
-        ['$scope', '$routeParams', '$filter', '$timeout', function ($scope, $routeParams, $filter, $timeout) {
+        ['$scope', '$routeParams', '$filter', '$timeout', 'ShuttleService', function ($scope, $routeParams, $filter, $timeout, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
             $scope.loaded = false;
@@ -24,51 +36,48 @@
             var startTime = new Date().setHours(0,0,0,0);
 
             var options = {
-                apikey: apikey,
                 routeId: $routeParams.route,
                 stopId: $routeParams.stop,
                 startTime: startTime,
                 endTime: startTime + 86399999
             };
+
+            var successCallback = function (data) {
+                $scope.loading = false;
+                $scope.loadError = !! data.error;
+                $scope.loaded = ! $scope.loadError;
+                $scope.times = [];
+                if (data.times && data.times.length > 0) {
+                    $scope.times = data.times;
+                    var sample = data.times[0];
+                    if (sample && sample.trip) {
+                        $scope.routeShortName = sample.trip.route && sample.trip.route.shortName;
+                        $scope.routeId = sample.trip.routeId && sample.trip.routeId.id;
+                    }
+                }
+                $scope.startTime = startTime;
+                $scope.$apply();
+            };
+
+            var failureCallback = function () {
+                $scope.loading = false;
+                $scope.loadError = true;
+                $scope.$apply();
+            };
+
+            $scope.changeDay = function (changeBy) {
+                var changeInMs = changeBy * 86400000;
+                startTime = options.startTime += changeInMs;
+                options.endTime += changeInMs;
+                $scope.loading = true;
+                $scope.loaded = false;
+                ShuttleService.times(options, successCallback, failureCallback);
+            };
+
+            ShuttleService.times(options, successCallback, failureCallback);
+
+
             if (typeof UCSF === "object" && UCSF.Shuttle) {
-                var getTimes = function () {
-                    UCSF.Shuttle.times(
-                        options,
-                        function (data) {
-                            $scope.loading = false;
-                            $scope.loadError = !! data.error;
-                            $scope.loaded = ! $scope.loadError;
-                            $scope.times = [];
-                            if (data.times && data.times.length > 0) {
-                                $scope.times = data.times;
-                                var sample = data.times[0];
-                                if (sample && sample.trip) {
-                                    $scope.routeShortName = sample.trip.route && sample.trip.route.shortName;
-                                    $scope.routeId = sample.trip.routeId && sample.trip.routeId.id;
-                                }
-                            }
-                            $scope.startTime = startTime;
-                            $scope.$apply();
-                        },
-                        function () {
-                            $scope.loading = false;
-                            $scope.loadError = true;
-                            $scope.$apply();
-                        }
-                    );
-                };
-
-                $scope.changeDay = function (changeBy) {
-                    var changeInMs = changeBy * 86400000;
-                    startTime = options.startTime += changeInMs;
-                    options.endTime += changeInMs;
-                    $scope.loading = true;
-                    $scope.loaded = false;
-                    getTimes();
-                };
-
-                getTimes();
-
                 // Look up stop name. Yup. Its own request. Lame. Total opportunity to improve things here, someone, anyone?
                 UCSF.Shuttle.stops(
                     {apikey: apikey, routeId: $routeParams.route},
