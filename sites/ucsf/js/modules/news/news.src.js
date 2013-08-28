@@ -8,16 +8,20 @@
     .controller(
         'newsController',
         ['$scope', 'rssReaderService', function ($scope, rssReaderService) {
-            var promise = rssReaderService.getRssData(
-                'http://feeds.feedburner.com/UCSF_News',
-                $scope,
-                {localStorageKey: 'feed_ucsf_news'}
-            );
-            promise.then(
-                function(feed) {
-                    $scope.feed = feed;
-                }
-            );
+            $scope.load = function () {
+                var promise = rssReaderService.getRssData(
+                    'http://feeds.feedburner.com/UCSF_News',
+                    $scope,
+                    {localStorageKey: 'feed_ucsf_news'}
+                );
+                promise.then(
+                    function(feed) {
+                        $scope.feed = feed;
+                    }
+                );
+            };
+
+            $scope.load();
         }]
     );
 }());
