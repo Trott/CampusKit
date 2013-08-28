@@ -15,14 +15,23 @@
     }])
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
     .factory('ShuttleService', function () {
+        var wrapper = function (functionName, options, successCallback, failureCallback) {
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
+                options.apikey = apikey;
+                UCSF.Shuttle[functionName](options, successCallback, failureCallback);
+            } else {
+                failureCallback();
+            }
+        };
         return {
             times: function (options, successCallback, failureCallback) {
-                if (typeof UCSF === "object" && UCSF.Shuttle) {
-                    options.apikey = apikey;
-                    UCSF.Shuttle.times(options, successCallback, failureCallback);
-                } else {
-                    failureCallback();
-                }
+                wrapper('times', options, successCallback, failureCallback);
+            },
+            stops: function (options, successCallback, failureCallback) {
+                wrapper('stops', options, successCallback, failureCallback);
+            },
+            predictions: function (options, successCallback, failureCallback) {
+                wrapper('predictions', options, successCallback, failureCallback);
             }
         };
     })
@@ -76,59 +85,52 @@
 
             ShuttleService.times(options, successCallback, failureCallback);
 
-
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                // Look up stop name. Yup. Its own request. Lame. Total opportunity to improve things here, someone, anyone?
-                UCSF.Shuttle.stops(
-                    {apikey: apikey, routeId: $routeParams.route},
-                    function (data) {
+            ShuttleService.stops(
+                {routeId: $routeParams.route},
+                function (data) {
                         var stop = $filter('filter')(data.stops, function (elem) {
                             return elem.id && elem.id.id === $routeParams.stop;
                         }).pop();
                         $scope.stopName = stop && stop.stopName;
                         $scope.$apply();
+                },
+                function () {
+                    // Couldn't load the stop name. Not crucial. Fail silently.
+                }
+            );
+
+            var timeout;
+
+            var updatePredictions = function () {
+                ShuttleService.predictions(
+                    {routeId: $routeParams.route, stopId: $routeParams.stop},
+                    function (data) {
+                        var times = data.times.slice(0,3);
+                        $scope.predictions = {times: times};
+                        $scope.$apply();
+                        // Update these predictions in 30 seconds
+                        timeout = $timeout(updatePredictions, 30 * 1000);
                     },
                     function () {
-                        // Couldn't load the stop name. Not crucial. Fail silently.
+                        //Couldn't load prediction data.
+                        //Remove any prediction data that was there before
+                        // so that we don't show stale data.
+                        $scope.predictions = {};
+                        $scope.$apply();
+                        //Try again in 30 seconds.
+                        timeout = $timeout(updatePredictions, 30 * 1000);
                     }
                 );
+            };
 
-                var timeout;
-                var updatePredictions = function () {
-                    UCSF.Shuttle.predictions(
-                        {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
-                        function (data) {
-                            var times = data.times.slice(0,3);
-                            $scope.predictions = {times: times};
-                            $scope.$apply();
-                            // Update these predictions in 30 seconds
-                            timeout = $timeout(updatePredictions, 30 * 1000);
-                        },
-                        function () {
-                            //Couldn't load prediction data.
-                            //Remove any prediction data that was there before
-                            // so that we don't show stale data.
-                            $scope.predictions = {};
-                            $scope.$apply();
-                            //Try again in 30 seconds.
-                            timeout = $timeout(updatePredictions, 30 * 1000);
-                        }
-                    );
-                };
+            $scope.$on('$destroy', function () {
+                if (timeout) {
+                    $timeout.cancel(timeout);
+                }
+            });
 
-                $scope.$on('$destroy', function () {
-                    if (timeout) {
-                        $timeout.cancel(timeout);
-                    }
-                });
-
-                // And one last call to get prediction data.
-                updatePredictions();
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-                $scope.$apply();
-            }
+            // And one last call to get prediction data.
+            updatePredictions();
         }]
     )
     .controller(
