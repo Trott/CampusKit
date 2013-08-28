@@ -56,10 +56,8 @@
             };
 
             var failureCallback = function () {
-                $scope.$apply(function () {
-                    $scope.loading = false;
-                    $scope.loadError = true;
-                });
+                $scope.loading = false;
+                $scope.loadError = true;
             };
 
             $scope.load = function() {
