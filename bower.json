@@ -1,6 +1,6 @@
 {
   "name": "campuskit",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "dependencies": {
     "fastclick": "~0.6.7"
   }
