@@ -1,3 +1,7 @@
+## 0.6.4
+
+- Maintenance release, no new features
+
 ## 0.6.3
 
 - Inline JS
