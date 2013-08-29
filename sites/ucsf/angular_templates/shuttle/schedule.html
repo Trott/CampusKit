@@ -4,7 +4,7 @@
         <h2><span class="shuttle-color {{routeId}}"></span>{{routeShortName}} Shuttle</h2>
         <h3>{{stopName}}</h3>
 
-        <p data-ng-show="loadError">Could not load schedule data. Please try again later.</p>
+        <p data-ng-show="loadError">Could not load schedule data. Please <a href="" data-ng-click="load()">try again</a>.</p>
 
         <div data-ng-show="loaded">
 

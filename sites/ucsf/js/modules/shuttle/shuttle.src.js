@@ -14,9 +14,44 @@
         .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
     .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
+    .factory('ShuttleService', ['$rootScope', function ($scope) {
+        var wrapper = function (functionName, options, successCallback, failureCallback) {
+            var wrappedSuccess = function (data) {
+                successCallback(data);
+                $scope.$apply();
+            };
+            var wrappedFailure = function (error, data) {
+                failureCallback(error, data);
+                $scope.$apply();
+            };
+            if (typeof UCSF === "object" && UCSF.Shuttle) {
+                options.apikey = apikey;
+                UCSF.Shuttle[functionName](options, wrappedSuccess, wrappedFailure);
+            } else {
+                failureCallback();
+            }
+        };
+        return {
+            times: function (options, successCallback, failureCallback) {
+                wrapper('times', options, successCallback, failureCallback);
+            },
+            stops: function (options, successCallback, failureCallback) {
+                wrapper('stops', options, successCallback, failureCallback);
+            },
+            predictions: function (options, successCallback, failureCallback) {
+                wrapper('predictions', options, successCallback, failureCallback);
+            },
+            routes: function (options, successCallback, failureCallback) {
+                wrapper('routes', options, successCallback, failureCallback);
+            },
+            plan: function (options, successCallback, failureCallback) {
+                wrapper('plan', options, successCallback, failureCallback);
+            }
+        };
+    }])
     .controller(
         'scheduleShuttleController',
-        ['$scope', '$routeParams', '$filter', '$timeout', function ($scope, $routeParams, $filter, $timeout) {
+        ['$scope', '$routeParams', '$filter', '$timeout', 'ShuttleService', function ($scope, $routeParams, $filter, $timeout, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
             $scope.loaded = false;
@@ -24,119 +59,107 @@
             var startTime = new Date().setHours(0,0,0,0);
 
             var options = {
-                apikey: apikey,
                 routeId: $routeParams.route,
                 stopId: $routeParams.stop,
                 startTime: startTime,
                 endTime: startTime + 86399999
             };
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                var getTimes = function () {
-                    UCSF.Shuttle.times(
-                        options,
-                        function (data) {
-                            $scope.loading = false;
-                            $scope.loadError = !! data.error;
-                            $scope.loaded = ! $scope.loadError;
-                            $scope.times = [];
-                            if (data.times && data.times.length > 0) {
-                                $scope.times = data.times;
-                                var sample = data.times[0];
-                                if (sample && sample.trip) {
-                                    $scope.routeShortName = sample.trip.route && sample.trip.route.shortName;
-                                    $scope.routeId = sample.trip.routeId && sample.trip.routeId.id;
-                                }
-                            }
-                            $scope.startTime = startTime;
-                            $scope.$apply();
-                        },
-                        function () {
-                            $scope.loading = false;
-                            $scope.loadError = true;
-                            $scope.$apply();
-                        }
-                    );
-                };
 
-                $scope.changeDay = function (changeBy) {
-                    var changeInMs = changeBy * 86400000;
-                    startTime = options.startTime += changeInMs;
-                    options.endTime += changeInMs;
-                    $scope.loading = true;
-                    $scope.loaded = false;
-                    getTimes();
-                };
+            var successCallback = function (data) {
+                $scope.loading = false;
+                $scope.loadError = !! data.error;
+                $scope.loaded = ! $scope.loadError;
+                $scope.times = [];
+                if (data.times && data.times.length > 0) {
+                    $scope.times = data.times;
+                    var sample = data.times[0];
+                    if (sample && sample.trip) {
+                        $scope.routeShortName = sample.trip.route && sample.trip.route.shortName;
+                        $scope.routeId = sample.trip.routeId && sample.trip.routeId.id;
+                    }
+                }
+                $scope.startTime = startTime;
+            };
 
-                getTimes();
+            var failureCallback = function () {
+                $scope.loading = false;
+                $scope.loadError = true;
+            };
 
-                // Look up stop name. Yup. Its own request. Lame. Total opportunity to improve things here, someone, anyone?
-                UCSF.Shuttle.stops(
-                    {apikey: apikey, routeId: $routeParams.route},
+            $scope.changeDay = function (changeBy) {
+                var changeInMs = changeBy * 86400000;
+                startTime = options.startTime += changeInMs;
+                options.endTime += changeInMs;
+                $scope.loading = true;
+                $scope.loaded = false;
+                ShuttleService.times(options, successCallback, failureCallback);
+            };
+
+            $scope.load = function () {
+
+                ShuttleService.times(options, successCallback, failureCallback);
+
+                ShuttleService.stops(
+                    {routeId: $routeParams.route},
                     function (data) {
-                        var stop = $filter('filter')(data.stops, function (elem) {
-                            return elem.id && elem.id.id === $routeParams.stop;
-                        }).pop();
-                        $scope.stopName = stop && stop.stopName;
-                        $scope.$apply();
+                            var stop = $filter('filter')(data.stops, function (elem) {
+                                return elem.id && elem.id.id === $routeParams.stop;
+                            }).pop();
+                            $scope.stopName = stop && stop.stopName;
                     },
                     function () {
                         // Couldn't load the stop name. Not crucial. Fail silently.
                     }
                 );
+            };
 
-                var timeout;
-                var updatePredictions = function () {
-                    UCSF.Shuttle.predictions(
-                        {apikey: apikey, routeId: $routeParams.route, stopId: $routeParams.stop},
-                        function (data) {
-                            var times = data.times.slice(0,3);
-                            $scope.predictions = {times: times};
-                            $scope.$apply();
-                            // Update these predictions in 30 seconds
-                            timeout = $timeout(updatePredictions, 30 * 1000);
-                        },
-                        function () {
-                            //Couldn't load prediction data.
-                            //Remove any prediction data that was there before
-                            // so that we don't show stale data.
-                            $scope.predictions = {};
-                            $scope.$apply();
-                            //Try again in 30 seconds.
-                            timeout = $timeout(updatePredictions, 30 * 1000);
-                        }
-                    );
-                };
+            $scope.load();
 
-                $scope.$on('$destroy', function () {
-                    if (timeout) {
-                        $timeout.cancel(timeout);
+            var timeout;
+
+            var updatePredictions = function () {
+                ShuttleService.predictions(
+                    {routeId: $routeParams.route, stopId: $routeParams.stop},
+                    function (data) {
+                        var times = data.times.slice(0,3);
+                        $scope.predictions = {times: times};
+                        // Update these predictions in 30 seconds
+                        timeout = $timeout(updatePredictions, 30 * 1000);
+                    },
+                    function () {
+                        //Couldn't load prediction data.
+                        //Remove any prediction data that was there before
+                        // so that we don't show stale data.
+                        $scope.predictions = {};
+                        //Try again in 30 seconds.
+                        timeout = $timeout(updatePredictions, 30 * 1000);
                     }
-                });
+                );
+            };
 
-                // And one last call to get prediction data.
-                updatePredictions();
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-                $scope.$apply();
-            }
+            $scope.$on('$destroy', function () {
+                if (timeout) {
+                    $timeout.cancel(timeout);
+                }
+            });
+
+            // And one last call to get prediction data.
+            updatePredictions();
         }]
     )
     .controller(
         'stopShuttleController',
-        ['$scope', '$routeParams', function ($scope, $routeParams) {
+        ['$scope', '$routeParams', 'ShuttleService', function ($scope, $routeParams, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
-            var options = {
-                apikey: apikey
-            };
+            var options = {};
             if ($routeParams.route) {
                 options.routeId = $routeParams.route;
             }
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
+            $scope.load = function () {
 
-                UCSF.Shuttle.stops(
+                ShuttleService.stops(
                     options,
                     function (data) {
                         $scope.loading = false;
@@ -148,53 +171,47 @@
                             $scope.routeId = data.route.id.id;
                         }
                         $scope.loadError = $scope.stops.length === 0;
-                        $scope.$apply();
                     },
                     function () {
                         $scope.loading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
-                    );
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-            }
+                );
+            };
+
+            $scope.load();
         }]
     )
     .controller(
         'routeMenuShuttleController',
-        ['$scope', '$routeParams', function ($scope, $routeParams) {
+        ['$scope', '$routeParams', 'ShuttleService', function ($scope, $routeParams, ShuttleService) {
             $scope.loading = true;
             $scope.loadError = false;
-            var options = {apikey: apikey};
+            var options = {};
             if ($routeParams.stop) {
                 options.stopId = $routeParams.stop;
             }
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                UCSF.Shuttle.routes(
+            $scope.load = function () {
+                ShuttleService.routes(
                     options,
                     function (data) {
                         $scope.loading = false;
                         $scope.routes = data.routes || {};
-                        $scope.$apply();
                     },
                     function () {
                         $scope.loading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
-                    );
-            } else {
-                $scope.loading = false;
-                $scope.loadError = true;
-            }
+                );
+            };
+
+            $scope.load();
         }]
     )
     .controller(
         'planShuttleController',
-        ['$scope', '$filter', '$location', '$routeParams', function ($scope, $filter, $location, $routeParams) {
+        ['$scope', '$filter', '$location', '$routeParams', 'ShuttleService', function ($scope, $filter, $location, $routeParams, ShuttleService) {
             var xhrFunction,
             xhrOptions;
 
@@ -202,31 +219,31 @@
             $scope.planLoaded = false;
             $scope.loadError = false;
 
-            if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
-                var planXhrParams = {
-                    apikey: apikey,
-                    fromPlace: $routeParams.fromPlace,
-                    toPlace: $routeParams.toPlace
-                };
+            $scope.load = function () {
 
-                $scope.when = $routeParams.when;
-                $scope.time = $routeParams.time;
-                $scope.date = $routeParams.date;
+                if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
+                    var planXhrParams = {
+                        fromPlace: $routeParams.fromPlace,
+                        toPlace: $routeParams.toPlace
+                    };
 
-                if ($routeParams.when !== 'now') {
-                    planXhrParams.arriveBy = $routeParams.when === 'arrive';
-                    planXhrParams.time = $routeParams.time;
-                    var date = new Date();
-                    date.setDate(date.getDate() + parseInt($routeParams.date, 10));
-                    planXhrParams.date = $filter('date')(date, 'M/d/yyyy');
-                }
+                    $scope.when = $routeParams.when;
+                    $scope.time = $routeParams.time;
+                    $scope.date = $routeParams.date;
 
-                $scope.planLoading = true;
+                    if ($routeParams.when !== 'now') {
+                        planXhrParams.arriveBy = $routeParams.when === 'arrive';
+                        planXhrParams.time = $routeParams.time;
+                        var date = new Date();
+                        date.setDate(date.getDate() + parseInt($routeParams.date, 10));
+                        planXhrParams.date = $filter('date')(date, 'M/d/yyyy');
+                    }
 
-                if (typeof UCSF === "object" && UCSF.Shuttle) {
-                    UCSF.Shuttle.plan(
+                    $scope.planLoading = true;
+
+                    ShuttleService.plan(
                         planXhrParams,
-                        function (data) {
+                            function (data) {
                             $scope.planLoading = false;
                             $scope.planLoaded = true;
                             var plan = data.plan || {};
@@ -284,38 +301,31 @@
                                 }
                                 $scope.itineraries = plan.itineraries;
                             }
-                            $scope.$apply();
                         },
                         function () {
                             $scope.planLoading = false;
                             $scope.loadError = true;
-                            $scope.$apply();
                         }
                     );
-                } else {
-                    $scope.planLoading = false;
-                    $scope.loadError = true;
                 }
-            }
 
 
-            if (! $scope.time) {
-                var now = Date.now(),
-                minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
-                if (minutes === 0) {
-                    minutes = '00';
+                if (! $scope.time) {
+                    var now = Date.now(),
+                    minutes = Math.floor(parseInt($filter('date')(now, 'mm'), 10) / 15) * 15;
+                    if (minutes === 0) {
+                        minutes = '00';
+                    }
+                    $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
                 }
-                $scope.time = $filter('date')(now, 'h:' + minutes + ' a');
-            }
-            $scope.when = $scope.when || 'now';
-            $scope.date = $scope.date || 0;
+                $scope.when = $scope.when || 'now';
+                $scope.date = $scope.date || 0;
 
-            $scope.stopsLoading = true;
-            $scope.stopsLoaded = false;
+                $scope.stopsLoading = true;
+                $scope.stopsLoaded = false;
 
-            if (typeof UCSF === "object" && UCSF.Shuttle) {
-                UCSF.Shuttle.stops(
-                    {apikey: apikey},
+                ShuttleService.stops(
+                    {},
                     function (data) {
                         $scope.stopsLoading = false;
                         if (data.stops) {
@@ -343,18 +353,15 @@
                         } else {
                             $scope.loadError = true;
                         }
-                        $scope.$apply();
                     },
                     function () {
                         $scope.stopsLoading = false;
                         $scope.loadError = true;
-                        $scope.$apply();
                     }
                 );
-            } else {
-                $scope.stopsLoading = false;
-                $scope.loadError = true;
-            }
+            };
+
+            $scope.load();
 
             $scope.plan = function () {
                 var fromPlace = $scope.begin.id.agencyId + '_' + $scope.begin.id.id,
