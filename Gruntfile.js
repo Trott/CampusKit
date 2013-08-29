@@ -21,7 +21,6 @@ module.exports = function (grunt) {
 
     var configCopyMainFiles = [
         {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
-        {expand: true, cwd: site, src: ['appcache/**'], dest: dest},
         {expand: true, cwd: site, src: ['font/**'], dest: dest},
         {expand: true, cwd: site, src: ['img/**'], dest: dest}
     ];
