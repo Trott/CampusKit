@@ -1,3 +1,7 @@
+## 0.6.4
+
+- Maintenance release, no new features
+
 ## 0.6.3
 
 - Inline JS
@@ -7,7 +11,7 @@
 ### UCSF demo app:
 
 - enable reloads on load errors
-- 
+ 
 ## 0.6.2
 
  - Process Sass files as part of build process
