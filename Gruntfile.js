@@ -262,7 +262,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: [site + '/js/**/*.js'],
-                tasks: ['js']
+                tasks: ['js', 'copy', 'inline_angular_templates', 'smoosher']
             },
             scss: {
                 files: [site + '/scss/**.scss'],
@@ -273,7 +273,7 @@ module.exports = function (grunt) {
                 tasks: ['cssmin:minify']
             },
             html: {
-                files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/appcache/**'],
+                files: [ site + '/html/**', site + '/img/**', site + '/font/**', site + '/angular_templates/**'],
                 tasks: ['copy', 'inline_angular_templates', 'smoosher']
             },
             livereload: {
