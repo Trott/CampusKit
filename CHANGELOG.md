@@ -1,4 +1,4 @@
-## next release
+## 0.6.3
 
 - Inline JS
 - Inline CSS
@@ -6,21 +6,11 @@
 
 ### UCSF demo app:
 
-- rebrand "UCSF Mobile" as just "UCSF"
-- GPS predictions of Shuttle arrival times via NextBus
-- Make Feedback link more touch-friendly (i.e., larger)
-
+- enable reloads on load errors
+- 
 ## 0.6.2
 
  - Process Sass files as part of build process
-
-### UCSF demo app:
-
-- improved offline news experience
-- search for name and department in directory search by prefacing the department word with `dept:`
-- profile images in directory search results
-- update feedback form URL per Qualtrics support to avoid certificate errors for Android users
-- add Laurel Heights to map locations
 
 ## 0.6.1
 
