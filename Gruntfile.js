@@ -111,7 +111,7 @@ module.exports = function (grunt) {
         inline_angular_templates: {
             dist: {
                 options: {
-                    base: 'sites/ucsf/angular_templates',
+                    base: site + '/angular_templates',
                     selector: '#ng-app'
                 },
                 files: {
