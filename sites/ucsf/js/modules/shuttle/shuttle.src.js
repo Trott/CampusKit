@@ -13,7 +13,6 @@
         .when('/shuttle/schedule/:route', {templateUrl: 'shuttle/stopList.html', controller: 'stopShuttleController'})
         .when('/shuttle/schedule/:route/:stop', {templateUrl: 'shuttle/schedule.html', controller: 'scheduleShuttleController'});
     }])
-    .run(['$rootScope', function ($rootScope) {$rootScope.hideBackButton = false;}])
     .factory('ShuttleService', ['$rootScope', function ($scope) {
         var wrapper = function (functionName, options, successCallback, failureCallback) {
             var wrappedSuccess = function (data) {
