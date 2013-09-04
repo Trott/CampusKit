@@ -22,7 +22,8 @@ module.exports = function (grunt) {
     var configCopyMainFiles = [
         {expand: true, dot: true, cwd: site + '/html', src: ['**'], dest: dest},
         {expand: true, cwd: site, src: ['font/**'], dest: dest},
-        {expand: true, cwd: site, src: ['img/**'], dest: dest}
+        {expand: true, cwd: site, src: ['img/**'], dest: dest},
+        {expand: true, flatten: true, ext: '.js', cwd: site, src: ['js/modules/**/*.min.js'], dest: dest+'/js/modules'}
     ];
 
     var configCleanAllSrc = [dest + '/*', 'tmp/*', 'bower_components/*', 'lib/*'];
@@ -41,7 +42,7 @@ module.exports = function (grunt) {
         configJshintModules.push(site + '/js/phonegap/modules/*/*.src.js');
     }
 
-    var configUglifyModules = ['**/*.js'];
+    var configUglifyModules = ['**/*.js', '!**/*.min.js'];
     if (platformOption === 'phonegap') {
         configUglifyModules.push(['../phonegap/modules/**/*.js']);
     }
