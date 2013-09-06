@@ -24,7 +24,7 @@ Quick Start
 2. `cd CampusKit`
 3. `npm install`
 4. `grunt`
-5. Make the `/dist` directory your docroot in your web server. Or just type `grunt server` and open `http://localhost:8000` in a web browser!
+5. `grunt run` to open the site in a browser. (Or make the `/dist` directory your docroot in your web server. Or type `grunt server` and open `http://localhost:8000` in a web browser.)
 
 Video Tutorials
 -
