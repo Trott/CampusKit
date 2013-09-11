@@ -8,18 +8,15 @@
     .factory('ProfileService', function() {
         return {
             profile: function(options, successCallback, failureCallback) {
-                // if (window.UCSF && window.UCSF.Person && typeof window.UCSF.Person.search === 'function') {
-                //     window.UCSF.Person.search(
-                //         {
-                //             apikey: apikey,
-                //             q: keywords
-                //         },
-                //         successCallback,
-                //         failureCallback
-                //     );
-                // } else {
-                //     failureCallback();
-                // }
+                if (window.UCSF && window.UCSF.Profile && typeof window.UCSF.Profile.get === 'function') {
+                    window.UCSF.Profile.get(
+                        options,
+                        successCallback,
+                        failureCallback
+                    );
+                } else {
+                    failureCallback();
+                }
             }
         };
     })

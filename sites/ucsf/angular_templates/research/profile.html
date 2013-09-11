@@ -1,8 +1,14 @@
-<div class="menu detailed" id="ctsi-menu">
-    <h1 id="ctsi-header"><progress><div class="spinner"></div></progress></h1>
-</div>
-<div style="display:none" id="ctsi-narrative-hidden"></div>
+<progress data-ng-show="loading"><div class="spinner"></div></progress>
+<div data-ng-show="loaded">
+	<div class="menu detailed" id="ctsi-menu">
+	    <h1 id="ctsi-header"></h1>
+	</div>
+	<div style="display:none" id="ctsi-narrative-hidden"></div>
 
-<div class="content" id="ctsi-keywords"></div>
-<div class="menu detailed" id="ctsi-publications"></div>
-<div class="menu"><ol id="ctsi-full-profile"></ol></div>
+	<div class="content" id="ctsi-keywords"></div>
+	<div class="menu detailed" id="ctsi-publications"></div>
+	<div class="menu"><ol id="ctsi-full-profile"></ol></div>
+</div>
+<div data-ng-show="loadError" class="content">
+  <p class="info">An error occurred. Please <a href="" data-ng-click="load()">try again</a>.</p>
+</div>
