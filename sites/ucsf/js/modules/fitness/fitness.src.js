@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
     angular.module('fitness', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -13,7 +12,7 @@
             schedule: function (options, successCallback, failureCallback) {
                 if (window.UCSF && window.UCSF.Fitness && typeof window.UCSF.Fitness.schedule === 'function') {
                     window.UCSF.Fitness.schedule(
-                        {apikey: apikey},
+                        {},
                         successCallback,
                         failureCallback
                     );
