@@ -1,3 +1,9 @@
+## current master branch
+
+### UCSF demo app:
+
+- fix for minor but irksome select/option display bug in Firefox
+
 ## 0.6.4
 
 - Maintenance release, no new features
@@ -11,7 +17,7 @@
 ### UCSF demo app:
 
 - enable reloads on load errors
- 
+
 ## 0.6.2
 
  - Process Sass files as part of build process
