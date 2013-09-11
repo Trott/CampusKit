@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
     var allowedCharsOnly = function (value) {
         // This is done for convenience/sanity, not security.
         // Client-side checks are easily bypassed, duh.
@@ -21,7 +20,6 @@
                 if (window.UCSF && window.UCSF.Person && typeof window.UCSF.Person.search === 'function') {
                     window.UCSF.Person.search(
                         {
-                            apikey: apikey,
                             q: keywords
                         },
                         successCallback,

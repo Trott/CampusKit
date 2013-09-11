@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
     angular.module('shuttle', [])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -24,7 +23,6 @@
                 $scope.$apply();
             };
             if (typeof UCSF === "object" && UCSF.Shuttle) {
-                options.apikey = apikey;
                 UCSF.Shuttle[functionName](options, wrappedSuccess, wrappedFailure);
             } else {
                 failureCallback();
