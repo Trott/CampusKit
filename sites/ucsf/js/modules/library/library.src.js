@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    var apikey = 'c631ef46e918c82cf81ef4869f0029d4';
 
     angular.module('library', [])
     .config(['$routeProvider', function ($routeProvider) {
@@ -14,7 +13,7 @@
             hours: function (options, successCallback, failureCallback) {
                 if (window.UCSF && window.UCSF.Library && typeof window.UCSF.Library.hours === 'function') {
                     window.UCSF.Library.hours(
-                        {apikey:apikey},
+                        {},
                         successCallback,
                         failureCallback
                         );
