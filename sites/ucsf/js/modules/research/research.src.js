@@ -35,7 +35,7 @@
                         $scope.$apply(function () {
                             $scope.loading = false;
                             $scope.loadError = false;
-                            $scope.profile = data;
+                            $scope.profiles = data.profiles;
                         });
                     },
                     function () {

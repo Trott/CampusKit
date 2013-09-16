@@ -1,7 +1,7 @@
 <progress data-ng-show="loading"><div class="spinner"></div></progress>
-<div data-ng-show="loaded">
+<div data-ng-hide="loading | loadError" data-ng-repeat="profile in profiles">
 	<div class="menu detailed" id="ctsi-menu">
-	    <h1 id="ctsi-header"></h1>
+	    <h1 id="ctsi-header">{{profile.name}}</h1>
 	</div>
 	<div style="display:none" id="ctsi-narrative-hidden"></div>
 
