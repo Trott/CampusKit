@@ -1,7 +1,8 @@
 <progress data-ng-show="loading"><div class="spinner"></div></progress>
 <div data-ng-hide="loading | loadError" data-ng-repeat="profile in profiles">
-	<div class="menu detailed" id="ctsi-menu">
-	    <h1 id="ctsi-header">{{profile.name}}</h1>
+	<div class="menu detailed">
+		<img data-ng-show="profile.photoURL" src="http://src.sencha.io/80/80/{{profile.photoURL}}" alt="" class="research-photo">
+	    <h1 class="research-header">{{profile.name}}</h1>
 	</div>
 	<div style="display:none" id="ctsi-narrative-hidden"></div>
 
