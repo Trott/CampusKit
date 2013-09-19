@@ -3,6 +3,7 @@
 ### UCSF demo app:
 
 - fix for minor but irksome select/option display bug in Firefox
+- research profiles are available again!
 
 ## 0.6.4
 

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('main', ['angularytics', 'shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback'])
+    angular.module('main', ['angularytics', 'shuttle', 'directory', 'news', 'maps', 'library', 'fitness', 'events', 'social', 'emergency', 'about', 'feedback', 'research'])
     .config(['$compileProvider', function ($compileProvider) {
         $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
     }])

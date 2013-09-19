@@ -71,3 +71,14 @@ Scenario: Profile images
   Then I should see "Search Results"
   And I click "Richard Schneider"
   Then I should see a profile photo
+
+Scenario: Profile link
+  Given I am on the home page
+  And I click "Directory"
+  Then I should see "Person Search"
+  And I enter "Anirvan Chatterjee"
+  And I click the "Search" button
+  Then I should see "Search Results"
+  And I click "Anirvan Chatterjee"
+  And I click "Research Profile"
+  Then I should see "Full Research Profile"
