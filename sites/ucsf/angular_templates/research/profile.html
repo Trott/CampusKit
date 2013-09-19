@@ -12,7 +12,12 @@
             </li>
         </ol>
     </div>
-    <div class="content" id="ctsi-keywords"></div>
+    <div class="content" data-ng-show="profile.keywords">
+        <h1 class="light">Research Interests</h1>
+        <ol class="research-interests">
+            <li data-ng-repeat="keyword in profile.keywords">{{keyword}}</li>
+        </ol>
+    </div>
     <div class="menu detailed" id="ctsi-publications"></div>
     <div class="menu"><ol id="ctsi-full-profile"></ol></div>
 </div>
