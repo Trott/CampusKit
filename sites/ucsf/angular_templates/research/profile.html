@@ -1,13 +1,13 @@
 <progress data-ng-show="loading"><div class="spinner"></div></progress>
-<div data-ng-hide="loading || loadError" data-ng-repeat="profile in profiles">
+<div data-ng-hide="loading || loadError" data-ng-init="showFullNarrative=[]" data-ng-repeat="profile in profiles">
     <div class="menu detailed">
         <img data-ng-show="profile.photoURL" data-ng-src="http://src.sencha.io/80/80/{{profile.photoURL}}" alt="" class="research-photo">
         <h1 class="research-header">{{profile.name}}</h1>
         <ol data-ng-show="profile.narrative">
             <li>
-                <a href="" data-ng-init="showFullNarrative=false" data-ng-click="showFullNarrative=!showFullNarrative">
-                    <span class="smallprint" data-ng-hide="showFullNarrative">{{profile.narrative.substring(0, profile.narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
-                    <span class="smallprint" data-ng-show="showFullNarrative">{{profile.narrative}}</span>
+                <a href="" data-ng-init="showFullNarrative[$index]=false" data-ng-click="showFullNarrative[$index]=!showFullNarrative[$index]">
+                    <span class="smallprint" data-ng-hide="showFullNarrative[$index]">{{profile.narrative.substring(0, profile.narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
+                    <span class="smallprint" data-ng-show="showFullNarrative[$index]">{{profile.narrative}}</span>
                 </a>
             </li>
         </ol>
