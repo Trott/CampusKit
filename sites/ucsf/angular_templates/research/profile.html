@@ -31,7 +31,13 @@
             </li>
         </ol>
     </div>
-    <div class="menu"><ol id="ctsi-full-profile"></ol></div>
+    <div class="menu" data-ng-show="profile.profilesURL">
+        <ol>
+            <li>
+                <a href="{{profile.profilesURL}}" rel="external">Full Research Profile</a>
+            </li>
+        </ol>
+    </div>
 </div>
 <div data-ng-show="loadError" class="content">
   <p class="info">An error occurred. Please <a href="" data-ng-click="load()">try again</a>.</p>
