@@ -6,8 +6,8 @@
         <ol data-ng-show="profile.narrative">
             <li>
                 <a href="" data-ng-init="showFullNarrative[$index]=false" data-ng-click="showFullNarrative[$index]=!showFullNarrative[$index]">
-                    <span class="smallprint" data-ng-hide="showFullNarrative[$index]">{{profile.narrative.substring(0, profile.narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
-                    <span class="smallprint" data-ng-show="showFullNarrative[$index]">{{profile.narrative}}</span>
+                    <span class="research-narrative" data-ng-hide="showFullNarrative[$index]">{{profile.narrative.substring(0, profile.narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
+                    <span class="research-narrative" data-ng-show="showFullNarrative[$index]">{{profile.narrative}}</span>
                 </a>
             </li>
         </ol>
