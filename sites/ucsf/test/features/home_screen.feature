@@ -9,5 +9,4 @@ Scenario: Home screen
 
 Scenario: Native iOS Home screen
   Given I am on the Native iOS home page
-  And I click "No thanks"
-  Then I should see the home page
+  Then I should see a link to "itms-apps://itunes.apple.com/us/app/ucsf-mobile/id452148015?mt=8"
