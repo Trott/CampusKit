@@ -48,23 +48,31 @@ h4.light {
 	color: #999999;
 }
 
-ul {
-    margin:.5em 0 1em 0;
+ul, ol.numbered {
+  margin: .5em 0 1em 0;
 }
 
 ul li {
-    font-weight: normal;
-    list-style-type: none;
+  font-weight: normal;
+  list-style-type: none;
 }
 
 ul.bulleted li {
-    list-style-type: disc;
-        margin-left: 2em;
+  list-style-type: disc;
+  margin-left: 2em;
+  border-bottom: none;
 }
 
 ul.bulleted li a {
-    padding: 0;
-    display: inline;
+  padding: 0;
+  display: inline;
+}
+
+ol.numbered li {
+  list-style-type: decimal;
+  margin-left: 2em;
+  font-weight: normal;
+  border-bottom: none;
 }
 
 a {
