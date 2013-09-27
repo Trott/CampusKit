@@ -1,27 +1,27 @@
 <progress data-ng-show="loading"><div class="spinner"></div></progress>
 <div data-ng-hide="loading || loadError" data-ng-init="showFullNarrative=[]" data-ng-repeat="profile in profiles">
     <div class="menu detailed">
-        <img data-ng-show="profile.photoURL" data-ng-src="http://src.sencha.io/80/80/{{profile.photoURL}}" alt="" class="research-photo">
-        <h1 class="research-header">{{profile.name}}</h1>
-        <ol data-ng-show="profile.narrative">
+        <img data-ng-show="profile.PhotoURL" data-ng-src="http://src.sencha.io/80/80/{{profile.PhotoURL}}" alt="" class="research-photo">
+        <h1 class="research-header">{{profile.Name}}</h1>
+        <ol data-ng-show="profile.Narrative">
             <li>
                 <a href="" data-ng-init="showFullNarrative[$index]=false" data-ng-click="showFullNarrative[$index]=!showFullNarrative[$index]">
-                    <span class="research-narrative" data-ng-hide="showFullNarrative[$index]">{{profile.narrative.substring(0, profile.narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
-                    <span class="research-narrative" data-ng-show="showFullNarrative[$index]">{{profile.narrative}}</span>
+                    <span class="research-narrative" data-ng-hide="showFullNarrative[$index]">{{profile.Narrative.substring(0, profile.Narrative.substring(0, 200).lastIndexOf(' '))}}&hellip;</span>
+                    <span class="research-narrative" data-ng-show="showFullNarrative[$index]">{{profile.Narrative}}</span>
                 </a>
             </li>
         </ol>
     </div>
-    <div class="content" data-ng-show="profile.keywords">
+    <div class="content" data-ng-show="profile.Keywords">
         <h1 class="light">Research Interests</h1>
         <ol class="research-interests">
-            <li data-ng-repeat="keyword in profile.keywords">{{keyword}}</li>
+            <li data-ng-repeat="keyword in profile.Keywords">{{keyword}}</li>
         </ol>
     </div>
-    <div class="menu detailed" data-ng-show="profile.publications">
+    <div class="menu detailed" data-ng-show="profile.Publications">
         <h1 class="content-first light">Publications</h1>
         <ol>
-            <li data-ng-repeat="publication in profile.publications" data-ng-show="publication.publicationTitle">
+            <li data-ng-repeat="publication in profile.Publications" data-ng-show="publication.publicationTitle">
                 <p data-ng-hide="publication.publicationSource[0].publicationSourceURL">
                     <span class="smallprint">{{publication.publicationTitle}}</span>
                 </p>
@@ -31,10 +31,10 @@
             </li>
         </ol>
     </div>
-    <div class="menu" data-ng-show="profile.profilesURL">
+    <div class="menu" data-ng-show="profile.ProfilesURL">
         <ol>
             <li>
-                <a href="{{profile.profilesURL}}" rel="external">Full Research Profile</a>
+                <a href="{{profile.ProfilesURL}}" rel="external">Full Research Profile</a>
             </li>
         </ol>
     </div>
