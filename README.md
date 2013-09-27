@@ -20,11 +20,12 @@ Also for the native apps, it will likely be useful to have a free Adobe ID accou
 Quick Start
 -
 
-1. Clone the repo or [download CampusKit](https://github.com/Trott/CampusKit/tags)
-2. `cd CampusKit`
-3. `npm install`
-4. `grunt`
-5. `grunt run` to open the site in a browser. (Or make the `/dist` directory your docroot in your web server. Or type `grunt server` and open `http://localhost:8000` in a web browser.)
+1. Install [prerequisites](#prerequisites)
+2. Clone the repo (or [download CampusKit](https://github.com/Trott/CampusKit/tags))
+3. `cd CampusKit`
+4. `npm install`
+5. `grunt`
+6. `grunt run` to open the site in a browser. (Or make the `/dist` directory your docroot in your web server. Or type `grunt server` and open `http://localhost:8000` in a web browser.)
 
 Video Tutorials
 -
