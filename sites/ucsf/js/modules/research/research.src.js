@@ -16,7 +16,7 @@
             $scope.load = function () {
                 $http({
                     method: 'GET',
-                    url: 'http://api.profiles.ucsf.edu/json/v2/?publications=full&mobile=on&ProfilesNodeID=' + profileId
+                    url: 'http://api.profiles.ucsf.edu/json/v2/?publications=full&mobile=on&source=m.ucsf.edu&ProfilesNodeID=' + profileId
                 }).success(
                     function (data, status, headers, config) {
                         $scope.loading = false;
