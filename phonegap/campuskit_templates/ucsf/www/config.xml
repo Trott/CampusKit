@@ -21,6 +21,8 @@
     <preference name="prerendered-icon" value="true" />
     <preference name="show-splash-screen-spinner" value="false" />
 
+    <access origin="*" />
+
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:density="mdpi" />

@@ -1,20 +1,4 @@
-(function () {
-    var scriptAppend = function (src) {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = src;
-        document.body.appendChild(script);
-    };
-
-    var basePath = window.localStorage.getItem('basePath') || (function () {
-        var href = window.location.href;
-        var basePath = href.substr(0, href.lastIndexOf('/') + 1);
-        window.localStorage.setItem('basePath', basePath);
-        return basePath;
-    }());
-
-    scriptAppend('cordova.js');
-}());
+window._gaq = window._gaq || [];
 
 document.addEventListener('deviceready',
     function () {
@@ -59,7 +43,6 @@ document.addEventListener('deviceready',
             },
             false
         );
-
         trackPage(window.location.href);
     },
     false
