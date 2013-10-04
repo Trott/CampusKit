@@ -36,6 +36,10 @@ module.exports = function (grunt) {
         configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
     }
 
+    var configInlineAngularTemplatesDistFiles = platformOption === 'web' ?
+        {'dist/index.html': [site + '/angular_templates/*/*.html']} :
+        {'phonegap/www/index.html': [site + '/angular_templates/*/*.html']};
+
     // Project configuration.
     grunt.initConfig({
         bower: {
@@ -103,9 +107,7 @@ module.exports = function (grunt) {
                     base: site + '/angular_templates',
                     selector: '#ng-app'
                 },
-                files: {
-                    'dist/index.html': [site + '/angular_templates/*/*.html']
-                }
+                files: configInlineAngularTemplatesDistFiles
             }
         },
 
