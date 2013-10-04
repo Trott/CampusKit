@@ -13,8 +13,7 @@
         return basePath;
     }());
 
-    scriptAppend('phonegap.js');
-    scriptAppend('GAPlugin.js');
+    scriptAppend('cordova.js');
 }());
 
 document.addEventListener('deviceready',
