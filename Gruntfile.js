@@ -80,13 +80,13 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    base: 'dist',
+                    base: dest,
                     hostname: 'localhost',
                     port: 8000,
                     middleware: function (connect) {
                         return [
                             require('connect-livereload')(),
-                            connect.static('dist')
+                            connect.static(dest)
                         ];
                     }
                 }
