@@ -5,9 +5,9 @@ html {
 body {
     border: 0;
     height: 100%;   /* needed for Firefox */
+    margin: 20px 0 0 0; /* needed for iOS 7 PhoneGap app */
 }
 
-body,
 div,
 form,
 ol,

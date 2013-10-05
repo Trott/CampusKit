@@ -1,4 +1,7 @@
+window._gaq = window._gaq || [];
+
 (function () {
+
     var scriptAppend = function (src) {
         var script = document.createElement('script');
         script.type = 'text/javascript';
@@ -6,20 +9,13 @@
         document.body.appendChild(script);
     };
 
-    var basePath = window.localStorage.getItem('basePath') || (function () {
-        var href = window.location.href;
-        var basePath = href.substr(0, href.lastIndexOf('/') + 1);
-        window.localStorage.setItem('basePath', basePath);
-        return basePath;
-    }());
-
-    scriptAppend('phonegap.js');
+    scriptAppend('cordova.js');
     scriptAppend('GAPlugin.js');
 }());
 
+
 document.addEventListener('deviceready',
     function () {
-
         var gaPlugin = window.plugins.gaPlugin;
         var doNothing = function () {};
 
@@ -60,7 +56,6 @@ document.addEventListener('deviceready',
             },
             false
         );
-
         trackPage(window.location.href);
     },
     false
