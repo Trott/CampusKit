@@ -1,10 +1,16 @@
 window._gaq = window._gaq || [];
 
 (function () {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'cordova.js';
-    document.body.appendChild(script);
+
+    var scriptAppend = function (src) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        document.body.appendChild(script);
+    };
+
+    scriptAppend('cordova.js');
+    scriptAppend('GAPlugin.js');
 }());
 
 
