@@ -1,8 +1,15 @@
 window._gaq = window._gaq || [];
 
+(function () {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'cordova.js';
+    document.body.appendChild(script);
+}());
+
+
 document.addEventListener('deviceready',
     function () {
-
         var gaPlugin = window.plugins.gaPlugin;
         var doNothing = function () {};
 
