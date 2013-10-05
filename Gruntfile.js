@@ -30,22 +30,15 @@ module.exports = function (grunt) {
 
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
-            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/www', src: '**', dest: dest},
-            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/plugins', src: '**', dest: dest + '/../plugins'}
+            {expand: true, cwd: 'phonegap/campuskit_templates/' + siteOption + '/www', src: '**', dest: dest}
         );
         configCleanAllSrc.push('phonegap/platforms/*', '!phonegap/platforms/.gitignore');
         configCleanAllSrc.push('phonegap/plugins/*', '!phonegap/plugins/.gitignore');
     }
 
-    var configJshintModules = [site + '/js/modules/*/*.src.js'];
-    if (platformOption === 'phonegap') {
-        configJshintModules.push(site + '/js/phonegap/modules/*/*.src.js');
-    }
-
-    var configUglifyModules = ['**/*.js', '!**/*.min.js'];
-    if (platformOption === 'phonegap') {
-        configUglifyModules.push(['../phonegap/modules/**/*.js']);
-    }
+    var configInlineAngularTemplatesDistFiles = platformOption === 'web' ?
+        {'dist/index.html': [site + '/angular_templates/*/*.html']} :
+        {'phonegap/www/index.html': [site + '/angular_templates/*/*.html']};
 
     // Project configuration.
     grunt.initConfig({
@@ -80,13 +73,13 @@ module.exports = function (grunt) {
         connect: {
             server: {
                 options: {
-                    base: dest,
+                    base: 'dist',
                     hostname: 'localhost',
                     port: 8000,
                     middleware: function (connect) {
                         return [
                             require('connect-livereload')(),
-                            connect.static(dest)
+                            connect.static('dist')
                         ];
                     }
                 }
@@ -114,9 +107,7 @@ module.exports = function (grunt) {
                     base: site + '/angular_templates',
                     selector: '#ng-app'
                 },
-                files: {
-                    'dist/index.html': [site + '/angular_templates/*/*.html']
-                }
+                files: configInlineAngularTemplatesDistFiles
             }
         },
 
@@ -145,7 +136,7 @@ module.exports = function (grunt) {
                 options: {
                     browser: true
                 },
-                src: configJshintModules
+                src: [site + '/js/modules/*/*.src.js']
             },
             afterconcat: {
                 options: {
@@ -246,7 +237,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: site + '/js/modules/',
-                        src: configUglifyModules,
+                        src: ['**/*.js', '!**/*.min.js'],
                         dest: dest + '/js/modules/',
                         ext: '.js',
                         flatten: true
