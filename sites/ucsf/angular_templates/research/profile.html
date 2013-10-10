@@ -21,12 +21,12 @@
     <div class="menu detailed" data-ng-show="profile.Publications">
         <h1 class="content-first light">Publications</h1>
         <ol>
-            <li data-ng-repeat="publication in profile.Publications" data-ng-show="publication.publicationTitle">
-                <p data-ng-hide="publication.publicationSource[0].publicationSourceURL">
-                    <span class="smallprint">{{publication.publicationTitle}}</span>
+            <li data-ng-repeat="publication in profile.Publications" data-ng-show="publication.PublicationTitle">
+                <p data-ng-hide="publication.PublicationSource[0].PublicationSourceURL">
+                    <span class="smallprint">{{publication.PublicationTitle}}</span>
                 </p>
-                <a data-ng-show="publication.publicationSource[0].publicationSourceURL" href="publication.publicationSource[0].publicationSourceURL" rel="external">
-                    <span class="smallprint">{{publication.publicationTitle}}</span>
+                <a data-ng-show="publication.PublicationSource[0].PublicationSourceURL" href="publication.PublicationSource[0].PublicationSourceURL" rel="external">
+                    <span class="smallprint">{{publication.PublicationTitle}}</span>
                 </a>
             </li>
         </ol>
