@@ -25,7 +25,7 @@
                 <p data-ng-hide="publication.PublicationSource[0].PublicationSourceURL">
                     <span class="smallprint">{{publication.PublicationTitle}}</span>
                 </p>
-                <a data-ng-show="publication.PublicationSource[0].PublicationSourceURL" href="publication.PublicationSource[0].PublicationSourceURL" rel="external">
+                <a data-ng-show="publication.PublicationSource[0].PublicationSourceURL" href="{{publication.PublicationSource[0].PublicationSourceURL}}" rel="external">
                     <span class="smallprint">{{publication.PublicationTitle}}</span>
                 </a>
             </li>
