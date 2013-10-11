@@ -1,51 +1,49 @@
-## current master branch
+<a name="v0.6.5"></a>
+### v0.6.5 (2013-10-10)
 
-## 0.6.4
 
-- Maintenance release, no new features
+#### Features
 
-## 0.6.3
+* **changelog:** automate updating of changelog via grunt-conventional-changelog ([b23b94b8](http://github.com/Trott/CampusKit/commit/b23b94b80ccd93195b2eff087bf9f9a9f9a20bd2))
 
-- Inline JS
-- Inline CSS
-- Inline AngularJS templates
+### v0.6.4
 
-## 0.6.2
+* Maintenance release, no new features
 
- - Process Sass files as part of build process
+### v0.6.3
 
-## 0.6.1
+* Inline JS
+* Inline CSS
+* Inline AngularJS templates
 
- - `grunt run` for livereload + watch + open
- - rename `htdocs` to `dist` to be like the cool kids
+### v0.6.2
 
-## 0.6.0
+* Process Sass files as part of build process
 
-Features:
+### v0.6.1
 
- - LiveReload
- - Tons of features and bug fixes for sample UCSF app
- - SHINY NEW LOGO!
+* `grunt run` for livereload + watch + open
+* rename `htdocs` to `dist` to be like the cool kids
 
-## 0.5.1
+### v0.6.0
 
-Features:
+* LiveReload
+* Tons of features and bug fixes for sample UCSF app
+* SHINY NEW LOGO!
 
- - We've added this shiny, new CHANGELOG and also a CONTRIBUTORS list.
- - UCSF demo app now works fully in PhoneGap.
+### v0.5.1
 
-## 0.5.0
+* We've added this shiny, new CHANGELOG and also a CONTRIBUTORS list.
+* UCSF demo app now works fully in PhoneGap.
 
-Features:
+### v0.5.0
 
- - We've got a Yeoman generator now!
- - More documentation!
- - Improved demo site!
- - Compass/SASS no longer required; using cssmin for minification instead
+* We've got a Yeoman generator now!
+* More documentation!
+* Improved demo site!
+* Compass/SASS no longer required; using cssmin for minification instead
 
-## 0.4.0
+### v0.4.0
 
-Features:
-
-  - added a default/demo site so you can build something right away
-  - added PhoneGap builds via phonegap-cli
+* added a default/demo site so you can build something right away
+* added PhoneGap builds via phonegap-cli
