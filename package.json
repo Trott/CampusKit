@@ -1,5 +1,6 @@
 {
   "name": "campuskit",
+  "version": "0.6.4",
   "description": "Create high-performance touch-friendly web sites and apps for mobile and tablet devices.",
   "main": "Gruntfile.js",
   "repository": {
@@ -25,6 +26,7 @@
     "grunt-sass": "~0.6.1",
     "grunt-release": "~0.5.1",
     "grunt-inline-angular-templates": "~0.1.3",
-    "grunt-html-smoosher": "~0.1.1"
+    "grunt-html-smoosher": "~0.1.1",
+    "grunt-conventional-changelog": "~1.0.0"
   }
 }
