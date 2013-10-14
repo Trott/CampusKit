@@ -20,18 +20,6 @@ Scenario: Get By Location
   Then I should see "16th St. BART"
   And I should see "VA Medical Center"
 
-Scenario: Get timetable for E/R stop
-  Given I am on the home page
-  And I click "Shuttle"
-  And I click "Shuttles By Route"
-  And I click "VA"
-  And I click "Parnassus E/R"
-  Then I should see "Previous Day"
-  And I should see "Next Day"
-  Then I should not see "Trip Planner"
-  And I should not see "Shuttles By Route"
-  And I should not see "Shuttles By Location"
-
 Scenario: Get shuttles for Surge/Woods
   Given I am on the home page
   And I click "Shuttle"
