@@ -3,7 +3,7 @@ Feature: Shuttle Schedules
   The users
   Should be able to read a shuttle schedule
 
-Scenario: Show Direction
+Scenario: Show Direction for Red Shuttle
   Given my localStorage is empty
   And I am on the home page
   And I click "Shuttle"
@@ -12,6 +12,26 @@ Scenario: Show Direction
   And I click "Mission Center Building"
   Then I should see "to 16th St. BART"
   And I should see "to Mission Bay"
+
+Scenario: Show Direction for Purple Shuttle
+  Given my localStorage is empty
+  And I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Purple"
+  And I click "3360 Geary"
+  Then I should see "to Mt. Zion"
+  And I should see "to Parnassus"
+
+Scenario: Show Direction for Green Shuttle
+  Given my localStorage is empty
+  And I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Green"
+  And I click "Mission Bay (west side of street)"
+  Then I should see "to China Basin"
+  And I should see "to 654 Minnesota St."
 
 Scenario: Do Not Show Duplicate Shuttles
   Given my localStorage is empty
