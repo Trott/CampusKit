@@ -75,3 +75,12 @@ Scenario: Show GPS-based predictions for Grey shuttle
   Then I should see "GPS"
   And I should see "Shuttle in:"
   And I should see "minutes"
+
+Scenario: Do not show stops that are drop-off only on Bronze route
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Bronze"
+  Then I should see "(LPPI)"
+  And I should not see "(ACC)"
+  And I should not see "Parnassus Library"
