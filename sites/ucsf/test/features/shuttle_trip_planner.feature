@@ -110,3 +110,15 @@ Scenario: Route impossible trip, then route possible trip
   And I route the trip
   Then I should see "Red"
   And I should not see "No options found"
+
+Scenario: Do not show the same shuttle in multiple guises due to directional hack in the planner
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "From 16th St. BART"
+  And I select a route "To Mission Center Building"
+  And I select "Depart at" for "when"
+  And I select "10:15 AM" for "time"
+  And I route the trip
+  Then I should see "10:25 AM - 10:30 AM"
+  And I should not see "10:25 AM - 10:50 AM"
