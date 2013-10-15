@@ -58,8 +58,7 @@
             var options = {
                 routeId: $routeParams.route,
                 stopId: $routeParams.stop,
-                startTime: startTime,
-                endTime: startTime + 86399999
+                startTime: startTime
             };
 
             var successCallback = function (data) {
@@ -86,7 +85,6 @@
             $scope.changeDay = function (changeBy) {
                 var changeInMs = changeBy * 86400000;
                 startTime = options.startTime += changeInMs;
-                options.endTime += changeInMs;
                 $scope.loading = true;
                 $scope.loaded = false;
                 ShuttleService.times(options, successCallback, failureCallback);
