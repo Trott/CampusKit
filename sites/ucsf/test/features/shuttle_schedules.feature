@@ -84,3 +84,12 @@ Scenario: Do not show stops that are drop-off only on Bronze route
   Then I should see "(LPPI)"
   And I should not see "(ACC)"
   And I should not see "Parnassus Library"
+
+Scenario: Do not show "to Mission Bay" if we're at Mission Bay
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Red"
+  And I click "Mission Bay (east side of street)"
+  Then I should see "4:30 PM"
+  Then I should not see "to Mission Bay"
