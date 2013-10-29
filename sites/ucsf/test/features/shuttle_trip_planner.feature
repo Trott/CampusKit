@@ -37,7 +37,7 @@ Scenario: Show Multiple Shuttles
   And I select a route "From 16th St. BART"
   And I select a route "To Mission Center Building"
   And I select "Depart at" for "when"
-  And I select "6:15 AM" for "time"
+  And I select "6:00 AM" for "time"
   And I route the trip
   Then I should see "Red"
   And I should see "Yellow"
