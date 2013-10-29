@@ -120,5 +120,5 @@ Scenario: Do not show the same shuttle in multiple guises due to directional hac
   And I select "Depart at" for "when"
   And I select "10:15 AM" for "time"
   And I route the trip
-  Then I should see "10:25 AM - 10:30 AM"
-  And I should not see "10:25 AM - 10:50 AM"
+  Then I should see "10:15 AM - 10:20 AM"
+  And I should not see "10:15 AM - 10:40 AM"
