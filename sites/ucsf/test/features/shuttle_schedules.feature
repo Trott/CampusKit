@@ -91,5 +91,6 @@ Scenario: Do not show "to Mission Bay" if we're at Mission Bay
   And I click "Shuttles By Route"
   And I click "Red"
   And I click "Mission Bay (east side of street)"
-  Then I should see "4:30 PM"
-  Then I should not see "to Mission Bay"
+  Then I should see " PM"
+  And I should see " AM"
+  And I should not see "to Mission Bay"
