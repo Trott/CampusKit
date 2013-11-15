@@ -27,6 +27,8 @@
     "grunt-release": "~0.5.1",
     "grunt-inline-angular-templates": "~0.1.3",
     "grunt-html-smoosher": "~0.1.1",
-    "grunt-conventional-changelog": "~1.0.0"
+    "grunt-conventional-changelog": "~1.0.0",
+    "protractor": "~0.12.1",
+    "grunt-protractor-runner": "~0.1.8"
   }
 }
