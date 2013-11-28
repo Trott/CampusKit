@@ -123,6 +123,7 @@ module.exports = function (grunt) {
                 undef: true,
                 boss: true,
                 eqnull: true,
+                scripturl: true,
                 globals: {
                     'angular': true,
                     'FastClick': true,

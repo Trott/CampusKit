@@ -47,7 +47,7 @@
             <div>
                 <h4>EZProxy Bookmarklet</h4>
                 <ol class="numbered">
-                    <li>Copy and paste this thing: <input class="compact" readonly value="javascript:void((function(){location.href='https://ucsf.idm.oclc.org/login?qurl=' + encodeURIComponent(location.href);})());"></input></li>
+                    <li>Copy this thing: <input data-ng-click="selectBookmarklet()" id="library_remote_access_bookmarklet" class="compact" data-ng-model="bookmarkletUrl" data-ng-change="resetBookmarkletUrl()"></input></li>
                     <li>Bookmark this page. (It will have a title you will want to change. When we insert animations between steps, we can change the title.)</li>
                     <li>Edit the bookmark and paste in your clipboard</li>
                     <li>Rawk! You've got an EZProxy bookmarklet up in your iPad.</li>

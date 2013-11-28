@@ -6,7 +6,7 @@
         $routeProvider
         .when('/library', {templateUrl: 'library/mainMenu.html'})
         .when('/library/locations', {controller: 'locationsLibraryController', templateUrl: 'library/locations.html'})
-        .when('/library/help', {templateUrl: 'library/help.html'});
+        .when('/library/help', {controller: 'helpLibraryController', templateUrl: 'library/help.html'});
     }])
     .factory('LibraryService', function () {
         return {
@@ -44,5 +44,18 @@
         };
 
         $scope.load();
+    }])
+    .controller('helpLibraryController', ['$scope', '$window', function ($scope, $window) {
+        var bookmarklet = $window.document.getElementById('library_remote_access_bookmarklet');
+
+        $scope.selectBookmarklet = function () {
+            bookmarklet.select();
+        };
+
+        $scope.resetBookmarkletUrl = function () {
+            $scope.bookmarkletUrl = 'javascript:void((function(){location.href=\'https://ucsf.idm.oclc.org/login?qurl=\' + encodeURIComponent(location.href);})());';
+        };
+
+        $scope.resetBookmarkletUrl();
     }]);
 }());
