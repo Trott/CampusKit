@@ -216,6 +216,8 @@
 
             $scope.load = function () {
 
+                $scope.loadError = false; // Needed for "try again" button so the error message goes away
+
                 if ($routeParams.fromPlace && $routeParams.toPlace && $routeParams.when && $routeParams.time && $routeParams.date) {
                     var planXhrParams = {
                         fromPlace: $routeParams.fromPlace,
