@@ -122,3 +122,15 @@ Scenario: Do not show the same shuttle in multiple guises due to directional hac
   And I route the trip
   Then I should see "10:25 AM - 10:30 AM"
   And I should not see "10:25 AM - 10:50 AM"
+
+Scenario: Do not omit shorter trip when even if start time is not closer to desired departure time
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Trip Planner"
+  And I select a route "From Mission Bay Campus"
+  And I select a route "To Buchanan Dental Center"
+  And I select "Depart at" for "when"
+  And I select "4:30 PM" for "time"
+  And I route the trip
+  Then I should see "4:40 PM - 5:07 PM (27 mins)"
+  And I should see "4:50 PM - 5:07 PM (17 mins)"
