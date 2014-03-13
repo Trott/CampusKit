@@ -51,7 +51,7 @@ Scenario: Search by name and multi-word department
   And I enter "Ann dept:"Emergency Department""
   And I click the "Search" button
   Then I should see "Search Results"
-  And I should see "MC3-Emergency Department"
+  And I should see "EMERGENCY DEPARTMENT"
   And I should not see "Surgery"
 
 Scenario: Hyphenated and apostrophenated names
