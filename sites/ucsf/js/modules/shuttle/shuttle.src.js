@@ -14,16 +14,40 @@
     }])
     .factory('ShuttleService', ['$rootScope', function ($scope) {
         var wrapper = function (functionName, options, successCallback, failureCallback) {
+            var attempts = 1;
+            var functionToTry;
+
+            var exponentialBackoff = function (functionToRetry) {
+                var maxInterval = (Math.pow(2, attempts) - 1) * 1000;
+
+                if (maxInterval > 30*1000) {
+                    maxInterval = 30*1000; // maximum wait time is 30 seconds
+                }
+
+                var waitTime = Math.random() * maxInterval;
+                setTimeout(function () {
+                    attempts++;
+                    functionToRetry();
+                }, waitTime);
+            };
+
             var wrappedSuccess = function (data) {
                 successCallback(data);
                 $scope.$apply();
             };
+
+
             var wrappedFailure = function (error, data) {
+                exponentialBackoff(functionToTry);
                 failureCallback(error, data);
                 $scope.$apply();
             };
+
             if (typeof UCSF === "object" && UCSF.Shuttle) {
-                UCSF.Shuttle[functionName](options, wrappedSuccess, wrappedFailure);
+                functionToTry = function () {
+                    UCSF.Shuttle[functionName](options, wrappedSuccess, wrappedFailure);
+                };
+                functionToTry();
             } else {
                 failureCallback();
             }
