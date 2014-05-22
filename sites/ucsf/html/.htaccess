@@ -9,6 +9,8 @@ AddOutputFilterByType DEFLATE application/javascript application/x-javascript te
     ExpiresByType application/javascript "access plus 1 week"
 </IfModule>
 
+Redirect gone /assets/appcache/manifest.appcache
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
@@ -24,6 +26,7 @@ AddOutputFilterByType DEFLATE application/javascript application/x-javascript te
     RewriteRule ^shuttle/schedule/[0-9]+$ /shuttle/#/list/ [NE,L,R]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !manifest.appcache
     RewriteRule ^(.*)$ /#$1 [NE,L,R]
 
     RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
