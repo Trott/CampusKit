@@ -37,8 +37,6 @@ Video Tutorials
 5. [Deploying Your Web App](http://www.youtube.com/watch?v=f5L-BfLqyZo)
 6. [Building Your Native App Locally](http://www.youtube.com/watch?v=DtvhvQ2KyFg)
 7. [Building The UCSF Demo App In The Cloud](http://www.youtube.com/watch?v=IjbaCeKYP5o)
-8. Using Sass with CampusKit (coming very soon)
-9. Inline All The Things! (coming soon)
 
 License and Copyright
 -
