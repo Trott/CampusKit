@@ -26,7 +26,7 @@
                     <!--[if !IE]> -->
                     <li data-ng-repeat="profilenodeid in result.ucsfeduprofilenodeid"><a href="#/research/{{profilenodeid}}">Research Profile</a></li>
                     <!-- <![endif]-->
-                    <li data-ng-repeat="profilenodeid in result.ucsfeduprofilenodeid" class="ucsf-directory-noclick"><img data-ng-src="http://src.sencha.io/100/http://profiles.ucsf.edu/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID={{profilenodeid}}" alt="" class="profile-photo"></li>
+                    <li data-ng-repeat="profilenodeid in result.ucsfeduprofilenodeid" class="ucsf-directory-noclick"><img data-ng-src="http://src.sencha.io/100/http://profiles.ucsf.edu/profile/Modules/CustomViewPersonGeneralInfo/PhotoHandler.ashx?NodeID={{profilenodeid}}" alt="" class="profile-photo" onerror="this.setAttribute('style', 'display:none');"></li>
                     <li class="ucsf-directory-noclick" data-ng-repeat="title in result.ucsfeduworkingtitle">{{title}}</li>
                     <li class="ucsf-directory-noclick" data-ng-repeat="address in result.postaladdress">{{address}}</li>
                 </ul>
