@@ -6,7 +6,3 @@ Feature: Home screen
 Scenario: Home screen
   Given I am on the home page
   Then I should see the home page
-
-Scenario: Native iOS Home screen
-  Given I am on the Native iOS home page
-  Then I should see a link to "itms-apps://itunes.apple.com/us/app/ucsf-mobile/id452148015?mt=8"
