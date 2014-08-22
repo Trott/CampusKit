@@ -7,7 +7,7 @@ Given(/^I click the "(.*?)" button$/) do |text|
 end
 
 Then(/^I should not see "(.*?)"$/) do |text|
-    should have_no_content(text)
+    expect(self).to have_no_content(text)
 end
 
 Then(/^I go back$/) do
@@ -15,9 +15,9 @@ Then(/^I go back$/) do
 end
 
 Then(/^I should see a "(.*?)" URL$/) do |url|
-    should have_xpath("//a[@href='#{url}']");
+    expect(self).to have_xpath("//a[@href='#{url}']");
 end
 
 Then(/^I should see a profile photo$/) do
-  should have_xpath("//img[contains(concat(' ',normalize-space(@class),' '),' profile-photo ')]")
+  expect(self).to have_xpath("//img[contains(concat(' ',normalize-space(@class),' '),' profile-photo ')]")
 end

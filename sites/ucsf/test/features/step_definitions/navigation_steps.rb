@@ -3,5 +3,5 @@ Then(/^I should not see the "(.*?)" button$/) do |arg1|
 end
 
 Then(/^I should see the "(.*?)" button$/) do |arg1|
-  find("button", :text => "Back").should be_visible
+  expect(find("button", :text => "Back")).to be_visible
 end
