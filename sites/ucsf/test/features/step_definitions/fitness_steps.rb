@@ -3,11 +3,11 @@ Given(/^I visit the Fitness page$/) do
 end
 
 Then(/^I should see the Fitness menu$/) do
- 	find("h2", :text => "Fitness").should be_visible
+ 	expect(find("h2", :text => "Fitness")).to be_visible
 end
 
 Then(/^I should see the Fitness search box$/) do
-	find("input#ucsf-fitness-search").should be_visible
+	expect(find("input#ucsf-fitness-search")).to be_visible
 end
 
 Given(/^I search for "(.*?)"$/) do |search_terms|

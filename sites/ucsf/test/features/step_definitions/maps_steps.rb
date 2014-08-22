@@ -1,3 +1,3 @@
 Then(/^"(.*?)" should not be empty$/) do |selector|
-  should have_selector(selector + ' div')
+  expect(self).to have_selector(selector + ' div')
 end

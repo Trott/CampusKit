@@ -3,7 +3,7 @@ Given(/I visit a news page/) do
 end
 
 Then(/I should see news items/) do
-  find('h2', :text => 'UCSF News').should be_visible
+  expect(find('h2', :text => 'UCSF News')).to be_visible
 end
 
 And(/I click "([^"]*)"/) do |link_text|

@@ -11,7 +11,7 @@ Given(/I visit the Shuttle Trip Planner page/) do
 end
 
 Then(/^I should see "(.*?)" selected$/) do |value|
-    find(:xpath, "//option[text() = '#{value}']").should be_selected
+    expect(find(:xpath, "//option[text() = '#{value}']")).to be_selected
 end
 
 Given(/^I select a route "(.*?)"$/) do |value|
@@ -27,11 +27,11 @@ And(/^I reverse the trip$/) do
 end
 
 Then(/^I should see "(.*?)"$/) do |text|
-    should have_text(text)
+    expect(self).to have_text(text)
 end
 
 Then(/^"(.*?)" should not be disabled$/) do |arg1|
-    find(:xpath, "//fieldset[@name='datetime']")[:disabled].should_not eq "true"
+    expect(find(:xpath, "//fieldset[@name='datetime']")[:disabled]).not_to eq "true"
 end
 
 Given(/^I select "(.*?)" for "(.*?)"$/) do |value, name|
