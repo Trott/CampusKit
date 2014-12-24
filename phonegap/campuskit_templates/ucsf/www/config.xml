@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "edu.ucsf.UCSFMobile"
-        version   = "2.2.4"
-        versionCode = "942">
+        id        = "edu.ucsf.m"
+        version   = "2.3.0"
+        versionCode = "943">
     <name>UCSF</name>
 
     <description>
