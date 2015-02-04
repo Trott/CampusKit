@@ -52,4 +52,5 @@
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
     <gap:plugin name="com.adobe.plugins.gaplugin" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
 </widget>
