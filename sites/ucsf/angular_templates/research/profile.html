@@ -1,7 +1,7 @@
 <progress data-ng-show="loading"><div class="spinner"></div></progress>
 <div data-ng-hide="loading || loadError" data-ng-init="showFullNarrative=[]" data-ng-repeat="profile in profiles">
     <div class="menu detailed">
-        <img data-ng-show="profile.PhotoURL" data-ng-src="http://src.sencha.io/80/80/{{profile.PhotoURL}}" alt="" class="research-photo">
+        <img data-ng-show="profile.PhotoURL" data-ng-src="{{profile.PhotoURL}}" alt="" class="research-photo" width="80" height="80">
         <h1 class="research-header">{{profile.Name}}</h1>
         <ol data-ng-show="profile.Narrative">
             <li>

@@ -27,7 +27,7 @@
         <header class="main-header" data-ng-cloak>
             <div class="logo"></div>
         </header>
-        <div data-ng-view data-ng-animate="{enter: 'transition-in'}">
+        <div data-ng-view>
         </div>
         <footer class="main-footer" data-ng-cloak>
             <p>
@@ -36,7 +36,6 @@
         </footer>
         <div data-ng-cloak data-ng-controller="navigationController">
             <button data-ng-hide="hideNavigation"
-            data-ng-animate="{show: 'transition-in'}"
             onclick="window.history.go(-1);"
             class="nav-button">Back</button>
         </div>
