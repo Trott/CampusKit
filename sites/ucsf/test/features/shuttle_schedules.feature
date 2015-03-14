@@ -94,3 +94,13 @@ Scenario: Do not show "to Mission Bay" if we're at Mission Bay
   Then I should see " PM"
   And I should see " AM"
   And I should not see "to Mission Bay"
+
+Scenario: Show Mission Bay Hospital stop and shuttles
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Location"
+  Then I should see "Mission Bay Hospital"
+  And I click "Mission Bay Hospital"
+  Then I should see "Blue"
+  And I should see "Gold"
+  And I should see "Grey"
