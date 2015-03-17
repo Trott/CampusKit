@@ -22,7 +22,7 @@
                 <h4>{{startTime | date:'EEE MMM d yyyy'}}</h4>
 
                 <ol>
-                    <li data-ng-repeat="time in times">{{time.time * 1000 | date:'shortTime'}}<span class="smallprint" data-ng-show="time.trip.tripHeadsign"> {{time.trip.tripHeadsign}}</span></li>
+                    <li data-ng-repeat="time in times">{{time.time * 1000 | date:'shortTime'}}<span class="smallprint" data-ng-show="time.direction"> {{time.direction}}</span></li>
                     <li data-ng-hide="times.length || loadError">No times found for selected date.</li>
                 </ol>
             </div>

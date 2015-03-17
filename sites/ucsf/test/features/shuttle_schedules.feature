@@ -30,7 +30,7 @@ Scenario: Show Direction for Green Shuttle
   And I click "Shuttles By Route"
   And I click "Green"
   And I click "Mission Bay (west side of street)"
-  Then I should see "to China Basin"
+  Then I should see "to MB Orthopaedic Institute"
   And I should see "to 654 Minnesota St."
 
 Scenario: Do Not Show Duplicate Shuttles
