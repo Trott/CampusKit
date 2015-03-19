@@ -1,6 +1,6 @@
 {
   "name": "campuskit",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Create high-performance touch-friendly web sites and apps for mobile and tablet devices.",
   "main": "Gruntfile.js",
   "repository": {
