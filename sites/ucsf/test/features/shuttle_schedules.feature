@@ -76,6 +76,36 @@ Scenario: Show GPS-based predictions for Grey shuttle
   And I should see "Shuttle in:"
   And I should see "minutes"
 
+Scenario: Show GPS-based predictions for Grey at Mission Bay Hospital
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Grey"
+  And I click "Mission Bay Hospital"
+  Then I should see "GPS"
+  And I should see "Shuttle in:"
+  And I should see "minutes"
+
+Scenario: Show GPS-based predictions for Blue at Mission Bay Hospital
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Blue"
+  And I click "Mission Bay Hospital"
+  Then I should see "GPS"
+  And I should see "Shuttle in:"
+  And I should see "minutes"
+
+Scenario: Show GPS-based predictions for Gold at Mission Bay Hospital
+  Given I am on the home page
+  And I click "Shuttle"
+  And I click "Shuttles By Route"
+  And I click "Gold"
+  And I click "Mission Bay Hospital"
+  Then I should see "GPS"
+  And I should see "Shuttle in:"
+  And I should see "minutes"
+
 Scenario: Do not show stops that are drop-off only on Bronze route
   Given I am on the home page
   And I click "Shuttle"
