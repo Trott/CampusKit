@@ -28,7 +28,4 @@ Redirect gone /assets/appcache/manifest.appcache
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !manifest.appcache
     RewriteRule ^(.*)$ /#$1 [NE,L,R]
-
-    RewriteRule ^maps/locations.php$ /maps/locations/ [L,R]
-    RewriteRule ^maps/campus.php$ /maps/ [L,R]
 </IfModule>

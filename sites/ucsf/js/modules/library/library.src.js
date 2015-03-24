@@ -23,11 +23,12 @@
             }
         };
     })
-    .controller('locationsLibraryController', ['$scope', 'LibraryService', function ($scope, LibraryService) {
+    .controller('locationsLibraryController', ['$scope', '$document', 'LibraryService', function ($scope, $document, LibraryService) {
         var successCallback = function (data) {
             $scope.loading = false;
             $scope.loaded = true;
             $scope.locations = data.locations;
+            $scope.$apply();
         };
 
         var failureCallback = function () {
@@ -35,7 +36,7 @@
             $scope.loadError = true;
         };
 
-        $scope.load = function () {
+        var load = function () {
             $scope.loading = true;
             $scope.loaded = false;
             $scope.loadError = false;
@@ -43,6 +44,6 @@
             LibraryService.hours({}, successCallback, failureCallback);
         };
 
-        $scope.load();
+        $document.ready(load);
     }]);
 }());

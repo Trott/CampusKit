@@ -1,93 +1,63 @@
 <section>
-    <div class="menu detailed">
-        <ol>
-            <li data-ng-init="showP=false"><a href="" data-ng-click="showP=!showP">Parnassus Library</a></li>
-        </ol>
-    </div>
-
-    <div class="subordinate">
-        <div data-ng-show="showP && loading">
-            <progress>
-                <span class="spinner"></span>
-            </progress>
-        </div>
-
-        <div class="content" data-ng-show="showP && loaded">
-            <h2>Hours</h2>
-            <div>
-                <div class="timetable">
-                    <table>
-                        <tr ng-repeat="entry in locations.parnassus">
-                            <td>{{entry.day}} {{entry.date}}</td>
-                            <td>{{entry.text}}</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <ul>
-                            <li>24/7 Hearst Room, Parnassus Library (with student ID)</li>
-                            <li>24/7 Computer Lab, S166 (with student ID)</li>
-                        </ul>
-                    </div>
+    <div class="content">
+        <h2>Parnassus Library</h2>
+        <div>
+            <div class="timetable">
+                <div data-ng-show="loading">
+                    <progress>
+                        <span class="spinner"></span>
+                    </progress>
                 </div>
-            </div>
-        </div>
-
-        <div class="content subordinate" data-ng-show="showP && loadError">
-            <p>Library hours data could not be loaded. Please <a href="" data-ng-click="load()">try again</a>.</p>
-        </div>
-
-        <div data-ng-show="showP">
-            <div class="menu detailed">
-                <ol>
-                    <li><a href="#/maps/map/Kalmanovitz%20Library">Map<br><br><span class="smallprint">530 Parnassus Avenue<br>San Francisco, CA 94143-0840<br></span></a></li>
-                    <li><a href="tel:+14154762336">(415) 476-2336</a></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-
-    <div class="menu detailed">
-        <ol>
-            <li data-ng-init="showMB=false"><a href="" data-ng-click="showMB=!showMB">Mission Bay Library</a></li>
-        </ol>
-    </div>
-
-    <div class="subordinate">
-        <div data-ng-show="showMB && loading">
-            <progress>
-                <span class="spinner"></span>
-            </progress>
-        </div>
-
-        <div class="content" data-ng-show="showMB && loaded">
-            <h2>Hours</h2>
-            <div>
-                <div class="timetable">
-                    <table>
-                        <tr ng-repeat="entry in locations.missionBay">
-                            <td>{{entry.day}} {{entry.date}}</td>
-                            <td>{{entry.text}}</td>
-                        </tr>
-                    </table>
-                    <div>
-                        <ul>
-                            <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.</li>
-                        </ul>
-                    </div>
+                <div class="content" data-ng-show="loadError">
+                    <p>Library hours data could not be loaded. Please <a href="" data-ng-click="load()">try again</a>.</p>
                 </div>
+                <table data-ng-show="loaded">
+                    <tr ng-repeat="entry in locations.parnassus">
+                        <td>{{entry.day}} {{entry.date}}</td>
+                        <td>{{entry.text}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <ul>
+                    <li>24/7 Hearst Room, Parnassus Library (with student ID)</li>
+                    <li>24/7 Computer Lab, S166 (with student ID)</li>
+                </ul>
+                <p>
+                    530 Parnassus Avenue<br/>San Francisco, CA 94143-0840
+                </p>
+                <p>
+                    <a href="tel:+14154762336">(415) 476-2336</a>
+                </p>
             </div>
         </div>
+    </div>
 
-        <div class="content subordinate" data-ng-show="showMB && loadError">
-            <p>Library hours data could not be loaded. Please <a href="" data-ng-click="load()">try again</a>.</p>
-        </div>
-
-        <div data-ng-show="showMB">
-            <div class="menu detailed">
-                <ol>
-                    <li><a href="#/maps/map/Rutter%20Center">Map<br><br><span class="smallprint">William J. Rutter Conference Center<br>Room 150<br>1675 Owens Street<br>San Francisco, CA 94143-2119<br></span></a></li>
-                    <li><a href="tel:+14155144060">(415) 514-4060</a></li>
-                </ol>
+    <div class="content">
+        <h2>Mission Bay Library</h2>
+        <div>
+            <div class="timetable">
+                <div data-ng-show="loading">
+                    <progress>
+                        <span class="spinner"></span>
+                    </progress>
+                </div>
+                <div class="content" data-ng-show="loadError">
+                    <p>Library hours data could not be loaded. Please <a href="" data-ng-click="load()">try again</a>.</p>
+                </div>
+                <table data-ng-show="loaded">
+                    <tr ng-repeat="entry in locations.missionBay">
+                        <td>{{entry.day}} {{entry.date}}</td>
+                        <td>{{entry.text}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <ul>
+                    <li>UCSF student access until midnight: Use eastern entrance with ID access. Enter library through computer lab CC151 with ID.</li>
+                </ul>
+                <p>William J. Rutter Conference Center<br>Room 150<br>1675 Owens Street<br>San Francisco, CA 94143-2119</p>
+                <p><a href="tel:+14155144060">(415) 514-4060</a></p>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ Scenario: Parnassus library hours
   Given I am on the home page
   And I click "Library"
   And I click "Hours and Locations"
-  And I click "Parnassus"
-  Then I should see "am - "
+  Then I should see "Parnassus Library"
+  And I should see "Mission Bay Library"
+  And I should see "am - "
   And I should see "pm"
