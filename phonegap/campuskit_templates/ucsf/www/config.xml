@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "edu.ucsf.m"
-        version   = "2.3.0"
-        versionCode = "943">
+        version   = "3.0.0"
+        versionCode = "944">
     <name>UCSF</name>
 
     <description>
