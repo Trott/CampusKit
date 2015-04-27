@@ -37,6 +37,13 @@ something like BASE_URL=http://example.com on the cucumber command line.
 
 RUNNING THE TESTS:
 
-* In test directory:
+* Prerequisites:
+
+    gem install cucumber rspec capybara
+    gem install selenium
+    selenium install
+    gem install selenium-webdriver
+
+* In test directory, run tests:
 
   cucumber
