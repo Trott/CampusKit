@@ -35,25 +35,6 @@ Scenario: Results include URL for telephone numbers
   And I click "Richard Trott"
   Then I should see a "tel:+1 415 476-5450" URL
 
-Scenario: Search by name and department
-  Given I am on the home page
-  And I click "Directory"
-  Then I should see "Person Search"
-  And I enter "Richard dept:Library"
-  And I click the "Search" button
-  Then I should see "Search Results"
-  And I should see "Trott"
-
-Scenario: Search by name and multi-word department
-  Given I am on the home page
-  And I click "Directory"
-  Then I should see "Person Search"
-  And I enter "Ann dept:"Emergency Department""
-  And I click the "Search" button
-  Then I should see "Search Results"
-  And I should see "EMERGENCY DEPARTMENT"
-  And I should not see "Surgery"
-
 Scenario: Hyphenated and apostrophenated names
   Given I am on the home page
   And I click "Directory"
