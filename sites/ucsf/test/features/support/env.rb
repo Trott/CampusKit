@@ -1,9 +1,7 @@
 require 'rspec/expectations'
 require 'capybara'
-require 'test/unit/assertions'
+require 'minitest/autorun'
 require 'selenium/webdriver'
-
-World(Test::Unit::Assertions)
 
 Capybara.ignore_hidden_elements = true
 
