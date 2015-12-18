@@ -162,14 +162,6 @@ module.exports = function (grunt) {
             }
         },
 
-        release: {
-            options: {
-                file: 'bower.json',
-                npm: false,
-                tagName: 'v<%= version %>'
-            }
-        },
-
         rsync: {
             'deploy-staging': {
                 src: 'dist/',
@@ -289,7 +281,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html-smoosher-install-fix');
     grunt.loadNpmTasks('grunt-inline-angular-templates');
     grunt.loadNpmTasks('grunt-open');
-    grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-rsync');
     grunt.loadNpmTasks('grunt-sass');
 
