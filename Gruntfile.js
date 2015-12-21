@@ -76,12 +76,7 @@ module.exports = function (grunt) {
                     base: 'dist',
                     hostname: 'localhost',
                     port: 8000,
-                    middleware: function (connect) {
-                        return [
-                            require('connect-livereload')(),
-                            connect.static('dist')
-                        ];
-                    }
+                    livereload: true
                 }
             }
         },
