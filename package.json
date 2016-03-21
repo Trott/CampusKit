@@ -20,7 +20,7 @@
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-conventional-changelog": "~1.0.0",
-    "grunt-html-smoosher-install-fix": "~0.1.1",
+    "grunt-html-smoosher-install-fix": "^0.1.4",
     "grunt-inline-angular-templates": "~0.1.4",
     "grunt-rsync": "~0.1.1",
     "grunt-sass": "^1.0.0"
