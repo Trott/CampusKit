@@ -9,7 +9,6 @@ Prerequisites
 
 * [node](http://nodejs.org/download/)
 * [grunt](http://gruntjs.com/getting-started)
-* [bower](http://bower.io/)
 
 If you wish to build native apps, you will also need:
 

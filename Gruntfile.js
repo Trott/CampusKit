@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         {expand: true, flatten: true, ext: '.js', cwd: site, src: ['js/modules/**/*.min.js'], dest: dest+'/js/modules'}
     ];
 
-    var configCleanAllSrc = [dest + '/*', 'tmp/*', 'bower_components/*', 'lib/*'];
+    var configCleanAllSrc = [dest + '/*', 'tmp/*'];
 
     if (platformOption === 'phonegap') {
         configCopyMainFiles.unshift(
@@ -42,10 +42,6 @@ module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        bower: {
-            install: {}
-        },
-
         clean: {
             all: {
                 dot: true,
@@ -56,7 +52,6 @@ module.exports = function (grunt) {
         concat: {
             full: {
                 src: [
-                    'tmp/fastclick.min.js',
                     'src/js/external/modernizr.js',
                     site + '/js/*.min.js',
                     site + '/js/' + platformOption + '/*.min.js',
@@ -120,7 +115,6 @@ module.exports = function (grunt) {
                 eqnull: true,
                 globals: {
                     'angular': true,
-                    'FastClick': true,
                     'google': false,
                     'Hogan': false,
                     'Modernizr': false,
@@ -203,11 +197,6 @@ module.exports = function (grunt) {
                     sequences: false
                 }
             },
-            fastclick: {
-                files: {
-                    'tmp/fastclick.min.js': ['lib/fastclick/fastclick.js']
-                }
-            },
             campuskit: {
                 files: {
                     'tmp/campuskit.partial.min.js': ['tmp/campuskit.partial.js']
@@ -228,7 +217,6 @@ module.exports = function (grunt) {
         },
     });
 
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
@@ -243,7 +231,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('js', ['jshint:beforeconcat', 'concat:partial', 'jshint:afterconcat', 'uglify:*', 'concat:full']);
-    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'bower:install', 'js', 'sass:dist', 'cssmin:minify', 'copy', 'inline_angular_templates', 'smoosher']);
+    grunt.registerTask('default', ['jshint:gruntfile', 'clean', 'js', 'sass:dist', 'cssmin:minify', 'copy', 'inline_angular_templates', 'smoosher']);
     grunt.registerTask('server', ['connect:server:keepalive']);
     grunt.registerTask('build', ['default']);
 };
